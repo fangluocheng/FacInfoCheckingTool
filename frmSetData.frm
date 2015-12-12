@@ -594,7 +594,7 @@ Begin VB.Form frmSetData
       Caption         =   "¥Æø⁄…Ë÷√"
       BeginProperty Font 
          Name            =   "Arial Narrow"
-         Size            =   12
+         Size            =   9
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False

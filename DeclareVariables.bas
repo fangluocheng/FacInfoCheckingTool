@@ -27,19 +27,54 @@ Public Const yyf = 3
 Public Const microStep = True
 Public Const StepbyStep = False
 
-Public IsBarcodeLen As Integer
-Public IsFunctionAutoBri As Boolean
-Public IsSensorLight As Boolean
-Public IsSaveData As Boolean
-Public IsCheckColorTemp  As Boolean
+'------------------------------------------------------------------------------
+'    Variable mapping the check items in "CheckItem".
+'------------------------------------------------------------------------------
+Public IsModel As Boolean
+Public IsSysVer As Boolean
+Public IsFlashInfo As Boolean
+Public IsHardwareVer As Boolean
+Public IsDimension As Boolean
+Public IsChannel As Boolean
+Public IsPartitionVer As Boolean
+Public Is24GVer As Boolean
+Public IsPanel As Boolean
+Public IsBroadcastCtrl As Boolean
+Public IsArea As Boolean
+Public IsHDCP As Boolean
+Public IsResolution As Boolean
+Public IsMACAddr As Boolean
+Public IsDeviceKey As Boolean
 
-Public IsSendOffset As Boolean
-Public IsAdjsutOffset As Boolean
+'------------------------------------------------------------------------------
+'    Variable mapping the items in "CheckItem".
+'------------------------------------------------------------------------------
+Public SetTVCurrentComBaud As Long                         'ComBaud
+Public IsStepTime As Long                                  'Delayms
+Public IsBarcodeLen As Integer                             'SN_Len
+Public ModelSpec As String                                 'ModelM
+Public SysVerSpec As String                                'SysVerM
+Public FlashInfoSpec As String                             'FlashInfoM
+Public HardwareVerSpec As String                           'HardwareVerM
+Public DimensionSpec As String                             'DimensionM
+Public ChannelSpec As String                               'ChannelM
+Public PartitionVerSpec As String                          'PartitionVerM
+Public TwoPointFourGVerSpec As String                      '24GVerM
+Public PanelSpec As String                                 'PanelM
+Public BroadcastCtrlSpec As String                         'BroadcastCtrlM
+Public AreaSpec As String                                  'AreaM
+Public HDCPSpec As String                                  'HDCPM
+Public ResolutionSpec As String                            'ResolutionM
+Public MACAddrSpec As String                               'MACAddrM
+Public DeviceKeySpec As String                             'DeviceKeyM
+
+
+Public IsStop As Boolean
+Public IsACK As Boolean
 
 Public strCurrentModelName As String
 Public strDataVersion As String
-Public IsStop As Boolean
-Public IsACK As Boolean
+
 Public SetTVCurrentComID As Integer
 Public SetData As Integer
 Public SetDay As Integer
@@ -49,5 +84,5 @@ Public scanbarcode As String
 Public strSerialNo As String
 Public countTime As Long
 
-Public SetTVCurrentComBaud As Long
+
 
