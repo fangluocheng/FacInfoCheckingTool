@@ -93,7 +93,7 @@ Public Sub GET_HARDWARE_VERSION()
     Form1.MSComm1.Output = SendDataBuf
 End Sub
 
-Public Sub GET_2D_OR_3D()
+Public Sub GET_DIMENSION_INFO()
 
     Dim SendDataBuf(0 To 9) As Byte
     
@@ -207,7 +207,7 @@ Public Sub GET_MODEL_INFO()
     Form1.MSComm1.Output = SendDataBuf
 End Sub
 
-Public Sub GET_2K_OR_4K()
+Public Sub GET_RESOLUTION_INFO()
 
     Dim SendDataBuf(0 To 9) As Byte
     
