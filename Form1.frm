@@ -13,22 +13,6 @@ Begin VB.Form Form1
    ScaleHeight     =   3090
    ScaleWidth      =   5790
    StartUpPosition =   2  '屏幕中心
-   Begin VB.CommandButton Command3 
-      Caption         =   "退出老化"
-      Height          =   495
-      Left            =   3240
-      TabIndex        =   3
-      Top             =   960
-      Width           =   1335
-   End
-   Begin VB.CommandButton Command2 
-      Caption         =   "进入老化"
-      Height          =   495
-      Left            =   1440
-      TabIndex        =   2
-      Top             =   960
-      Width           =   1335
-   End
    Begin MSCommLib.MSComm MSComm1 
       Left            =   5160
       Top             =   2400
@@ -98,15 +82,6 @@ Option Explicit
 Dim RES As Long
 Dim Result As Boolean
 Dim StepTime As Long
-
-Private Sub Command2_Click()
-    Call SET_BURNING_MODE(1)
-End Sub
-
-Private Sub Command3_Click()
-    Call SET_BURNING_MODE(0)
-    EXIT_FAC_MODE
-End Sub
 
 Private Sub Form_Load()
 
