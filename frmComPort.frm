@@ -6,6 +6,7 @@ Begin VB.Form Form2
    ClientTop       =   450
    ClientWidth     =   3735
    LinkTopic       =   "Form2"
+   MaxButton       =   0   'False
    ScaleHeight     =   1935
    ScaleWidth      =   3735
    StartUpPosition =   3  '´°¿ÚÈ±Ê¡
