@@ -3,23 +3,50 @@ Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "mscomm32.ocx"
 Begin VB.Form Form1 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "工厂信息校验工具"
-   ClientHeight    =   6150
+   ClientHeight    =   7230
    ClientLeft      =   45
    ClientTop       =   735
-   ClientWidth     =   10575
+   ClientWidth     =   12630
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   6150
-   ScaleWidth      =   10575
+   ScaleHeight     =   7230
+   ScaleWidth      =   12630
    StartUpPosition =   2  '屏幕中心
+   Begin VB.Frame Frame3 
+      Caption         =   "条码"
+      Height          =   1250
+      Left            =   4320
+      TabIndex        =   33
+      Top             =   5880
+      Width           =   8175
+      Begin VB.TextBox Text1 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "微软雅黑"
+            Size            =   21.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   885
+         Left            =   120
+         TabIndex        =   34
+         Text            =   "123456789"
+         Top             =   240
+         Width           =   7905
+      End
+   End
    Begin VB.Frame Frame2 
       Caption         =   "测试结果"
       Height          =   1250
       Left            =   120
-      TabIndex        =   33
-      Top             =   4800
-      Width           =   3135
+      TabIndex        =   31
+      Top             =   5880
+      Width           =   4095
       Begin VB.TextBox txtResult 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
@@ -34,19 +61,19 @@ Begin VB.Form Form1
          EndProperty
          Height          =   885
          Left            =   120
-         TabIndex        =   34
+         TabIndex        =   32
          Text            =   "Checking"
          Top             =   240
-         Width           =   2865
+         Width           =   3825
       End
    End
    Begin VB.Frame Frame1 
       Caption         =   "TV 信息"
-      Height          =   4620
+      Height          =   5700
       Left            =   120
       TabIndex        =   0
       Top             =   120
-      Width           =   10335
+      Width           =   12375
       Begin VB.TextBox txtDeviceKey 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
@@ -59,12 +86,12 @@ Begin VB.Form Form1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   525
-         Left            =   7680
-         TabIndex        =   32
+         Height          =   540
+         Left            =   8190
+         TabIndex        =   30
          Text            =   "None"
-         Top             =   3945
-         Width           =   2500
+         Top             =   5040
+         Width           =   4000
       End
       Begin VB.TextBox txtMacAddr 
          Alignment       =   2  'Center
@@ -78,12 +105,12 @@ Begin VB.Form Form1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   525
-         Left            =   5160
-         TabIndex        =   30
+         Height          =   540
+         Left            =   8190
+         TabIndex        =   28
          Text            =   "None"
          Top             =   3945
-         Width           =   2500
+         Width           =   4000
       End
       Begin VB.TextBox txtResolution 
          Alignment       =   2  'Center
@@ -97,12 +124,12 @@ Begin VB.Form Form1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   525
-         Left            =   2640
-         TabIndex        =   27
+         Height          =   540
+         Left            =   4150
+         TabIndex        =   25
          Text            =   "None"
          Top             =   3945
-         Width           =   2500
+         Width           =   4000
       End
       Begin VB.TextBox txtHdcpKey 
          Alignment       =   2  'Center
@@ -116,12 +143,12 @@ Begin VB.Form Form1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   525
+         Height          =   540
          Left            =   120
-         TabIndex        =   26
+         TabIndex        =   24
          Text            =   "None"
          Top             =   3945
-         Width           =   2500
+         Width           =   4000
       End
       Begin VB.TextBox txtArea 
          Alignment       =   2  'Center
@@ -135,14 +162,14 @@ Begin VB.Form Form1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   525
-         Left            =   7680
-         TabIndex        =   24
+         Height          =   540
+         Left            =   4150
+         TabIndex        =   22
          Text            =   "None"
-         Top             =   2865
-         Width           =   2500
+         Top             =   5040
+         Width           =   4000
       End
-      Begin VB.TextBox txtBroadcastCtrl 
+      Begin VB.TextBox txtCarrier 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BeginProperty Font 
@@ -154,12 +181,12 @@ Begin VB.Form Form1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   525
-         Left            =   5160
-         TabIndex        =   22
+         Height          =   540
+         Left            =   8190
+         TabIndex        =   20
          Text            =   "None"
          Top             =   2865
-         Width           =   2500
+         Width           =   4000
       End
       Begin VB.TextBox txtPanelName 
          Alignment       =   2  'Center
@@ -173,12 +200,12 @@ Begin VB.Form Form1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   525
-         Left            =   2640
-         TabIndex        =   19
+         Height          =   540
+         Left            =   4150
+         TabIndex        =   17
          Text            =   "None"
          Top             =   2865
-         Width           =   2500
+         Width           =   4000
       End
       Begin VB.TextBox txtTwoPointFourVer 
          Alignment       =   2  'Center
@@ -192,12 +219,12 @@ Begin VB.Form Form1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   525
+         Height          =   540
          Left            =   120
-         TabIndex        =   18
+         TabIndex        =   16
          Text            =   "None"
          Top             =   2865
-         Width           =   2500
+         Width           =   4000
       End
       Begin VB.TextBox txtPartitionVer 
          Alignment       =   2  'Center
@@ -211,12 +238,12 @@ Begin VB.Form Form1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   525
-         Left            =   7680
-         TabIndex        =   16
+         Height          =   540
+         Left            =   120
+         TabIndex        =   14
          Text            =   "None"
-         Top             =   1785
-         Width           =   2500
+         Top             =   5040
+         Width           =   4000
       End
       Begin VB.TextBox txtChannel 
          Alignment       =   2  'Center
@@ -230,12 +257,12 @@ Begin VB.Form Form1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   525
-         Left            =   5160
-         TabIndex        =   14
+         Height          =   540
+         Left            =   8190
+         TabIndex        =   12
          Text            =   "None"
          Top             =   1785
-         Width           =   2500
+         Width           =   4000
       End
       Begin VB.TextBox txtDimension 
          Alignment       =   2  'Center
@@ -249,12 +276,12 @@ Begin VB.Form Form1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   525
-         Left            =   2640
-         TabIndex        =   11
+         Height          =   540
+         Left            =   4150
+         TabIndex        =   9
          Text            =   "None"
          Top             =   1785
-         Width           =   2500
+         Width           =   4000
       End
       Begin VB.TextBox txtHWVer 
          Alignment       =   2  'Center
@@ -268,12 +295,12 @@ Begin VB.Form Form1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   525
+         Height          =   540
          Left            =   120
-         TabIndex        =   10
+         TabIndex        =   8
          Text            =   "None"
          Top             =   1785
-         Width           =   2500
+         Width           =   4000
       End
       Begin VB.TextBox txtFlashInfo 
          Alignment       =   2  'Center
@@ -287,12 +314,12 @@ Begin VB.Form Form1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   525
-         Left            =   7680
-         TabIndex        =   8
+         Height          =   540
+         Left            =   8190
+         TabIndex        =   6
          Text            =   "None"
-         Top             =   705
-         Width           =   2500
+         Top             =   700
+         Width           =   4000
       End
       Begin VB.TextBox txtSysVer 
          Alignment       =   2  'Center
@@ -306,12 +333,12 @@ Begin VB.Form Form1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   525
-         Left            =   5160
-         TabIndex        =   6
+         Height          =   540
+         Left            =   4150
+         TabIndex        =   4
          Text            =   "None"
-         Top             =   705
-         Width           =   2500
+         Top             =   700
+         Width           =   4000
       End
       Begin VB.TextBox txtModelInfo 
          Alignment       =   2  'Center
@@ -325,31 +352,12 @@ Begin VB.Form Form1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   525
-         Left            =   2640
-         TabIndex        =   3
-         Text            =   "None"
-         Top             =   705
-         Width           =   2500
-      End
-      Begin VB.TextBox txtInput 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BeginProperty Font 
-            Name            =   "微软雅黑"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   525
+         Height          =   540
          Left            =   120
          TabIndex        =   2
-         Text            =   "123456789"
-         Top             =   705
-         Width           =   2500
+         Text            =   "None"
+         Top             =   700
+         Width           =   4000
       End
       Begin VB.Label Label16 
          Alignment       =   2  'Center
@@ -368,10 +376,10 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
-         Left            =   7680
-         TabIndex        =   31
-         Top             =   3480
-         Width           =   2505
+         Left            =   8190
+         TabIndex        =   29
+         Top             =   4560
+         Width           =   4000
       End
       Begin VB.Label Label15 
          Alignment       =   2  'Center
@@ -390,10 +398,10 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
-         Left            =   5160
-         TabIndex        =   29
+         Left            =   8190
+         TabIndex        =   27
          Top             =   3480
-         Width           =   2505
+         Width           =   4000
       End
       Begin VB.Label Label13 
          Alignment       =   2  'Center
@@ -413,9 +421,9 @@ Begin VB.Form Form1
          ForeColor       =   &H80000008&
          Height          =   450
          Left            =   120
-         TabIndex        =   28
+         TabIndex        =   26
          Top             =   3480
-         Width           =   2505
+         Width           =   4000
       End
       Begin VB.Label Label14 
          Alignment       =   2  'Center
@@ -434,10 +442,10 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
-         Left            =   2640
-         TabIndex        =   25
+         Left            =   4150
+         TabIndex        =   23
          Top             =   3480
-         Width           =   2505
+         Width           =   4000
       End
       Begin VB.Label Label12 
          Alignment       =   2  'Center
@@ -456,10 +464,10 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
-         Left            =   7680
-         TabIndex        =   23
-         Top             =   2400
-         Width           =   2505
+         Left            =   4150
+         TabIndex        =   21
+         Top             =   4560
+         Width           =   4000
       End
       Begin VB.Label Label11 
          Alignment       =   2  'Center
@@ -478,10 +486,10 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
-         Left            =   5160
-         TabIndex        =   21
+         Left            =   8190
+         TabIndex        =   19
          Top             =   2400
-         Width           =   2505
+         Width           =   4000
       End
       Begin VB.Label Label9 
          Alignment       =   2  'Center
@@ -501,9 +509,9 @@ Begin VB.Form Form1
          ForeColor       =   &H80000008&
          Height          =   450
          Left            =   120
-         TabIndex        =   20
+         TabIndex        =   18
          Top             =   2400
-         Width           =   2505
+         Width           =   4000
       End
       Begin VB.Label Label10 
          Alignment       =   2  'Center
@@ -522,10 +530,10 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
-         Left            =   2640
-         TabIndex        =   17
+         Left            =   4150
+         TabIndex        =   15
          Top             =   2400
-         Width           =   2505
+         Width           =   4000
       End
       Begin VB.Label Label8 
          Alignment       =   2  'Center
@@ -544,10 +552,10 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
-         Left            =   7680
-         TabIndex        =   15
-         Top             =   1320
-         Width           =   2505
+         Left            =   120
+         TabIndex        =   13
+         Top             =   4560
+         Width           =   4000
       End
       Begin VB.Label Label7 
          Alignment       =   2  'Center
@@ -566,10 +574,10 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
-         Left            =   5160
-         TabIndex        =   13
+         Left            =   8190
+         TabIndex        =   11
          Top             =   1320
-         Width           =   2505
+         Width           =   4000
       End
       Begin VB.Label Label5 
          Alignment       =   2  'Center
@@ -589,9 +597,9 @@ Begin VB.Form Form1
          ForeColor       =   &H80000008&
          Height          =   450
          Left            =   120
-         TabIndex        =   12
+         TabIndex        =   10
          Top             =   1320
-         Width           =   2505
+         Width           =   4000
       End
       Begin VB.Label Label6 
          Alignment       =   2  'Center
@@ -610,10 +618,10 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
-         Left            =   2640
-         TabIndex        =   9
+         Left            =   4150
+         TabIndex        =   7
          Top             =   1320
-         Width           =   2505
+         Width           =   4000
       End
       Begin VB.Label Label4 
          Alignment       =   2  'Center
@@ -632,10 +640,10 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
-         Left            =   7680
-         TabIndex        =   7
+         Left            =   8190
+         TabIndex        =   5
          Top             =   240
-         Width           =   2505
+         Width           =   4000
       End
       Begin VB.Label Label3 
          Alignment       =   2  'Center
@@ -654,32 +662,10 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
-         Left            =   5160
-         TabIndex        =   5
+         Left            =   4150
+         TabIndex        =   3
          Top             =   240
-         Width           =   2505
-      End
-      Begin VB.Label Label2 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BackColor       =   &H00808080&
-         BorderStyle     =   1  'Fixed Single
-         Caption         =   "条形码"
-         BeginProperty Font 
-            Name            =   "微软雅黑"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00000000&
-         Height          =   450
-         Left            =   120
-         TabIndex        =   4
-         Top             =   240
-         Width           =   2505
+         Width           =   4005
       End
       Begin VB.Label Label1 
          Alignment       =   2  'Center
@@ -698,15 +684,15 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
-         Left            =   2640
+         Left            =   120
          TabIndex        =   1
          Top             =   240
-         Width           =   2505
+         Width           =   4000
       End
    End
    Begin MSCommLib.MSComm MSComm1 
-      Left            =   9960
-      Top             =   5520
+      Left            =   11880
+      Top             =   7320
       _ExtentX        =   1005
       _ExtentY        =   1005
       _Version        =   393216
@@ -718,7 +704,7 @@ Begin VB.Form Form1
          Caption         =   "设置串口"
       End
       Begin VB.Menu vbSetSPEC 
-         Caption         =   "设置条码长度"
+         Caption         =   "设置数据规格"
       End
    End
 End
@@ -775,6 +761,14 @@ Private Sub subInitComPort()
 End Sub
 
 
+Private Sub Frame1_DragDrop(Source As Control, X As Single, Y As Single)
+
+End Sub
+
+Private Sub MSComm1_OnComm()
+
+End Sub
+
 Private Sub tbSetComPort_Click()
     Form2.Show
 End Sub
@@ -792,6 +786,10 @@ Private Sub Command1_Click()
     If IsStop = True Then
         Exit Sub
     End If
+End Sub
+
+Private Sub txtResult_Change()
+
 End Sub
 
 Private Sub vbSetSPEC_Click()

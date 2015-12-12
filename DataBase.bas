@@ -1,4 +1,4 @@
-Attribute VB_Name = "Module6"
+Attribute VB_Name = "Module4"
 Option Explicit
 
 Public cn As New ADODB.Connection
@@ -7,7 +7,7 @@ Public sqlstring As String
 Public Function Executesql(sqlstr As String)
 Dim strPath As String
 On Error GoTo ADOERROR
-strPath = App.path
+strPath = App.Path
 If Right(strPath, 1) <> "\" Then strPath = strPath & "\"
 Set cn = New ADODB.Connection
 Set rs = New ADODB.Recordset
@@ -31,7 +31,7 @@ b = 5
 c = 6
 d = 1
 On Error GoTo ADOERROR
-strPath = App.path
+strPath = App.Path
 If Right(strPath, 1) <> "\" Then strPath = strPath & "\"
 Set cn = New ADODB.Connection
 Set rs = New ADODB.Recordset
