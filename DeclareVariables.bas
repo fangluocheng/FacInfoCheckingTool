@@ -10,16 +10,9 @@ Public Const ComplexStep = 1
 Public Const HighBri = 1
 Public Const LowBri = 0
 
-Type ColorTemp
-    X As Single
-    Y As Single
-    lv As Single
-End Type
-
 Public strBuff As String
 
 Public i As Integer
-Public IsStepTime As Long
 
 Public Const xxf = 1
 Public Const xfyf = 2

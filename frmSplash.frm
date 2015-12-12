@@ -205,23 +205,50 @@ On Error GoTo ErrExit
     SetTVCurrentComBaud = rs("ComBaud")
     IsStepTime = rs("Delayms")
     IsBarcodeLen = rs("SN_Len")
-    IsSaveData = rs("SaveData")
+    
+    IsModel = rs("Model")
+    IsSysVer = rs("SysVer")
+    IsFlashInfo = rs("FlashInfo")
+    IsHardwareVer = rs("HardwareVer")
+    IsDimension = rs("Dimension")
+    IsChannel = rs("Channel")
+    IsPartitionVer = rs("PartitionVer")
+    Is24GVer = rs("24GVer")
+    IsPanel = rs("Panel")
+    IsBroadcastCtrl = rs("BroadcastCtrl")
+    IsArea = rs("Area")
+    IsHDCP = rs("HDCP")
+    IsResolution = rs("Resolution")
+    IsMACAddr = rs("MACAddr")
+    IsDeviceKey = rs("DeviceKey")
+    
+    ModelSpec = rs("ModelM")
+    SysVerSpec = rs("SysVerM")
+    FlashInfoSpec = rs("FlashInfoM")
+    HardwareVerSpec = rs("HardwareVerM")
+    DimensionSpec = rs("DimensionM")
+    ChannelSpec = rs("ChannelM")
+    PartitionVerSpec = rs("PartitionVerM")
+    TwoPointFourGVerSpec = rs("24GVerM")
+    PanelSpec = rs("PanelM")
+    BroadcastCtrlSpec = rs("BroadcastCtrlM")
+    AreaSpec = rs("AreaM")
+    HDCPSpec = rs("HDCPM")
+    ResolutionSpec = rs("ResolutionM")
+    MACAddrSpec = rs("MACAddrM")
+    DeviceKeySpec = rs("DeviceKeyM")
 
+    Set rs = Nothing
+    Set cn = Nothing
+    sqlstring = ""
 
-Set rs = Nothing
-Set cn = Nothing
-sqlstring = ""
+    Form1.Show
 
-
-
-Form1.Show
-
-
-
-Exit Sub
+    Exit Sub
+    
 ErrExit:
-       
-        MsgBox ("The Licence Key is Wrong.")
+    MsgBox ("The Licence Key is Wrong.")
+    
 End Sub
 
 
