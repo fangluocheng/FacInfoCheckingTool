@@ -3,14 +3,14 @@ Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "mscomm32.ocx"
 Begin VB.Form Form1 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "工厂信息校验工具"
-   ClientHeight    =   7230
+   ClientHeight    =   8055
    ClientLeft      =   45
    ClientTop       =   735
    ClientWidth     =   12630
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7230
+   ScaleHeight     =   8055
    ScaleWidth      =   12630
    StartUpPosition =   2  '屏幕中心
    Begin VB.Frame Frame3 
@@ -18,7 +18,7 @@ Begin VB.Form Form1
       Height          =   1250
       Left            =   4320
       TabIndex        =   33
-      Top             =   5880
+      Top             =   6720
       Width           =   8175
       Begin VB.TextBox Text1 
          Alignment       =   2  'Center
@@ -45,7 +45,7 @@ Begin VB.Form Form1
       Height          =   1250
       Left            =   120
       TabIndex        =   31
-      Top             =   5880
+      Top             =   6720
       Width           =   4095
       Begin VB.TextBox txtResult 
          Alignment       =   2  'Center
@@ -72,7 +72,7 @@ Begin VB.Form Form1
       Height          =   5700
       Left            =   120
       TabIndex        =   0
-      Top             =   120
+      Top             =   960
       Width           =   12375
       Begin VB.TextBox txtDeviceKey 
          Alignment       =   2  'Center
@@ -667,7 +667,7 @@ Begin VB.Form Form1
          Top             =   240
          Width           =   4005
       End
-      Begin VB.Label Label1 
+      Begin VB.Label Label2 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
@@ -698,6 +698,23 @@ Begin VB.Form Form1
       _Version        =   393216
       DTREnable       =   -1  'True
    End
+   Begin VB.Label Label1 
+      Caption         =   "Label1"
+      BeginProperty Font 
+         Name            =   "微软雅黑"
+         Size            =   27.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   615
+      Left            =   240
+      TabIndex        =   35
+      Top             =   120
+      Width           =   4575
+   End
    Begin VB.Menu vbSet 
       Caption         =   "设置"
       Begin VB.Menu tbSetComPort 
@@ -722,15 +739,13 @@ Dim StepTime As Long
 Private Sub Form_Load()
 
     i = 0
-
     SetTVCurrentComBaud = 115200
-
     StepTime = IsStepTime
     IsStop = False
     subInitComPort
     subInitInterface
 
-    'Label8 = strCurrentModelName
+    Label1 = strCurrentModelName
 
 End Sub
 
@@ -739,31 +754,24 @@ Private Sub subInitInterface()
 End Sub
 
 Private Sub subInitComPort()
-    'sqlstring = "select * from CommonTable where Mark='ATS'"
-    'Executesql (sqlstring)
+    sqlstring = "select * from CommonTable where Mark='ATS'"
+    Executesql (sqlstring)
 
-    'If rs.EOF = False Then
-    '    SetTVCurrentComID = rs("ComID")
-    'Else
-    '    MsgBox "Read Data Error,Please Check Your Database!", vbOKOnly + vbInformation, "Warning!"
-    'End
-    'End If
+    If rs.EOF = False Then
+        SetTVCurrentComID = rs("ComID")
+    Else
+        MsgBox "Read Data Error,Please Check Your Database!", vbOKOnly + vbInformation, "Warning!"
+    End
+    End If
 
-    'Set cn = Nothing
-    'Set rs = Nothing
-    'sqlstring = ""
+    Set cn = Nothing
+    Set rs = Nothing
+    sqlstring = ""
 
-    SetTVCurrentComID = 6
     ComInit
-    
-    ENTER_FAC_MODE
 
 End Sub
 
-
-Private Sub Frame1_DragDrop(Source As Control, X As Single, Y As Single)
-
-End Sub
 
 Private Sub MSComm1_OnComm()
 

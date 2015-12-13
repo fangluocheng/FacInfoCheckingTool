@@ -827,7 +827,8 @@ Private Sub Command1_Click()
 
     sqlstring = "select * from CheckItem where Mark='" & strCurrentModelName & "'"
     Executesql (sqlstring)
-  
+
+    'Set the text into the CheckItem table of database file.
     rs.Fields(1) = Val(Text1.Text)                         'ComBaud
     rs.Fields(2) = Val(Text2.Text)                         'Delayms
     rs.Fields(3) = Val(Text3.Text)                         'SN_Len
