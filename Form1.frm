@@ -20,7 +20,7 @@ Begin VB.Form Form1
       TabIndex        =   32
       Top             =   6720
       Width           =   8175
-      Begin VB.TextBox Text1 
+      Begin VB.TextBox txtInput 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BeginProperty Font 
