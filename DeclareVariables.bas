@@ -32,7 +32,7 @@ Public IsChannel As Boolean
 Public IsPartitionVer As Boolean
 Public Is24GVer As Boolean
 Public IsPanel As Boolean
-Public IsBroadcastCtrl As Boolean
+Public IsCarrier As Boolean
 Public IsArea As Boolean
 Public IsHDCP As Boolean
 Public IsResolution As Boolean
@@ -54,7 +54,7 @@ Public ChannelSpec As String                               'ChannelM
 Public PartitionVerSpec As String                          'PartitionVerM
 Public TwoPointFourGVerSpec As String                      '24GVerM
 Public PanelSpec As String                                 'PanelM
-Public BroadcastCtrlSpec As String                         'BroadcastCtrlM
+Public CarrierSpec As String                               'CarrierM
 Public AreaSpec As String                                  'AreaM
 Public HDCPSpec As String                                  'HDCPM
 Public ResolutionSpec As String                            'ResolutionM

@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin VB.Form frmSetData 
    Caption         =   "参数设置"
-   ClientHeight    =   6990
+   ClientHeight    =   7830
    ClientLeft      =   6435
    ClientTop       =   3210
    ClientWidth     =   12615
@@ -16,7 +16,7 @@ Begin VB.Form frmSetData
    EndProperty
    LinkTopic       =   "Form4"
    MaxButton       =   0   'False
-   ScaleHeight     =   6990
+   ScaleHeight     =   7830
    ScaleWidth      =   12615
    Begin VB.Frame Frame2 
       Caption         =   "TV 信息"
@@ -32,7 +32,7 @@ Begin VB.Form frmSetData
       Height          =   5700
       Left            =   120
       TabIndex        =   8
-      Top             =   120
+      Top             =   960
       Width           =   12375
       Begin VB.CheckBox Check15 
          BackColor       =   &H00808080&
@@ -604,7 +604,7 @@ Begin VB.Form frmSetData
       Height          =   1035
       Left            =   120
       TabIndex        =   4
-      Top             =   5880
+      Top             =   6720
       Width           =   8775
       Begin VB.TextBox Text1 
          Appearance      =   0  'Flat
@@ -624,7 +624,7 @@ Begin VB.Form frmSetData
          Top             =   360
          Width           =   1095
       End
-      Begin VB.TextBox Text3 
+      Begin VB.TextBox Text2 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BeginProperty Font 
@@ -643,7 +643,7 @@ Begin VB.Form frmSetData
          Top             =   360
          Width           =   1095
       End
-      Begin VB.TextBox Text4 
+      Begin VB.TextBox Text3 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BeginProperty Font 
@@ -728,8 +728,25 @@ Begin VB.Form frmSetData
       Height          =   555
       Left            =   11160
       TabIndex        =   3
-      Top             =   6240
+      Top             =   7080
       Width           =   1095
+   End
+   Begin VB.Label Label1 
+      Caption         =   "Label1"
+      BeginProperty Font 
+         Name            =   "微软雅黑"
+         Size            =   27.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   615
+      Left            =   120
+      TabIndex        =   39
+      Top             =   120
+      Width           =   4575
    End
 End
 Attribute VB_Name = "frmSetData"
@@ -740,142 +757,156 @@ Attribute VB_Exposed = False
 
 Option Explicit
 
-Private Sub Command2_Click()
-  Unload Me
-End Sub
 
 Private Sub Form_Load()
 
- sqlstring = "select * from CheckItem where Mark='" & strCurrentModelName & "'"
-Executesql (sqlstring)
+    sqlstring = "select * from CheckItem where Mark='" & strCurrentModelName & "'"
+    Executesql (sqlstring)
 
- Label1 = strCurrentModelName
- 
-Text1.Text = rs("ComBaud")
-Text2.Text = rs("Channel")
-Text3.Text = rs("Delayms")
-Text4.Text = rs("SN_Len")
-Text5.Text = rs("WhitePattern")
+    Label1 = strCurrentModelName
+    Text1.Text = rs("ComBaud")
+    Text2.Text = rs("Delayms")
+    Text3.Text = rs("SN_Len")
+    
+    'Read the Spec data from database and show them into the TextBox
+    txtModelInfoSpec.Text = rs("ModelSpec")
+    txtSysVerSpec.Text = rs("SysVerSpec")
+    txtFlashInfoSpec.Text = rs("FlashInfoSpec")
+    txtHWVerSpec.Text = rs("HardwareVerSpec")
+    txtDimensionSpec.Text = rs("DimensionSpec")
+    txtChannelSpec.Text = rs("ChannelSpec")
+    txtTwoPointFourVerSpec.Text = rs("TwoPointFourGVerSpec")
+    txtPanelNameSpec.Text = rs("PanelSpec")
+    txtCarrierSpec.Text = rs("CarrierSpec")
+    txtHdcpKeySpec.Text = rs("HDCPSpec")
+    txtResolutionSpec.Text = rs("ResolutionSpec")
+    txtMacAddrSpec.Text = rs("MACAddrSpec")
+    txtPartitionVerSpec.Text = rs("PartitionVerSpec")
+    txtAreaSpec.Text = rs("AreaSpec")
+    txtDeviceKeySpec.Text = rs("DeviceKeySpec")
 
-If rs("COOL_2") Then
-  Check1.Value = 1
-Else
-  Check1.Value = 0
-End If
-If rs("COOL_1") Then
-  Check2.Value = 1
-Else
-  Check2.Value = 0
-End If
-If rs("NORMAL") Then
-  Check3.Value = 1
-Else
-  Check3.Value = 0
-End If
-If rs("WARM_1") Then
-  Check4.Value = 1
-Else
-  Check4.Value = 0
-End If
-If rs("WARM_2") Then
-  Check5.Value = 1
-Else
-  Check5.Value = 0
-End If
+    'Whether the CheckBox selected or not.
+    If rs("IsModel") Then Check1.Value = 1 Else Check1.Value = 0
+    End If
+    If rs("IsSysVer") Then Check2.Value = 1 Else Check2.Value = 0
+    End If
+    If rs("IsFlashInfo") Then Check3.Value = 1 Else Check3.Value = 0
+    End If
+    If rs("IsHardwareVer") Then Check4.Value = 1 Else Check4.Value = 0
+    End If
+    If rs("IsDimension") Then Check5.Value = 1 Else Check5.Value = 0
+    End If
+    If rs("IsChannel") Then Check6.Value = 1 Else Check6.Value = 0
+    End If
+    If rs("Is24GVer") Then Check7.Value = 1 Else Check7.Value = 0
+    End If
+    If rs("IsPanel") Then Check8.Value = 1 Else Check8.Value = 0
+    End If
+    If rs("IsCarrier") Then Check9.Value = 1 Else Check9.Value = 0
+    End If
+    If rs("IsHDCP") Then Check10.Value = 1 Else Check10.Value = 0
+    End If
+    If rs("IsResolution") Then Check11.Value = 1 Else Check11.Value = 0
+    End If
+    If rs("IsMACAddr") Then Check12.Value = 1 Else Check12.Value = 0
+    End If
+    If rs("IsPartitionVer") Then Check13.Value = 1 Else Check13.Value = 0
+    End If
+    If rs("IsArea") Then Check14.Value = 1 Else Check14.Value = 0
+    End If
+    If rs("IsDeviceKey") Then Check15.Value = 1 Else Check15.Value = 0
+    End If
 
-
-If rs("SaveData") Then
-  Check6.Value = 1
-Else
-  Check6.Value = 0
-End If
-If rs("CheckColor") Then
-  Check7.Value = 1
-Else
-  Check7.Value = 0
-End If
-If rs("SendOFF") Then
-  Check8.Value = 1
-Else
-  Check8.Value = 0
-End If
-If rs("AdjustOFF") Then
-  Check9.Value = 1
-Else
-  Check9.Value = 0
-End If
-If rs("SensorL") Then
-  Check10.Value = 1
-Else
-  Check10.Value = 0
-End If
-
-
-Text7.Text = rs("Cool_1MI")
-Text6.Text = rs("Cool_2MI")
-Text8.Text = rs("NormalMI")
-Text9.Text = rs("Warm_1MI")
-Text10.Text = rs("Warm_2MI")
-
-
-Set rs = Nothing
-Set cn = Nothing
-sqlstring = ""
+    Set rs = Nothing
+    Set cn = Nothing
+    sqlstring = ""
 
 End Sub
 
 Private Sub Command1_Click()
-  sqlstring = "select * from CheckItem where Mark='" & strCurrentModelName & "'"
-Executesql (sqlstring)
-  rs.Fields(1) = Val(Text1.Text)
-  rs.Fields(2) = Val(Text2.Text)
-  rs.Fields(3) = Val(Text3.Text)
-  rs.Fields(4) = Val(Text5.Text)
-  
 
-  If Check1.Value = 1 Then rs.Fields(5) = True
-  If Check1.Value = 0 Then rs.Fields(5) = False
-  If Check2.Value = 1 Then rs.Fields(6) = True
-  If Check2.Value = 0 Then rs.Fields(6) = False
-  If Check3.Value = 1 Then rs.Fields(7) = True
-  If Check3.Value = 0 Then rs.Fields(7) = False
-  If Check4.Value = 1 Then rs.Fields(8) = True
-  If Check4.Value = 0 Then rs.Fields(8) = False
-  If Check5.Value = 1 Then rs.Fields(9) = True
-  If Check5.Value = 0 Then rs.Fields(9) = False
+    sqlstring = "select * from CheckItem where Mark='" & strCurrentModelName & "'"
+    Executesql (sqlstring)
   
-  rs.Fields(10) = Val(Text4.Text)
+    rs.Fields(1) = Val(Text1.Text)                         'ComBaud
+    rs.Fields(2) = Val(Text2.Text)                         'Delayms
+    rs.Fields(3) = Val(Text3.Text)                         'SN_Len
+
+    rs.Fields(4) = Val(txtModelInfoSpec.Text)              'ModelM
+    rs.Fields(5) = Val(txtSysVerSpec.Text)                 'SysVerM
+    rs.Fields(6) = Val(txtFlashInfoSpec.Text)              'FlashInfoM
+    rs.Fields(7) = Val(txtHWVerSpec.Text)                  'HardwareVerM
+    rs.Fields(8) = Val(txtDimensionSpec.Text)              'DimensionM
+    rs.Fields(9) = Val(txtChannelSpec.Text)                'ChannelM
+    rs.Fields(10) = Val(txtTwoPointFourVerSpec.Text)       '24GVerM
+    rs.Fields(11) = Val(txtPanelNameSpec.Text)             'PanelM
+    rs.Fields(12) = Val(txtCarrierSpec.Text)               'CarrierM
+    rs.Fields(13) = Val(txtHdcpKeySpec.Text)               'HDCPM
+    rs.Fields(14) = Val(txtResolutionSpec.Text)            'ResolutionM
+    rs.Fields(15) = Val(txtMacAddrSpec.Text)               'MACAddrM
+    rs.Fields(16) = Val(txtPartitionVerSpec.Text)          'PartitionVerM
+    rs.Fields(17) = Val(txtAreaSpec.Text)                  'AreaM
+    rs.Fields(18) = Val(txtDeviceKeySpec.Text)             'DeviceKeyM
+
+    If Check1.Value = 1 Then rs.Fields(19) = True
+    ElseIf Check1.Value = 0 Then rs.Fields(19) = False
+    End If
+    If Check2.Value = 1 Then rs.Fields(20) = True
+    ElseIf Check2.Value = 0 Then rs.Fields(20) = False
+    End If
+    If Check3.Value = 1 Then rs.Fields(21) = True
+    ElseIf Check3.Value = 0 Then rs.Fields(21) = False
+    End If
+    If Check4.Value = 1 Then rs.Fields(22) = True
+    ElseIf Check4.Value = 0 Then rs.Fields(22) = False
+    End If
+    If Check5.Value = 1 Then rs.Fields(23) = True
+    ElseIf Check5.Value = 0 Then rs.Fields(23) = False
+    End If
+    If Check6.Value = 1 Then rs.Fields(24) = True
+    ElseIf Check6.Value = 0 Then rs.Fields(24) = False
+    End If
+    If Check7.Value = 1 Then rs.Fields(26) = True
+    ElseIf Check7.Value = 0 Then rs.Fields(26) = False
+    End If
+    If Check8.Value = 1 Then rs.Fields(27) = True
+    ElseIf Check8.Value = 0 Then rs.Fields(27) = False
+    End If
+    If Check9.Value = 1 Then rs.Fields(28) = True
+    ElseIf Check9.Value = 0 Then rs.Fields(28) = False
+    End If
+    If Check10.Value = 1 Then rs.Fields(30) = True
+    ElseIf Check10.Value = 0 Then rs.Fields(30) = False
+    End If
+    If Check11.Value = 1 Then rs.Fields(31) = True
+    ElseIf Check11.Value = 0 Then rs.Fields(31) = False
+    End If
+    If Check12.Value = 1 Then rs.Fields(32) = True
+    ElseIf Check12.Value = 0 Then rs.Fields(32) = False
+    End If
+    If Check13.Value = 1 Then rs.Fields(25) = True
+    ElseIf Check13.Value = 0 Then rs.Fields(25) = False
+    End If
+    If Check14.Value = 1 Then rs.Fields(29) = True
+    ElseIf Check14.Value = 0 Then rs.Fields(29) = False
+    End If
+    If Check15.Value = 1 Then rs.Fields(33) = True
+    ElseIf Check15.Value = 0 Then rs.Fields(33) = False
+    End If
  
-  If Check6.Value = 1 Then rs.Fields(11) = True
-  If Check6.Value = 0 Then rs.Fields(11) = False
-  If Check7.Value = 1 Then rs.Fields(12) = True
-  If Check7.Value = 0 Then rs.Fields(12) = False
-  If Check8.Value = 1 Then rs.Fields(13) = True
-  If Check8.Value = 0 Then rs.Fields(13) = False
-  If Check9.Value = 1 Then rs.Fields(14) = True
-  If Check9.Value = 0 Then rs.Fields(14) = False
-  If Check10.Value = 1 Then rs.Fields(15) = True
-  If Check10.Value = 0 Then rs.Fields(15) = False
-  
+    rs.Update
 
-  rs.Fields(16) = Val(Text6.Text)
-  rs.Fields(17) = Val(Text7.Text)
-  rs.Fields(18) = Val(Text8.Text)
-  rs.Fields(19) = Val(Text9.Text)
-  rs.Fields(20) = Val(Text10.Text)
-  
-  rs.Update
+    Set cn = Nothing
+    Set rs = Nothing
+    sqlstring = ""
 
- Set cn = Nothing
- Set rs = Nothing
- sqlstring = ""
-
-MsgBox "Save success!", vbOKOnly, "warning"
-Unload Me
-Unload Form1
+    MsgBox "Save success!", vbOKOnly, "warning"
+    Unload Me
+    Unload Form1
 
 End Sub
 
-Private Sub Label4_Click()
+Private Sub Frame1_DragDrop(Source As Control, X As Single, Y As Single)
 
 End Sub
+
