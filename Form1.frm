@@ -17,7 +17,7 @@ Begin VB.Form Form1
       Caption         =   "ÌõÂë"
       Height          =   1250
       Left            =   4320
-      TabIndex        =   33
+      TabIndex        =   32
       Top             =   6720
       Width           =   8175
       Begin VB.TextBox Text1 
@@ -34,7 +34,7 @@ Begin VB.Form Form1
          EndProperty
          Height          =   885
          Left            =   120
-         TabIndex        =   34
+         TabIndex        =   33
          Text            =   "123456789"
          Top             =   240
          Width           =   7905
@@ -47,22 +47,25 @@ Begin VB.Form Form1
       TabIndex        =   31
       Top             =   6720
       Width           =   4095
-      Begin VB.TextBox txtResult 
+      Begin VB.Label lbResult 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "Checking"
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
             Size            =   26.25
-            Charset         =   0
+            Charset         =   134
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
+         ForeColor       =   &H80000008&
          Height          =   885
          Left            =   120
-         TabIndex        =   32
-         Text            =   "Checking"
+         TabIndex        =   35
          Top             =   240
          Width           =   3825
       End
@@ -88,6 +91,7 @@ Begin VB.Form Form1
          EndProperty
          Height          =   540
          Left            =   8190
+         Locked          =   -1  'True
          TabIndex        =   30
          Text            =   "None"
          Top             =   5040
@@ -107,6 +111,7 @@ Begin VB.Form Form1
          EndProperty
          Height          =   540
          Left            =   8190
+         Locked          =   -1  'True
          TabIndex        =   28
          Text            =   "None"
          Top             =   3945
@@ -126,6 +131,7 @@ Begin VB.Form Form1
          EndProperty
          Height          =   540
          Left            =   4150
+         Locked          =   -1  'True
          TabIndex        =   25
          Text            =   "None"
          Top             =   3945
@@ -145,6 +151,7 @@ Begin VB.Form Form1
          EndProperty
          Height          =   540
          Left            =   120
+         Locked          =   -1  'True
          TabIndex        =   24
          Text            =   "None"
          Top             =   3945
@@ -164,6 +171,7 @@ Begin VB.Form Form1
          EndProperty
          Height          =   540
          Left            =   4150
+         Locked          =   -1  'True
          TabIndex        =   22
          Text            =   "None"
          Top             =   5040
@@ -183,6 +191,7 @@ Begin VB.Form Form1
          EndProperty
          Height          =   540
          Left            =   8190
+         Locked          =   -1  'True
          TabIndex        =   20
          Text            =   "None"
          Top             =   2865
@@ -202,6 +211,7 @@ Begin VB.Form Form1
          EndProperty
          Height          =   540
          Left            =   4150
+         Locked          =   -1  'True
          TabIndex        =   17
          Text            =   "None"
          Top             =   2865
@@ -221,6 +231,7 @@ Begin VB.Form Form1
          EndProperty
          Height          =   540
          Left            =   120
+         Locked          =   -1  'True
          TabIndex        =   16
          Text            =   "None"
          Top             =   2865
@@ -240,6 +251,7 @@ Begin VB.Form Form1
          EndProperty
          Height          =   540
          Left            =   120
+         Locked          =   -1  'True
          TabIndex        =   14
          Text            =   "None"
          Top             =   5040
@@ -259,6 +271,7 @@ Begin VB.Form Form1
          EndProperty
          Height          =   540
          Left            =   8190
+         Locked          =   -1  'True
          TabIndex        =   12
          Text            =   "None"
          Top             =   1785
@@ -278,6 +291,7 @@ Begin VB.Form Form1
          EndProperty
          Height          =   540
          Left            =   4150
+         Locked          =   -1  'True
          TabIndex        =   9
          Text            =   "None"
          Top             =   1785
@@ -297,6 +311,7 @@ Begin VB.Form Form1
          EndProperty
          Height          =   540
          Left            =   120
+         Locked          =   -1  'True
          TabIndex        =   8
          Text            =   "None"
          Top             =   1785
@@ -316,6 +331,7 @@ Begin VB.Form Form1
          EndProperty
          Height          =   540
          Left            =   8190
+         Locked          =   -1  'True
          TabIndex        =   6
          Text            =   "None"
          Top             =   700
@@ -335,6 +351,7 @@ Begin VB.Form Form1
          EndProperty
          Height          =   540
          Left            =   4150
+         Locked          =   -1  'True
          TabIndex        =   4
          Text            =   "None"
          Top             =   700
@@ -354,6 +371,7 @@ Begin VB.Form Form1
          EndProperty
          Height          =   540
          Left            =   120
+         Locked          =   -1  'True
          TabIndex        =   2
          Text            =   "None"
          Top             =   700
@@ -711,7 +729,7 @@ Begin VB.Form Form1
       EndProperty
       Height          =   615
       Left            =   240
-      TabIndex        =   35
+      TabIndex        =   34
       Top             =   120
       Width           =   4575
    End
@@ -772,10 +790,6 @@ Private Sub subInitComPort()
 
 End Sub
 
-
-Private Sub MSComm1_OnComm()
-
-End Sub
 
 Private Sub tbSetComPort_Click()
     Form2.Show
