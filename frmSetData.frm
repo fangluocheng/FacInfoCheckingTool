@@ -786,35 +786,35 @@ Private Sub Form_Load()
     txtDeviceKeySpec.Text = rs("DeviceKeySpec")
 
     'Whether the CheckBox selected or not.
-    If rs("IsModel") Then Check1.Value = 1 Else Check1.Value = 0
+    If rs("Model") Then Check1.Value = 1 Else Check1.Value = 0
     End If
-    If rs("IsSysVer") Then Check2.Value = 1 Else Check2.Value = 0
+    If rs("SysVer") Then Check2.Value = 1 Else Check2.Value = 0
     End If
-    If rs("IsFlashInfo") Then Check3.Value = 1 Else Check3.Value = 0
+    If rs("FlashInfo") Then Check3.Value = 1 Else Check3.Value = 0
     End If
-    If rs("IsHardwareVer") Then Check4.Value = 1 Else Check4.Value = 0
+    If rs("HardwareVer") Then Check4.Value = 1 Else Check4.Value = 0
     End If
-    If rs("IsDimension") Then Check5.Value = 1 Else Check5.Value = 0
+    If rs("Dimension") Then Check5.Value = 1 Else Check5.Value = 0
     End If
-    If rs("IsChannel") Then Check6.Value = 1 Else Check6.Value = 0
+    If rs("Channel") Then Check6.Value = 1 Else Check6.Value = 0
     End If
-    If rs("Is24GVer") Then Check7.Value = 1 Else Check7.Value = 0
+    If rs("24GVer") Then Check7.Value = 1 Else Check7.Value = 0
     End If
-    If rs("IsPanel") Then Check8.Value = 1 Else Check8.Value = 0
+    If rs("Panel") Then Check8.Value = 1 Else Check8.Value = 0
     End If
-    If rs("IsCarrier") Then Check9.Value = 1 Else Check9.Value = 0
+    If rs("Carrier") Then Check9.Value = 1 Else Check9.Value = 0
     End If
-    If rs("IsHDCP") Then Check10.Value = 1 Else Check10.Value = 0
+    If rs("HDCP") Then Check10.Value = 1 Else Check10.Value = 0
     End If
-    If rs("IsResolution") Then Check11.Value = 1 Else Check11.Value = 0
+    If rs("Resolution") Then Check11.Value = 1 Else Check11.Value = 0
     End If
-    If rs("IsMACAddr") Then Check12.Value = 1 Else Check12.Value = 0
+    If rs("MACAddr") Then Check12.Value = 1 Else Check12.Value = 0
     End If
-    If rs("IsPartitionVer") Then Check13.Value = 1 Else Check13.Value = 0
+    If rs("PartitionVer") Then Check13.Value = 1 Else Check13.Value = 0
     End If
-    If rs("IsArea") Then Check14.Value = 1 Else Check14.Value = 0
+    If rs("Area") Then Check14.Value = 1 Else Check14.Value = 0
     End If
-    If rs("IsDeviceKey") Then Check15.Value = 1 Else Check15.Value = 0
+    If rs("DeviceKey") Then Check15.Value = 1 Else Check15.Value = 0
     End If
 
     Set rs = Nothing

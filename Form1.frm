@@ -3,19 +3,19 @@ Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "mscomm32.ocx"
 Begin VB.Form Form1 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "工厂信息校验工具"
-   ClientHeight    =   8055
+   ClientHeight    =   7950
    ClientLeft      =   45
    ClientTop       =   735
    ClientWidth     =   12630
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   8055
+   ScaleHeight     =   7950
    ScaleWidth      =   12630
    StartUpPosition =   2  '屏幕中心
    Begin VB.Frame Frame3 
       Caption         =   "条码"
-      Height          =   1250
+      Height          =   1125
       Left            =   4320
       TabIndex        =   32
       Top             =   6720
@@ -32,7 +32,7 @@ Begin VB.Form Form1
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   885
+         Height          =   690
          Left            =   120
          TabIndex        =   33
          Text            =   "123456789"
@@ -42,7 +42,7 @@ Begin VB.Form Form1
    End
    Begin VB.Frame Frame2 
       Caption         =   "测试结果"
-      Height          =   1250
+      Height          =   1125
       Left            =   120
       TabIndex        =   31
       Top             =   6720
@@ -55,7 +55,7 @@ Begin VB.Form Form1
          Caption         =   "Checking"
          BeginProperty Font 
             Name            =   "微软雅黑"
-            Size            =   26.25
+            Size            =   21.75
             Charset         =   134
             Weight          =   400
             Underline       =   0   'False
@@ -63,7 +63,7 @@ Begin VB.Form Form1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H80000008&
-         Height          =   885
+         Height          =   690
          Left            =   120
          TabIndex        =   35
          Top             =   240
@@ -709,8 +709,8 @@ Begin VB.Form Form1
       End
    End
    Begin MSCommLib.MSComm MSComm1 
-      Left            =   11880
-      Top             =   7320
+      Left            =   11500
+      Top             =   7000
       _ExtentX        =   1005
       _ExtentY        =   1005
       _Version        =   393216
@@ -790,6 +790,99 @@ Private Sub subInitComPort()
 
 End Sub
 
+Private Function funSNWrite() As Boolean
+strSerialNo = ""
+scanbarcode = ""
+strSerialNo = UCase$(txtInput.Text)
+If subJudgeTheSNIsAvailable = True Then
+  funSNWrite = True
+  scanbarcode = strSerialNo
+Else
+  funSNWrite = False
+End If
+End Function
+
+Private Sub subInitBeforeRunning()
+    countTime = Timer
+    IsSNWriteSuccess = True
+    strSerialNo = ""
+End Sub
+
+Private Sub subInitAfterRunning()
+countTime = CLng(Timer - countTime)
+
+Label9.Caption = countTime & "S"
+IsSNWriteSuccess = False
+
+txtInput.Text = ""
+txtInput.SetFocus
+
+End Sub
+
+Private Sub subMainProcesser()
+    
+    Dim i, j As Integer
+
+On Error GoTo ErrExit
+    subInitBeforeRunning
+    If IsStop = True Then
+        Exit Sub
+    End If
+
+    If IsSNWriteSuccess = funSNWrite Then
+        If IsStop = True Then
+            Exit Sub
+        End If
+        txtInput = ""
+        Command2.SetFocus
+    Else
+        ShowError_Sys (6)
+        GoTo FAIL
+    End If
+
+On Error GoTo ErrExit
+
+If IsCa210ok = False Then
+MsgBox "CA210 disconnected,Please click'Connect'->'Connect CA210'to do operation!", vbOKOnly + vbInformation, "warning"
+txtInput.Text = ""
+txtInput.SetFocus
+Exit Sub
+End If
+
+    'Whether the CheckBox of database file(*.mdb) selected or not.
+    'If not, config the TextBox
+    If Not IsModel Then Check1.Value = 1 Else Check1.Value = 0
+    End If
+    If IsSysVer Then Check2.Value = 1 Else Check2.Value = 0
+    End If
+    If IsFlashInfo Then Check3.Value = 1 Else Check3.Value = 0
+    End If
+    If IsHardwareVer Then Check4.Value = 1 Else Check4.Value = 0
+    End If
+    If IsDimension Then Check5.Value = 1 Else Check5.Value = 0
+    End If
+    If IsChannel Then Check6.Value = 1 Else Check6.Value = 0
+    End If
+    If Is24GVer Then Check7.Value = 1 Else Check7.Value = 0
+    End If
+    If IsPanel Then Check8.Value = 1 Else Check8.Value = 0
+    End If
+    If IsCarrier Then Check9.Value = 1 Else Check9.Value = 0
+    End If
+    If IsHDCP Then Check10.Value = 1 Else Check10.Value = 0
+    End If
+    If IsResolution Then Check11.Value = 1 Else Check11.Value = 0
+    End If
+    If IsMACAddr Then Check12.Value = 1 Else Check12.Value = 0
+    End If
+    If IsPartitionVer Then Check13.Value = 1 Else Check13.Value = 0
+    End If
+    If IsArea Then Check14.Value = 1 Else Check14.Value = 0
+    End If
+    If IsDeviceKey Then Check15.Value = 1 Else Check15.Value = 0
+    End If
+
+End Sub
 
 Private Sub tbSetComPort_Click()
     Form2.Show
@@ -803,7 +896,7 @@ End Sub
 
 Private Sub Command1_Click()
     IsStop = False
-    'subMainProcesser
+    subMainProcesser
      
     If IsStop = True Then
         Exit Sub
