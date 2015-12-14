@@ -6,13 +6,22 @@ Begin VB.Form Form1
    ClientHeight    =   7950
    ClientLeft      =   45
    ClientTop       =   735
-   ClientWidth     =   12630
+   ClientWidth     =   16905
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   7950
-   ScaleWidth      =   12630
+   ScaleWidth      =   16905
    StartUpPosition =   2  'ÆÁÄ»ÖÐÐÄ
+   Begin VB.TextBox TxtReceive 
+      Height          =   7755
+      Left            =   12600
+      MultiLine       =   -1  'True
+      ScrollBars      =   2  'Vertical
+      TabIndex        =   36
+      Top             =   120
+      Width           =   4185
+   End
    Begin VB.Timer Timer1 
       Left            =   12000
       Top             =   240
@@ -938,7 +947,8 @@ On Error GoTo ErrExit
     End If
     
     'Send cmd, read data and save data
-    '......
+    'Enter factory mode fisrt, or other cmd may not respond.
+    ENTER_FAC_MODE
     
 PASS:
     lbResult = "PASS"
@@ -986,4 +996,56 @@ End Sub
 
 Private Sub vbSetSPEC_Click()
     frmSetData.Show
+End Sub
+
+
+'------------------------------------------------------------------------------
+' MSComm function
+'------------------------------------------------------------------------------
+Private Sub MSComm1_OnComm()
+    
+On Error GoTo Err
+    Select Case MSComm1.CommEvent
+        Case comEvReceive
+            'DelayMS 2000
+            Call hexReceive
+        'Case comEvSend
+        Case Else
+    End Select
+Err:
+  
+End Sub
+
+Private Sub hexReceive()
+ 
+On Error GoTo Err
+    Dim ReceiveArr() As Byte
+    Dim receiveData As String
+    Dim Counter As Integer
+    Dim i As Integer
+    
+    'TxtReceive.Text = TxtReceive.Text & "MSComm1.InBufferCount = " & MSComm1.InBufferCount & vbCrLf
+    If (MSComm1.InBufferCount > 0) Then
+        Counter = MSComm1.InBufferCount
+        receiveData = ""
+        
+        ReceiveArr = MSComm1.Input
+
+        For i = 0 To (Counter - 1) Step 1
+            If (ReceiveArr(i) < 16) Then
+                receiveData = receiveData & "0" & Hex(ReceiveArr(i)) & Space(1)
+            Else
+                receiveData = receiveData & Hex(ReceiveArr(i)) & Space(1)
+            End If
+
+        Next i
+        
+        TxtReceive.Text = TxtReceive.Text & receiveData & vbCrLf
+        TxtReceive.SelStart = Len(TxtReceive.Text)
+    Else
+        TxtReceive.Text = TxtReceive.Text & "No data" & vbCrLf
+    End If
+    
+Err:
+
 End Sub

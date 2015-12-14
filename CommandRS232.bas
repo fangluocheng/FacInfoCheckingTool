@@ -17,6 +17,7 @@ Public Sub ENTER_FAC_MODE()
     SendDataBuf(8) = &H1
     
     Form1.MSComm1.Output = SendDataBuf
+    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "6E 51 86 03 FE E1 A0 00 01" & vbCrLf
 End Sub
 
 Public Sub EXIT_FAC_MODE()
