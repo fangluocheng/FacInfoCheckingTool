@@ -1084,7 +1084,7 @@ On Error GoTo Err
         receiveData = ""
         ReceiveArr = MSComm1.Input
 
-        For i = 1 To (Counter - 1) Step 1
+        For i = 0 To (Counter - 1) Step 1
             If i < (Counter - 1) Then
                 'Find ACK1 and ACK2, which are metioned in Letv's document.
                 If (ReceiveArr(i) Xor 255) = ReceiveArr(i + 1) Then
