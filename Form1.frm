@@ -1084,9 +1084,10 @@ On Error GoTo Err
         receiveData = ""
         ReceiveArr = MSComm1.Input
 
+        'Find ACK1 and ACK2, which are metioned in Letv's document.
+        'ACK1 must be one of {0xC7, 0xCB, 0xCC, 0xD3, 0xD4, 0xD8, 0xDD, 0xE3, 0xE4, 0xE8, 0xED, 0xF0, 0xF5, 0xF9, 0xFE, 0xC2}
         For i = 0 To (Counter - 1) Step 1
             If i < (Counter - 1) Then
-                'Find ACK1 and ACK2, which are metioned in Letv's document.
                 If (ReceiveArr(i) Xor 255) = ReceiveArr(i + 1) Then
                     For Each tmp In Array(199, 203, 204, 211, 212, 216, 221, 227, 228, 232, 237, 240, 245, 249, 254, 194)
                         If ReceiveArr(i) = tmp Then
