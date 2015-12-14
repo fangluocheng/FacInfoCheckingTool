@@ -867,7 +867,6 @@ On Error GoTo ErrExit
             Exit Sub
         End If
         txtInput = ""
-        Command2.SetFocus
     Else
         'ShowError_Sys (6)
         GoTo FAIL

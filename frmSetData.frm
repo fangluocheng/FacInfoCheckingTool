@@ -786,35 +786,80 @@ Private Sub Form_Load()
     txtDeviceKeySpec.Text = rs("DeviceKeySpec")
 
     'Whether the CheckBox selected or not.
-    If rs("Model") Then Check1.Value = 1 Else Check1.Value = 0
+    If rs("Model") Then
+        Check1.Value = 1
+    Else
+        Check1.Value = 0
     End If
-    If rs("SysVer") Then Check2.Value = 1 Else Check2.Value = 0
+    If rs("SysVer") Then
+        Check2.Value = 1
+    Else
+        Check2.Value = 0
     End If
-    If rs("FlashInfo") Then Check3.Value = 1 Else Check3.Value = 0
+    If rs("FlashInfo") Then
+        Check3.Value = 1
+    Else
+        Check3.Value = 0
     End If
-    If rs("HardwareVer") Then Check4.Value = 1 Else Check4.Value = 0
+    If rs("HardwareVer") Then
+        Check4.Value = 1
+    Else
+        Check4.Value = 0
     End If
-    If rs("Dimension") Then Check5.Value = 1 Else Check5.Value = 0
+    If rs("Dimension") Then
+        Check5.Value = 1
+    Else
+        Check5.Value = 0
     End If
-    If rs("Channel") Then Check6.Value = 1 Else Check6.Value = 0
+    If rs("Channel") Then
+        Check6.Value = 1
+    Else
+        Check6.Value = 0
     End If
-    If rs("24GVer") Then Check7.Value = 1 Else Check7.Value = 0
+    If rs("24GVer") Then
+        Check7.Value = 1
+    Else
+        Check7.Value = 0
     End If
-    If rs("Panel") Then Check8.Value = 1 Else Check8.Value = 0
+    If rs("Panel") Then
+        Check8.Value = 1
+    Else
+        Check8.Value = 0
     End If
-    If rs("Carrier") Then Check9.Value = 1 Else Check9.Value = 0
+    If rs("Carrier") Then
+        Check9.Value = 1
+    Else
+        Check9.Value = 0
     End If
-    If rs("HDCP") Then Check10.Value = 1 Else Check10.Value = 0
+    If rs("HDCP") Then
+        Check10.Value = 1
+    Else
+        Check10.Value = 0
     End If
-    If rs("Resolution") Then Check11.Value = 1 Else Check11.Value = 0
+    If rs("Resolution") Then
+        Check11.Value = 1
+    Else
+        Check11.Value = 0
     End If
-    If rs("MACAddr") Then Check12.Value = 1 Else Check12.Value = 0
+    If rs("MACAddr") Then
+        Check12.Value = 1
+    Else
+        Check12.Value = 0
     End If
-    If rs("PartitionVer") Then Check13.Value = 1 Else Check13.Value = 0
+    If rs("PartitionVer") Then
+        Check13.Value = 1
+    Else
+        Check13.Value = 0
     End If
-    If rs("Area") Then Check14.Value = 1 Else Check14.Value = 0
+    If rs("Area") Then
+        Check14.Value = 1
+    Else
+        Check14.Value = 0
     End If
-    If rs("DeviceKey") Then Check15.Value = 1 Else Check15.Value = 0
+    If rs("DeviceKey") Then
+        Check15.Value = 1
+    Else
+        Check15.Value = 0
     End If
 
     Set rs = Nothing
@@ -849,50 +894,80 @@ Private Sub Command1_Click()
     rs.Fields(17) = Val(txtAreaSpec.Text)                  'AreaM
     rs.Fields(18) = Val(txtDeviceKeySpec.Text)             'DeviceKeyM
 
-    If Check1.Value = 1 Then rs.Fields(19) = True
-    ElseIf Check1.Value = 0 Then rs.Fields(19) = False
+    If Check1.Value = 1 Then
+        rs.Fields(19) = True
+    ElseIf Check1.Value = 0 Then
+        rs.Fields(19) = False
     End If
-    If Check2.Value = 1 Then rs.Fields(20) = True
-    ElseIf Check2.Value = 0 Then rs.Fields(20) = False
+    If Check2.Value = 1 Then
+        rs.Fields(20) = True
+    ElseIf Check2.Value = 0 Then
+        rs.Fields(20) = False
     End If
-    If Check3.Value = 1 Then rs.Fields(21) = True
-    ElseIf Check3.Value = 0 Then rs.Fields(21) = False
+    If Check3.Value = 1 Then
+        rs.Fields(21) = True
+    ElseIf Check3.Value = 0 Then
+        rs.Fields(21) = False
     End If
-    If Check4.Value = 1 Then rs.Fields(22) = True
-    ElseIf Check4.Value = 0 Then rs.Fields(22) = False
+    If Check4.Value = 1 Then
+        rs.Fields(22) = True
+    ElseIf Check4.Value = 0 Then
+        rs.Fields(22) = False
     End If
-    If Check5.Value = 1 Then rs.Fields(23) = True
-    ElseIf Check5.Value = 0 Then rs.Fields(23) = False
+    If Check5.Value = 1 Then
+        rs.Fields(23) = True
+    ElseIf Check5.Value = 0 Then
+        rs.Fields(23) = False
     End If
-    If Check6.Value = 1 Then rs.Fields(24) = True
-    ElseIf Check6.Value = 0 Then rs.Fields(24) = False
+    If Check6.Value = 1 Then
+        rs.Fields(24) = True
+    ElseIf Check6.Value = 0 Then
+        rs.Fields(24) = False
     End If
-    If Check7.Value = 1 Then rs.Fields(26) = True
-    ElseIf Check7.Value = 0 Then rs.Fields(26) = False
+    If Check7.Value = 1 Then
+        rs.Fields(26) = True
+    ElseIf Check7.Value = 0 Then
+        rs.Fields(26) = False
     End If
-    If Check8.Value = 1 Then rs.Fields(27) = True
-    ElseIf Check8.Value = 0 Then rs.Fields(27) = False
+    If Check8.Value = 1 Then
+        rs.Fields(27) = True
+    ElseIf Check8.Value = 0 Then
+        rs.Fields(27) = False
     End If
-    If Check9.Value = 1 Then rs.Fields(28) = True
-    ElseIf Check9.Value = 0 Then rs.Fields(28) = False
+    If Check9.Value = 1 Then
+        rs.Fields(28) = True
+    ElseIf Check9.Value = 0 Then
+        rs.Fields(28) = False
     End If
-    If Check10.Value = 1 Then rs.Fields(30) = True
-    ElseIf Check10.Value = 0 Then rs.Fields(30) = False
+    If Check10.Value = 1 Then
+        rs.Fields(30) = True
+    ElseIf Check10.Value = 0 Then
+        rs.Fields(30) = False
     End If
-    If Check11.Value = 1 Then rs.Fields(31) = True
-    ElseIf Check11.Value = 0 Then rs.Fields(31) = False
+    If Check11.Value = 1 Then
+        rs.Fields(31) = True
+    ElseIf Check11.Value = 0 Then
+        rs.Fields(31) = False
     End If
-    If Check12.Value = 1 Then rs.Fields(32) = True
-    ElseIf Check12.Value = 0 Then rs.Fields(32) = False
+    If Check12.Value = 1 Then
+        rs.Fields(32) = True
+    ElseIf Check12.Value = 0 Then
+        rs.Fields(32) = False
     End If
-    If Check13.Value = 1 Then rs.Fields(25) = True
-    ElseIf Check13.Value = 0 Then rs.Fields(25) = False
+    If Check13.Value = 1 Then
+        rs.Fields(25) = True
+    ElseIf Check13.Value = 0 Then
+        rs.Fields(25) = False
     End If
-    If Check14.Value = 1 Then rs.Fields(29) = True
-    ElseIf Check14.Value = 0 Then rs.Fields(29) = False
+    If Check14.Value = 1 Then
+        rs.Fields(29) = True
+    ElseIf Check14.Value = 0 Then
+        rs.Fields(29) = False
     End If
-    If Check15.Value = 1 Then rs.Fields(33) = True
-    ElseIf Check15.Value = 0 Then rs.Fields(33) = False
+    If Check15.Value = 1 Then
+        rs.Fields(33) = True
+    ElseIf Check15.Value = 0 Then
+        rs.Fields(33) = False
     End If
  
     rs.Update
@@ -904,10 +979,6 @@ Private Sub Command1_Click()
     MsgBox "Save success!", vbOKOnly, "warning"
     Unload Me
     Unload Form1
-
-End Sub
-
-Private Sub Frame1_DragDrop(Source As Control, X As Single, Y As Single)
 
 End Sub
 
