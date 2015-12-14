@@ -952,8 +952,52 @@ On Error GoTo ErrExit
     'Enter factory mode fisrt, or other cmd may not respond.
     ENTER_FAC_MODE
     DelayMS StepTime
+    
     READ_SYS_VERSION
     DelayMS StepTime
+    
+    READ_FLASH_INFO
+    DelayMS StepTime
+    
+    READ_HARDWARE_VERSION
+    DelayMS StepTime
+    
+    READ_DIMENSION_INFO
+    DelayMS StepTime
+    
+    READ_24G_VERSION
+    DelayMS StepTime
+    
+    READ_PANEL_NAME
+    DelayMS StepTime
+    
+    READ_CARRIER_INFO
+    DelayMS StepTime
+    
+    READ_HDCP_KEY
+    DelayMS StepTime
+    
+    READ_MODEL_NAME
+    DelayMS StepTime
+    
+    READ_RESOLUTION_INFO
+    DelayMS StepTime
+    
+    READ_MAC_ADDRESS
+    DelayMS StepTime
+    
+    READ_CHANNEL_INFO
+    DelayMS StepTime
+    
+    READ_PARTITION_VER
+    DelayMS StepTime
+    
+    READ_AREA_INFO
+    DelayMS StepTime
+    
+    READ_DEVICE_KEY
+    DelayMS StepTime
+    
     
 PASS:
     lbResult = "PASS"
@@ -1033,10 +1077,10 @@ On Error GoTo Err
     Dim Counter As Integer
     Dim i, firstByteOfDataIdx As Integer
     
-    'TxtReceive.Text = TxtReceive.Text & "MSComm1.InBufferCount = " & MSComm1.InBufferCount & vbCrLf
+    firstByteOfDataIdx = 0
     Counter = MSComm1.InBufferCount
 
-    If (Counter >= 0) Then
+    If (Counter > 0) Then
         receiveData = ""
         ReceiveArr = MSComm1.Input
 
@@ -1049,18 +1093,23 @@ On Error GoTo Err
             End If
         Next i
         
-        For i = firstByteOfDataIdx To (Counter - 1) Step 1
-            If (ReceiveArr(i) < 16) Then
-                receiveData = receiveData & "0" & Hex(ReceiveArr(i)) & Space(1)
-            Else
-                receiveData = receiveData & Hex(ReceiveArr(i)) & Space(1)
-            End If
-        Next i
+        If firstByteOfDataIdx > 0 Then
+            For i = firstByteOfDataIdx To (Counter - 1) Step 1
+                If (ReceiveArr(i) < 16) Then
+                    receiveData = receiveData & "0" & Hex(ReceiveArr(i)) & Space(1)
+                Else
+                    receiveData = receiveData & Hex(ReceiveArr(i)) & Space(1)
+                End If
+            Next i
         
-        TxtReceive.Text = TxtReceive.Text & receiveData & vbCrLf
-        TxtReceive.SelStart = Len(TxtReceive.Text)
+            TxtReceive.Text = TxtReceive.Text & receiveData & vbCrLf & vbCrLf
+            TxtReceive.SelStart = Len(TxtReceive.Text)
+        Else
+            TxtReceive.Text = TxtReceive.Text & vbCrLf
+            TxtReceive.SelStart = Len(TxtReceive.Text)
+        End If
     Else
-        TxtReceive.Text = TxtReceive.Text & "No data" & vbCrLf
+        'Ignore empty data
     End If
     
 Err:
