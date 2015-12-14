@@ -856,6 +856,8 @@ End Function
 
 Private Sub subInitAfterRunning()
     'countTime = CLng(Timer - countTime)
+    'Either PASS or FAIL, send "Exit factory mode" cmd.
+    EXIT_FAC_MODE
     IsSNWriteSuccess = False
     txtInput.Text = ""
     txtInput.SetFocus
@@ -949,6 +951,9 @@ On Error GoTo ErrExit
     'Send cmd, read data and save data
     'Enter factory mode fisrt, or other cmd may not respond.
     ENTER_FAC_MODE
+    DelayMS StepTime
+    READ_SYS_VERSION
+    DelayMS StepTime
     
 PASS:
     lbResult = "PASS"
@@ -1007,7 +1012,11 @@ Private Sub MSComm1_OnComm()
 On Error GoTo Err
     Select Case MSComm1.CommEvent
         Case comEvReceive
-            'DelayMS 2000
+            If StepTime > 100 Then
+                DelayMS (StepTime - 50)
+            Else
+                DelayMS StepTime
+            End If
             Call hexReceive
         'Case comEvSend
         Case Else
@@ -1022,22 +1031,30 @@ On Error GoTo Err
     Dim ReceiveArr() As Byte
     Dim receiveData As String
     Dim Counter As Integer
-    Dim i As Integer
+    Dim i, firstByteOfDataIdx As Integer
     
     'TxtReceive.Text = TxtReceive.Text & "MSComm1.InBufferCount = " & MSComm1.InBufferCount & vbCrLf
-    If (MSComm1.InBufferCount > 0) Then
-        Counter = MSComm1.InBufferCount
+    Counter = MSComm1.InBufferCount
+
+    If (Counter >= 0) Then
         receiveData = ""
-        
         ReceiveArr = MSComm1.Input
 
-        For i = 0 To (Counter - 1) Step 1
+        For i = 1 To (Counter - 1) Step 1
+            If i < (Counter - 1) Then
+                'Find ACK1 and ACK2, which are metioned in Letv's document.
+                If (ReceiveArr(i) Xor 255) = ReceiveArr(i + 1) Then
+                    firstByteOfDataIdx = i
+                End If
+            End If
+        Next i
+        
+        For i = firstByteOfDataIdx To (Counter - 1) Step 1
             If (ReceiveArr(i) < 16) Then
                 receiveData = receiveData & "0" & Hex(ReceiveArr(i)) & Space(1)
             Else
                 receiveData = receiveData & Hex(ReceiveArr(i)) & Space(1)
             End If
-
         Next i
         
         TxtReceive.Text = TxtReceive.Text & receiveData & vbCrLf
