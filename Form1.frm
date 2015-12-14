@@ -13,6 +13,10 @@ Begin VB.Form Form1
    ScaleHeight     =   7950
    ScaleWidth      =   12630
    StartUpPosition =   2  'ÆÁÄ»ÖÐÐÄ
+   Begin VB.Timer Timer1 
+      Left            =   12000
+      Top             =   240
+   End
    Begin VB.Frame Frame3 
       Caption         =   "ÌõÂë"
       Height          =   1125
@@ -50,7 +54,7 @@ Begin VB.Form Form1
       Begin VB.Label lbResult 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
-         BackColor       =   &H80000005&
+         BackColor       =   &H00FFFFFF&
          BorderStyle     =   1  'Fixed Single
          Caption         =   "Checking"
          BeginProperty Font 
@@ -360,6 +364,7 @@ Begin VB.Form Form1
       Begin VB.TextBox txtModelInfo 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
             Size            =   15.75
@@ -709,8 +714,8 @@ Begin VB.Form Form1
       End
    End
    Begin MSCommLib.MSComm MSComm1 
-      Left            =   11500
-      Top             =   7000
+      Left            =   11400
+      Top             =   120
       _ExtentX        =   1005
       _ExtentY        =   1005
       _Version        =   393216
@@ -767,6 +772,22 @@ Private Sub Form_Load()
 
 End Sub
 
+Private Sub Form_Unload(Cancel As Integer)
+
+On Error GoTo ErrExit
+  
+    If MSComm1.PortOpen = True Then
+        MSComm1.PortOpen = False
+    End If
+  
+    End
+Exit Sub
+
+ErrExit:
+        MsgBox Err.Description, vbCritical, Err.Source
+End Sub
+
+
 Private Sub subInitInterface()
     txtInput.Text = ""
 End Sub
@@ -791,32 +812,44 @@ Private Sub subInitComPort()
 End Sub
 
 Private Function funSNWrite() As Boolean
-strSerialNo = ""
-scanbarcode = ""
-strSerialNo = UCase$(txtInput.Text)
-If subJudgeTheSNIsAvailable = True Then
-  funSNWrite = True
-  scanbarcode = strSerialNo
-Else
-  funSNWrite = False
-End If
+    strSerialNo = ""
+    scanbarcode = ""
+    strSerialNo = UCase$(txtInput.Text)
+    
+    If subJudgeTheSNIsAvailable = True Then
+        funSNWrite = True
+        scanbarcode = strSerialNo
+    Else
+        funSNWrite = False
+    End If
 End Function
 
 Private Sub subInitBeforeRunning()
-    countTime = Timer
+    'countTime = Timer
     IsSNWriteSuccess = True
     strSerialNo = ""
 End Sub
 
+Private Function subJudgeTheSNIsAvailable() As Boolean
+    If strSerialNo = "" Or Len(strSerialNo) <> IsBarcodeLen Then
+        'CheckStep.Text = ""
+        'CheckStep.Text = CheckStep.Text + "Please confirm the SN again?" + vbCrLf
+        txtInput.Text = ""
+        txtInput.SetFocus
+        subJudgeTheSNIsAvailable = False
+    Else
+        subJudgeTheSNIsAvailable = True
+        Set cn = Nothing
+        Set rs = Nothing
+        sqlstring = ""
+    End If
+End Function
+
 Private Sub subInitAfterRunning()
-countTime = CLng(Timer - countTime)
-
-Label9.Caption = countTime & "S"
-IsSNWriteSuccess = False
-
-txtInput.Text = ""
-txtInput.SetFocus
-
+    'countTime = CLng(Timer - countTime)
+    IsSNWriteSuccess = False
+    txtInput.Text = ""
+    txtInput.SetFocus
 End Sub
 
 Private Sub subMainProcesser()
@@ -836,51 +869,95 @@ On Error GoTo ErrExit
         txtInput = ""
         Command2.SetFocus
     Else
-        ShowError_Sys (6)
+        'ShowError_Sys (6)
         GoTo FAIL
     End If
 
 On Error GoTo ErrExit
 
-If IsCa210ok = False Then
-MsgBox "CA210 disconnected,Please click'Connect'->'Connect CA210'to do operation!", vbOKOnly + vbInformation, "warning"
-txtInput.Text = ""
-txtInput.SetFocus
-Exit Sub
-End If
-
     'Whether the CheckBox of database file(*.mdb) selected or not.
     'If not, config the TextBox
-    If Not IsModel Then Check1.Value = 1 Else Check1.Value = 0
+    If Not IsModel Then
+        txtModelInfo.Text = "----"
+        txtModelInfo.BackColor = &HE0E0E0
     End If
-    If IsSysVer Then Check2.Value = 1 Else Check2.Value = 0
+    If Not IsSysVer Then
+        txtSysVer.Text = "----"
+        txtSysVer.BackColor = &HE0E0E0
     End If
-    If IsFlashInfo Then Check3.Value = 1 Else Check3.Value = 0
+    If Not IsFlashInfo Then
+        txtFlashInfo.Text = "----"
+        txtFlashInfo.BackColor = &HE0E0E0
     End If
-    If IsHardwareVer Then Check4.Value = 1 Else Check4.Value = 0
+    If Not IsHardwareVer Then
+        txtHWVer.Text = "----"
+        txtHWVer.BackColor = &HE0E0E0
     End If
-    If IsDimension Then Check5.Value = 1 Else Check5.Value = 0
+    If Not IsDimension Then
+        txtDimension.Text = "----"
+        txtDimension.BackColor = &HE0E0E0
     End If
-    If IsChannel Then Check6.Value = 1 Else Check6.Value = 0
+    If Not IsChannel Then
+        txtChannel.Text = "----"
+        txtChannel.BackColor = &HE0E0E0
     End If
-    If Is24GVer Then Check7.Value = 1 Else Check7.Value = 0
+    If Not Is24GVer Then
+        txtTwoPointFourVer.Text = "----"
+        txtTwoPointFourVer.BackColor = &HE0E0E0
     End If
-    If IsPanel Then Check8.Value = 1 Else Check8.Value = 0
+    If Not IsPanel Then
+        txtPanelName.Text = "----"
+        txtPanelName.BackColor = &HE0E0E0
     End If
-    If IsCarrier Then Check9.Value = 1 Else Check9.Value = 0
+    If Not IsCarrier Then
+        txtCarrier.Text = "----"
+        txtCarrier.BackColor = &HE0E0E0
     End If
-    If IsHDCP Then Check10.Value = 1 Else Check10.Value = 0
+    If Not IsHDCP Then
+        txtHdcpKey.Text = "----"
+        txtHdcpKey.BackColor = &HE0E0E0
     End If
-    If IsResolution Then Check11.Value = 1 Else Check11.Value = 0
+    If Not IsResolution Then
+        txtResolution.Text = "----"
+        txtResolution.BackColor = &HE0E0E0
     End If
-    If IsMACAddr Then Check12.Value = 1 Else Check12.Value = 0
+    If Not IsMACAddr Then
+        txtMacAddr.Text = "----"
+        txtMacAddr.BackColor = &HE0E0E0
     End If
-    If IsPartitionVer Then Check13.Value = 1 Else Check13.Value = 0
+    If Not IsPartitionVer Then
+        txtPartitionVer.Text = "----"
+        txtPartitionVer.BackColor = &HE0E0E0
     End If
-    If IsArea Then Check14.Value = 1 Else Check14.Value = 0
+    If Not IsArea Then
+        txtArea.Text = "----"
+        txtArea.BackColor = &HE0E0E0
     End If
-    If IsDeviceKey Then Check15.Value = 1 Else Check15.Value = 0
+    If Not IsDeviceKey Then
+        txtDeviceKey.Text = "----"
+        txtDeviceKey.BackColor = &HE0E0E0
     End If
+    
+    'Send cmd, read data and save data
+    '......
+    
+PASS:
+    lbResult = "PASS"
+    lbResult.BackColor = &HFF00&
+    'DelayMS StepTime
+    Call subInitAfterRunning
+    
+    Exit Sub
+
+FAIL:
+    lbResult = "PASS"
+    lbResult.BackColor = &HFF&
+    Call subInitAfterRunning
+
+    Exit Sub
+
+ErrExit:
+    MsgBox Err.Description, vbCritical, Err.Source
 
 End Sub
 
@@ -889,6 +966,7 @@ Private Sub tbSetComPort_Click()
 End Sub
 
 Private Sub txtInput_KeyPress(KeyAscii As Integer)
+    'ASCII = 13 means "Enter" of keyboard.
     If KeyAscii = 13 Then
         Call Command1_Click
     End If

@@ -243,3 +243,80 @@ Public Sub GET_MAC_ADDRESS()
     
     Form1.MSComm1.Output = SendDataBuf
 End Sub
+
+Public Sub GET_CHANNEL_INFO()
+
+    Dim SendDataBuf(0 To 9) As Byte
+    
+    '6E  51  86  01  FE  77  32  00  00  03
+    SendDataBuf(0) = &H6E
+    SendDataBuf(1) = &H51
+    SendDataBuf(2) = &H86
+    SendDataBuf(3) = &H1
+    SendDataBuf(4) = &HFE
+    SendDataBuf(5) = &H77
+    SendDataBuf(6) = &H32
+    SendDataBuf(7) = &H0
+    SendDataBuf(8) = &H0
+    SendDataBuf(9) = &H3
+    
+    Form1.MSComm1.Output = SendDataBuf
+End Sub
+
+Public Sub GET_PARTITION_VER()
+
+    Dim SendDataBuf(0 To 9) As Byte
+    
+    '6E  51  86  03  FE  77  13  00  00  20
+    SendDataBuf(0) = &H6E
+    SendDataBuf(1) = &H51
+    SendDataBuf(2) = &H86
+    SendDataBuf(3) = &H3
+    SendDataBuf(4) = &HFE
+    SendDataBuf(5) = &H77
+    SendDataBuf(6) = &H13
+    SendDataBuf(7) = &H0
+    SendDataBuf(8) = &H0
+    SendDataBuf(9) = &H20
+    
+    Form1.MSComm1.Output = SendDataBuf
+End Sub
+
+Public Sub GET_AREA_INFO()
+
+    Dim SendDataBuf(0 To 9) As Byte
+    
+    '6E  51  86  01  FE  77  33  00  00  02
+    SendDataBuf(0) = &H6E
+    SendDataBuf(1) = &H51
+    SendDataBuf(2) = &H86
+    SendDataBuf(3) = &H1
+    SendDataBuf(4) = &HFE
+    SendDataBuf(5) = &H77
+    SendDataBuf(6) = &H33
+    SendDataBuf(7) = &H0
+    SendDataBuf(8) = &H0
+    SendDataBuf(9) = &H2
+    
+    Form1.MSComm1.Output = SendDataBuf
+End Sub
+
+Public Sub GET_DEVICE_KEY()
+
+    Dim SendDataBuf(0 To 9) As Byte
+    
+    '6E  51  86  01  FE  77  34  00  00  05
+    SendDataBuf(0) = &H6E
+    SendDataBuf(1) = &H51
+    SendDataBuf(2) = &H86
+    SendDataBuf(3) = &H1
+    SendDataBuf(4) = &HFE
+    SendDataBuf(5) = &H77
+    SendDataBuf(6) = &H34
+    SendDataBuf(7) = &H0
+    SendDataBuf(8) = &H0
+    SendDataBuf(9) = &H5
+    
+    Form1.MSComm1.Output = SendDataBuf
+End Sub
+
