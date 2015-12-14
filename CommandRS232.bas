@@ -15,7 +15,7 @@ Public Sub ENTER_FAC_MODE()
     SendDataBuf(6) = &HA0
     SendDataBuf(7) = &H0
     SendDataBuf(8) = &H1
-    SendDataBuf(9) = &H1
+    SendDataBuf(9) = &H4
     
     Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Enter Factory Mode" & vbCrLf & "6E 51 86 03 FE E1 A0 00 01 04" & vbCrLf
     Form1.MSComm1.Output = SendDataBuf
@@ -195,7 +195,7 @@ Public Sub READ_HDCP_KEY()
     SendDataBuf(6) = &H5
     SendDataBuf(7) = &H0
     SendDataBuf(8) = &H0
-    SendDataBuf(9) = &H36
+    SendDataBuf(9) = &H34
     
     Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read HDCP key" & vbCrLf & "6E 51 86 01 FE 77 05 00 00 34" & vbCrLf
     Form1.MSComm1.Output = SendDataBuf
