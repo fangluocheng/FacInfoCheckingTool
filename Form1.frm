@@ -1075,7 +1075,7 @@ On Error GoTo Err
     Dim ReceiveArr() As Byte
     Dim receiveData As String
     Dim Counter As Integer
-    Dim i, firstByteOfDataIdx As Integer
+    Dim i, tmp, firstByteOfDataIdx As Integer
     
     firstByteOfDataIdx = 0
     Counter = MSComm1.InBufferCount
@@ -1088,7 +1088,11 @@ On Error GoTo Err
             If i < (Counter - 1) Then
                 'Find ACK1 and ACK2, which are metioned in Letv's document.
                 If (ReceiveArr(i) Xor 255) = ReceiveArr(i + 1) Then
-                    firstByteOfDataIdx = i
+                    For Each tmp In Array(199, 203, 204, 211, 212, 216, 221, 227, 228, 232, 237, 240, 245, 249, 254, 194)
+                        If ReceiveArr(i) = tmp Then
+                            firstByteOfDataIdx = i
+                        End If
+                    Next tmp
                 End If
             End If
         Next i
