@@ -3,9 +3,9 @@ Option Explicit
 
 Public Sub ENTER_FAC_MODE()
 
-    Dim SendDataBuf(0 To 8) As Byte
+    Dim SendDataBuf(0 To 9) As Byte
     
-    '6E  51  86  03  FE  E1  A0  00  01
+    '6E 51 86 03 FE E1 A0 00 01 04
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
     SendDataBuf(2) = &H86
@@ -15,16 +15,17 @@ Public Sub ENTER_FAC_MODE()
     SendDataBuf(6) = &HA0
     SendDataBuf(7) = &H0
     SendDataBuf(8) = &H1
+    SendDataBuf(9) = &H1
     
+    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Enter Factory Mode" & vbCrLf & "6E 51 86 03 FE E1 A0 00 01 04" & vbCrLf
     Form1.MSComm1.Output = SendDataBuf
-    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "6E 51 86 03 FE E1 A0 00 01" & vbCrLf
 End Sub
 
 Public Sub EXIT_FAC_MODE()
 
-    Dim SendDataBuf(0 To 8) As Byte
+    Dim SendDataBuf(0 To 9) As Byte
     
-    '6E  51  86  03  FE  E1  A0  00  00
+    '6E 51 86 03 FE E1 A0 00 00 05
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
     SendDataBuf(2) = &H86
@@ -34,15 +35,17 @@ Public Sub EXIT_FAC_MODE()
     SendDataBuf(6) = &HA0
     SendDataBuf(7) = &H0
     SendDataBuf(8) = &H0
+    SendDataBuf(9) = &H5
     
+    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Exit Factory Mode" & vbCrLf & "6E 51 86 03 FE E1 A0 00 00 05" & vbCrLf
     Form1.MSComm1.Output = SendDataBuf
 End Sub
 
-Public Sub GET_SYS_VERSION()
+Public Sub READ_SYS_VERSION()
 
-    Dim SendDataBuf(0 To 8) As Byte
+    Dim SendDataBuf(0 To 9) As Byte
     
-    '6E  51  86  01  FE  E4  13  00  00
+    '6E 51 86 01 FE E4 13 00 00 B1
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
     SendDataBuf(2) = &H86
@@ -52,15 +55,17 @@ Public Sub GET_SYS_VERSION()
     SendDataBuf(6) = &H13
     SendDataBuf(7) = &H0
     SendDataBuf(8) = &H0
+    SendDataBuf(9) = &HB1
     
+    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read system version" & vbCrLf & "6E 51 86 01 FE E4 13 00 00 B1" & vbCrLf
     Form1.MSComm1.Output = SendDataBuf
 End Sub
 
-Public Sub GET_FLASH_INFO()
+Public Sub READ_FLASH_INFO()
 
     Dim SendDataBuf(0 To 9) As Byte
     
-    '6E  51  86  03  FE  77  0F  00  00  3C
+    '6E 51 86 03 FE 77 0F 00 00 3C
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
     SendDataBuf(2) = &H86
@@ -72,14 +77,15 @@ Public Sub GET_FLASH_INFO()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H3C
     
+    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read Flash information" & vbCrLf & "6E 51 86 03 FE 77 0F 00 00 3C" & vbCrLf
     Form1.MSComm1.Output = SendDataBuf
 End Sub
 
-Public Sub GET_HARDWARE_VERSION()
+Public Sub READ_HARDWARE_VERSION()
 
     Dim SendDataBuf(0 To 9) As Byte
     
-    '6E  51  86  03  FE  77  16  00  00  25
+    '6E 51 86 03 FE 77 16 00 00 25
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
     SendDataBuf(2) = &H86
@@ -91,14 +97,15 @@ Public Sub GET_HARDWARE_VERSION()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H25
     
+    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read hardware version" & vbCrLf & "6E 51 86 03 FE 77 16 00 00 25" & vbCrLf
     Form1.MSComm1.Output = SendDataBuf
 End Sub
 
-Public Sub GET_DIMENSION_INFO()
+Public Sub READ_DIMENSION_INFO()
 
     Dim SendDataBuf(0 To 9) As Byte
     
-    '6E  51  86  03  FE  77  19  00  00  2A
+    '6E 51 86 03 FE 77 19 00 00 2A
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
     SendDataBuf(2) = &H86
@@ -110,14 +117,15 @@ Public Sub GET_DIMENSION_INFO()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H2A
     
+    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Support 3D or not" & vbCrLf & "6E 51 86 03 FE 77 19 00 00 2A" & vbCrLf
     Form1.MSComm1.Output = SendDataBuf
 End Sub
 
-Public Sub GET_24G_VERSION()
+Public Sub READ_24G_VERSION()
 
     Dim SendDataBuf(0 To 9) As Byte
     
-    '6E  51  86  03  FE  77  14  00  00  27
+    '6E 51 86 03 FE 77 14 00 00 27
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
     SendDataBuf(2) = &H86
@@ -129,14 +137,15 @@ Public Sub GET_24G_VERSION()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H27
     
+    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read 2.4G Version" & vbCrLf & "6E 51 86 03 FE 77 14 00 00 27" & vbCrLf
     Form1.MSComm1.Output = SendDataBuf
 End Sub
 
-Public Sub GET_PANEL_NAME()
+Public Sub READ_PANEL_NAME()
 
     Dim SendDataBuf(0 To 9) As Byte
     
-    '6E  51  86  03  FE  77  17  00  00  24
+    '6E 51 86 03 FE 77 17 00 00 24
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
     SendDataBuf(2) = &H86
@@ -148,14 +157,15 @@ Public Sub GET_PANEL_NAME()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H24
     
+    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read panel name" & vbCrLf & "6E 51 86 03 FE 77 17 00 00 24" & vbCrLf
     Form1.MSComm1.Output = SendDataBuf
 End Sub
 
-Public Sub GET_BROADCAST_CTRL_PLATFORM()
+Public Sub READ_CARRIER_INFO()
 
     Dim SendDataBuf(0 To 9) As Byte
     
-    '6E  51  86  03  FE  77  18  00  00  2B
+    '6E 51 86 03 FE 77 18 00 00 2B
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
     SendDataBuf(2) = &H86
@@ -167,6 +177,7 @@ Public Sub GET_BROADCAST_CTRL_PLATFORM()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H2B
     
+    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read carrier information" & vbCrLf & "6E 51 86 03 FE 77 18 00 00 2B" & vbCrLf
     Form1.MSComm1.Output = SendDataBuf
 End Sub
 
@@ -174,7 +185,7 @@ Public Sub READ_HDCP_KEY()
 
     Dim SendDataBuf(0 To 9) As Byte
     
-    '6E  51  86  01  FE  77  05  00  00  36
+    '6E 51 86 01 FE 77 05 00 00 34
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
     SendDataBuf(2) = &H86
@@ -186,33 +197,35 @@ Public Sub READ_HDCP_KEY()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H36
     
+    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read HDCP key" & vbCrLf & "6E 51 86 01 FE 77 05 00 00 34" & vbCrLf
     Form1.MSComm1.Output = SendDataBuf
 End Sub
 
-Public Sub GET_MODEL_INFO()
+Public Sub READ_MODEL_NAME()
 
     Dim SendDataBuf(0 To 9) As Byte
     
-    '6E  51  86  03  FE  77  15  00  00  26
+    '6E 51 86 01 FE F0 18 04 00 AA
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
     SendDataBuf(2) = &H86
-    SendDataBuf(3) = &H3
+    SendDataBuf(3) = &H1
     SendDataBuf(4) = &HFE
-    SendDataBuf(5) = &H77
-    SendDataBuf(6) = &H15
-    SendDataBuf(7) = &H0
+    SendDataBuf(5) = &HF0
+    SendDataBuf(6) = &H18
+    SendDataBuf(7) = &H4
     SendDataBuf(8) = &H0
-    SendDataBuf(9) = &H26
+    SendDataBuf(9) = &HAA
     
+    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read model name" & vbCrLf & "6E 51 86 01 FE F0 18 04 00 AA" & vbCrLf
     Form1.MSComm1.Output = SendDataBuf
 End Sub
 
-Public Sub GET_RESOLUTION_INFO()
+Public Sub READ_RESOLUTION_INFO()
 
     Dim SendDataBuf(0 To 9) As Byte
     
-    '6E  51  86  03  FE  77  20  00  00  13
+    '6E 51 86 03 FE 77 20 00 00 13
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
     SendDataBuf(2) = &H86
@@ -224,14 +237,15 @@ Public Sub GET_RESOLUTION_INFO()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H13
     
+    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Support 4K or 2K" & vbCrLf & "6E 51 86 03 FE 77 20 00 00 13" & vbCrLf
     Form1.MSComm1.Output = SendDataBuf
 End Sub
 
-Public Sub GET_MAC_ADDRESS()
+Public Sub READ_MAC_ADDRESS()
 
-    Dim SendDataBuf(0 To 8) As Byte
+    Dim SendDataBuf(0 To 9) As Byte
     
-    '6E  51  86  01  FE  F0  01  01  00
+    '6E 51 86 01 FE F0 01 01 00 B6
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
     SendDataBuf(2) = &H86
@@ -241,15 +255,17 @@ Public Sub GET_MAC_ADDRESS()
     SendDataBuf(6) = &H1
     SendDataBuf(7) = &H1
     SendDataBuf(8) = &H0
+    SendDataBuf(9) = &HB6
     
+    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read MAC address" & vbCrLf & "6E 51 86 01 FE F0 01 01 00 B6" & vbCrLf
     Form1.MSComm1.Output = SendDataBuf
 End Sub
 
-Public Sub GET_CHANNEL_INFO()
+Public Sub READ_CHANNEL_INFO()
 
     Dim SendDataBuf(0 To 9) As Byte
     
-    '6E  51  86  01  FE  77  32  00  00  03
+    '6E 51 86 01 FE 77 32 00 00 03
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
     SendDataBuf(2) = &H86
@@ -261,14 +277,15 @@ Public Sub GET_CHANNEL_INFO()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H3
     
+    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read channel information" & vbCrLf & "6E 51 86 01 FE 77 32 00 00 03" & vbCrLf
     Form1.MSComm1.Output = SendDataBuf
 End Sub
 
-Public Sub GET_PARTITION_VER()
+Public Sub READ_PARTITION_VER()
 
     Dim SendDataBuf(0 To 9) As Byte
     
-    '6E  51  86  03  FE  77  13  00  00  20
+    '6E 51 86 03 FE 77 13 00 00 20
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
     SendDataBuf(2) = &H86
@@ -280,14 +297,15 @@ Public Sub GET_PARTITION_VER()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H20
     
+    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read partition version(DDR)" & vbCrLf & "6E 51 86 03 FE 77 13 00 00 20" & vbCrLf
     Form1.MSComm1.Output = SendDataBuf
 End Sub
 
-Public Sub GET_AREA_INFO()
+Public Sub READ_AREA_INFO()
 
     Dim SendDataBuf(0 To 9) As Byte
     
-    '6E  51  86  01  FE  77  33  00  00  02
+    '6E 51 86 01 FE 77 33 00 00 02
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
     SendDataBuf(2) = &H86
@@ -299,14 +317,15 @@ Public Sub GET_AREA_INFO()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H2
     
+    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read area information" & vbCrLf & "6E 51 86 01 FE 77 33 00 00 02" & vbCrLf
     Form1.MSComm1.Output = SendDataBuf
 End Sub
 
-Public Sub GET_DEVICE_KEY()
+Public Sub READ_DEVICE_KEY()
 
     Dim SendDataBuf(0 To 9) As Byte
     
-    '6E  51  86  01  FE  77  34  00  00  05
+    '6E 51 86 01 FE 77 34 00 00 05
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
     SendDataBuf(2) = &H86
@@ -318,6 +337,7 @@ Public Sub GET_DEVICE_KEY()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H5
     
+    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read device key" & vbCrLf & "6E 51 86 01 FE 77 34 00 00 05" & vbCrLf
     Form1.MSComm1.Output = SendDataBuf
 End Sub
 
