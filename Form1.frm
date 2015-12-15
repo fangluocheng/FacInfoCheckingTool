@@ -36,6 +36,7 @@ Begin VB.Form Form1
       Begin VB.TextBox txtInput 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
             Size            =   21.75
@@ -93,6 +94,7 @@ Begin VB.Form Form1
       Begin VB.TextBox txtDeviceKey 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
             Size            =   15.75
@@ -113,6 +115,7 @@ Begin VB.Form Form1
       Begin VB.TextBox txtMacAddr 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
             Size            =   15.75
@@ -133,6 +136,7 @@ Begin VB.Form Form1
       Begin VB.TextBox txtResolution 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
             Size            =   15.75
@@ -153,6 +157,7 @@ Begin VB.Form Form1
       Begin VB.TextBox txtHdcpKey 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
             Size            =   15.75
@@ -173,6 +178,7 @@ Begin VB.Form Form1
       Begin VB.TextBox txtArea 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
             Size            =   15.75
@@ -193,6 +199,7 @@ Begin VB.Form Form1
       Begin VB.TextBox txtCarrier 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
             Size            =   15.75
@@ -213,6 +220,7 @@ Begin VB.Form Form1
       Begin VB.TextBox txtPanelName 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
             Size            =   12
@@ -233,6 +241,7 @@ Begin VB.Form Form1
       Begin VB.TextBox txtTwoPointFourVer 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
             Size            =   15.75
@@ -253,6 +262,7 @@ Begin VB.Form Form1
       Begin VB.TextBox txtPartitionVer 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
             Size            =   15.75
@@ -273,6 +283,7 @@ Begin VB.Form Form1
       Begin VB.TextBox txtChannel 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
             Size            =   15.75
@@ -293,6 +304,7 @@ Begin VB.Form Form1
       Begin VB.TextBox txtDimension 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
             Size            =   15.75
@@ -313,6 +325,7 @@ Begin VB.Form Form1
       Begin VB.TextBox txtHWVer 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
             Size            =   15.75
@@ -333,6 +346,7 @@ Begin VB.Form Form1
       Begin VB.TextBox txtFlashInfo 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
             Size            =   15.75
@@ -353,6 +367,7 @@ Begin VB.Form Form1
       Begin VB.TextBox txtSysVer 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
             Size            =   15.75
@@ -767,6 +782,7 @@ Option Explicit
 Dim RES As Long
 Dim Result As Boolean
 Dim StepTime As Long
+Dim IsAllDataMatch As Boolean
 
 Private Sub Form_Load()
 
@@ -836,6 +852,7 @@ End Function
 Private Sub subInitBeforeRunning()
     'countTime = Timer
     IsSNWriteSuccess = True
+    IsAllDataMatch = False
     strSerialNo = ""
 End Sub
 
@@ -951,6 +968,9 @@ On Error GoTo ErrExit
     ENTER_FAC_MODE
     DelayMS StepTime
     
+    READ_MODEL_NAME
+    DelayMS StepTime
+    
     READ_SYS_VERSION
     DelayMS StepTime
     
@@ -975,9 +995,6 @@ On Error GoTo ErrExit
     READ_HDCP_KEY
     DelayMS StepTime
     
-    READ_MODEL_NAME
-    DelayMS StepTime
-    
     READ_RESOLUTION_INFO
     DelayMS StepTime
     
@@ -999,7 +1016,112 @@ On Error GoTo ErrExit
     'Either PASS or FAIL, send "Exit factory mode" cmd.
     EXIT_FAC_MODE
 
+    If ModelSpec = txtModelInfo.Text Then
+        txtModelInfo.BackColor = &HFF00&
+    Else
+        txtModelInfo.BackColor = &HFF&
+    End If
+    
+    If SysVerSpec = txtSysVer.Text Then
+        txtSysVer.BackColor = &HFF00&
+    Else
+        txtSysVer.BackColor = &HFF&
+    End If
+    
+    If FlashInfoSpec = txtFlashInfo.Text Then
+        txtFlashInfo.BackColor = &HFF00&
+    Else
+        txtFlashInfo.BackColor = &HFF&
+    End If
+    
+    If HardwareVerSpec = txtHWVer.Text Then
+        txtHWVer.BackColor = &HFF00&
+    Else
+        txtHWVer.BackColor = &HFF&
+    End If
+    
+    If DimensionSpec = txtDimension.Text Then
+        txtDimension.BackColor = &HFF00&
+    Else
+        txtDimension.BackColor = &HFF&
+    End If
+    
+    If ChannelSpec = txtChannel.Text Then
+        txtChannel.BackColor = &HFF00&
+    Else
+        txtChannel.BackColor = &HFF&
+    End If
+    
+    If PartitionVerSpec = txtPartitionVer.Text Then
+        txtPartitionVer.BackColor = &HFF00&
+    Else
+        txtPartitionVer.BackColor = &HFF&
+    End If
+    
+    If TwoPointFourGVerSpec = txtTwoPointFourVer.Text Then
+        txtTwoPointFourVer.BackColor = &HFF00&
+    Else
+        txtTwoPointFourVer.BackColor = &HFF&
+    End If
+    
+    If PanelSpec = txtPanelName.Text Then
+        txtPanelName.BackColor = &HFF00&
+    Else
+        txtPanelName.BackColor = &HFF&
+    End If
+    
+    If CarrierSpec = txtCarrier.Text Then
+        txtCarrier.BackColor = &HFF00&
+    Else
+        txtCarrier.BackColor = &HFF&
+    End If
+    
+    If AreaSpec = txtArea.Text Then
+        txtArea.BackColor = &HFF00&
+    Else
+        txtArea.BackColor = &HFF&
+    End If
+    
+    If HDCPSpec = txtHdcpKey.Text Then
+        txtHdcpKey.BackColor = &HFF00&
+    Else
+        txtHdcpKey.BackColor = &HFF&
+    End If
+
+    If ResolutionSpec = txtResolution.Text Then
+        txtResolution.BackColor = &HFF00&
+    Else
+        txtResolution.BackColor = &HFF&
+    End If
+    
+    If MACAddrSpec = txtMacAddr.Text Then
+        txtMacAddr.BackColor = &HFF00&
+    Else
+        txtMacAddr.BackColor = &HFF&
+    End If
+
+    If DeviceKeySpec = txtDeviceKey.Text Then
+        txtDeviceKey.BackColor = &HFF00&
+    Else
+        txtDeviceKey.BackColor = &HFF&
+    End If
+
+    If (ModelSpec = txtModelInfo.Text) And (SysVerSpec = txtSysVer.Text) _
+        And (FlashInfoSpec = txtFlashInfo.Text) And (HardwareVerSpec = txtHWVer.Text) _
+        And (DimensionSpec = txtDimension.Text) And (ChannelSpec = txtChannel.Text) _
+        And (PartitionVerSpec = txtPartitionVer.Text) And (TwoPointFourGVerSpec = txtTwoPointFourVer.Text) _
+        And (PanelSpec = txtPanelName.Text) And (CarrierSpec = txtCarrier.Text) _
+        And (AreaSpec = txtArea.Text) And (HDCPSpec = txtHdcpKey.Text) _
+        And (ResolutionSpec = txtResolution.Text) And (MACAddrSpec = txtMacAddr.Text) _
+        And (DeviceKeySpec = txtDeviceKey.Text) Then
+        IsAllDataMatch = True
+    End If
+
     Call saveAllData
+    
+    If Not IsAllDataMatch Then
+        GoTo FAIL
+    End If
     
 PASS:
     lbResult = "PASS"
