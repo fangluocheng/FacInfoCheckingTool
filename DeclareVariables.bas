@@ -23,21 +23,21 @@ Public Const StepbyStep = False
 '------------------------------------------------------------------------------
 '    Variable mapping the check items in "CheckItem".
 '------------------------------------------------------------------------------
-Public IsModel As Boolean
-Public IsSysVer As Boolean
-Public IsFlashInfo As Boolean
-Public IsHardwareVer As Boolean
-Public IsDimension As Boolean
-Public IsChannel As Boolean
-Public IsPartitionVer As Boolean
-Public Is24GVer As Boolean
-Public IsPanel As Boolean
-Public IsCarrier As Boolean
-Public IsArea As Boolean
-Public IsHDCP As Boolean
-Public IsResolution As Boolean
-Public IsMACAddr As Boolean
-Public IsDeviceKey As Boolean
+Public IsModelSelected As Boolean
+Public IsSysVerSelected As Boolean
+Public IsFlashInfoSelected As Boolean
+Public IsHardwareVerSelected As Boolean
+Public IsDimensionSelected As Boolean
+Public IsChannelSelected As Boolean
+Public IsPartitionVerSelected As Boolean
+Public Is24GVerSelected As Boolean
+Public IsPanelSelected As Boolean
+Public IsCarrierSelected As Boolean
+Public IsAreaVerSelected As Boolean
+Public IsHDCPSelected As Boolean
+Public IsResolutionSelected As Boolean
+Public IsMACAddrSelected As Boolean
+Public IsDeviceKeySelected As Boolean
 
 '------------------------------------------------------------------------------
 '    Variable mapping the items in "CheckItem".
@@ -79,4 +79,4 @@ Public countTime As Long
 
 Public cmdIdentifyNum As Integer
 
-
+Public Const ChkBoxUnselectedStr As String = "----"

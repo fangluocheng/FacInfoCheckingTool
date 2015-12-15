@@ -199,6 +199,7 @@ On Error GoTo ErrExit
     Set cn = Nothing
     Set rs = Nothing
     sqlstring = ""
+    
     sqlstring = "select * from CheckItem where Mark='" & strCurrentModelName & "'"
     Executesql (sqlstring)
 
@@ -206,21 +207,21 @@ On Error GoTo ErrExit
     IsStepTime = rs("Delayms")
     barcodeLen = rs("SN_Len")
     
-    IsModel = rs("Model")
-    IsSysVer = rs("SysVer")
-    IsFlashInfo = rs("FlashInfo")
-    IsHardwareVer = rs("HardwareVer")
-    IsDimension = rs("Dimension")
-    IsChannel = rs("Channel")
-    IsPartitionVer = rs("PartitionVer")
-    Is24GVer = rs("24GVer")
-    IsPanel = rs("Panel")
-    IsCarrier = rs("Carrier")
-    IsArea = rs("Area")
-    IsHDCP = rs("HDCP")
-    IsResolution = rs("Resolution")
-    IsMACAddr = rs("MACAddr")
-    IsDeviceKey = rs("DeviceKey")
+    IsModelSelected = rs("Model")
+    IsSysVerSelected = rs("SysVer")
+    IsFlashInfoSelected = rs("FlashInfo")
+    IsHardwareVerSelected = rs("HardwareVer")
+    IsDimensionSelected = rs("Dimension")
+    IsChannelSelected = rs("Channel")
+    IsPartitionVerSelected = rs("PartitionVer")
+    Is24GVerSelected = rs("24GVer")
+    IsPanelSelected = rs("Panel")
+    IsCarrierSelected = rs("Carrier")
+    IsAreaVerSelected = rs("Area")
+    IsHDCPSelected = rs("HDCP")
+    IsResolutionSelected = rs("Resolution")
+    IsMACAddrSelected = rs("MACAddr")
+    IsDeviceKeySelected = rs("DeviceKey")
     
     ModelSpec = rs("ModelM")
     SysVerSpec = rs("SysVerM")

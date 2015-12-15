@@ -47,6 +47,10 @@ Public Sub READ_SYS_VERSION()
 
     Dim SendDataBuf(0 To 9) As Byte
     
+    If Not IsSysVerSelected Then
+        Exit Sub
+    End If
+    
     '6E 51 86 01 FE E4 13 00 00 B1
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
@@ -67,6 +71,10 @@ End Sub
 Public Sub READ_FLASH_INFO()
 
     Dim SendDataBuf(0 To 9) As Byte
+    
+    If Not IsFlashInfoSelected Then
+        Exit Sub
+    End If
     
     '6E 51 86 03 FE 77 0F 00 00 3C
     SendDataBuf(0) = &H6E
@@ -89,6 +97,10 @@ Public Sub READ_HARDWARE_VERSION()
 
     Dim SendDataBuf(0 To 9) As Byte
     
+    If Not IsHardwareVerSelected Then
+        Exit Sub
+    End If
+    
     '6E 51 86 03 FE 77 16 00 00 25
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
@@ -109,6 +121,10 @@ End Sub
 Public Sub READ_DIMENSION_INFO()
 
     Dim SendDataBuf(0 To 9) As Byte
+    
+    If Not IsDimensionSelected Then
+        Exit Sub
+    End If
     
     '6E 51 86 03 FE 77 19 00 00 2A
     SendDataBuf(0) = &H6E
@@ -131,6 +147,10 @@ Public Sub READ_24G_VERSION()
 
     Dim SendDataBuf(0 To 9) As Byte
     
+    If Not Is24GVerSelected Then
+        Exit Sub
+    End If
+    
     '6E 51 86 03 FE 77 14 00 00 27
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
@@ -151,6 +171,10 @@ End Sub
 Public Sub READ_PANEL_NAME()
 
     Dim SendDataBuf(0 To 9) As Byte
+    
+    If Not IsPanelSelected Then
+        Exit Sub
+    End If
     
     '6E 51 86 03 FE 77 17 00 00 24
     SendDataBuf(0) = &H6E
@@ -173,6 +197,10 @@ Public Sub READ_CARRIER_INFO()
 
     Dim SendDataBuf(0 To 9) As Byte
     
+    If Not IsCarrierSelected Then
+        Exit Sub
+    End If
+    
     '6E 51 86 03 FE 77 18 00 00 2B
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
@@ -193,6 +221,10 @@ End Sub
 Public Sub READ_HDCP_KEY()
 
     Dim SendDataBuf(0 To 9) As Byte
+    
+    If Not IsHDCPSelected Then
+        Exit Sub
+    End If
     
     '6E 51 86 01 FE 77 05 00 00 34
     SendDataBuf(0) = &H6E
@@ -215,6 +247,10 @@ Public Sub READ_MODEL_NAME()
 
     Dim SendDataBuf(0 To 9) As Byte
     
+    If Not IsModelSelected Then
+        Exit Sub
+    End If
+    
     '6E 51 86 01 FE F0 18 04 00 AA
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
@@ -235,6 +271,10 @@ End Sub
 Public Sub READ_RESOLUTION_INFO()
 
     Dim SendDataBuf(0 To 9) As Byte
+    
+    If Not IsResolutionSelected Then
+        Exit Sub
+    End If
     
     '6E 51 86 03 FE 77 20 00 00 13
     SendDataBuf(0) = &H6E
@@ -257,6 +297,10 @@ Public Sub READ_MAC_ADDRESS()
 
     Dim SendDataBuf(0 To 9) As Byte
     
+    If Not IsMACAddrSelected Then
+        Exit Sub
+    End If
+    
     '6E 51 86 01 FE F0 01 01 00 B6
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
@@ -277,6 +321,10 @@ End Sub
 Public Sub READ_CHANNEL_INFO()
 
     Dim SendDataBuf(0 To 9) As Byte
+    
+    If Not IsChannelSelected Then
+        Exit Sub
+    End If
     
     '6E 51 86 01 FE 77 32 00 00 03
     SendDataBuf(0) = &H6E
@@ -299,6 +347,10 @@ Public Sub READ_PARTITION_VER()
 
     Dim SendDataBuf(0 To 9) As Byte
     
+    If Not IsPartitionVerSelected Then
+        Exit Sub
+    End If
+    
     '6E 51 86 03 FE 77 13 00 00 20
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
@@ -320,6 +372,10 @@ Public Sub READ_AREA_INFO()
 
     Dim SendDataBuf(0 To 9) As Byte
     
+    If Not IsAreaVerSelected Then
+        Exit Sub
+    End If
+    
     '6E 51 86 01 FE 77 33 00 00 02
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
@@ -340,6 +396,10 @@ End Sub
 Public Sub READ_DEVICE_KEY()
 
     Dim SendDataBuf(0 To 9) As Byte
+    
+    If Not IsDeviceKeySelected Then
+        Exit Sub
+    End If
     
     '6E 51 86 01 FE 77 34 00 00 05
     SendDataBuf(0) = &H6E
