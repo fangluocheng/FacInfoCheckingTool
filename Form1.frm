@@ -30,7 +30,7 @@ Begin VB.Form Form1
       Caption         =   "条码"
       Height          =   1125
       Left            =   4320
-      TabIndex        =   32
+      TabIndex        =   33
       Top             =   6720
       Width           =   8175
       Begin VB.TextBox txtInput 
@@ -47,7 +47,7 @@ Begin VB.Form Form1
          EndProperty
          Height          =   690
          Left            =   120
-         TabIndex        =   33
+         TabIndex        =   0
          Text            =   "123456789"
          Top             =   240
          Width           =   7905
@@ -57,7 +57,7 @@ Begin VB.Form Form1
       Caption         =   "测试结果"
       Height          =   1125
       Left            =   120
-      TabIndex        =   31
+      TabIndex        =   32
       Top             =   6720
       Width           =   4095
       Begin VB.Label lbResult 
@@ -87,7 +87,7 @@ Begin VB.Form Form1
       Caption         =   "TV 信息"
       Height          =   5700
       Left            =   120
-      TabIndex        =   0
+      TabIndex        =   1
       Top             =   960
       Width           =   12375
       Begin VB.TextBox txtDeviceKey 
@@ -105,7 +105,7 @@ Begin VB.Form Form1
          Height          =   540
          Left            =   8190
          Locked          =   -1  'True
-         TabIndex        =   30
+         TabIndex        =   31
          Text            =   "None"
          Top             =   5040
          Width           =   4000
@@ -125,7 +125,7 @@ Begin VB.Form Form1
          Height          =   540
          Left            =   8190
          Locked          =   -1  'True
-         TabIndex        =   28
+         TabIndex        =   29
          Text            =   "None"
          Top             =   3945
          Width           =   4000
@@ -145,7 +145,7 @@ Begin VB.Form Form1
          Height          =   540
          Left            =   4150
          Locked          =   -1  'True
-         TabIndex        =   25
+         TabIndex        =   26
          Text            =   "None"
          Top             =   3945
          Width           =   4000
@@ -165,7 +165,7 @@ Begin VB.Form Form1
          Height          =   540
          Left            =   120
          Locked          =   -1  'True
-         TabIndex        =   24
+         TabIndex        =   25
          Text            =   "None"
          Top             =   3945
          Width           =   4000
@@ -185,7 +185,7 @@ Begin VB.Form Form1
          Height          =   540
          Left            =   4150
          Locked          =   -1  'True
-         TabIndex        =   22
+         TabIndex        =   23
          Text            =   "None"
          Top             =   5040
          Width           =   4000
@@ -205,7 +205,7 @@ Begin VB.Form Form1
          Height          =   540
          Left            =   8190
          Locked          =   -1  'True
-         TabIndex        =   20
+         TabIndex        =   21
          Text            =   "None"
          Top             =   2865
          Width           =   4000
@@ -225,7 +225,7 @@ Begin VB.Form Form1
          Height          =   540
          Left            =   4150
          Locked          =   -1  'True
-         TabIndex        =   17
+         TabIndex        =   18
          Text            =   "None"
          Top             =   2865
          Width           =   4000
@@ -245,7 +245,7 @@ Begin VB.Form Form1
          Height          =   540
          Left            =   120
          Locked          =   -1  'True
-         TabIndex        =   16
+         TabIndex        =   17
          Text            =   "None"
          Top             =   2865
          Width           =   4000
@@ -265,7 +265,7 @@ Begin VB.Form Form1
          Height          =   540
          Left            =   120
          Locked          =   -1  'True
-         TabIndex        =   14
+         TabIndex        =   15
          Text            =   "None"
          Top             =   5040
          Width           =   4000
@@ -285,7 +285,7 @@ Begin VB.Form Form1
          Height          =   540
          Left            =   8190
          Locked          =   -1  'True
-         TabIndex        =   12
+         TabIndex        =   13
          Text            =   "None"
          Top             =   1785
          Width           =   4000
@@ -305,7 +305,7 @@ Begin VB.Form Form1
          Height          =   540
          Left            =   4150
          Locked          =   -1  'True
-         TabIndex        =   9
+         TabIndex        =   10
          Text            =   "None"
          Top             =   1785
          Width           =   4000
@@ -325,7 +325,7 @@ Begin VB.Form Form1
          Height          =   540
          Left            =   120
          Locked          =   -1  'True
-         TabIndex        =   8
+         TabIndex        =   9
          Text            =   "None"
          Top             =   1785
          Width           =   4000
@@ -345,7 +345,7 @@ Begin VB.Form Form1
          Height          =   540
          Left            =   8190
          Locked          =   -1  'True
-         TabIndex        =   6
+         TabIndex        =   7
          Text            =   "None"
          Top             =   700
          Width           =   4000
@@ -365,7 +365,7 @@ Begin VB.Form Form1
          Height          =   540
          Left            =   4150
          Locked          =   -1  'True
-         TabIndex        =   4
+         TabIndex        =   5
          Text            =   "None"
          Top             =   700
          Width           =   4000
@@ -386,7 +386,7 @@ Begin VB.Form Form1
          Height          =   540
          Left            =   120
          Locked          =   -1  'True
-         TabIndex        =   2
+         TabIndex        =   3
          Text            =   "None"
          Top             =   700
          Width           =   4000
@@ -409,7 +409,7 @@ Begin VB.Form Form1
          ForeColor       =   &H80000008&
          Height          =   450
          Left            =   8190
-         TabIndex        =   29
+         TabIndex        =   30
          Top             =   4560
          Width           =   4000
       End
@@ -431,7 +431,7 @@ Begin VB.Form Form1
          ForeColor       =   &H80000008&
          Height          =   450
          Left            =   8190
-         TabIndex        =   27
+         TabIndex        =   28
          Top             =   3480
          Width           =   4000
       End
@@ -453,7 +453,7 @@ Begin VB.Form Form1
          ForeColor       =   &H80000008&
          Height          =   450
          Left            =   120
-         TabIndex        =   26
+         TabIndex        =   27
          Top             =   3480
          Width           =   4000
       End
@@ -475,7 +475,7 @@ Begin VB.Form Form1
          ForeColor       =   &H80000008&
          Height          =   450
          Left            =   4150
-         TabIndex        =   23
+         TabIndex        =   24
          Top             =   3480
          Width           =   4000
       End
@@ -497,7 +497,7 @@ Begin VB.Form Form1
          ForeColor       =   &H80000008&
          Height          =   450
          Left            =   4150
-         TabIndex        =   21
+         TabIndex        =   22
          Top             =   4560
          Width           =   4000
       End
@@ -519,7 +519,7 @@ Begin VB.Form Form1
          ForeColor       =   &H80000008&
          Height          =   450
          Left            =   8190
-         TabIndex        =   19
+         TabIndex        =   20
          Top             =   2400
          Width           =   4000
       End
@@ -541,7 +541,7 @@ Begin VB.Form Form1
          ForeColor       =   &H80000008&
          Height          =   450
          Left            =   120
-         TabIndex        =   18
+         TabIndex        =   19
          Top             =   2400
          Width           =   4000
       End
@@ -563,7 +563,7 @@ Begin VB.Form Form1
          ForeColor       =   &H80000008&
          Height          =   450
          Left            =   4150
-         TabIndex        =   15
+         TabIndex        =   16
          Top             =   2400
          Width           =   4000
       End
@@ -585,7 +585,7 @@ Begin VB.Form Form1
          ForeColor       =   &H80000008&
          Height          =   450
          Left            =   120
-         TabIndex        =   13
+         TabIndex        =   14
          Top             =   4560
          Width           =   4000
       End
@@ -607,7 +607,7 @@ Begin VB.Form Form1
          ForeColor       =   &H80000008&
          Height          =   450
          Left            =   8190
-         TabIndex        =   11
+         TabIndex        =   12
          Top             =   1320
          Width           =   4000
       End
@@ -629,7 +629,7 @@ Begin VB.Form Form1
          ForeColor       =   &H80000008&
          Height          =   450
          Left            =   120
-         TabIndex        =   10
+         TabIndex        =   11
          Top             =   1320
          Width           =   4000
       End
@@ -651,7 +651,7 @@ Begin VB.Form Form1
          ForeColor       =   &H80000008&
          Height          =   450
          Left            =   4150
-         TabIndex        =   7
+         TabIndex        =   8
          Top             =   1320
          Width           =   4000
       End
@@ -673,7 +673,7 @@ Begin VB.Form Form1
          ForeColor       =   &H80000008&
          Height          =   450
          Left            =   8190
-         TabIndex        =   5
+         TabIndex        =   6
          Top             =   240
          Width           =   4000
       End
@@ -695,7 +695,7 @@ Begin VB.Form Form1
          ForeColor       =   &H80000008&
          Height          =   450
          Left            =   4150
-         TabIndex        =   3
+         TabIndex        =   4
          Top             =   240
          Width           =   4005
       End
@@ -717,7 +717,7 @@ Begin VB.Form Form1
          ForeColor       =   &H80000008&
          Height          =   450
          Left            =   120
-         TabIndex        =   1
+         TabIndex        =   2
          Top             =   240
          Width           =   4000
       End
@@ -799,7 +799,6 @@ End Sub
 
 Private Sub subInitInterface()
     txtInput.Text = ""
-    txtInput.SetFocus
 End Sub
 
 Private Sub subInitComPort()
@@ -1040,17 +1039,13 @@ Private Sub Command1_Click()
     End If
 End Sub
 
-Private Sub txtResult_Change()
-
-End Sub
-
 Private Sub vbSetSPEC_Click()
     frmSetData.Show
 End Sub
 
 
 '------------------------------------------------------------------------------
-' MSComm function
+' MSComm related function
 '------------------------------------------------------------------------------
 Private Sub MSComm1_OnComm()
     
@@ -1162,7 +1157,8 @@ On Error GoTo Err
                     txtArea.Text = receiveData
                 Case 16                                    'Device Key
                     txtDeviceKey.Text = receiveData
-                
+                Case Else
+                    TxtReceive.Text = TxtReceive.Text & "Unknown command" & vbCrLf
             End Select
         Else
             TxtReceive.Text = TxtReceive.Text & vbCrLf
