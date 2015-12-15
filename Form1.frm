@@ -856,8 +856,6 @@ End Function
 
 Private Sub subInitAfterRunning()
     'countTime = CLng(Timer - countTime)
-    'Either PASS or FAIL, send "Exit factory mode" cmd.
-    EXIT_FAC_MODE
     IsSNWriteSuccess = False
     txtInput.Text = ""
     txtInput.SetFocus
@@ -998,17 +996,20 @@ On Error GoTo ErrExit
     READ_DEVICE_KEY
     DelayMS StepTime
     
+    'Either PASS or FAIL, send "Exit factory mode" cmd.
+    EXIT_FAC_MODE
+
+    Call saveAllData
     
 PASS:
     lbResult = "PASS"
     lbResult.BackColor = &HFF00&
-    'DelayMS StepTime
     Call subInitAfterRunning
     
     Exit Sub
 
 FAIL:
-    lbResult = "PASS"
+    lbResult = "NG"
     lbResult.BackColor = &HFF&
     Call subInitAfterRunning
 
@@ -1018,6 +1019,47 @@ ErrExit:
     MsgBox Err.Description, vbCritical, Err.Source
 
 End Sub
+
+Private Sub saveAllData()
+
+    If strSerialNo = "" Then
+        Exit Sub
+    Else
+        sqlstring = "select * from DataRecord"
+        Executesql (sqlstring)
+        rs.AddNew
+
+        rs.Fields(0) = strCurrentModelName
+        rs.Fields(1) = strSerialNo
+
+        rs.Fields(2) = txtModelInfo.Text
+        rs.Fields(3) = txtSysVer.Text
+        rs.Fields(4) = txtFlashInfo.Text
+        rs.Fields(5) = txtHWVer.Text
+        rs.Fields(6) = txtDimension.Text
+        rs.Fields(7) = txtChannel.Text
+        rs.Fields(8) = txtPartitionVer.Text
+        rs.Fields(9) = txtTwoPointFourVer.Text
+        rs.Fields(10) = txtPanelName.Text
+        rs.Fields(11) = txtCarrier.Text
+        rs.Fields(12) = txtArea.Text
+        rs.Fields(13) = txtHdcpKey.Text
+        rs.Fields(14) = txtResolution.Text
+        rs.Fields(15) = txtMacAddr.Text
+        rs.Fields(16) = txtDeviceKey.Text
+        
+        rs.Fields(17) = Date
+        rs.Fields(18) = Time
+        
+        rs.Update
+        
+        Set cn = Nothing
+        Set rs = Nothing
+        sqlstring = ""
+    End If
+
+End Sub
+
 
 Private Sub tbSetComPort_Click()
     Form2.Show
