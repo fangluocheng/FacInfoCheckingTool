@@ -109,7 +109,7 @@ Begin VB.Form Form1
          Locked          =   -1  'True
          TabIndex        =   31
          Text            =   "None"
-         Top             =   5040
+         Top             =   5025
          Width           =   4000
       End
       Begin VB.TextBox txtMacAddr 
@@ -193,7 +193,7 @@ Begin VB.Form Form1
          Locked          =   -1  'True
          TabIndex        =   23
          Text            =   "None"
-         Top             =   5040
+         Top             =   5025
          Width           =   4000
       End
       Begin VB.TextBox txtCarrier 
@@ -277,7 +277,7 @@ Begin VB.Form Form1
          Locked          =   -1  'True
          TabIndex        =   15
          Text            =   "None"
-         Top             =   5040
+         Top             =   5025
          Width           =   4000
       End
       Begin VB.TextBox txtChannel 
@@ -749,7 +749,7 @@ Begin VB.Form Form1
       Caption         =   "Label1"
       BeginProperty Font 
          Name            =   "Î¢ÈíÑÅºÚ"
-         Size            =   27.75
+         Size            =   24
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -850,10 +850,43 @@ Private Function funSNWrite() As Boolean
 End Function
 
 Private Sub subInitBeforeRunning()
-    'countTime = Timer
     IsSNWriteSuccess = True
     IsAllDataMatch = False
     strSerialNo = ""
+    
+    txtModelInfo.BackColor = &HFFFFFF
+    txtSysVer.BackColor = &HFFFFFF
+    txtFlashInfo.BackColor = &HFFFFFF
+    txtHWVer.BackColor = &HFFFFFF
+    txtDimension.BackColor = &HFFFFFF
+    txtChannel.BackColor = &HFFFFFF
+    txtPartitionVer.BackColor = &HFFFFFF
+    txtTwoPointFourVer.BackColor = &HFFFFFF
+    txtPanelName.BackColor = &HFFFFFF
+    txtCarrier.BackColor = &HFFFFFF
+    txtArea.BackColor = &HFFFFFF
+    txtHdcpKey.BackColor = &HFFFFFF
+    txtResolution.BackColor = &HFFFFFF
+    txtMacAddr.BackColor = &HFFFFFF
+    txtDeviceKey.BackColor = &HFFFFFF
+    lbResult.BackColor = &HFFFFFF
+    
+    txtModelInfo.Text = "None"
+    txtSysVer.Text = "None"
+    txtFlashInfo.Text = "None"
+    txtHWVer.Text = "None"
+    txtDimension.Text = "None"
+    txtChannel.Text = "None"
+    txtPartitionVer.Text = "None"
+    txtTwoPointFourVer.Text = "None"
+    txtPanelName.Text = "None"
+    txtCarrier.Text = "None"
+    txtArea.Text = "None"
+    txtHdcpKey.Text = "None"
+    txtResolution.Text = "None"
+    txtMacAddr.Text = "None"
+    txtDeviceKey.Text = "None"
+    lbResult.Caption = "Checking"
 End Sub
 
 Private Function subJudgeTheSNIsAvailable() As Boolean
@@ -872,7 +905,6 @@ Private Function subJudgeTheSNIsAvailable() As Boolean
 End Function
 
 Private Sub subInitAfterRunning()
-    'countTime = CLng(Timer - countTime)
     IsSNWriteSuccess = False
     txtInput.Text = ""
     txtInput.SetFocus
