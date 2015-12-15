@@ -979,7 +979,10 @@ Private Sub subInitBeforeRunning()
     End If
     
     lbResult.Caption = "Checking"
+    lbResult.BackColor = &HFFFFFF
     TxtReceive.Text = ""
+    TxtReceive.ForeColor = &H80000008
+    lbResult.FontSize = 22
     
 End Sub
 
@@ -1078,6 +1081,7 @@ On Error GoTo ErrExit
     
     'Either PASS or FAIL, send "Exit factory mode" cmd.
     EXIT_FAC_MODE
+    DelayMS StepTime / 2
 
     If IsModelSelected Then
         If ModelSpec = txtModelInfo.Text Then
@@ -1209,6 +1213,33 @@ On Error GoTo ErrExit
         And (DeviceKeySpec = txtDeviceKey.Text) Then
         IsAllDataMatch = True
     End If
+    
+    sqlstring = "select * from DataRecord where MACAddr='" & txtMacAddr.Text & "'"
+    Executesql (sqlstring)
+    
+    If rs.RecordCount > 0 Then
+        If rs.RecordCount = 1 Then
+            TxtReceive.Text = "The MAC Address is the same as [" & rs("SerialNO") & "]'s." & Len(txtMacAddr.Text) & vbCrLf
+        Else
+            TxtReceive.Text = "There are some TV whose MAC Address are the same. Please check the database file!!!" & vbCrLf
+        End If
+        
+        TxtReceive.ForeColor = &HFF&
+        txtMacAddr.BackColor = &HFF&
+        lbResult.Caption = "MAC Addr duplicate"
+        lbResult.BackColor = &HFF&
+        lbResult.FontSize = 18
+        
+        IsAllDataMatch = False
+        
+        Set cn = Nothing
+        Set rs = Nothing
+        sqlstring = ""
+    
+        Call subInitAfterRunning
+
+        Exit Sub
+    End If
 
     Call saveAllData
     
@@ -1217,14 +1248,14 @@ On Error GoTo ErrExit
     End If
     
 PASS:
-    lbResult = "PASS"
+    lbResult.Caption = "PASS"
     lbResult.BackColor = &HFF00&
     Call subInitAfterRunning
     
     Exit Sub
 
 FAIL:
-    lbResult = "NG"
+    lbResult.Caption = "NG"
     lbResult.BackColor = &HFF&
     Call subInitAfterRunning
 
