@@ -77,5 +77,6 @@ Public scanbarcode As String
 Public strSerialNo As String
 Public countTime As Long
 
+Public cmdIdentifyNum As Integer
 
 

@@ -1109,6 +1109,60 @@ On Error GoTo Err
         
             TxtReceive.Text = TxtReceive.Text & receiveData & vbCrLf & vbCrLf
             TxtReceive.SelStart = Len(TxtReceive.Text)
+            
+            'Update the CheckBoxed in the Form1.
+            receiveData = ""
+            
+            'Data starts from ReceiveArr(firstByteOfDataIdx + 3). DataLength is ReceiveArr(firstByteOfDataIdx + 2).
+            For i = (firstByteOfDataIdx + 3) To ((firstByteOfDataIdx + 3) + ReceiveArr(firstByteOfDataIdx + 2) - 1) Step 1
+                If (ReceiveArr(i) < 16) Then
+                    receiveData = receiveData & "0" & Hex(ReceiveArr(i))
+                Else
+                    receiveData = receiveData & Hex(ReceiveArr(i))
+                End If
+            Next i
+            
+            Select Case cmdIdentifyNum
+                Case 2                                     'System Version
+                    txtSysVer.Text = receiveData
+                Case 3                                     'Flash Info
+                    txtFlashInfo.Text = receiveData
+                Case 4                                     'Hardware Version
+                    txtHWVer.Text = receiveData
+                Case 5                                     '3D\2D
+                    If receiveData = 0 Then
+                        txtDimension.Text = "3D"
+                    Else
+                        txtDimension.Text = "2D"
+                    End If
+                Case 6                                     '2.4G Version
+                    txtTwoPointFourVer.Text = receiveData
+                Case 7                                     'Panel Name
+                    txtPanelName.Text = receiveData
+                Case 8                                     'Carrier Info
+                    txtCarrier.Text = receiveData
+                Case 9                                     'HDCP Key
+                    txtHdcpKey.Text = receiveData
+                Case 10                                    'Model Name
+                    txtModelInfo.Text = receiveData
+                Case 11                                    '4K\2K
+                    If receiveData = 0 Then
+                        txtResolution.Text = "4K"
+                    Else
+                        txtResolution.Text = "2K"
+                    End If
+                Case 12                                    'MAC Address
+                    txtMacAddr.Text = receiveData
+                Case 13                                    'Channel Info
+                    txtChannel.Text = receiveData
+                Case 14                                    'Partition Version
+                    txtPartitionVer.Text = receiveData
+                Case 15                                    'Area Info
+                    txtArea.Text = receiveData
+                Case 16                                    'Device Key
+                    txtDeviceKey.Text = receiveData
+                
+            End Select
         Else
             TxtReceive.Text = TxtReceive.Text & vbCrLf
             TxtReceive.SelStart = Len(TxtReceive.Text)
