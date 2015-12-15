@@ -14,6 +14,15 @@ Begin VB.Form Form1
    ScaleWidth      =   16905
    StartUpPosition =   2  'ÆÁÄ»ÖÐÐÄ
    Begin VB.TextBox TxtReceive 
+      BeginProperty Font 
+         Name            =   "Consolas"
+         Size            =   10.5
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   7755
       Left            =   12600
       MultiLine       =   -1  'True
@@ -1203,23 +1212,12 @@ On Error GoTo ErrExit
         End If
     End If
 
-    If (ModelSpec = txtModelInfo.Text) And (SysVerSpec = txtSysVer.Text) _
-        And (FlashInfoSpec = txtFlashInfo.Text) And (HardwareVerSpec = txtHWVer.Text) _
-        And (DimensionSpec = txtDimension.Text) And (ChannelSpec = txtChannel.Text) _
-        And (PartitionVerSpec = txtPartitionVer.Text) And (TwoPointFourGVerSpec = txtTwoPointFourVer.Text) _
-        And (PanelSpec = txtPanelName.Text) And (CarrierSpec = txtCarrier.Text) _
-        And (AreaSpec = txtArea.Text) And (HDCPSpec = txtHdcpKey.Text) _
-        And (ResolutionSpec = txtResolution.Text) And (MACAddrSpec = txtMacAddr.Text) _
-        And (DeviceKeySpec = txtDeviceKey.Text) Then
-        IsAllDataMatch = True
-    End If
-    
     sqlstring = "select * from DataRecord where MACAddr='" & txtMacAddr.Text & "'"
     Executesql (sqlstring)
     
     If rs.RecordCount > 0 Then
         If rs.RecordCount = 1 Then
-            TxtReceive.Text = "The MAC Address is the same as [" & rs("SerialNO") & "]'s." & Len(txtMacAddr.Text) & vbCrLf
+            TxtReceive.Text = "The MAC Address is the same as a TV whose SerialNO is [----" & rs("SerialNO") & "----]." & vbCrLf
         Else
             TxtReceive.Text = "There are some TV whose MAC Address are the same. Please check the database file!!!" & vbCrLf
         End If
@@ -1239,6 +1237,17 @@ On Error GoTo ErrExit
         Call subInitAfterRunning
 
         Exit Sub
+    End If
+    
+    If (ModelSpec = txtModelInfo.Text) And (SysVerSpec = txtSysVer.Text) _
+        And (FlashInfoSpec = txtFlashInfo.Text) And (HardwareVerSpec = txtHWVer.Text) _
+        And (DimensionSpec = txtDimension.Text) And (ChannelSpec = txtChannel.Text) _
+        And (PartitionVerSpec = txtPartitionVer.Text) And (TwoPointFourGVerSpec = txtTwoPointFourVer.Text) _
+        And (PanelSpec = txtPanelName.Text) And (CarrierSpec = txtCarrier.Text) _
+        And (AreaSpec = txtArea.Text) And (HDCPSpec = txtHdcpKey.Text) _
+        And (ResolutionSpec = txtResolution.Text) And (Len(txtMacAddr.Text) = 12) _
+        And (DeviceKeySpec = txtDeviceKey.Text) Then
+        IsAllDataMatch = True
     End If
 
     Call saveAllData
@@ -1340,11 +1349,7 @@ Private Sub MSComm1_OnComm()
 On Error GoTo Err
     Select Case MSComm1.CommEvent
         Case comEvReceive
-            If StepTime > 100 Then
-                DelayMS (StepTime - 50)
-            Else
-                DelayMS StepTime
-            End If
+            DelayMS 250
             Call hexReceive
         'Case comEvSend
         Case Else
