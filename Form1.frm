@@ -887,12 +887,13 @@ Private Sub subInitBeforeRunning()
     txtMacAddr.Text = "None"
     txtDeviceKey.Text = "None"
     lbResult.Caption = "Checking"
+    TxtReceive.Text = ""
 End Sub
 
 Private Function subJudgeTheSNIsAvailable() As Boolean
-    If strSerialNo = "" Or Len(strSerialNo) <> IsBarcodeLen Then
-        'CheckStep.Text = ""
-        'CheckStep.Text = CheckStep.Text + "Please confirm the SN again?" + vbCrLf
+    If strSerialNo = "" Or Len(strSerialNo) <> barcodeLen Then
+        TxtReceive.Text = ""
+        TxtReceive.Text = TxtReceive.Text + "Please confirm the SN again?" + vbCrLf
         txtInput.Text = ""
         txtInput.SetFocus
         subJudgeTheSNIsAvailable = False

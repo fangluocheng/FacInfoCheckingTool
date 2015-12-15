@@ -204,7 +204,7 @@ On Error GoTo ErrExit
 
     SetTVCurrentComBaud = rs("ComBaud")
     IsStepTime = rs("Delayms")
-    IsBarcodeLen = rs("SN_Len")
+    barcodeLen = rs("SN_Len")
     
     IsModel = rs("Model")
     IsSysVer = rs("SysVer")

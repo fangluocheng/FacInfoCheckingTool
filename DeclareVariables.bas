@@ -44,7 +44,7 @@ Public IsDeviceKey As Boolean
 '------------------------------------------------------------------------------
 Public SetTVCurrentComBaud As Long                         'ComBaud
 Public IsStepTime As Long                                  'Delayms
-Public IsBarcodeLen As Integer                             'SN_Len
+Public barcodeLen As Integer                               'SN_Len
 Public ModelSpec As String                                 'ModelM
 Public SysVerSpec As String                                'SysVerM
 Public FlashInfoSpec As String                             'FlashInfoM

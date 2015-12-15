@@ -434,7 +434,7 @@ Begin VB.Form frmSetData
          Left            =   120
          TabIndex        =   17
          Text            =   "None"
-         Top             =   5040
+         Top             =   5025
          Width           =   4000
       End
       Begin VB.TextBox txtTwoPointFourVerSpec 
@@ -510,7 +510,7 @@ Begin VB.Form frmSetData
          Left            =   4150
          TabIndex        =   13
          Text            =   "None"
-         Top             =   5040
+         Top             =   5025
          Width           =   4000
       End
       Begin VB.TextBox txtHdcpKeySpec 
@@ -586,7 +586,7 @@ Begin VB.Form frmSetData
          Left            =   8190
          TabIndex        =   9
          Text            =   "None"
-         Top             =   5040
+         Top             =   5025
          Width           =   4000
       End
    End
@@ -735,7 +735,7 @@ Begin VB.Form frmSetData
       Caption         =   "Label1"
       BeginProperty Font 
          Name            =   "Î¢ÈíÑÅºÚ"
-         Size            =   27.75
+         Size            =   24
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -878,21 +878,21 @@ Private Sub Command1_Click()
     rs.Fields(2) = Val(Text2.Text)                         'Delayms
     rs.Fields(3) = Val(Text3.Text)                         'SN_Len
 
-    rs.Fields(4) = Val(txtModelInfoSpec.Text)              'ModelM
-    rs.Fields(5) = Val(txtSysVerSpec.Text)                 'SysVerM
-    rs.Fields(6) = Val(txtFlashInfoSpec.Text)              'FlashInfoM
-    rs.Fields(7) = Val(txtHWVerSpec.Text)                  'HardwareVerM
-    rs.Fields(8) = Val(txtDimensionSpec.Text)              'DimensionM
-    rs.Fields(9) = Val(txtChannelSpec.Text)                'ChannelM
-    rs.Fields(10) = Val(txtTwoPointFourVerSpec.Text)       '24GVerM
-    rs.Fields(11) = Val(txtPanelNameSpec.Text)             'PanelM
-    rs.Fields(12) = Val(txtCarrierSpec.Text)               'CarrierM
-    rs.Fields(13) = Val(txtHdcpKeySpec.Text)               'HDCPM
-    rs.Fields(14) = Val(txtResolutionSpec.Text)            'ResolutionM
-    rs.Fields(15) = Val(txtMacAddrSpec.Text)               'MACAddrM
-    rs.Fields(16) = Val(txtPartitionVerSpec.Text)          'PartitionVerM
-    rs.Fields(17) = Val(txtAreaSpec.Text)                  'AreaM
-    rs.Fields(18) = Val(txtDeviceKeySpec.Text)             'DeviceKeyM
+    rs.Fields(4) = txtModelInfoSpec.Text                   'ModelM
+    rs.Fields(5) = txtSysVerSpec.Text                      'SysVerM
+    rs.Fields(6) = txtFlashInfoSpec.Text                   'FlashInfoM
+    rs.Fields(7) = txtHWVerSpec.Text                       'HardwareVerM
+    rs.Fields(8) = txtDimensionSpec.Text                   'DimensionM
+    rs.Fields(9) = txtChannelSpec.Text                     'ChannelM
+    rs.Fields(10) = txtPartitionVerSpec.Text               'PartitionVerM
+    rs.Fields(11) = txtTwoPointFourVerSpec.Text            '24GVerM
+    rs.Fields(12) = txtPanelNameSpec.Text                  'PanelM
+    rs.Fields(13) = txtCarrierSpec.Text                    'CarrierM
+    rs.Fields(14) = txtAreaSpec.Text                       'AreaM
+    rs.Fields(15) = txtHdcpKeySpec.Text                    'HDCPM
+    rs.Fields(16) = txtResolutionSpec.Text                 'ResolutionM
+    rs.Fields(17) = txtMacAddrSpec.Text                    'MACAddrM
+    rs.Fields(18) = txtDeviceKeySpec.Text                  'DeviceKeyM
 
     If Check1.Value = 1 Then
         rs.Fields(19) = True
