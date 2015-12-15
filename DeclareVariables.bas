@@ -58,8 +58,6 @@ Public CarrierSpec As String                               'CarrierM
 Public AreaSpec As String                                  'AreaM
 Public HDCPSpec As String                                  'HDCPM
 Public ResolutionSpec As String                            'ResolutionM
-Public MACAddrSpec As String                               'MACAddrM
-Public DeviceKeySpec As String                             'DeviceKeyM
 
 
 Public IsStop As Boolean

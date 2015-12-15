@@ -554,6 +554,7 @@ Begin VB.Form frmSetData
       Begin VB.TextBox txtMacAddrSpec 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H00E0E0E0&
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
             Size            =   15.75
@@ -565,14 +566,16 @@ Begin VB.Form frmSetData
          EndProperty
          Height          =   540
          Left            =   8190
+         Locked          =   -1  'True
          TabIndex        =   10
-         Text            =   "None"
+         Text            =   "----"
          Top             =   3945
          Width           =   4000
       End
       Begin VB.TextBox txtDeviceKeySpec 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H00E0E0E0&
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
             Size            =   15.75
@@ -584,8 +587,9 @@ Begin VB.Form frmSetData
          EndProperty
          Height          =   540
          Left            =   8190
+         Locked          =   -1  'True
          TabIndex        =   9
-         Text            =   "None"
+         Text            =   "----"
          Top             =   5025
          Width           =   4000
       End
@@ -780,10 +784,8 @@ Private Sub Form_Load()
     txtCarrierSpec.Text = rs("CarrierM")
     txtHdcpKeySpec.Text = rs("HDCPM")
     txtResolutionSpec.Text = rs("ResolutionM")
-    txtMacAddrSpec.Text = rs("MACAddrM")
     txtPartitionVerSpec.Text = rs("PartitionVerM")
     txtAreaSpec.Text = rs("AreaM")
-    txtDeviceKeySpec.Text = rs("DeviceKeyM")
 
     'Whether the CheckBox selected or not.
     If rs("Model") Then
@@ -879,109 +881,105 @@ Private Sub Command1_Click()
     rs.Fields(3) = Val(Text3.Text)                         'SN_Len
 
     If Check1.Value = 1 Then                               'ModelM
-        rs.Fields(19) = True
+        rs.Fields(17) = True
         rs.Fields(4) = txtModelInfoSpec.Text
     ElseIf Check1.Value = 0 Then
-        rs.Fields(19) = False
+        rs.Fields(17) = False
         rs.Fields(4) = strChkBoxUnselected
     End If
     If Check2.Value = 1 Then                               'SysVerM
-        rs.Fields(20) = True
+        rs.Fields(18) = True
         rs.Fields(5) = txtSysVerSpec.Text
     ElseIf Check2.Value = 0 Then
-        rs.Fields(20) = False
+        rs.Fields(18) = False
         rs.Fields(5) = strChkBoxUnselected
     End If
     If Check3.Value = 1 Then                               'FlashInfoM
-        rs.Fields(21) = True
+        rs.Fields(19) = True
         rs.Fields(6) = txtFlashInfoSpec.Text
     ElseIf Check3.Value = 0 Then
-        rs.Fields(21) = False
+        rs.Fields(19) = False
         rs.Fields(6) = strChkBoxUnselected
     End If
     If Check4.Value = 1 Then                               'HardwareVerM
-        rs.Fields(22) = True
+        rs.Fields(20) = True
         rs.Fields(7) = txtHWVerSpec.Text
     ElseIf Check4.Value = 0 Then
-        rs.Fields(22) = False
+        rs.Fields(20) = False
         rs.Fields(7) = strChkBoxUnselected
     End If
     If Check5.Value = 1 Then                               'DimensionM
-        rs.Fields(23) = True
+        rs.Fields(21) = True
         rs.Fields(8) = txtDimensionSpec.Text
     ElseIf Check5.Value = 0 Then
-        rs.Fields(23) = False
+        rs.Fields(21) = False
         rs.Fields(8) = strChkBoxUnselected
     End If
     If Check6.Value = 1 Then                               'ChannelM
-        rs.Fields(24) = True
+        rs.Fields(22) = True
         rs.Fields(9) = txtChannelSpec.Text
     ElseIf Check6.Value = 0 Then
-        rs.Fields(24) = False
+        rs.Fields(22) = False
         rs.Fields(9) = strChkBoxUnselected
     End If
     If Check7.Value = 1 Then                               '24GVerM
-        rs.Fields(26) = True
+        rs.Fields(24) = True
         rs.Fields(11) = txtTwoPointFourVerSpec.Text
     ElseIf Check7.Value = 0 Then
-        rs.Fields(26) = False
+        rs.Fields(24) = False
         rs.Fields(11) = strChkBoxUnselected
     End If
     If Check8.Value = 1 Then                               'PanelM
-        rs.Fields(27) = True
+        rs.Fields(25) = True
         rs.Fields(12) = txtPanelNameSpec.Text
     ElseIf Check8.Value = 0 Then
-        rs.Fields(27) = False
+        rs.Fields(25) = False
         rs.Fields(12) = strChkBoxUnselected
     End If
     If Check9.Value = 1 Then                               'CarrierM
-        rs.Fields(28) = True
+        rs.Fields(26) = True
         rs.Fields(13) = txtCarrierSpec.Text
     ElseIf Check9.Value = 0 Then
-        rs.Fields(28) = False
+        rs.Fields(26) = False
         rs.Fields(13) = strChkBoxUnselected
     End If
     If Check10.Value = 1 Then                              'HDCPM
-        rs.Fields(30) = True
+        rs.Fields(28) = True
         rs.Fields(15) = txtHdcpKeySpec.Text
     ElseIf Check10.Value = 0 Then
-        rs.Fields(30) = False
+        rs.Fields(28) = False
         rs.Fields(15) = strChkBoxUnselected
     End If
     If Check11.Value = 1 Then                              'ResolutionM
-        rs.Fields(31) = True
+        rs.Fields(29) = True
         rs.Fields(16) = txtResolutionSpec.Text
     ElseIf Check11.Value = 0 Then
-        rs.Fields(31) = False
+        rs.Fields(29) = False
         rs.Fields(16) = strChkBoxUnselected
     End If
     If Check12.Value = 1 Then                              'MACAddrM
-        rs.Fields(32) = True
-        rs.Fields(17) = txtMacAddrSpec.Text
+        rs.Fields(30) = True
     ElseIf Check12.Value = 0 Then
-        rs.Fields(32) = False
-        rs.Fields(17) = strChkBoxUnselected
+        rs.Fields(30) = False
     End If
     If Check13.Value = 1 Then                              'PartitionVerM
-        rs.Fields(25) = True
+        rs.Fields(23) = True
         rs.Fields(10) = txtPartitionVerSpec.Text
     ElseIf Check13.Value = 0 Then
-        rs.Fields(25) = False
+        rs.Fields(23) = False
         rs.Fields(10) = strChkBoxUnselected
     End If
     If Check14.Value = 1 Then                              'AreaM
-        rs.Fields(29) = True
+        rs.Fields(27) = True
         rs.Fields(14) = txtAreaSpec.Text
     ElseIf Check14.Value = 0 Then
-        rs.Fields(29) = False
+        rs.Fields(27) = False
         rs.Fields(14) = strChkBoxUnselected
     End If
     If Check15.Value = 1 Then                              'DeviceKeyM
-        rs.Fields(33) = True
-        rs.Fields(18) = txtDeviceKeySpec.Text
+        rs.Fields(31) = True
     ElseIf Check15.Value = 0 Then
-        rs.Fields(33) = False
-        rs.Fields(18) = strChkBoxUnselected
+        rs.Fields(31) = False
     End If
  
     rs.Update

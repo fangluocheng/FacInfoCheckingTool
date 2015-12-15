@@ -236,8 +236,6 @@ On Error GoTo ErrExit
     AreaSpec = rs("AreaM")
     HDCPSpec = rs("HDCPM")
     ResolutionSpec = rs("ResolutionM")
-    MACAddrSpec = rs("MACAddrM")
-    DeviceKeySpec = rs("DeviceKeyM")
 
     Set rs = Nothing
     Set cn = Nothing

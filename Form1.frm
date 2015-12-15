@@ -1197,56 +1197,56 @@ On Error GoTo ErrExit
     End If
     
     If IsMACAddrSelected Then
-        If MACAddrSpec = txtMacAddr.Text Then
-            txtMacAddr.BackColor = &HFF00&
+        If Len(txtMacAddr.Text) = 12 Then
+            sqlstring = "select * from DataRecord where MACAddr='" & txtMacAddr.Text & "'"
+            Executesql (sqlstring)
+            
+            If rs.RecordCount > 0 Then
+                If rs.RecordCount = 1 Then
+                    TxtReceive.Text = "The MAC Address is the same as a TV whose SerialNO is [----" & rs("SerialNO") & "----]." & vbCrLf
+                Else
+                    TxtReceive.Text = "There are some TV whose MAC Address are the same. Please check the database file!!!" & vbCrLf
+                End If
+                
+                TxtReceive.ForeColor = &HFF&
+                txtMacAddr.BackColor = &HFF&
+                lbResult.Caption = "MAC Addr duplicate"
+                lbResult.BackColor = &HFF&
+                lbResult.FontSize = 18
+                
+                IsAllDataMatch = False
+                
+                Set cn = Nothing
+                Set rs = Nothing
+                sqlstring = ""
+            
+                Call subInitAfterRunning
+        
+                Exit Sub
+            Else
+                txtMacAddr.BackColor = &HFF00&
+                IsAllDataMatch = True
+            End If
         Else
             txtMacAddr.BackColor = &HFF&
         End If
     End If
 
     If IsDeviceKeySelected Then
-        If DeviceKeySpec = txtDeviceKey.Text Then
-            txtDeviceKey.BackColor = &HFF00&
-        Else
-            txtDeviceKey.BackColor = &HFF&
-        End If
+        'If DeviceKeySpec = txtDeviceKey.Text Then
+        '    txtDeviceKey.BackColor = &HFF00&
+        'Else
+        '    txtDeviceKey.BackColor = &HFF&
+        'End If
     End If
 
-    sqlstring = "select * from DataRecord where MACAddr='" & txtMacAddr.Text & "'"
-    Executesql (sqlstring)
-    
-    If rs.RecordCount > 0 Then
-        If rs.RecordCount = 1 Then
-            TxtReceive.Text = "The MAC Address is the same as a TV whose SerialNO is [----" & rs("SerialNO") & "----]." & vbCrLf
-        Else
-            TxtReceive.Text = "There are some TV whose MAC Address are the same. Please check the database file!!!" & vbCrLf
-        End If
-        
-        TxtReceive.ForeColor = &HFF&
-        txtMacAddr.BackColor = &HFF&
-        lbResult.Caption = "MAC Addr duplicate"
-        lbResult.BackColor = &HFF&
-        lbResult.FontSize = 18
-        
-        IsAllDataMatch = False
-        
-        Set cn = Nothing
-        Set rs = Nothing
-        sqlstring = ""
-    
-        Call subInitAfterRunning
-
-        Exit Sub
-    End If
-    
     If (ModelSpec = txtModelInfo.Text) And (SysVerSpec = txtSysVer.Text) _
         And (FlashInfoSpec = txtFlashInfo.Text) And (HardwareVerSpec = txtHWVer.Text) _
         And (DimensionSpec = txtDimension.Text) And (ChannelSpec = txtChannel.Text) _
         And (PartitionVerSpec = txtPartitionVer.Text) And (TwoPointFourGVerSpec = txtTwoPointFourVer.Text) _
         And (PanelSpec = txtPanelName.Text) And (CarrierSpec = txtCarrier.Text) _
         And (AreaSpec = txtArea.Text) And (HDCPSpec = txtHdcpKey.Text) _
-        And (ResolutionSpec = txtResolution.Text) And (Len(txtMacAddr.Text) = 12) _
-        And (DeviceKeySpec = txtDeviceKey.Text) Then
+        And (ResolutionSpec = txtResolution.Text) Then
         IsAllDataMatch = True
     End If
 
