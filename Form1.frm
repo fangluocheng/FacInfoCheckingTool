@@ -215,7 +215,7 @@ Begin VB.Form Form1
          Appearance      =   0  'Flat
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -1111,10 +1111,18 @@ On Error GoTo Err
             
             'Data starts from ReceiveArr(firstByteOfDataIdx + 3). DataLength is ReceiveArr(firstByteOfDataIdx + 2).
             For i = (firstByteOfDataIdx + 3) To ((firstByteOfDataIdx + 3) + ReceiveArr(firstByteOfDataIdx + 2) - 1) Step 1
-                If (ReceiveArr(i) < 16) Then
-                    receiveData = receiveData & "0" & Hex(ReceiveArr(i))
+                If cmdIdentifyNum = 5 Or cmdIdentifyNum = 9 Or cmdIdentifyNum = 11 Or cmdIdentifyNum = 12 Or cmdIdentifyNum = 16 Then
+                    If (ReceiveArr(i) < 16) Then
+                        receiveData = receiveData & "0" & Hex(ReceiveArr(i))
+                    Else
+                        receiveData = receiveData & Hex(ReceiveArr(i))
+                    End If
                 Else
-                    receiveData = receiveData & Hex(ReceiveArr(i))
+                    If (ReceiveArr(i) < 16) Then
+                        receiveData = receiveData & "0" & Chr(ReceiveArr(i))
+                    Else
+                        receiveData = receiveData & Chr(ReceiveArr(i))
+                    End If
                 End If
             Next i
             
@@ -1122,7 +1130,7 @@ On Error GoTo Err
                 Case 2                                     'System Version
                     txtSysVer.Text = receiveData
                 Case 3                                     'Flash Info
-                    txtFlashInfo.Text = receiveData
+                    txtFlashInfo.Text = receiveData & "G"
                 Case 4                                     'Hardware Version
                     txtHWVer.Text = receiveData
                 Case 5                                     '3D\2D
