@@ -88,64 +88,77 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
 Private Sub cmdExit_Click()
-Unload Me
-Form1.ZOrder (0)
+    Unload Me
+    Form1.ZOrder (0)
 End Sub
 
 Private Sub cmdSet_Click()
- On Error GoTo ErrExit
+
+On Error GoTo ErrExit
  
-  If Len(Trim$(cmbTcomID.Text)) = 5 Then
-  SetTVCurrentComID = Val(Right(Trim$(cmbTcomID.Text), 2))
-  ElseIf Len(Trim$(cmbTcomID.Text)) = 4 Then
-  SetTVCurrentComID = Val(Right(Trim$(cmbTcomID.Text), 1))
-  Else
-  SetTVCurrentComID = 1
-  End If
+    If Len(Trim$(cmbTcomID.Text)) = 5 Then
+        SetTVCurrentComID = Val(Right(Trim$(cmbTcomID.Text), 2))
+    ElseIf Len(Trim$(cmbTcomID.Text)) = 4 Then
+        SetTVCurrentComID = Val(Right(Trim$(cmbTcomID.Text), 1))
+    Else
+        SetTVCurrentComID = 1
+    End If
  
     SetTVCurrentComBaud = Val(cmbTbaud)
-If Form1.MSComm1.PortOpen = True Then
-Form1.MSComm1.PortOpen = False
-End If
+    
+    sqlstring = "select * from CommonTable where Mark='ATS'"
+    Executesql (sqlstring)
+    
+    rs.Fields(2) = SetTVCurrentComID                       'ComID
+    rs.Update
+    
+    Set cn = Nothing
+    Set rs = Nothing
+    sqlstring = ""
+
+    If Form1.MSComm1.PortOpen = True Then
+        Form1.MSComm1.PortOpen = False
+    End If
 
 With Form1
-   
     .MSComm1.CommPort = SetTVCurrentComID
     .MSComm1.Settings = SetTVCurrentComBaud & ",N,8,1"
     .MSComm1.PortOpen = True
-   
 End With
 
-Unload Me
-Form1.ZOrder (0)
-Exit Sub
+    Unload Me
+    Form1.ZOrder (0)
+    
+    Exit Sub
+
 ErrExit:
         MsgBox Err.Description, vbCritical, Err.Source
 End Sub
 
 Private Sub Form_Load()
+
 On Error GoTo ErrExit
 
-cmbTcomID.Text = "COM" & SetTVCurrentComID
-cmbTbaud.Text = SetTVCurrentComBaud
+    cmbTcomID.Text = "COM" & SetTVCurrentComID
+    cmbTbaud.Text = SetTVCurrentComBaud
 
-For i = 1 To 20
-cmbTcomID.AddItem "COM" & i
-Next i
+    For i = 1 To 20
+        cmbTcomID.AddItem "COM" & i
+    Next i
 
-cmbTbaud.AddItem "9600"
-cmbTbaud.AddItem "19200"
-cmbTbaud.AddItem "38400"
-cmbTbaud.AddItem "57600"
-cmbTbaud.AddItem "115200"
+    cmbTbaud.AddItem "9600"
+    cmbTbaud.AddItem "19200"
+    cmbTbaud.AddItem "38400"
+    cmbTbaud.AddItem "57600"
+    cmbTbaud.AddItem "115200"
 
-Exit Sub
+    Exit Sub
 ErrExit:
         MsgBox Err.Description, vbCritical, Err.Source
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
- Form1.Show
+    Form1.Show
 End Sub
 
 
