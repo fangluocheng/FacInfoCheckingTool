@@ -79,4 +79,5 @@ Public countTime As Long
 
 Public cmdIdentifyNum As Integer
 
-Public Const ChkBoxUnselectedStr As String = "----"
+Public Const strChkBoxUnselected As String = "----"
+Public Const strNoRecvData As String = "None"

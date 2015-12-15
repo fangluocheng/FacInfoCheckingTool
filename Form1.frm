@@ -819,63 +819,63 @@ Private Sub subInitInterface()
     'Whether the CheckBox of database file(*.mdb) selected or not.
     'If not, config the TextBox
     If Not IsModelSelected Then
-        txtModelInfo.Text = ChkBoxUnselectedStr
+        txtModelInfo.Text = strChkBoxUnselected
         txtModelInfo.BackColor = &HE0E0E0
     End If
     If Not IsSysVerSelected Then
-        txtSysVer.Text = ChkBoxUnselectedStr
+        txtSysVer.Text = strChkBoxUnselected
         txtSysVer.BackColor = &HE0E0E0
     End If
     If Not IsFlashInfoSelected Then
-        txtFlashInfo.Text = ChkBoxUnselectedStr
+        txtFlashInfo.Text = strChkBoxUnselected
         txtFlashInfo.BackColor = &HE0E0E0
     End If
     If Not IsHardwareVerSelected Then
-        txtHWVer.Text = ChkBoxUnselectedStr
+        txtHWVer.Text = strChkBoxUnselected
         txtHWVer.BackColor = &HE0E0E0
     End If
     If Not IsDimensionSelected Then
-        txtDimension.Text = ChkBoxUnselectedStr
+        txtDimension.Text = strChkBoxUnselected
         txtDimension.BackColor = &HE0E0E0
     End If
     If Not IsChannelSelected Then
-        txtChannel.Text = ChkBoxUnselectedStr
+        txtChannel.Text = strChkBoxUnselected
         txtChannel.BackColor = &HE0E0E0
     End If
     If Not Is24GVerSelected Then
-        txtTwoPointFourVer.Text = ChkBoxUnselectedStr
+        txtTwoPointFourVer.Text = strChkBoxUnselected
         txtTwoPointFourVer.BackColor = &HE0E0E0
     End If
     If Not IsPanelSelected Then
-        txtPanelName.Text = ChkBoxUnselectedStr
+        txtPanelName.Text = strChkBoxUnselected
         txtPanelName.BackColor = &HE0E0E0
     End If
     If Not IsCarrierSelected Then
-        txtCarrier.Text = ChkBoxUnselectedStr
+        txtCarrier.Text = strChkBoxUnselected
         txtCarrier.BackColor = &HE0E0E0
     End If
     If Not IsHDCPSelected Then
-        txtHdcpKey.Text = ChkBoxUnselectedStr
+        txtHdcpKey.Text = strChkBoxUnselected
         txtHdcpKey.BackColor = &HE0E0E0
     End If
     If Not IsResolutionSelected Then
-        txtResolution.Text = ChkBoxUnselectedStr
+        txtResolution.Text = strChkBoxUnselected
         txtResolution.BackColor = &HE0E0E0
     End If
     If Not IsMACAddrSelected Then
-        txtMacAddr.Text = ChkBoxUnselectedStr
+        txtMacAddr.Text = strChkBoxUnselected
         txtMacAddr.BackColor = &HE0E0E0
     End If
     If Not IsPartitionVerSelected Then
-        txtPartitionVer.Text = ChkBoxUnselectedStr
+        txtPartitionVer.Text = strChkBoxUnselected
         txtPartitionVer.BackColor = &HE0E0E0
     End If
     If Not IsAreaVerSelected Then
-        txtArea.Text = ChkBoxUnselectedStr
+        txtArea.Text = strChkBoxUnselected
         txtArea.BackColor = &HE0E0E0
     End If
     If Not IsDeviceKeySelected Then
-        txtDeviceKey.Text = ChkBoxUnselectedStr
+        txtDeviceKey.Text = strChkBoxUnselected
         txtDeviceKey.BackColor = &HE0E0E0
     End If
 End Sub
@@ -918,63 +918,63 @@ Private Sub subInitBeforeRunning()
     strSerialNo = ""
     
     If IsModelSelected Then
-        txtModelInfo.Text = "None"
+        txtModelInfo.Text = strNoRecvData
         txtModelInfo.BackColor = &HFFFFFF
     End If
     If IsSysVerSelected Then
-        txtSysVer.Text = "None"
+        txtSysVer.Text = strNoRecvData
         txtSysVer.BackColor = &HFFFFFF
     End If
     If IsFlashInfoSelected Then
-        txtFlashInfo.Text = "None"
+        txtFlashInfo.Text = strNoRecvData
         txtFlashInfo.BackColor = &HFFFFFF
     End If
     If IsHardwareVerSelected Then
-        txtHWVer.Text = "None"
+        txtHWVer.Text = strNoRecvData
         txtHWVer.BackColor = &HFFFFFF
     End If
     If IsDimensionSelected Then
-        txtDimension.Text = "None"
+        txtDimension.Text = strNoRecvData
         txtDimension.BackColor = &HFFFFFF
     End If
     If IsChannelSelected Then
-        txtChannel.Text = "None"
+        txtChannel.Text = strNoRecvData
         txtChannel.BackColor = &HFFFFFF
     End If
     If Is24GVerSelected Then
-        txtTwoPointFourVer.Text = "None"
+        txtTwoPointFourVer.Text = strNoRecvData
         txtTwoPointFourVer.BackColor = &HFFFFFF
     End If
     If IsPanelSelected Then
-        txtPanelName.Text = "None"
+        txtPanelName.Text = strNoRecvData
         txtPanelName.BackColor = &HFFFFFF
     End If
     If IsCarrierSelected Then
-        txtCarrier.Text = "None"
+        txtCarrier.Text = strNoRecvData
         txtCarrier.BackColor = &HFFFFFF
     End If
     If IsHDCPSelected Then
-        txtHdcpKey.Text = "None"
+        txtHdcpKey.Text = strNoRecvData
         txtHdcpKey.BackColor = &HFFFFFF
     End If
     If IsResolutionSelected Then
-        txtResolution.Text = "None"
+        txtResolution.Text = strNoRecvData
         txtResolution.BackColor = &HFFFFFF
     End If
     If IsMACAddrSelected Then
-        txtMacAddr.Text = "None"
+        txtMacAddr.Text = strNoRecvData
         txtMacAddr.BackColor = &HFFFFFF
     End If
     If IsPartitionVerSelected Then
-        txtPartitionVer.Text = "None"
+        txtPartitionVer.Text = strNoRecvData
         txtPartitionVer.BackColor = &HFFFFFF
     End If
     If IsAreaVerSelected Then
-        txtArea.Text = "None"
+        txtArea.Text = strNoRecvData
         txtArea.BackColor = &HFFFFFF
     End If
     If IsDeviceKeySelected Then
-        txtDeviceKey.Text = "None"
+        txtDeviceKey.Text = strNoRecvData
         txtDeviceKey.BackColor = &HFFFFFF
     End If
     
@@ -1018,7 +1018,7 @@ On Error GoTo ErrExit
         If IsStop = True Then
             Exit Sub
         End If
-        txtInput = ""
+        txtInput = scanbarcode
     Else
         'ShowError_Sys (6)
         GoTo FAIL

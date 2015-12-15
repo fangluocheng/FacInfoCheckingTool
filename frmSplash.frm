@@ -148,8 +148,8 @@ On Error GoTo ErrExit
     
     Set cn = Nothing
     Set rs = Nothing
-
     sqlstring = ""
+    
     sqlstring = "select * from CommonTable where Mark='ATS'"
     Executesql (sqlstring)
     
