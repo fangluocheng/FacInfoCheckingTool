@@ -799,6 +799,7 @@ End Sub
 
 Private Sub subInitInterface()
     txtInput.Text = ""
+    txtInput.SetFocus
 End Sub
 
 Private Sub subInitComPort()
@@ -865,7 +866,7 @@ End Sub
 
 Private Sub subMainProcesser()
     
-    Dim i, j As Integer
+Dim i, j As Integer
 
 On Error GoTo ErrExit
     subInitBeforeRunning
