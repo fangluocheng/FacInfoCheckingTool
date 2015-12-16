@@ -528,6 +528,7 @@ Begin VB.Form frmSetData
          EndProperty
          Height          =   540
          Left            =   120
+         Locked          =   -1  'True
          TabIndex        =   12
          Text            =   "----"
          Top             =   3945
