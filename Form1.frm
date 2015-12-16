@@ -1041,56 +1041,39 @@ On Error GoTo ErrExit
     'Send cmd, read data and save data
     'Enter factory mode fisrt, or other cmd may not respond.
     ENTER_FAC_MODE
-    DelayMS StepTime
     
     READ_MODEL_NAME
-    DelayMS StepTime
     
     READ_SYS_VERSION
-    DelayMS StepTime
     
     READ_FLASH_INFO
-    DelayMS StepTime
     
     READ_HARDWARE_VERSION
-    DelayMS StepTime
     
     READ_DIMENSION_INFO
-    DelayMS StepTime
     
     READ_24G_VERSION
-    DelayMS StepTime
     
     READ_PANEL_NAME
-    DelayMS StepTime
     
     READ_CARRIER_INFO
-    DelayMS StepTime
     
     READ_HDCP_KEY
-    DelayMS StepTime
     
     READ_RESOLUTION_INFO
-    DelayMS StepTime
     
     READ_MAC_ADDRESS
-    DelayMS StepTime
     
     READ_CHANNEL_INFO
-    DelayMS StepTime
     
     READ_PARTITION_VER
-    DelayMS StepTime
     
     READ_AREA_INFO
-    DelayMS StepTime
     
     READ_DEVICE_KEY
-    DelayMS StepTime
     
     'Either PASS or FAIL, send "Exit factory mode" cmd.
     EXIT_FAC_MODE
-    DelayMS StepTime / 2
 
     If IsModelSelected Then
         If ModelSpec = txtModelInfo.Text Then
