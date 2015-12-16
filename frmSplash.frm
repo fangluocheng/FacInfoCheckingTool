@@ -234,7 +234,6 @@ On Error GoTo ErrExit
     PanelSpec = rs("PanelM")
     CarrierSpec = rs("CarrierM")
     AreaSpec = rs("AreaM")
-    HDCPSpec = rs("HDCPM")
     ResolutionSpec = rs("ResolutionM")
 
     Set rs = Nothing

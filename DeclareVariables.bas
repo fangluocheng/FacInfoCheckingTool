@@ -56,7 +56,6 @@ Public TwoPointFourGVerSpec As String                      '24GVerM
 Public PanelSpec As String                                 'PanelM
 Public CarrierSpec As String                               'CarrierM
 Public AreaSpec As String                                  'AreaM
-Public HDCPSpec As String                                  'HDCPM
 Public ResolutionSpec As String                            'ResolutionM
 
 

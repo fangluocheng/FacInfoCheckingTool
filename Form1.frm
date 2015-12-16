@@ -1181,10 +1181,10 @@ On Error GoTo ErrExit
     End If
     
     If IsHDCPSelected Then
-        If HDCPSpec = txtHdcpKey.Text Then
-            txtHdcpKey.BackColor = &HFF00&
-        Else
+        If txtHdcpKey.Text = strNoRecvData Then
             txtHdcpKey.BackColor = &HFF&
+        Else
+            txtHdcpKey.BackColor = &HFF00&
         End If
     End If
 
@@ -1233,11 +1233,11 @@ On Error GoTo ErrExit
     End If
 
     If IsDeviceKeySelected Then
-        'If DeviceKeySpec = txtDeviceKey.Text Then
-        '    txtDeviceKey.BackColor = &HFF00&
-        'Else
-        '    txtDeviceKey.BackColor = &HFF&
-        'End If
+        If txtDeviceKey.Text = strNoRecvData Then
+            txtDeviceKey.BackColor = &HFF&
+        Else
+            txtDeviceKey.BackColor = &HFF00&
+        End If
     End If
 
     If (ModelSpec = txtModelInfo.Text) And (SysVerSpec = txtSysVer.Text) _
@@ -1245,8 +1245,8 @@ On Error GoTo ErrExit
         And (DimensionSpec = txtDimension.Text) And (ChannelSpec = txtChannel.Text) _
         And (PartitionVerSpec = txtPartitionVer.Text) And (TwoPointFourGVerSpec = txtTwoPointFourVer.Text) _
         And (PanelSpec = txtPanelName.Text) And (CarrierSpec = txtCarrier.Text) _
-        And (AreaSpec = txtArea.Text) And (HDCPSpec = txtHdcpKey.Text) _
-        And (ResolutionSpec = txtResolution.Text) Then
+        And (AreaSpec = txtArea.Text) And (txtHdcpKey.Text <> strNoRecvData) _
+        And (ResolutionSpec = txtResolution.Text) And (txtDeviceKey.Text <> strNoRecvData) Then
         IsAllDataMatch = True
     End If
 
