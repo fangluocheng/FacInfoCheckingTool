@@ -1042,35 +1042,80 @@ On Error GoTo ErrExit
     'Enter factory mode fisrt, or other cmd may not respond.
     ENTER_FAC_MODE
     
-    READ_MODEL_NAME
+    If IsModelSelected Then
+        READ_MODEL_NAME
+        DelayMS StepTime
+    End If
     
-    READ_SYS_VERSION
+    If IsSysVerSelected Then
+        READ_SYS_VERSION
+        DelayMS StepTime
+    End If
     
-    READ_FLASH_INFO
+    If IsFlashInfoSelected Then
+        READ_FLASH_INFO
+        DelayMS StepTime
+    End If
     
-    READ_HARDWARE_VERSION
+    If IsHardwareVerSelected Then
+        READ_HARDWARE_VERSION
+        DelayMS StepTime
+    End If
     
-    READ_DIMENSION_INFO
+    If IsDimensionSelected Then
+        READ_DIMENSION_INFO
+        DelayMS StepTime
+    End If
     
-    READ_24G_VERSION
+    If Is24GVerSelected Then
+        READ_24G_VERSION
+        DelayMS StepTime
+    End If
     
-    READ_PANEL_NAME
+    If IsPanelSelected Then
+        READ_PANEL_NAME
+        DelayMS StepTime
+    End If
     
-    READ_CARRIER_INFO
+    If IsCarrierSelected Then
+        READ_CARRIER_INFO
+        DelayMS StepTime
+    End If
     
-    READ_HDCP_KEY
+    If IsHDCPSelected Then
+        READ_HDCP_KEY
+        DelayMS StepTime
+    End If
     
-    READ_RESOLUTION_INFO
+    If IsResolutionSelected Then
+        READ_RESOLUTION_INFO
+        DelayMS StepTime
+    End If
     
-    READ_MAC_ADDRESS
+    If IsMACAddrSelected Then
+        READ_MAC_ADDRESS
+        DelayMS StepTime
+    End If
     
-    READ_CHANNEL_INFO
+    If IsChannelSelected Then
+        READ_CHANNEL_INFO
+        DelayMS StepTime
+    End If
     
-    READ_PARTITION_VER
+    If IsPartitionVerSelected Then
+        READ_PARTITION_VER
+        DelayMS StepTime
+    End If
     
-    READ_AREA_INFO
+    If IsAreaVerSelected Then
+        READ_AREA_INFO
+        DelayMS StepTime
+    End If
     
-    READ_DEVICE_KEY
+    If IsDeviceKeySelected Then
+        READ_DEVICE_KEY
+        DelayMS StepTime
+    End If
     
     'Either PASS or FAIL, send "Exit factory mode" cmd.
     EXIT_FAC_MODE
