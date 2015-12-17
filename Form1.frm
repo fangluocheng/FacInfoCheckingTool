@@ -1041,6 +1041,7 @@ On Error GoTo ErrExit
     'Send cmd, read data and save data
     'Enter factory mode fisrt, or other cmd may not respond.
     ENTER_FAC_MODE
+    DelayMS StepTime
     
     If IsModelSelected Then
         READ_MODEL_NAME
@@ -1119,6 +1120,7 @@ On Error GoTo ErrExit
     
     'Either PASS or FAIL, send "Exit factory mode" cmd.
     EXIT_FAC_MODE
+    DelayMS StepTime
 
     If IsModelSelected Then
         If ModelSpec = txtModelInfo.Text Then
