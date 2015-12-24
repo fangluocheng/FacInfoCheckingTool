@@ -215,17 +215,17 @@ Public Sub READ_MODEL_NAME()
 
     Dim SendDataBuf(0 To 9) As Byte
     
-    '6E 51 86 01 FE F0 18 04 00 AA
+    '6E 51 86 03 FE 77 15 00 00 26
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
     SendDataBuf(2) = &H86
-    SendDataBuf(3) = &H1
+    SendDataBuf(3) = &H3
     SendDataBuf(4) = &HFE
-    SendDataBuf(5) = &HF0
-    SendDataBuf(6) = &H18
-    SendDataBuf(7) = &H4
+    SendDataBuf(5) = &H77
+    SendDataBuf(6) = &H15
+    SendDataBuf(7) = &H0
     SendDataBuf(8) = &H0
-    SendDataBuf(9) = &HAA
+    SendDataBuf(9) = &H26
     
     Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read model name" & vbCrLf
     cmdIdentifyNum = 10
