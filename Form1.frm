@@ -106,7 +106,7 @@ Begin VB.Form Form1
          BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Size            =   14.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -232,7 +232,7 @@ Begin VB.Form Form1
          BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   12
+            Size            =   15.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -1211,8 +1211,11 @@ On Error GoTo ErrExit
     End If
     
     If IsHDCPSelected Then
-        If txtHdcpKey.Text = strNoRecvData Then
+        'HDCP Key return 0x30 means there is no HDCP Key inside.
+        If txtHdcpKey.Text = "30" Then
             txtHdcpKey.BackColor = &HFF&
+            txtHdcpKey.Text = "HDCP Key Œ¥…’¬º"
+            IsAllDataMatch = False
         Else
             txtHdcpKey.BackColor = &HFF00&
         End If
@@ -1240,9 +1243,9 @@ On Error GoTo ErrExit
                 
                 TxtReceive.ForeColor = &HFF&
                 txtMacAddr.BackColor = &HFF&
-                lbResult.Caption = "MAC Addr duplicate"
-                lbResult.BackColor = &HFF&
-                lbResult.FontSize = 18
+                txtMacAddr.Text = "MAC µÿ÷∑÷ÿ∏¥"
+                'lbResult.BackColor = &HFF&
+                'lbResult.FontSize = 18
                 
                 IsAllDataMatch = False
                 
@@ -1250,12 +1253,12 @@ On Error GoTo ErrExit
                 Set rs = Nothing
                 sqlstring = ""
             
-                Call subInitAfterRunning
+                'Call subInitAfterRunning
         
-                Exit Sub
+                'Exit Sub
             Else
                 txtMacAddr.BackColor = &HFF00&
-                IsAllDataMatch = True
+                IsAllDataMatch = True And IsAllDataMatch
             End If
         Else
             txtMacAddr.BackColor = &HFF&
@@ -1275,9 +1278,9 @@ On Error GoTo ErrExit
         And (DimensionSpec = txtDimension.Text) And (ChannelSpec = txtChannel.Text) _
         And (PartitionVerSpec = txtPartitionVer.Text) And (TwoPointFourGVerSpec = txtTwoPointFourVer.Text) _
         And (PanelSpec = txtPanelName.Text) And (CarrierSpec = txtCarrier.Text) _
-        And (AreaSpec = txtArea.Text) And (txtHdcpKey.Text <> strNoRecvData) _
-        And (ResolutionSpec = txtResolution.Text) And (txtDeviceKey.Text <> strNoRecvData) Then
-        IsAllDataMatch = True
+        And (AreaSpec = txtArea.Text) And (ResolutionSpec = txtResolution.Text) _
+        And (txtDeviceKey.Text <> strNoRecvData) Then
+        IsAllDataMatch = True And IsAllDataMatch
     End If
 
     Call saveAllData
