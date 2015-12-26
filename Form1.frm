@@ -1245,18 +1245,12 @@ On Error GoTo ErrExit
                 TxtReceive.ForeColor = &HFF&
                 txtMacAddr.BackColor = &HFF&
                 txtMacAddr.Text = "MAC µÿ÷∑÷ÿ∏¥"
-                'lbResult.BackColor = &HFF&
-                'lbResult.FontSize = 18
                 
                 IsAllDataMatch = False
                 
                 Set cn = Nothing
                 Set rs = Nothing
                 sqlstring = ""
-            
-                'Call subInitAfterRunning
-        
-                'Exit Sub
             Else
                 txtMacAddr.BackColor = &HFF00&
                 IsAllDataMatch = True And IsAllDataMatch
@@ -1271,6 +1265,7 @@ On Error GoTo ErrExit
             txtDeviceKey.BackColor = &HFF&
         Else
             txtDeviceKey.BackColor = &HFF00&
+            txtDeviceKey.Alignment = 1                     'To show the last 5 number.
         End If
     End If
 
@@ -1461,7 +1456,7 @@ On Error GoTo Err
                 Case 4                                     'Hardware Version
                     txtHWVer.Text = receiveData
                 Case 5                                     '3D\2D
-                    If receiveData = 0 Then
+                    If receiveData = "00" Then
                         txtDimension.Text = "3D"
                     Else
                         txtDimension.Text = "2D"
@@ -1477,7 +1472,7 @@ On Error GoTo Err
                 Case 10                                    'Model Name
                     txtModelInfo.Text = receiveData
                 Case 11                                    '4K\2K
-                    If receiveData = 0 Then
+                    If receiveData = "00" Then
                         txtResolution.Text = "4K"
                     Else
                         txtResolution.Text = "2K"
