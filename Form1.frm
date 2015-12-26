@@ -106,7 +106,7 @@ Begin VB.Form Form1
          BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   14.25
+            Size            =   15.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -1012,6 +1012,7 @@ End Function
 
 Private Sub subInitAfterRunning()
     IsSNWriteSuccess = False
+    txtDeviceKey.Alignment = 2
     txtInput.Text = ""
     txtInput.SetFocus
 End Sub
