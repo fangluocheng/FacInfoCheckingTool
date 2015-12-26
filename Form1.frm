@@ -1218,6 +1218,7 @@ On Error GoTo ErrExit
             IsAllDataMatch = False
         Else
             txtHdcpKey.BackColor = &HFF00&
+            txtHdcpKey.Text = "HDCP Key ÒÑÉÕÂ¼"
         End If
     End If
 
@@ -1432,7 +1433,7 @@ On Error GoTo Err
             TxtReceive.Text = TxtReceive.Text & receiveData & vbCrLf & vbCrLf
             TxtReceive.SelStart = Len(TxtReceive.Text)
             
-            'Update the CheckBoxed in the Form1.
+            'Update the CheckBoxes in the Form1.
             receiveData = ""
             
             'Data starts from ReceiveArr(firstByteOfDataIdx + 3). DataLength is ReceiveArr(firstByteOfDataIdx + 2).
