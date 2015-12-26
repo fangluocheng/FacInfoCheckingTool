@@ -1284,11 +1284,11 @@ On Error GoTo ErrExit
         IsAllDataMatch = True And IsAllDataMatch
     End If
 
-    Call saveAllData
-    
     If Not IsAllDataMatch Then
         GoTo FAIL
     End If
+
+    Call saveAllData
     
 PASS:
     lbResult.Caption = "PASS"
