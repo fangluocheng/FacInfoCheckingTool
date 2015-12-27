@@ -461,7 +461,7 @@ Begin VB.Form frmSetData
          Appearance      =   0  'Flat
          BeginProperty Font 
             Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   12
+            Size            =   15.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -886,63 +886,63 @@ Private Sub Command1_Click()
         rs.Fields(4) = txtModelInfoSpec.Text
     ElseIf Check1.Value = 0 Then
         rs.Fields(16) = False
-        rs.Fields(4) = strChkBoxUnselected
+        'rs.Fields(4) = strChkBoxUnselected
     End If
     If Check2.Value = 1 Then                               'SysVerM
         rs.Fields(17) = True
         rs.Fields(5) = txtSysVerSpec.Text
     ElseIf Check2.Value = 0 Then
         rs.Fields(17) = False
-        rs.Fields(5) = strChkBoxUnselected
+        'rs.Fields(5) = strChkBoxUnselected
     End If
     If Check3.Value = 1 Then                               'FlashInfoM
         rs.Fields(18) = True
         rs.Fields(6) = txtFlashInfoSpec.Text
     ElseIf Check3.Value = 0 Then
         rs.Fields(18) = False
-        rs.Fields(6) = strChkBoxUnselected
+        'rs.Fields(6) = strChkBoxUnselected
     End If
     If Check4.Value = 1 Then                               'HardwareVerM
         rs.Fields(19) = True
         rs.Fields(7) = txtHWVerSpec.Text
     ElseIf Check4.Value = 0 Then
         rs.Fields(19) = False
-        rs.Fields(7) = strChkBoxUnselected
+        'rs.Fields(7) = strChkBoxUnselected
     End If
     If Check5.Value = 1 Then                               'DimensionM
         rs.Fields(20) = True
         rs.Fields(8) = txtDimensionSpec.Text
     ElseIf Check5.Value = 0 Then
         rs.Fields(20) = False
-        rs.Fields(8) = strChkBoxUnselected
+        'rs.Fields(8) = strChkBoxUnselected
     End If
     If Check6.Value = 1 Then                               'ChannelM
         rs.Fields(21) = True
         rs.Fields(9) = txtChannelSpec.Text
     ElseIf Check6.Value = 0 Then
         rs.Fields(21) = False
-        rs.Fields(9) = strChkBoxUnselected
+        'rs.Fields(9) = strChkBoxUnselected
     End If
     If Check7.Value = 1 Then                               '24GVerM
         rs.Fields(23) = True
         rs.Fields(11) = txtTwoPointFourVerSpec.Text
     ElseIf Check7.Value = 0 Then
         rs.Fields(23) = False
-        rs.Fields(11) = strChkBoxUnselected
+        'rs.Fields(11) = strChkBoxUnselected
     End If
     If Check8.Value = 1 Then                               'PanelM
         rs.Fields(24) = True
         rs.Fields(12) = txtPanelNameSpec.Text
     ElseIf Check8.Value = 0 Then
         rs.Fields(24) = False
-        rs.Fields(12) = strChkBoxUnselected
+        'rs.Fields(12) = strChkBoxUnselected
     End If
     If Check9.Value = 1 Then                               'CarrierM
         rs.Fields(25) = True
         rs.Fields(13) = txtCarrierSpec.Text
     ElseIf Check9.Value = 0 Then
         rs.Fields(25) = False
-        rs.Fields(13) = strChkBoxUnselected
+        'rs.Fields(13) = strChkBoxUnselected
     End If
     If Check10.Value = 1 Then                              'HDCPM
         rs.Fields(27) = True
@@ -954,7 +954,7 @@ Private Sub Command1_Click()
         rs.Fields(15) = txtResolutionSpec.Text
     ElseIf Check11.Value = 0 Then
         rs.Fields(28) = False
-        rs.Fields(15) = strChkBoxUnselected
+        'rs.Fields(15) = strChkBoxUnselected
     End If
     If Check12.Value = 1 Then                              'MACAddrM
         rs.Fields(29) = True
@@ -966,14 +966,14 @@ Private Sub Command1_Click()
         rs.Fields(10) = txtPartitionVerSpec.Text
     ElseIf Check13.Value = 0 Then
         rs.Fields(22) = False
-        rs.Fields(10) = strChkBoxUnselected
+        'rs.Fields(10) = strChkBoxUnselected
     End If
     If Check14.Value = 1 Then                              'AreaM
         rs.Fields(26) = True
         rs.Fields(14) = txtAreaSpec.Text
     ElseIf Check14.Value = 0 Then
         rs.Fields(26) = False
-        rs.Fields(14) = strChkBoxUnselected
+        'rs.Fields(14) = strChkBoxUnselected
     End If
     If Check15.Value = 1 Then                              'DeviceKeyM
         rs.Fields(30) = True
