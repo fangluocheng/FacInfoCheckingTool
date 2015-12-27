@@ -1123,163 +1123,6 @@ On Error GoTo ErrExit
     EXIT_FAC_MODE
     DelayMS StepTime
 
-    If IsModelSelected Then
-        If ModelSpec = txtModelInfo.Text Then
-            txtModelInfo.BackColor = &HFF00&
-        Else
-            txtModelInfo.BackColor = &HFF&
-        End If
-    End If
-    
-    If IsSysVerSelected Then
-        If SysVerSpec = txtSysVer.Text Then
-            txtSysVer.BackColor = &HFF00&
-        Else
-            txtSysVer.BackColor = &HFF&
-        End If
-    End If
-    
-    If IsFlashInfoSelected Then
-        If FlashInfoSpec = txtFlashInfo.Text Then
-            txtFlashInfo.BackColor = &HFF00&
-        Else
-            txtFlashInfo.BackColor = &HFF&
-        End If
-    End If
-    
-    If IsHardwareVerSelected Then
-        If HardwareVerSpec = txtHWVer.Text Then
-            txtHWVer.BackColor = &HFF00&
-        Else
-            txtHWVer.BackColor = &HFF&
-        End If
-    End If
-    
-    If IsDimensionSelected Then
-        If DimensionSpec = txtDimension.Text Then
-            txtDimension.BackColor = &HFF00&
-        Else
-            txtDimension.BackColor = &HFF&
-        End If
-    End If
-    
-    If IsChannelSelected Then
-        If ChannelSpec = txtChannel.Text Then
-            txtChannel.BackColor = &HFF00&
-        Else
-            txtChannel.BackColor = &HFF&
-        End If
-    End If
-    
-    If IsPartitionVerSelected Then
-        If PartitionVerSpec = txtPartitionVer.Text Then
-            txtPartitionVer.BackColor = &HFF00&
-        Else
-            txtPartitionVer.BackColor = &HFF&
-        End If
-    End If
-    
-    If Is24GVerSelected Then
-        If TwoPointFourGVerSpec = txtTwoPointFourVer.Text Then
-            txtTwoPointFourVer.BackColor = &HFF00&
-        Else
-            txtTwoPointFourVer.BackColor = &HFF&
-        End If
-    End If
-    
-    If IsPanelSelected Then
-        If PanelSpec = txtPanelName.Text Then
-            txtPanelName.BackColor = &HFF00&
-        Else
-            txtPanelName.BackColor = &HFF&
-        End If
-    End If
-    
-    If IsCarrierSelected Then
-        If CarrierSpec = txtCarrier.Text Then
-            txtCarrier.BackColor = &HFF00&
-        Else
-            txtCarrier.BackColor = &HFF&
-        End If
-    End If
-    
-    If IsAreaVerSelected Then
-        If AreaSpec = txtArea.Text Then
-            txtArea.BackColor = &HFF00&
-        Else
-            txtArea.BackColor = &HFF&
-        End If
-    End If
-    
-    If IsHDCPSelected Then
-        'HDCP Key return 0x30 means there is no HDCP Key inside.
-        If txtHdcpKey.Text = "30" Then
-            txtHdcpKey.BackColor = &HFF&
-            txtHdcpKey.Text = "HDCP Key Œ¥…’¬º"
-            IsAllDataMatch = False
-        Else
-            txtHdcpKey.BackColor = &HFF00&
-            txtHdcpKey.Text = "HDCP Key “—…’¬º"
-        End If
-    End If
-
-    If IsResolutionSelected Then
-        If ResolutionSpec = txtResolution.Text Then
-            txtResolution.BackColor = &HFF00&
-        Else
-            txtResolution.BackColor = &HFF&
-        End If
-    End If
-    
-    If IsMACAddrSelected Then
-        If Len(txtMacAddr.Text) = 12 Then
-            sqlstring = "select * from DataRecord where MACAddr='" & txtMacAddr.Text & "'"
-            Executesql (sqlstring)
-            
-            If rs.RecordCount > 0 Then
-                If rs.RecordCount = 1 Then
-                    TxtReceive.Text = "The MAC Address is the same as a TV whose SerialNO is [----" & rs("SerialNO") & "----]." & vbCrLf
-                Else
-                    TxtReceive.Text = "There are some TV whose MAC Address are the same. Please check the database file!!!" & vbCrLf
-                End If
-                
-                TxtReceive.ForeColor = &HFF&
-                txtMacAddr.BackColor = &HFF&
-                txtMacAddr.Text = "MAC µÿ÷∑÷ÿ∏¥"
-                
-                IsAllDataMatch = False
-                
-                Set cn = Nothing
-                Set rs = Nothing
-                sqlstring = ""
-            Else
-                txtMacAddr.BackColor = &HFF00&
-                IsAllDataMatch = True And IsAllDataMatch
-            End If
-        Else
-            txtMacAddr.BackColor = &HFF&
-        End If
-    End If
-
-    If IsDeviceKeySelected Then
-        If txtDeviceKey.Text = strNoRecvData Then
-            txtDeviceKey.BackColor = &HFF&
-        Else
-            txtDeviceKey.BackColor = &HFF00&
-            txtDeviceKey.Alignment = 1                     'To show the last 5 number.
-        End If
-    End If
-
-    If (ModelSpec = txtModelInfo.Text) And (SysVerSpec = txtSysVer.Text) _
-        And (FlashInfoSpec = txtFlashInfo.Text) And (HardwareVerSpec = txtHWVer.Text) _
-        And (DimensionSpec = txtDimension.Text) And (ChannelSpec = txtChannel.Text) _
-        And (PartitionVerSpec = txtPartitionVer.Text) And (TwoPointFourGVerSpec = txtTwoPointFourVer.Text) _
-        And (PanelSpec = txtPanelName.Text) And (CarrierSpec = txtCarrier.Text) _
-        And (AreaSpec = txtArea.Text) And (ResolutionSpec = txtResolution.Text) _
-        And (txtDeviceKey.Text <> strNoRecvData) Then
-        IsAllDataMatch = True And IsAllDataMatch
-    End If
-
     If Not IsAllDataMatch Then
         GoTo FAIL
     End If
@@ -1451,43 +1294,216 @@ On Error GoTo Err
             
             Select Case cmdIdentifyNum
                 Case 2                                     'System Version
-                    txtSysVer.Text = receiveData
+                    If IsSysVerSelected Then
+                        If SysVerSpec = receiveData Then
+                            IsAllDataMatch = True And IsAllDataMatch
+                            txtSysVer.BackColor = &HFF00&
+                        Else
+                            IsAllDataMatch = False
+                            txtSysVer.BackColor = &HFF&
+                        End If
+                        
+                        txtSysVer.Text = receiveData
+                    End If
                 Case 3                                     'Flash Info
-                    txtFlashInfo.Text = receiveData & "G"
+                    If IsFlashInfoSelected Then
+                        If FlashInfoSpec = receiveData Then
+                            IsAllDataMatch = True And IsAllDataMatch
+                            txtFlashInfo.BackColor = &HFF00&
+                        Else
+                            IsAllDataMatch = False
+                            txtFlashInfo.BackColor = &HFF&
+                        End If
+                        
+                        txtFlashInfo.Text = receiveData & "G"
+                    End If
                 Case 4                                     'Hardware Version
-                    txtHWVer.Text = receiveData
+                    If IsHardwareVerSelected Then
+                        If HardwareVerSpec = receiveData Then
+                            IsAllDataMatch = True And IsAllDataMatch
+                            txtHWVer.BackColor = &HFF00&
+                        Else
+                            IsAllDataMatch = False
+                            txtHWVer.BackColor = &HFF&
+                        End If
+                        
+                        txtHWVer.Text = receiveData
+                    End If
                 Case 5                                     '3D\2D
-                    If receiveData = "00" Then
-                        txtDimension.Text = "3D"
-                    Else
-                        txtDimension.Text = "2D"
+                    If IsDimensionSelected Then
+                        If receiveData = "00" Then
+                            txtDimension.Text = "3D"
+                        Else
+                            txtDimension.Text = "2D"
+                        End If
+                        
+                        If DimensionSpec = txtDimension.Text Then
+                            IsAllDataMatch = True And IsAllDataMatch
+                            txtDimension.BackColor = &HFF00&
+                        Else
+                            IsAllDataMatch = False
+                            txtDimension.BackColor = &HFF&
+                        End If
                     End If
                 Case 6                                     '2.4G Version
-                    txtTwoPointFourVer.Text = receiveData
+                    If Is24GVerSelected Then
+                        If TwoPointFourGVerSpec = receiveData Then
+                            IsAllDataMatch = True And IsAllDataMatch
+                            txtTwoPointFourVer.BackColor = &HFF00&
+                        Else
+                            IsAllDataMatch = False
+                            txtTwoPointFourVer.BackColor = &HFF&
+                        End If
+                        
+                        txtTwoPointFourVer.Text = receiveData
+                    End If
                 Case 7                                     'Panel Name
-                    txtPanelName.Text = receiveData
+                    If IsPanelSelected Then
+                        If PanelSpec = receiveData Then
+                            IsAllDataMatch = True And IsAllDataMatch
+                            txtPanelName.BackColor = &HFF00&
+                        Else
+                            IsAllDataMatch = False
+                            txtPanelName.BackColor = &HFF&
+                        End If
+                        
+                        txtPanelName.Text = receiveData
+                    End If
                 Case 8                                     'Carrier Info
-                    txtCarrier.Text = receiveData
+                    If IsCarrierSelected Then
+                        If CarrierSpec = receiveData Then
+                            IsAllDataMatch = True And IsAllDataMatch
+                            txtCarrier.BackColor = &HFF00&
+                        Else
+                            IsAllDataMatch = False
+                            txtCarrier.BackColor = &HFF&
+                        End If
+                        
+                        txtCarrier.Text = receiveData
+                    End If
                 Case 9                                     'HDCP Key
-                    txtHdcpKey.Text = receiveData
+                    If IsHDCPSelected Then
+                        'HDCP Key return 0x30 means HDCP Key is NOT written.
+                        If receiveData = "30" Then
+                            IsAllDataMatch = False
+                            txtHdcpKey.BackColor = &HFF&
+                            txtHdcpKey.Text = "HDCP Key Œ¥…’¬º"
+                        Else
+                            IsAllDataMatch = True And IsAllDataMatch
+                            txtHdcpKey.BackColor = &HFF00&
+                            txtHdcpKey.Text = "HDCP Key “—…’¬º"
+                        End If
+                    End If
                 Case 10                                    'Model Name
-                    txtModelInfo.Text = receiveData
+                    If IsModelSelected Then
+                        If ModelSpec = receiveData Then
+                            IsAllDataMatch = True And IsAllDataMatch
+                            txtModelInfo.BackColor = &HFF00&
+                        Else
+                            IsAllDataMatch = False
+                            txtModelInfo.BackColor = &HFF&
+                        End If
+                        
+                        txtModelInfo.Text = receiveData
+                    End If
                 Case 11                                    '4K\2K
-                    If receiveData = "00" Then
-                        txtResolution.Text = "4K"
-                    Else
-                        txtResolution.Text = "2K"
+                    If IsResolutionSelected Then
+                        If receiveData = "00" Then
+                            txtResolution.Text = "4K"
+                        Else
+                            txtResolution.Text = "2K"
+                        End If
+                        
+                        If ResolutionSpec = txtResolution.Text Then
+                            IsAllDataMatch = True And IsAllDataMatch
+                            txtResolution.BackColor = &HFF00&
+                        Else
+                            IsAllDataMatch = False
+                            txtResolution.BackColor = &HFF&
+                        End If
                     End If
                 Case 12                                    'MAC Address
-                    txtMacAddr.Text = receiveData
+                    If IsMACAddrSelected Then
+                        If Len(receiveData) = 12 Then
+                            sqlstring = "select * from DataRecord where MACAddr='" & txtMacAddr.Text & "'"
+                            Executesql (sqlstring)
+                            
+                            If rs.RecordCount > 0 Then
+                                If rs.RecordCount = 1 Then
+                                    TxtReceive.Text = "The MAC Address is the same as a TV whose SerialNO is [" & rs("SerialNO") & "]." & vbCrLf
+                                Else
+                                    TxtReceive.Text = "There are some TV whose MAC Address are the same. Please check the database file!!!" & vbCrLf
+                                End If
+                                
+                                TxtReceive.ForeColor = &HFF&
+                                IsAllDataMatch = False
+                                txtMacAddr.BackColor = &HFF&
+                                txtMacAddr.Text = "MAC µÿ÷∑÷ÿ∏¥"
+                            Else
+                                IsAllDataMatch = True And IsAllDataMatch
+                                txtMacAddr.BackColor = &HFF00&
+                                txtMacAddr.Text = receiveData
+                            End If
+                            
+                            Set cn = Nothing
+                            Set rs = Nothing
+                            sqlstring = ""
+                        Else
+                            TxtReceive.Text = "The lenght of MAC address is wrong."
+                            txtMacAddr.BackColor = &HFF&
+                            txtMacAddr.Text = receiveData
+                        End If
+                    End If
                 Case 13                                    'Channel Info
-                    txtChannel.Text = receiveData
+                    If IsChannelSelected Then
+                        If ChannelSpec = receiveData Then
+                            IsAllDataMatch = True And IsAllDataMatch
+                            txtChannel.BackColor = &HFF00&
+                        Else
+                            IsAllDataMatch = False
+                            txtChannel.BackColor = &HFF&
+                        End If
+                        
+                        txtChannel.Text = receiveData
+                    End If
                 Case 14                                    'Partition Version
-                    txtPartitionVer.Text = receiveData
+                    If IsPartitionVerSelected Then
+                        If PartitionVerSpec = receiveData Then
+                            IsAllDataMatch = True And IsAllDataMatch
+                            txtPartitionVer.BackColor = &HFF00&
+                        Else
+                            IsAllDataMatch = False
+                            txtPartitionVer.BackColor = &HFF&
+                        End If
+                        
+                        txtPartitionVer.Text = receiveData
+                    End If
                 Case 15                                    'Area Info
-                    txtArea.Text = receiveData
+                    If IsAreaVerSelected Then
+                        If AreaSpec = receiveData Then
+                            IsAllDataMatch = True And IsAllDataMatch
+                            txtArea.BackColor = &HFF00&
+                        Else
+                            IsAllDataMatch = False
+                            txtArea.BackColor = &HFF&
+                        End If
+                        
+                        txtArea.Text = receiveData
+                    End If
                 Case 16                                    'Device Key
-                    txtDeviceKey.Text = receiveData
+                    If IsDeviceKeySelected Then
+                        If Len(receiveData) = 32 Then
+                            IsAllDataMatch = True And IsAllDataMatch
+                            txtDeviceKey.BackColor = &HFF00&
+                            txtDeviceKey.Alignment = 1     'To show the last 5 number.
+                        Else
+                            IsAllDataMatch = False
+                            txtDeviceKey.BackColor = &HFF&
+                        End If
+                        
+                        txtDeviceKey.Text = receiveData
+                        TxtReceive.Text = TxtReceive.Text & "Device Key" & txtDeviceKey.Text & vbCrLf
+                    End If
                 Case Else
                     TxtReceive.Text = TxtReceive.Text & "Unknown command" & vbCrLf
             End Select
