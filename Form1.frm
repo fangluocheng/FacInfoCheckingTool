@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "MSCOMM32.OCX"
+Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "mscomm32.ocx"
 Begin VB.Form Form1 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "工厂信息校验工具"
@@ -1307,15 +1307,15 @@ On Error GoTo Err
                     End If
                 Case 3                                     'Flash Info
                     If IsFlashInfoSelected Then
-                        If FlashInfoSpec = receiveData Then
+                        txtFlashInfo.Text = receiveData & "G"
+                        
+                        If FlashInfoSpec = txtFlashInfo.Text Then
                             IsAllDataMatch = True And IsAllDataMatch
                             txtFlashInfo.BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
                             txtFlashInfo.BackColor = &HFF&
                         End If
-                        
-                        txtFlashInfo.Text = receiveData & "G"
                     End If
                 Case 4                                     'Hardware Version
                     If IsHardwareVerSelected Then
@@ -1502,7 +1502,6 @@ On Error GoTo Err
                         End If
                         
                         txtDeviceKey.Text = receiveData
-                        TxtReceive.Text = TxtReceive.Text & "Device Key" & txtDeviceKey.Text & vbCrLf
                     End If
                 Case Else
                     TxtReceive.Text = TxtReceive.Text & "Unknown command" & vbCrLf
