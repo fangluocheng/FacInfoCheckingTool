@@ -923,7 +923,7 @@ End Function
 
 Private Sub subInitBeforeRunning()
     IsSNWriteSuccess = True
-    IsAllDataMatch = False
+    IsAllDataMatch = True
     strSerialNo = ""
     
     If IsModelSelected Then
