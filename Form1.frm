@@ -1425,7 +1425,7 @@ On Error GoTo Err
                 Case 12                                    'MAC Address
                     If IsMACAddrSelected Then
                         If Len(receiveData) = 12 Then
-                            sqlstring = "select * from DataRecord where MACAddr='" & txtMacAddr.Text & "'"
+                            sqlstring = "select * from DataRecord where MACAddr='" & receiveData & "'"
                             Executesql (sqlstring)
                             
                             If rs.RecordCount > 0 Then
