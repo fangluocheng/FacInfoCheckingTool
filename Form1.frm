@@ -794,16 +794,19 @@ Dim StepTime As Long
 Dim IsAllDataMatch As Boolean
 
 Private Sub Form_Load()
-
     i = 0
     SetTVCurrentComBaud = 115200
+
     StepTime = IsStepTime
+    If StepTime < 500 Then
+        StepTime = 500
+    End If
+
     IsStop = False
     subInitComPort
     subInitInterface
 
     Label1 = strCurrentModelName
-
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
@@ -1012,7 +1015,6 @@ End Function
 
 Private Sub subInitAfterRunning()
     IsSNWriteSuccess = False
-    txtDeviceKey.Alignment = 2
     txtInput.Text = ""
     txtInput.SetFocus
 End Sub
@@ -1222,7 +1224,7 @@ Private Sub MSComm1_OnComm()
 On Error GoTo Err
     Select Case MSComm1.CommEvent
         Case comEvReceive
-            DelayMS 250
+            DelayMS StepTime
             Call hexReceive
         'Case comEvSend
         Case Else
@@ -1495,13 +1497,12 @@ On Error GoTo Err
                         If Len(receiveData) = 32 Then
                             IsAllDataMatch = True And IsAllDataMatch
                             txtDeviceKey.BackColor = &HFF00&
-                            txtDeviceKey.Alignment = 1     'To show the last 5 number.
                         Else
                             IsAllDataMatch = False
                             txtDeviceKey.BackColor = &HFF&
                         End If
                         
-                        txtDeviceKey.Text = receiveData
+                        txtDeviceKey.Text = Strings.Right(receiveData, 5)
                     End If
                 Case Else
                     TxtReceive.Text = TxtReceive.Text & "Unknown command" & vbCrLf
