@@ -1045,12 +1045,30 @@ On Error GoTo ErrExit
 
 On Error GoTo ErrExit
     j = 0
-    
+
+RESEND_CMD_0:
     ClearComBuf
     'Send cmd, read data and save data
     'Enter factory mode fisrt, or other cmd may not respond.
     ENTER_FAC_MODE
     DelayMS StepTime
+    Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
+        
+    If isCmdDataRecv = False Then
+        If j > cmdResendTimes Then
+            j = 0
+            Log_Info "Cannot read enter factory!!!"
+            MsgBox "Please do the Letv Reset!"
+            GoTo FAIL
+        Else
+            j = j + 1
+            Log_Info "Resend cmd ENTER_FAC_MODE!!!"
+            GoTo RESEND_CMD_0
+        End If
+    Else
+        j = 0
+        GoTo RESEND_CMD_1
+    End If
     
 RESEND_CMD_1:
     If IsModelSelected Then
@@ -1645,6 +1663,8 @@ On Error GoTo Err
             Next i
             
             Select Case cmdIdentifyNum
+                Case 0
+                    isCmdDataRecv = True
                 Case 2                                     'System Version
                     isCmdDataRecv = True
                     If IsSysVerSelected Then
