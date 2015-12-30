@@ -73,4 +73,7 @@ ErrExit:
         MsgBox Err.Description, vbCritical, Err.Source
 End Sub
 
-
+Public Sub ClearComBuf()
+    Form1.MSComm1.InBufferCount = 0
+    Form1.MSComm1.OutBufferCount = 0
+End Sub

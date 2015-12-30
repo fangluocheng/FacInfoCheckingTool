@@ -827,6 +827,7 @@ End Sub
 
 Private Sub subInitInterface()
     txtInput.Text = ""
+    txtInput.Locked = False
     
     'Whether the CheckBox of database file(*.mdb) selected or not.
     'If not, config the TextBox
@@ -927,6 +928,7 @@ End Function
 Private Sub subInitBeforeRunning()
     IsSNWriteSuccess = True
     IsAllDataMatch = True
+    txtInput.Locked = True
     strSerialNo = ""
     
     If IsModelSelected Then
@@ -1015,13 +1017,13 @@ End Function
 
 Private Sub subInitAfterRunning()
     IsSNWriteSuccess = False
+    txtInput.Locked = False
     txtInput.Text = ""
     txtInput.SetFocus
 End Sub
 
 Private Sub subMainProcesser()
-    
-Dim i, j As Integer
+    Dim i, j As Integer
 
 On Error GoTo ErrExit
     subInitBeforeRunning
@@ -1041,90 +1043,180 @@ On Error GoTo ErrExit
 
 On Error GoTo ErrExit
     
+    ClearComBuf
     'Send cmd, read data and save data
     'Enter factory mode fisrt, or other cmd may not respond.
     ENTER_FAC_MODE
     DelayMS StepTime
     
     If IsModelSelected Then
+        ClearComBuf
         READ_MODEL_NAME
         DelayMS StepTime
     End If
     
     If IsSysVerSelected Then
+        ClearComBuf
         READ_SYS_VERSION
         DelayMS StepTime
     End If
     
     If IsFlashInfoSelected Then
+        ClearComBuf
         READ_FLASH_INFO
         DelayMS StepTime
     End If
     
     If IsHardwareVerSelected Then
+        ClearComBuf
         READ_HARDWARE_VERSION
         DelayMS StepTime
     End If
     
     If IsDimensionSelected Then
+        ClearComBuf
         READ_DIMENSION_INFO
         DelayMS StepTime
     End If
     
+    If IsChannelSelected Then
+        ClearComBuf
+        READ_CHANNEL_INFO
+        DelayMS StepTime
+    End If
+    
     If Is24GVerSelected Then
+        ClearComBuf
         READ_24G_VERSION
         DelayMS StepTime
     End If
     
     If IsPanelSelected Then
+        ClearComBuf
         READ_PANEL_NAME
         DelayMS StepTime
     End If
     
     If IsCarrierSelected Then
+        ClearComBuf
         READ_CARRIER_INFO
         DelayMS StepTime
     End If
     
     If IsHDCPSelected Then
+        ClearComBuf
         READ_HDCP_KEY
         DelayMS StepTime
     End If
     
     If IsResolutionSelected Then
+        ClearComBuf
         READ_RESOLUTION_INFO
         DelayMS StepTime
     End If
     
     If IsMACAddrSelected Then
+        ClearComBuf
         READ_MAC_ADDRESS
         DelayMS StepTime
     End If
     
-    If IsChannelSelected Then
-        READ_CHANNEL_INFO
-        DelayMS StepTime
-    End If
-    
     If IsPartitionVerSelected Then
+        ClearComBuf
         READ_PARTITION_VER
         DelayMS StepTime
     End If
     
     If IsAreaVerSelected Then
+        ClearComBuf
         READ_AREA_INFO
         DelayMS StepTime
     End If
     
     If IsDeviceKeySelected Then
+        ClearComBuf
         READ_DEVICE_KEY
         DelayMS StepTime
     End If
     
+    ClearComBuf
     'Either PASS or FAIL, send "Exit factory mode" cmd.
     EXIT_FAC_MODE
     DelayMS StepTime
-
+   
+    If txtModelInfo.Text = strNoRecvData Then
+        IsAllDataMatch = False
+        txtModelInfo.BackColor = &HFF&
+    End If
+    
+    If txtSysVer.Text = strNoRecvData Then
+        IsAllDataMatch = False
+        txtSysVer.BackColor = &HFF&
+    End If
+    
+    If txtFlashInfo.Text = strNoRecvData Then
+        IsAllDataMatch = False
+        txtFlashInfo.BackColor = &HFF&
+    End If
+    
+    If txtHWVer.Text = strNoRecvData Then
+        IsAllDataMatch = False
+        txtHWVer.BackColor = &HFF&
+    End If
+    If txtDimension.Text = strNoRecvData Then
+        IsAllDataMatch = False
+        txtDimension.BackColor = &HFF&
+    End If
+    
+    If txtChannel.Text = strNoRecvData Then
+        IsAllDataMatch = False
+        txtChannel.BackColor = &HFF&
+    End If
+    
+    If txtPartitionVer.Text = strNoRecvData Then
+        IsAllDataMatch = False
+        txtPartitionVer.BackColor = &HFF&
+    End If
+    
+    If txtTwoPointFourVer.Text = strNoRecvData Then
+        IsAllDataMatch = False
+        txtTwoPointFourVer.BackColor = &HFF&
+    End If
+    
+    If txtPanelName.Text = strNoRecvData Then
+        IsAllDataMatch = False
+        txtPanelName.BackColor = &HFF&
+    End If
+    
+    If txtCarrier.Text = strNoRecvData Then
+        IsAllDataMatch = False
+        txtCarrier.BackColor = &HFF&
+    End If
+    
+    If txtArea.Text = strNoRecvData Then
+        IsAllDataMatch = False
+        txtArea.BackColor = &HFF&
+    End If
+    
+    If txtHdcpKey.Text = strNoRecvData Then
+        IsAllDataMatch = False
+        txtHdcpKey.BackColor = &HFF&
+    End If
+    If txtResolution.Text = strNoRecvData Then
+        IsAllDataMatch = False
+        txtResolution.BackColor = &HFF&
+    End If
+    
+    If txtMacAddr.Text = strNoRecvData Then
+        IsAllDataMatch = False
+        txtMacAddr.BackColor = &HFF&
+    End If
+    
+    If txtDeviceKey.Text = strNoRecvData Then
+        IsAllDataMatch = False
+        txtDeviceKey.BackColor = &HFF&
+    End If
+    
     If Not IsAllDataMatch Then
         GoTo FAIL
     End If
@@ -1149,6 +1241,7 @@ ErrExit:
     MsgBox Err.Description, vbCritical, Err.Source
 
 End Sub
+
 
 Private Sub saveAllData()
 
@@ -1198,16 +1291,15 @@ End Sub
 Private Sub txtInput_KeyPress(KeyAscii As Integer)
     'ASCII = 13 means "Enter" of keyboard.
     If KeyAscii = 13 Then
-        Call Command1_Click
-    End If
-End Sub
-
-Private Sub Command1_Click()
-    IsStop = False
-    subMainProcesser
-     
-    If IsStop = True Then
-        Exit Sub
+        IsStop = False
+        
+        If txtInput.Locked = False Then
+            subMainProcesser
+        End If
+         
+        If IsStop = True Then
+            Exit Sub
+        End If
     End If
 End Sub
 
