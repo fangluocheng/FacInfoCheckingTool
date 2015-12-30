@@ -1057,7 +1057,7 @@ RESEND_CMD_0:
     If isCmdDataRecv = False Then
         If j > cmdResendTimes Then
             j = 0
-            Log_Info "Cannot read enter factory!!!"
+            Log_Info "Cannot read enter factory. Please do the Letv Reset!!!"
             MsgBox "Please do the Letv Reset!"
             GoTo FAIL
         Else
