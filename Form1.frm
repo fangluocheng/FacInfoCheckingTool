@@ -994,7 +994,7 @@ Private Sub subInitBeforeRunning()
     
     lbResult.Caption = "Checking"
     lbResult.BackColor = &HFFFFFF
-    TxtReceive.Text = ""
+    Log_Clear
     TxtReceive.ForeColor = &H80000008
     lbResult.FontSize = 22
     
@@ -1002,8 +1002,8 @@ End Sub
 
 Private Function subJudgeTheSNIsAvailable() As Boolean
     If strSerialNo = "" Or Len(strSerialNo) <> barcodeLen Then
-        TxtReceive.Text = ""
-        TxtReceive.Text = TxtReceive.Text + "Please confirm the SN again?" + vbCrLf
+        Log_Clear
+        Log_Info "Please confirm the SN again?"
         txtInput.Text = ""
         txtInput.SetFocus
         subJudgeTheSNIsAvailable = False
@@ -1363,8 +1363,7 @@ On Error GoTo Err
                 End If
             Next i
         
-            TxtReceive.Text = TxtReceive.Text & receiveData & vbCrLf & vbCrLf
-            TxtReceive.SelStart = Len(TxtReceive.Text)
+            Log_Info receiveData
             
             'Update the CheckBoxes in the Form1.
             receiveData = ""
@@ -1524,9 +1523,9 @@ On Error GoTo Err
                             
                             If rs.RecordCount > 0 Then
                                 If rs.RecordCount = 1 Then
-                                    TxtReceive.Text = "The MAC Address is the same as a TV whose SerialNO is [" & rs("SerialNO") & "]." & vbCrLf
+                                    Log_Info "The MAC Address is the same as a TV whose SerialNO is [" & rs("SerialNO") & "]."
                                 Else
-                                    TxtReceive.Text = "There are some TV whose MAC Address are the same. Please check the database file!!!" & vbCrLf
+                                    Log_Info "There are some TV whose MAC Address are the same. Please check the database file!!!"
                                 End If
                                 
                                 TxtReceive.ForeColor = &HFF&
@@ -1543,7 +1542,7 @@ On Error GoTo Err
                             Set rs = Nothing
                             sqlstring = ""
                         Else
-                            TxtReceive.Text = "The lenght of MAC address is wrong."
+                            Log_Info "The lenght of MAC address is wrong."
                             txtMacAddr.BackColor = &HFF&
                             txtMacAddr.Text = receiveData
                         End If
@@ -1597,7 +1596,7 @@ On Error GoTo Err
                         txtDeviceKey.Text = Strings.Right(receiveData, 5)
                     End If
                 Case Else
-                    TxtReceive.Text = TxtReceive.Text & "Unknown command" & vbCrLf
+                    Log_Info "Unknown command"
             End Select
         Else
             TxtReceive.Text = TxtReceive.Text & vbCrLf

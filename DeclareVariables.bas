@@ -78,3 +78,12 @@ Public cmdIdentifyNum As Integer
 
 Public Const strChkBoxUnselected As String = "----"
 Public Const strNoRecvData As String = "None"
+Public Sub Log_Info(strLog As String)
+    Form1.TxtReceive.Text = Form1.TxtReceive.Text + strLog + vbCrLf
+    Form1.TxtReceive.SelStart = Len(Form1.TxtReceive)
+End Sub
+
+Public Sub Log_Clear()
+    Form1.TxtReceive.Text = ""
+End Sub
+

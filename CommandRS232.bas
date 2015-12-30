@@ -17,7 +17,7 @@ Public Sub ENTER_FAC_MODE()
     SendDataBuf(8) = &H1
     SendDataBuf(9) = &H4
     
-    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Enter Factory Mode" & vbCrLf
+    Log_Info "Enter Factory Mode"
     cmdIdentifyNum = 0
     Form1.MSComm1.Output = SendDataBuf
 End Sub
@@ -38,7 +38,7 @@ Public Sub EXIT_FAC_MODE()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H5
     
-    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Exit Factory Mode" & vbCrLf
+    Log_Info "Exit Factory Mode"
     cmdIdentifyNum = 1
     Form1.MSComm1.Output = SendDataBuf
 End Sub
@@ -59,7 +59,7 @@ Public Sub READ_SYS_VERSION()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &HB1
     
-    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read system version" & vbCrLf
+    Log_Info "Read system version"
     cmdIdentifyNum = 2
     Form1.MSComm1.Output = SendDataBuf
 End Sub
@@ -80,7 +80,7 @@ Public Sub READ_FLASH_INFO()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H3C
     
-    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read Flash information" & vbCrLf
+    Log_Info "Read Flash information"
     cmdIdentifyNum = 3
     Form1.MSComm1.Output = SendDataBuf
 End Sub
@@ -101,7 +101,7 @@ Public Sub READ_HARDWARE_VERSION()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H25
     
-    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read hardware version" & vbCrLf
+    Log_Info "Read hardware version"
     cmdIdentifyNum = 4
     Form1.MSComm1.Output = SendDataBuf
 End Sub
@@ -122,7 +122,7 @@ Public Sub READ_DIMENSION_INFO()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H2A
     
-    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Support 3D or not" & vbCrLf
+    Log_Info "Support 3D or not"
     cmdIdentifyNum = 5
     Form1.MSComm1.Output = SendDataBuf
 End Sub
@@ -143,7 +143,7 @@ Public Sub READ_24G_VERSION()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H27
     
-    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read 2.4G Version" & vbCrLf
+    Log_Info "Read 2.4G Version"
     cmdIdentifyNum = 6
     Form1.MSComm1.Output = SendDataBuf
 End Sub
@@ -164,7 +164,7 @@ Public Sub READ_PANEL_NAME()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H24
     
-    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read panel name" & vbCrLf
+    Log_Info "Read panel name"
     cmdIdentifyNum = 7
     Form1.MSComm1.Output = SendDataBuf
 End Sub
@@ -185,7 +185,7 @@ Public Sub READ_CARRIER_INFO()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H2B
     
-    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read carrier information" & vbCrLf
+    Log_Info "Read carrier information"
     cmdIdentifyNum = 8
     Form1.MSComm1.Output = SendDataBuf
 End Sub
@@ -206,7 +206,7 @@ Public Sub READ_HDCP_KEY()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H34
     
-    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read HDCP key" & vbCrLf
+    Log_Info "Read HDCP key"
     cmdIdentifyNum = 9
     Form1.MSComm1.Output = SendDataBuf
 End Sub
@@ -227,7 +227,7 @@ Public Sub READ_MODEL_NAME()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H26
     
-    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read model name" & vbCrLf
+    Log_Info "Read model name"
     cmdIdentifyNum = 10
     Form1.MSComm1.Output = SendDataBuf
 End Sub
@@ -248,7 +248,7 @@ Public Sub READ_RESOLUTION_INFO()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H13
     
-    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Support 4K or 2K" & vbCrLf
+    Log_Info "Support 4K or 2K"
     cmdIdentifyNum = 11
     Form1.MSComm1.Output = SendDataBuf
 End Sub
@@ -269,7 +269,7 @@ Public Sub READ_MAC_ADDRESS()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &HB6
     
-    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read MAC address" & vbCrLf
+    Log_Info "Read MAC address"
     cmdIdentifyNum = 12
     Form1.MSComm1.Output = SendDataBuf
 End Sub
@@ -290,7 +290,7 @@ Public Sub READ_CHANNEL_INFO()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H3
     
-    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read channel information" & vbCrLf
+    Log_Info "Read channel information"
     cmdIdentifyNum = 13
     Form1.MSComm1.Output = SendDataBuf
 End Sub
@@ -311,7 +311,7 @@ Public Sub READ_PARTITION_VER()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H20
     
-    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read partition version(DDR)" & vbCrLf
+    Log_Info "Read partition version(DDR)"
     cmdIdentifyNum = 14
     Form1.MSComm1.Output = SendDataBuf
 End Sub
@@ -332,7 +332,7 @@ Public Sub READ_AREA_INFO()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H2
     
-    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read area information" & vbCrLf
+    Log_Info "Read area information"
     cmdIdentifyNum = 15
     Form1.MSComm1.Output = SendDataBuf
 End Sub
@@ -353,7 +353,7 @@ Public Sub READ_DEVICE_KEY()
     SendDataBuf(8) = &H0
     SendDataBuf(9) = &H5
     
-    Form1.TxtReceive.Text = Form1.TxtReceive.Text & "Read device key" & vbCrLf
+    Log_Info "Read device key"
     cmdIdentifyNum = 16
     Form1.MSComm1.Output = SendDataBuf
 End Sub
