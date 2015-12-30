@@ -70,6 +70,7 @@ Public SetData As Integer
 Public SetDay As Integer
 
 Public IsSNWriteSuccess As Boolean
+Public isCmdDataRecv As Boolean
 Public scanbarcode As String
 Public strSerialNo As String
 Public countTime As Long
@@ -78,6 +79,9 @@ Public cmdIdentifyNum As Integer
 
 Public Const strChkBoxUnselected As String = "----"
 Public Const strNoRecvData As String = "None"
+Public Const cmdResendTimes As Integer = 2
+Public Const cmdReceiveWaitS As Integer = 5
+
 Public Sub Log_Info(strLog As String)
     Form1.TxtReceive.Text = Form1.TxtReceive.Text + strLog + vbCrLf
     Form1.TxtReceive.SelStart = Len(Form1.TxtReceive)

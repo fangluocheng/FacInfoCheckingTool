@@ -828,6 +828,7 @@ End Sub
 Private Sub subInitInterface()
     txtInput.Text = ""
     txtInput.Locked = False
+    isCmdDataRecv = False
     
     'Whether the CheckBox of database file(*.mdb) selected or not.
     'If not, config the TextBox
@@ -929,6 +930,7 @@ Private Sub subInitBeforeRunning()
     IsSNWriteSuccess = True
     IsAllDataMatch = True
     txtInput.Locked = True
+    isCmdDataRecv = False
     strSerialNo = ""
     
     If IsModelSelected Then
@@ -1042,6 +1044,7 @@ On Error GoTo ErrExit
     End If
 
 On Error GoTo ErrExit
+    j = 0
     
     ClearComBuf
     'Send cmd, read data and save data
@@ -1049,96 +1052,352 @@ On Error GoTo ErrExit
     ENTER_FAC_MODE
     DelayMS StepTime
     
+RESEND_CMD_1:
     If IsModelSelected Then
         ClearComBuf
         READ_MODEL_NAME
         DelayMS StepTime
+        Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
+        
+        If isCmdDataRecv = False Then
+            If j > cmdResendTimes Then
+                j = 0
+                Log_Info "Cannot read the modeal name!!!"
+                GoTo RESEND_CMD_2
+            Else
+                j = j + 1
+                Log_Info "Resend cmd READ_MODEL_NAME!!!"
+                GoTo RESEND_CMD_1
+            End If
+        Else
+            j = 0
+            GoTo RESEND_CMD_2
+        End If
     End If
     
+RESEND_CMD_2:
     If IsSysVerSelected Then
         ClearComBuf
         READ_SYS_VERSION
         DelayMS StepTime
+        Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
+        
+        If isCmdDataRecv = False Then
+            If j > cmdResendTimes Then
+                j = 0
+                Log_Info "Cannot read the system version!!!"
+                GoTo RESEND_CMD_3
+            Else
+                j = j + 1
+                Log_Info "Resend cmd READ_SYS_VERSION!!!"
+                GoTo RESEND_CMD_2
+            End If
+        Else
+            j = 0
+            GoTo RESEND_CMD_3
+        End If
     End If
     
+RESEND_CMD_3:
     If IsFlashInfoSelected Then
         ClearComBuf
         READ_FLASH_INFO
         DelayMS StepTime
+        Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
+        
+        If isCmdDataRecv = False Then
+            If j > cmdResendTimes Then
+                j = 0
+                Log_Info "Cannot read the Flash info!!!"
+                GoTo RESEND_CMD_4
+            Else
+                j = j + 1
+                Log_Info "Resend cmd READ_FLASH_INFO!!!"
+                GoTo RESEND_CMD_3
+            End If
+        Else
+            j = 0
+            GoTo RESEND_CMD_4
+        End If
     End If
     
+RESEND_CMD_4:
     If IsHardwareVerSelected Then
         ClearComBuf
         READ_HARDWARE_VERSION
         DelayMS StepTime
+        Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
+        
+        If isCmdDataRecv = False Then
+            If j > cmdResendTimes Then
+                j = 0
+                Log_Info "Cannot read the hardware version!!!"
+                GoTo RESEND_CMD_5
+            Else
+                j = j + 1
+                Log_Info "Resend cmd READ_HARDWARE_VERSION!!!"
+                GoTo RESEND_CMD_4
+            End If
+        Else
+            j = 0
+            GoTo RESEND_CMD_5
+        End If
     End If
     
+RESEND_CMD_5:
     If IsDimensionSelected Then
         ClearComBuf
         READ_DIMENSION_INFO
         DelayMS StepTime
+        Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
+        
+        If isCmdDataRecv = False Then
+            If j > cmdResendTimes Then
+                j = 0
+                Log_Info "Cannot read the dimension info!!!"
+                GoTo RESEND_CMD_6
+            Else
+                j = j + 1
+                Log_Info "Resend cmd READ_DIMENSION_INFO!!!"
+                GoTo RESEND_CMD_5
+            End If
+        Else
+            j = 0
+            GoTo RESEND_CMD_6
+        End If
     End If
     
+RESEND_CMD_6:
     If IsChannelSelected Then
         ClearComBuf
         READ_CHANNEL_INFO
         DelayMS StepTime
+        Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
+        
+        If isCmdDataRecv = False Then
+            If j > cmdResendTimes Then
+                j = 0
+                Log_Info "Cannot read the channel info!!!"
+                GoTo RESEND_CMD_7
+            Else
+                j = j + 1
+                Log_Info "Resend cmd READ_CHANNEL_INFO!!!"
+                GoTo RESEND_CMD_6
+            End If
+        Else
+            j = 0
+            GoTo RESEND_CMD_7
+        End If
     End If
     
+RESEND_CMD_7:
     If Is24GVerSelected Then
         ClearComBuf
         READ_24G_VERSION
         DelayMS StepTime
+        Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
+        
+        If isCmdDataRecv = False Then
+            If j > cmdResendTimes Then
+                j = 0
+                Log_Info "Cannot read the 2.4G version!!!"
+                GoTo RESEND_CMD_8
+            Else
+                j = j + 1
+                Log_Info "Resend cmd READ_24G_VERSION!!!"
+                GoTo RESEND_CMD_7
+            End If
+        Else
+            j = 0
+            GoTo RESEND_CMD_8
+        End If
     End If
     
+RESEND_CMD_8:
     If IsPanelSelected Then
         ClearComBuf
         READ_PANEL_NAME
         DelayMS StepTime
+        Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
+        
+        If isCmdDataRecv = False Then
+            If j > cmdResendTimes Then
+                j = 0
+                Log_Info "Cannot read the panel name!!!"
+                GoTo RESEND_CMD_9
+            Else
+                j = j + 1
+                Log_Info "Resend cmd READ_PANEL_NAME!!!"
+                GoTo RESEND_CMD_8
+            End If
+        Else
+            j = 0
+            GoTo RESEND_CMD_9
+        End If
     End If
     
+RESEND_CMD_9:
     If IsCarrierSelected Then
         ClearComBuf
         READ_CARRIER_INFO
         DelayMS StepTime
+        Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
+        
+        If isCmdDataRecv = False Then
+            If j > cmdResendTimes Then
+                j = 0
+                Log_Info "Cannot read the carrier info!!!"
+                GoTo RESEND_CMD_10
+            Else
+                j = j + 1
+                Log_Info "Resend cmd READ_CARRIER_INFO!!!"
+                GoTo RESEND_CMD_9
+            End If
+        Else
+            j = 0
+            GoTo RESEND_CMD_10
+        End If
     End If
     
+RESEND_CMD_10:
     If IsHDCPSelected Then
         ClearComBuf
         READ_HDCP_KEY
         DelayMS StepTime
+        Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
+        
+        If isCmdDataRecv = False Then
+            If j > cmdResendTimes Then
+                j = 0
+                Log_Info "Cannot read the HDCP Key!!!"
+                GoTo RESEND_CMD_11
+            Else
+                j = j + 1
+                Log_Info "Resend cmd READ_HDCP_KEY!!!"
+                GoTo RESEND_CMD_10
+            End If
+        Else
+            j = 0
+            GoTo RESEND_CMD_11
+        End If
     End If
     
+RESEND_CMD_11:
     If IsResolutionSelected Then
         ClearComBuf
         READ_RESOLUTION_INFO
         DelayMS StepTime
+        Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
+        
+        If isCmdDataRecv = False Then
+            If j > cmdResendTimes Then
+                j = 0
+                Log_Info "Cannot read the resolution info!!!"
+                GoTo RESEND_CMD_12
+            Else
+                j = j + 1
+                Log_Info "Resend cmd READ_RESOLUTION_INFO!!!"
+                GoTo RESEND_CMD_11
+            End If
+        Else
+            j = 0
+            GoTo RESEND_CMD_12
+        End If
     End If
     
+RESEND_CMD_12:
     If IsMACAddrSelected Then
         ClearComBuf
         READ_MAC_ADDRESS
         DelayMS StepTime
+        Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
+        
+        If isCmdDataRecv = False Then
+            If j > cmdResendTimes Then
+                j = 0
+                Log_Info "Cannot read the MAC Address!!!"
+                GoTo RESEND_CMD_13
+            Else
+                j = j + 1
+                Log_Info "Resend cmd READ_MAC_ADDRESS!!!"
+                GoTo RESEND_CMD_12
+            End If
+        Else
+            j = 0
+            GoTo RESEND_CMD_13
+        End If
     End If
     
+RESEND_CMD_13:
     If IsPartitionVerSelected Then
         ClearComBuf
         READ_PARTITION_VER
         DelayMS StepTime
+        Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
+        
+        If isCmdDataRecv = False Then
+            If j > cmdResendTimes Then
+                j = 0
+                Log_Info "Cannot read the partition version!!!"
+                GoTo RESEND_CMD_14
+            Else
+                j = j + 1
+                Log_Info "Resend cmd READ_PARTITION_VER!!!"
+                GoTo RESEND_CMD_13
+            End If
+        Else
+            j = 0
+            GoTo RESEND_CMD_14
+        End If
     End If
     
+RESEND_CMD_14:
     If IsAreaVerSelected Then
         ClearComBuf
         READ_AREA_INFO
         DelayMS StepTime
+        Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
+        
+        If isCmdDataRecv = False Then
+            If j > cmdResendTimes Then
+                j = 0
+                Log_Info "Cannot read the area info!!!"
+                GoTo RESEND_CMD_15
+            Else
+                j = j + 1
+                Log_Info "Resend cmd READ_AREA_INFO!!!"
+                GoTo RESEND_CMD_14
+            End If
+        Else
+            j = 0
+            GoTo RESEND_CMD_15
+        End If
     End If
     
+RESEND_CMD_15:
     If IsDeviceKeySelected Then
         ClearComBuf
         READ_DEVICE_KEY
         DelayMS StepTime
+        Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
+        
+        If isCmdDataRecv = False Then
+            If j > cmdResendTimes Then
+                j = 0
+                Log_Info "Cannot read the device key!!!"
+                GoTo RESEND_CMD_16
+            Else
+                j = j + 1
+                Log_Info "Resend cmd READ_DEVICE_KEY!!!"
+                GoTo RESEND_CMD_15
+            End If
+        Else
+            j = 0
+            GoTo RESEND_CMD_16
+        End If
     End If
     
+RESEND_CMD_16:
     ClearComBuf
     'Either PASS or FAIL, send "Exit factory mode" cmd.
     EXIT_FAC_MODE
@@ -1387,6 +1646,7 @@ On Error GoTo Err
             
             Select Case cmdIdentifyNum
                 Case 2                                     'System Version
+                    isCmdDataRecv = True
                     If IsSysVerSelected Then
                         If SysVerSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
@@ -1399,6 +1659,7 @@ On Error GoTo Err
                         txtSysVer.Text = receiveData
                     End If
                 Case 3                                     'Flash Info
+                    isCmdDataRecv = True
                     If IsFlashInfoSelected Then
                         txtFlashInfo.Text = receiveData & "G"
                         
@@ -1411,6 +1672,7 @@ On Error GoTo Err
                         End If
                     End If
                 Case 4                                     'Hardware Version
+                    isCmdDataRecv = True
                     If IsHardwareVerSelected Then
                         If HardwareVerSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
@@ -1423,6 +1685,7 @@ On Error GoTo Err
                         txtHWVer.Text = receiveData
                     End If
                 Case 5                                     '3D\2D
+                    isCmdDataRecv = True
                     If IsDimensionSelected Then
                         If receiveData = "00" Then
                             txtDimension.Text = "3D"
@@ -1439,6 +1702,7 @@ On Error GoTo Err
                         End If
                     End If
                 Case 6                                     '2.4G Version
+                    isCmdDataRecv = True
                     If Is24GVerSelected Then
                         If TwoPointFourGVerSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
@@ -1451,6 +1715,7 @@ On Error GoTo Err
                         txtTwoPointFourVer.Text = receiveData
                     End If
                 Case 7                                     'Panel Name
+                    isCmdDataRecv = True
                     If IsPanelSelected Then
                         If PanelSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
@@ -1463,6 +1728,7 @@ On Error GoTo Err
                         txtPanelName.Text = receiveData
                     End If
                 Case 8                                     'Carrier Info
+                    isCmdDataRecv = True
                     If IsCarrierSelected Then
                         If CarrierSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
@@ -1475,6 +1741,7 @@ On Error GoTo Err
                         txtCarrier.Text = receiveData
                     End If
                 Case 9                                     'HDCP Key
+                    isCmdDataRecv = True
                     If IsHDCPSelected Then
                         'HDCP Key return 0x30 means HDCP Key is NOT written.
                         If receiveData = "30" Then
@@ -1488,6 +1755,7 @@ On Error GoTo Err
                         End If
                     End If
                 Case 10                                    'Model Name
+                    isCmdDataRecv = True
                     If IsModelSelected Then
                         If ModelSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
@@ -1500,6 +1768,7 @@ On Error GoTo Err
                         txtModelInfo.Text = receiveData
                     End If
                 Case 11                                    '4K\2K
+                    isCmdDataRecv = True
                     If IsResolutionSelected Then
                         If receiveData = "00" Then
                             txtResolution.Text = "4K"
@@ -1516,6 +1785,7 @@ On Error GoTo Err
                         End If
                     End If
                 Case 12                                    'MAC Address
+                    isCmdDataRecv = True
                     If IsMACAddrSelected Then
                         If Len(receiveData) = 12 Then
                             sqlstring = "select * from DataRecord where MACAddr='" & receiveData & "'"
@@ -1548,6 +1818,7 @@ On Error GoTo Err
                         End If
                     End If
                 Case 13                                    'Channel Info
+                    isCmdDataRecv = True
                     If IsChannelSelected Then
                         If ChannelSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
@@ -1560,6 +1831,7 @@ On Error GoTo Err
                         txtChannel.Text = receiveData
                     End If
                 Case 14                                    'Partition Version
+                    isCmdDataRecv = True
                     If IsPartitionVerSelected Then
                         If PartitionVerSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
@@ -1572,6 +1844,7 @@ On Error GoTo Err
                         txtPartitionVer.Text = receiveData
                     End If
                 Case 15                                    'Area Info
+                    isCmdDataRecv = True
                     If IsAreaVerSelected Then
                         If AreaSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
@@ -1584,6 +1857,7 @@ On Error GoTo Err
                         txtArea.Text = receiveData
                     End If
                 Case 16                                    'Device Key
+                    isCmdDataRecv = True
                     If IsDeviceKeySelected Then
                         If Len(receiveData) = 32 Then
                             IsAllDataMatch = True And IsAllDataMatch

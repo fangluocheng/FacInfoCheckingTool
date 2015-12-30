@@ -1,18 +1,22 @@
 Attribute VB_Name = "Module1"
 
-Public Sub Delay(mmSec As Long)
+Public Sub DelaySWithCmdFlag(Sec As Long, flag As Boolean)
 On Error GoTo ShowError
     Dim start As Single
     start = Timer
-    While (Timer - start) < (mmSec / 1000#)
+    While (Timer - start) < Sec
         DoEvents
-
-                If IsStop = True Then
-                Exit Sub
-                End If
    
+        If flag = True Then
+            Exit Sub
+        End If
+        
+        If IsStop = True Then
+            Exit Sub
+        End If
     Wend
- Exit Sub
+    Exit Sub
+
 ShowError:
     MsgBox Err.Source & "------" & Err.Description
     Exit Sub
