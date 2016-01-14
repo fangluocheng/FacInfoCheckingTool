@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "mscomm32.ocx"
+Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "MSCOMM32.OCX"
 Begin VB.Form Form1 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "工厂信息校验工具"
@@ -1625,8 +1625,15 @@ On Error GoTo Err
                     For Each tmp In Array(199, 203, 204, 211, 212, 216, 221, 227, 228, 232, 237, 240, 245, 249, 254, 194)
                         If ReceiveArr(i) = tmp Then
                             firstByteOfDataIdx = i
+                            Exit For
                         End If
                     Next tmp
+                    
+                    If firstByteOfDataIdx = 14 Then
+                        Exit For
+                    Else
+                        firstByteOfDataIdx = 0
+                    End If
                 End If
             End If
         Next i
