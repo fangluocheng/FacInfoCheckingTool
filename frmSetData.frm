@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin VB.Form frmSetData 
    Caption         =   "≤Œ ˝…Ë÷√"
-   ClientHeight    =   7830
+   ClientHeight    =   7605
    ClientLeft      =   6435
    ClientTop       =   3210
    ClientWidth     =   12615
@@ -17,12 +17,63 @@ Begin VB.Form frmSetData
    Icon            =   "frmSetData.frx":0000
    LinkTopic       =   "Form4"
    MaxButton       =   0   'False
-   ScaleHeight     =   7830
+   ScaleHeight     =   7605
    ScaleWidth      =   12615
+   Begin VB.Frame Frame3 
+      Caption         =   "Õ®—∂ƒ£ Ω"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   795
+      Left            =   7560
+      TabIndex        =   40
+      Top             =   6720
+      Width           =   2055
+      Begin VB.OptionButton optNetwork 
+         Caption         =   "Õ¯¬Á"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   250
+         Left            =   1200
+         TabIndex        =   42
+         Top             =   360
+         Width           =   735
+      End
+      Begin VB.OptionButton optUart 
+         Caption         =   "¥Æø⁄"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   9
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   250
+         Left            =   240
+         TabIndex        =   41
+         Top             =   360
+         Width           =   735
+      End
+   End
    Begin VB.Frame Frame2 
       Caption         =   "TV –≈œ¢"
       BeginProperty Font 
-         Name            =   "Arial Narrow"
+         Name            =   "Arial"
          Size            =   9
          Charset         =   0
          Weight          =   400
@@ -600,7 +651,7 @@ Begin VB.Form frmSetData
    Begin VB.Frame Frame1 
       Caption         =   "¥Æø⁄…Ë÷√"
       BeginProperty Font 
-         Name            =   "Arial Narrow"
+         Name            =   "Arial"
          Size            =   9
          Charset         =   0
          Weight          =   400
@@ -608,135 +659,136 @@ Begin VB.Form frmSetData
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   1035
+      Height          =   795
       Left            =   120
       TabIndex        =   4
       Top             =   6720
-      Width           =   8775
+      Width           =   7335
       Begin VB.TextBox Text1 
+         Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   14.25
+            Name            =   "Arial"
+            Size            =   10.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   495
-         Left            =   1440
+         Height          =   360
+         Left            =   1000
          TabIndex        =   0
          Text            =   "115200"
-         Top             =   360
-         Width           =   1095
+         Top             =   300
+         Width           =   950
       End
       Begin VB.TextBox Text2 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   14.25
+            Name            =   "Arial"
+            Size            =   10.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   495
-         Left            =   4560
+         Height          =   360
+         Left            =   3810
          TabIndex        =   1
          Text            =   "500"
-         Top             =   360
-         Width           =   1095
+         Top             =   300
+         Width           =   950
       End
       Begin VB.TextBox Text3 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   14.25
+            Name            =   "Arial"
+            Size            =   10.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   495
-         Left            =   7440
+         Height          =   360
+         Left            =   6120
          TabIndex        =   2
          Text            =   "1"
-         Top             =   360
-         Width           =   1095
+         Top             =   300
+         Width           =   950
       End
       Begin VB.Label Label2 
          Caption         =   "≤®Ãÿ¬ "
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   10.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   495
+         Height          =   255
          Left            =   240
          TabIndex        =   7
          Top             =   360
-         Width           =   1095
+         Width           =   750
       End
-      Begin VB.Label Label4 
-         Caption         =   "—”≥Ÿ ±º‰"
+      Begin VB.Label Label3 
+         Caption         =   "—”≥Ÿ ±º‰ (ms)"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   10.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   495
-         Left            =   3000
+         Height          =   255
+         Left            =   2400
          TabIndex        =   6
          Top             =   360
-         Width           =   1455
+         Width           =   1400
       End
-      Begin VB.Label Label5 
+      Begin VB.Label Label4 
          Caption         =   "Ãı¬Î≥§∂»"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   10.5
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   495
-         Left            =   6000
+         Height          =   255
+         Left            =   5210
          TabIndex        =   5
          Top             =   360
-         Width           =   1455
+         Width           =   900
       End
    End
    Begin VB.CommandButton Command1 
       Caption         =   "±£¥Ê"
       BeginProperty Font 
-         Name            =   "Œ¢»Ì—≈∫⁄"
-         Size            =   15.75
+         Name            =   "Arial"
+         Size            =   10.5
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   555
-      Left            =   11160
+      Height          =   435
+      Left            =   11400
       TabIndex        =   3
-      Top             =   7080
-      Width           =   1095
+      Top             =   6960
+      Width           =   975
    End
    Begin VB.Label Label1 
       Caption         =   "Label1"
@@ -984,6 +1036,26 @@ Private Sub Command1_Click()
  
     rs.Update
 
+    Set cn = Nothing
+    Set rs = Nothing
+    sqlstring = ""
+    
+    sqlstring = "select * from CommonTable where Mark='ATS'"
+    Executesql (sqlstring)
+
+    If rs.EOF = False Then
+        If optUart.Value = True Then
+            rs.Fields(3) = "UART"
+        ElseIf optNetwork.Value = True Then
+            rs.Fields(3) = "Network"
+        Else
+            rs.Fields(3) = "UART"
+        End If
+    Else
+        MsgBox "Read Data Error,Please Check Your Database!", vbOKOnly + vbInformation, "Warning!"
+    End If
+
+    rs.Update
     Set cn = Nothing
     Set rs = Nothing
     sqlstring = ""

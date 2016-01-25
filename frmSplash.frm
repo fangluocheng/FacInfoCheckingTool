@@ -160,8 +160,12 @@ On Error GoTo ErrExit
         SetDay = rs("Day")
         If rs("CommunicationMode") = "UART" Then
             isUartMode = True
+            frmSetData.optUart.Value = True
+            frmSetData.optNetwork.Value = False
         Else
             isUartMode = False
+            frmSetData.optUart.Value = False
+            frmSetData.optNetwork.Value = True
         End If
     Else
         MsgBox "Read Data Error,Please Check Your Database!", vbOKOnly + vbInformation, "Warning!"
