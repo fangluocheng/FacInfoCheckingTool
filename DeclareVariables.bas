@@ -66,6 +66,8 @@ Public Const strChkBoxUnselected As String = "----"
 Public Const strNoRecvData As String = "None"
 Public Const cmdResendTimes As Integer = 2
 Public Const cmdReceiveWaitS As Integer = 5
+Public Const strRemoteHost As String = "192.168.1.1"
+Public Const lngRemotePort As Long = 8888
 
 Public Sub Log_Info(strLog As String)
     Form1.TxtReceive.Text = Form1.TxtReceive.Text + strLog + vbCrLf

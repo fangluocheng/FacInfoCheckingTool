@@ -941,8 +941,8 @@ Private Sub subInitNetwork()
         .Protocol = sckTCPProtocol
         ' IMPORTANT: be sure to change the RemoteHost
         ' value to the name of your computer.
-        .RemoteHost = "192.168.1.11"
-        .RemotePort = 8888
+        .RemoteHost = strRemoteHost
+        .RemotePort = lngRemotePort
     End With
 End Sub
 
