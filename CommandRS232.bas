@@ -23,6 +23,7 @@ Public Sub ENTER_FAC_MODE()
     If False Then
         Form1.MSComm1.Output = SendDataBuf
     Else
+        isCmdDataRecv = True
         Form1.tcpClient.SendData SendDataBuf
     End If
 End Sub
@@ -49,6 +50,7 @@ Public Sub EXIT_FAC_MODE()
     If False Then
         Form1.MSComm1.Output = SendDataBuf
     Else
+        isCmdDataRecv = True
         Form1.tcpClient.SendData SendDataBuf
     End If
 End Sub

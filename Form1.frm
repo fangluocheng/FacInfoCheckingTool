@@ -1055,6 +1055,7 @@ Private Sub subInitAfterRunning()
     txtInput.Locked = False
     txtInput.Text = ""
     txtInput.SetFocus
+    tcpClient.Close
 End Sub
 
 Private Sub subMainProcesser()
@@ -2221,3 +2222,6 @@ On Error GoTo Err
 Err:
 End Sub
 
+Private Sub tcpClient_Connect()
+    Log_Info "Network connected."
+End Sub
