@@ -15,16 +15,8 @@ Begin VB.Form Form1
    ScaleHeight     =   7950
    ScaleWidth      =   16905
    StartUpPosition =   2  'CenterScreen
-   Begin VB.CommandButton tcpClientConnect 
-      Caption         =   "Connect"
-      Height          =   375
-      Left            =   11160
-      TabIndex        =   37
-      Top             =   240
-      Width           =   1335
-   End
    Begin MSWinsockLib.Winsock tcpClient 
-      Left            =   10560
+      Left            =   12000
       Top             =   240
       _ExtentX        =   741
       _ExtentY        =   741
@@ -49,7 +41,7 @@ Begin VB.Form Form1
       Width           =   4185
    End
    Begin VB.Timer Timer1 
-      Left            =   10080
+      Left            =   11520
       Top             =   240
    End
    Begin VB.Frame Frame3 
@@ -764,7 +756,7 @@ Begin VB.Form Form1
       End
    End
    Begin MSCommLib.MSComm MSComm1 
-      Left            =   9480
+      Left            =   10920
       Top             =   120
       _ExtentX        =   1005
       _ExtentY        =   1005
@@ -937,6 +929,7 @@ Private Sub subInitComPort()
 End Sub
 
 Private Sub subInitNetwork()
+    isNetworkConnected = False
     With tcpClient
         .Protocol = sckTCPProtocol
         ' IMPORTANT: be sure to change the RemoteHost
@@ -1055,6 +1048,8 @@ Private Sub subInitAfterRunning()
     txtInput.Locked = False
     txtInput.Text = ""
     txtInput.SetFocus
+    
+    isNetworkConnected = False
     tcpClient.Close
 End Sub
 
@@ -1599,17 +1594,33 @@ Private Sub tbSetComPort_Click()
     Form2.Show
 End Sub
 
-Private Sub tcpClientConnect_Click()
-    tcpClient.Connect
-End Sub
-
 Private Sub txtInput_KeyPress(KeyAscii As Integer)
+    Dim i As Integer
+    
+    i = 0
     'ASCII = 13 means "Enter" of keyboard.
     If KeyAscii = 13 Then
         IsStop = False
+        isNetworkConnected = False
         
         If txtInput.Locked = False Then
-            subMainProcesser
+            If isUartMode = True Then
+                subMainProcesser
+            Else
+                Do
+                    tcpClient.Connect
+                    Call DelaySWithCmdFlag(cmdReceiveWaitS * 2, isNetworkConnected)
+                
+                    If isNetworkConnected = True Then
+                        subMainProcesser
+                        Exit Do
+                    Else
+                        tcpClient.Close
+                        i = i + 1
+                    End If
+                    Log_Info "Re-connect to TV."
+                Loop While i <= 5
+            End If
         End If
          
         If IsStop = True Then
@@ -2223,5 +2234,6 @@ Err:
 End Sub
 
 Private Sub tcpClient_Connect()
-    Log_Info "Network connected."
+    'Success to connect the TV.
+    isNetworkConnected = True
 End Sub
