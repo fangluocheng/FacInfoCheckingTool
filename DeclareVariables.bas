@@ -1,24 +1,9 @@
 Attribute VB_Name = "Module3"
 Option Explicit
 
-Public Const AdjustSingle = 1
-Public Const AdjustDouble = 0
-
-Public Const SingleStep = 0
-Public Const ComplexStep = 1
-
-Public Const HighBri = 1
-Public Const LowBri = 0
-
 Public strBuff As String
 
 Public i As Integer
-
-Public Const xxf = 1
-Public Const xfyf = 2
-Public Const yyf = 3
-Public Const microStep = True
-Public Const StepbyStep = False
 
 '------------------------------------------------------------------------------
 '    Variable mapping the check items in "CheckItem".

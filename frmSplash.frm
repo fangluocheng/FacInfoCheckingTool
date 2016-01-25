@@ -16,7 +16,7 @@ Begin VB.Form frmSplash
    ScaleHeight     =   2190
    ScaleWidth      =   4020
    ShowInTaskbar   =   0   'False
-   StartUpPosition =   2  'ÆÁÄ»ÖÐÐÄ
+   StartUpPosition =   2  'CenterScreen
    Begin VB.ComboBox cmbModelName 
       BackColor       =   &H00E0E0E0&
       BeginProperty Font 

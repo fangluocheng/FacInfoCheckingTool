@@ -7,12 +7,13 @@ Begin VB.Form Form1
    ClientLeft      =   45
    ClientTop       =   735
    ClientWidth     =   16905
+   Icon            =   "Form1.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   7950
    ScaleWidth      =   16905
-   StartUpPosition =   2  'ÆÁÄ»ÖÐÐÄ
+   StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox TxtReceive 
       BeginProperty Font 
          Name            =   "Consolas"

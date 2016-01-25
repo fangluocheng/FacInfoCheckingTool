@@ -14,6 +14,7 @@ Begin VB.Form frmSetData
       Italic          =   0   'False
       Strikethrough   =   0   'False
    EndProperty
+   Icon            =   "frmSetData.frx":0000
    LinkTopic       =   "Form4"
    MaxButton       =   0   'False
    ScaleHeight     =   7830
