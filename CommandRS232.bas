@@ -19,7 +19,12 @@ Public Sub ENTER_FAC_MODE()
     
     Log_Info "Enter Factory Mode"
     cmdIdentifyNum = 0
-    Form1.MSComm1.Output = SendDataBuf
+    
+    If False Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
 End Sub
 
 Public Sub EXIT_FAC_MODE()
@@ -40,7 +45,12 @@ Public Sub EXIT_FAC_MODE()
     
     Log_Info "Exit Factory Mode"
     cmdIdentifyNum = 1
-    Form1.MSComm1.Output = SendDataBuf
+
+    If False Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
 End Sub
 
 Public Sub READ_SYS_VERSION()
@@ -62,7 +72,12 @@ Public Sub READ_SYS_VERSION()
     Log_Info "Read system version"
     cmdIdentifyNum = 2
     isCmdDataRecv = False
-    Form1.MSComm1.Output = SendDataBuf
+    
+    If False Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
 End Sub
 
 Public Sub READ_FLASH_INFO()
@@ -84,7 +99,12 @@ Public Sub READ_FLASH_INFO()
     Log_Info "Read Flash information"
     cmdIdentifyNum = 3
     isCmdDataRecv = False
-    Form1.MSComm1.Output = SendDataBuf
+    
+    If False Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
 End Sub
 
 Public Sub READ_HARDWARE_VERSION()
@@ -106,7 +126,12 @@ Public Sub READ_HARDWARE_VERSION()
     Log_Info "Read hardware version"
     cmdIdentifyNum = 4
     isCmdDataRecv = False
-    Form1.MSComm1.Output = SendDataBuf
+
+    If False Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
 End Sub
 
 Public Sub READ_DIMENSION_INFO()
@@ -128,7 +153,12 @@ Public Sub READ_DIMENSION_INFO()
     Log_Info "Support 3D or not"
     cmdIdentifyNum = 5
     isCmdDataRecv = False
-    Form1.MSComm1.Output = SendDataBuf
+    
+    If False Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
 End Sub
 
 Public Sub READ_24G_VERSION()
@@ -150,7 +180,12 @@ Public Sub READ_24G_VERSION()
     Log_Info "Read 2.4G Version"
     cmdIdentifyNum = 6
     isCmdDataRecv = False
-    Form1.MSComm1.Output = SendDataBuf
+    
+    If False Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
 End Sub
 
 Public Sub READ_PANEL_NAME()
@@ -172,7 +207,12 @@ Public Sub READ_PANEL_NAME()
     Log_Info "Read panel name"
     cmdIdentifyNum = 7
     isCmdDataRecv = False
-    Form1.MSComm1.Output = SendDataBuf
+    
+    If False Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
 End Sub
 
 Public Sub READ_CARRIER_INFO()
@@ -194,7 +234,12 @@ Public Sub READ_CARRIER_INFO()
     Log_Info "Read carrier information"
     cmdIdentifyNum = 8
     isCmdDataRecv = False
-    Form1.MSComm1.Output = SendDataBuf
+    
+    If False Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
 End Sub
 
 Public Sub READ_HDCP_KEY()
@@ -216,7 +261,12 @@ Public Sub READ_HDCP_KEY()
     Log_Info "Read HDCP key"
     cmdIdentifyNum = 9
     isCmdDataRecv = False
-    Form1.MSComm1.Output = SendDataBuf
+    
+    If False Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
 End Sub
 
 Public Sub READ_MODEL_NAME()
@@ -238,7 +288,12 @@ Public Sub READ_MODEL_NAME()
     Log_Info "Read model name"
     cmdIdentifyNum = 10
     isCmdDataRecv = False
-    Form1.MSComm1.Output = SendDataBuf
+    
+    If False Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
 End Sub
 
 Public Sub READ_RESOLUTION_INFO()
@@ -260,7 +315,12 @@ Public Sub READ_RESOLUTION_INFO()
     Log_Info "Support 4K or 2K"
     cmdIdentifyNum = 11
     isCmdDataRecv = False
-    Form1.MSComm1.Output = SendDataBuf
+    
+    If False Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
 End Sub
 
 Public Sub READ_MAC_ADDRESS()
@@ -282,7 +342,12 @@ Public Sub READ_MAC_ADDRESS()
     Log_Info "Read MAC address"
     cmdIdentifyNum = 12
     isCmdDataRecv = False
-    Form1.MSComm1.Output = SendDataBuf
+    
+    If False Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
 End Sub
 
 Public Sub READ_CHANNEL_INFO()
@@ -304,7 +369,12 @@ Public Sub READ_CHANNEL_INFO()
     Log_Info "Read channel information"
     cmdIdentifyNum = 13
     isCmdDataRecv = False
-    Form1.MSComm1.Output = SendDataBuf
+    
+    If False Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
 End Sub
 
 Public Sub READ_PARTITION_VER()
@@ -326,7 +396,12 @@ Public Sub READ_PARTITION_VER()
     Log_Info "Read partition version(DDR)"
     cmdIdentifyNum = 14
     isCmdDataRecv = False
-    Form1.MSComm1.Output = SendDataBuf
+    
+    If False Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
 End Sub
 
 Public Sub READ_AREA_INFO()
@@ -348,7 +423,12 @@ Public Sub READ_AREA_INFO()
     Log_Info "Read area information"
     cmdIdentifyNum = 15
     isCmdDataRecv = False
-    Form1.MSComm1.Output = SendDataBuf
+    
+    If False Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
 End Sub
 
 Public Sub READ_DEVICE_KEY()
@@ -370,6 +450,11 @@ Public Sub READ_DEVICE_KEY()
     Log_Info "Read device key"
     cmdIdentifyNum = 16
     isCmdDataRecv = False
-    Form1.MSComm1.Output = SendDataBuf
+    
+    If False Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
 End Sub
 

@@ -13,6 +13,7 @@ Module=Module2; CommandRS232.bas
 Module=Module4; DataBase.bas
 Form=frmSplash.frm
 Form=frmSetData.frm
+Object={248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0; MSWINSCK.OCX
 IconForm="Form1"
 Startup="frmSplash"
 HelpFile=""

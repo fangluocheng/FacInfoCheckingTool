@@ -78,6 +78,14 @@ ErrExit:
 End Sub
 
 Public Sub ClearComBuf()
-    Form1.MSComm1.InBufferCount = 0
-    Form1.MSComm1.OutBufferCount = 0
+    If False Then
+        Form1.MSComm1.InBufferCount = 0
+        Form1.MSComm1.OutBufferCount = 0
+    Else
+        If Form1.tcpClient.State = sckConnected Then
+            Log_Info "Network connected."
+        Else
+            Log_Info "Connect fail"
+        End If
+    End If
 End Sub
