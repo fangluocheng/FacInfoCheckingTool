@@ -155,10 +155,14 @@ On Error GoTo ErrExit
     
     If rs.EOF = False Then
         strCurrentModelName = rs("CurrentModelName")
-        strDataVersion = rs("DataVersion")
         SetTVCurrentComID = rs("ComID")
         SetData = rs("Date")
         SetDay = rs("Day")
+        If rs("CommunicationMode") = "UART" Then
+            isUartMode = True
+        Else
+            isUartMode = False
+        End If
     Else
         MsgBox "Read Data Error,Please Check Your Database!", vbOKOnly + vbInformation, "Warning!"
     End If

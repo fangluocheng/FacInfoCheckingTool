@@ -821,7 +821,7 @@ Private Sub Form_Load()
 
     IsStop = False
     
-    If False Then
+    If isUartMode Then
         subInitComPort
     Else
         subInitNetwork

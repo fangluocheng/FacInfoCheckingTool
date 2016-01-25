@@ -20,7 +20,7 @@ Public Sub ENTER_FAC_MODE()
     Log_Info "Enter Factory Mode"
     cmdIdentifyNum = 0
     
-    If False Then
+    If isUartMode Then
         Form1.MSComm1.Output = SendDataBuf
     Else
         isCmdDataRecv = True
@@ -47,7 +47,7 @@ Public Sub EXIT_FAC_MODE()
     Log_Info "Exit Factory Mode"
     cmdIdentifyNum = 1
 
-    If False Then
+    If isUartMode Then
         Form1.MSComm1.Output = SendDataBuf
     Else
         isCmdDataRecv = True
@@ -75,7 +75,7 @@ Public Sub READ_SYS_VERSION()
     cmdIdentifyNum = 2
     isCmdDataRecv = False
     
-    If False Then
+    If isUartMode Then
         Form1.MSComm1.Output = SendDataBuf
     Else
         Form1.tcpClient.SendData SendDataBuf
@@ -102,7 +102,7 @@ Public Sub READ_FLASH_INFO()
     cmdIdentifyNum = 3
     isCmdDataRecv = False
     
-    If False Then
+    If isUartMode Then
         Form1.MSComm1.Output = SendDataBuf
     Else
         Form1.tcpClient.SendData SendDataBuf
@@ -129,7 +129,7 @@ Public Sub READ_HARDWARE_VERSION()
     cmdIdentifyNum = 4
     isCmdDataRecv = False
 
-    If False Then
+    If isUartMode Then
         Form1.MSComm1.Output = SendDataBuf
     Else
         Form1.tcpClient.SendData SendDataBuf
@@ -156,7 +156,7 @@ Public Sub READ_DIMENSION_INFO()
     cmdIdentifyNum = 5
     isCmdDataRecv = False
     
-    If False Then
+    If isUartMode Then
         Form1.MSComm1.Output = SendDataBuf
     Else
         Form1.tcpClient.SendData SendDataBuf
@@ -183,7 +183,7 @@ Public Sub READ_24G_VERSION()
     cmdIdentifyNum = 6
     isCmdDataRecv = False
     
-    If False Then
+    If isUartMode Then
         Form1.MSComm1.Output = SendDataBuf
     Else
         Form1.tcpClient.SendData SendDataBuf
@@ -210,7 +210,7 @@ Public Sub READ_PANEL_NAME()
     cmdIdentifyNum = 7
     isCmdDataRecv = False
     
-    If False Then
+    If isUartMode Then
         Form1.MSComm1.Output = SendDataBuf
     Else
         Form1.tcpClient.SendData SendDataBuf
@@ -237,7 +237,7 @@ Public Sub READ_CARRIER_INFO()
     cmdIdentifyNum = 8
     isCmdDataRecv = False
     
-    If False Then
+    If isUartMode Then
         Form1.MSComm1.Output = SendDataBuf
     Else
         Form1.tcpClient.SendData SendDataBuf
@@ -264,7 +264,7 @@ Public Sub READ_HDCP_KEY()
     cmdIdentifyNum = 9
     isCmdDataRecv = False
     
-    If False Then
+    If isUartMode Then
         Form1.MSComm1.Output = SendDataBuf
     Else
         Form1.tcpClient.SendData SendDataBuf
@@ -291,7 +291,7 @@ Public Sub READ_MODEL_NAME()
     cmdIdentifyNum = 10
     isCmdDataRecv = False
     
-    If False Then
+    If isUartMode Then
         Form1.MSComm1.Output = SendDataBuf
     Else
         Form1.tcpClient.SendData SendDataBuf
@@ -318,7 +318,7 @@ Public Sub READ_RESOLUTION_INFO()
     cmdIdentifyNum = 11
     isCmdDataRecv = False
     
-    If False Then
+    If isUartMode Then
         Form1.MSComm1.Output = SendDataBuf
     Else
         Form1.tcpClient.SendData SendDataBuf
@@ -345,7 +345,7 @@ Public Sub READ_MAC_ADDRESS()
     cmdIdentifyNum = 12
     isCmdDataRecv = False
     
-    If False Then
+    If isUartMode Then
         Form1.MSComm1.Output = SendDataBuf
     Else
         Form1.tcpClient.SendData SendDataBuf
@@ -372,7 +372,7 @@ Public Sub READ_CHANNEL_INFO()
     cmdIdentifyNum = 13
     isCmdDataRecv = False
     
-    If False Then
+    If isUartMode Then
         Form1.MSComm1.Output = SendDataBuf
     Else
         Form1.tcpClient.SendData SendDataBuf
@@ -399,7 +399,7 @@ Public Sub READ_PARTITION_VER()
     cmdIdentifyNum = 14
     isCmdDataRecv = False
     
-    If False Then
+    If isUartMode Then
         Form1.MSComm1.Output = SendDataBuf
     Else
         Form1.tcpClient.SendData SendDataBuf
@@ -426,7 +426,7 @@ Public Sub READ_AREA_INFO()
     cmdIdentifyNum = 15
     isCmdDataRecv = False
     
-    If False Then
+    If isUartMode Then
         Form1.MSComm1.Output = SendDataBuf
     Else
         Form1.tcpClient.SendData SendDataBuf
@@ -453,7 +453,7 @@ Public Sub READ_DEVICE_KEY()
     cmdIdentifyNum = 16
     isCmdDataRecv = False
     
-    If False Then
+    If isUartMode Then
         Form1.MSComm1.Output = SendDataBuf
     Else
         Form1.tcpClient.SendData SendDataBuf

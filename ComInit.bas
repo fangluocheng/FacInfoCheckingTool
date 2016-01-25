@@ -78,7 +78,7 @@ ErrExit:
 End Sub
 
 Public Sub ClearComBuf()
-    If False Then
+    If isUartMode Then
         Form1.MSComm1.InBufferCount = 0
         Form1.MSComm1.OutBufferCount = 0
     End If

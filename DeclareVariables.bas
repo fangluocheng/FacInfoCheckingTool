@@ -23,6 +23,7 @@ Public IsHDCPSelected As Boolean
 Public IsResolutionSelected As Boolean
 Public IsMACAddrSelected As Boolean
 Public IsDeviceKeySelected As Boolean
+Public isUartMode As Boolean
 
 '------------------------------------------------------------------------------
 '    Variable mapping the items in "CheckItem".
@@ -48,7 +49,6 @@ Public IsStop As Boolean
 Public IsACK As Boolean
 
 Public strCurrentModelName As String
-Public strDataVersion As String
 
 Public SetTVCurrentComID As Integer
 Public SetData As Integer
@@ -66,7 +66,7 @@ Public Const strChkBoxUnselected As String = "----"
 Public Const strNoRecvData As String = "None"
 Public Const cmdResendTimes As Integer = 2
 Public Const cmdReceiveWaitS As Integer = 5
-Public Const strRemoteHost As String = "192.168.1.1"
+Public Const strRemoteHost As String = "192.168.1.11"
 Public Const lngRemotePort As Long = 8888
 
 Public Sub Log_Info(strLog As String)
