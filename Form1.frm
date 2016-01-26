@@ -4,19 +4,19 @@ Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
 Begin VB.Form Form1 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "π§≥ß–≈œ¢–£—Èπ§æﬂ"
-   ClientHeight    =   7950
+   ClientHeight    =   6510
    ClientLeft      =   45
    ClientTop       =   735
-   ClientWidth     =   16905
+   ClientWidth     =   14730
    Icon            =   "Form1.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7950
-   ScaleWidth      =   16905
+   ScaleHeight     =   6510
+   ScaleWidth      =   14730
    StartUpPosition =   2  'CenterScreen
    Begin MSWinsockLib.Winsock tcpClient 
-      Left            =   12000
+      Left            =   10440
       Top             =   240
       _ExtentX        =   741
       _ExtentY        =   741
@@ -24,61 +24,79 @@ Begin VB.Form Form1
    End
    Begin VB.TextBox TxtReceive 
       BeginProperty Font 
-         Name            =   "Consolas"
-         Size            =   10.5
+         Name            =   "Arial"
+         Size            =   9
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   7755
-      Left            =   12600
+      Height          =   6255
+      Left            =   11040
       MultiLine       =   -1  'True
       ScrollBars      =   2  'Vertical
-      TabIndex        =   36
+      TabIndex        =   21
       Top             =   120
-      Width           =   4185
+      Width           =   3585
    End
    Begin VB.Timer Timer1 
-      Left            =   11520
+      Left            =   9960
       Top             =   240
    End
    Begin VB.Frame Frame3 
       Caption         =   "Ãı¬Î"
-      Height          =   1125
-      Left            =   4320
-      TabIndex        =   33
-      Top             =   6720
-      Width           =   8175
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   850
+      Left            =   3840
+      TabIndex        =   18
+      Top             =   5520
+      Width           =   7095
       Begin VB.TextBox txtInput 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00FFFFFF&
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   21.75
+            Name            =   "Arial"
+            Size            =   15.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   690
+         Height          =   480
          Left            =   120
          TabIndex        =   0
          Text            =   "123456789"
          Top             =   240
-         Width           =   7905
+         Width           =   6850
       End
    End
    Begin VB.Frame Frame2 
       Caption         =   "≤‚ ‘Ω·π˚"
-      Height          =   1125
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   850
       Left            =   120
-      TabIndex        =   32
-      Top             =   6720
-      Width           =   4095
+      TabIndex        =   17
+      Top             =   5520
+      Width           =   3615
       Begin VB.Label lbResult 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
@@ -86,343 +104,382 @@ Begin VB.Form Form1
          BorderStyle     =   1  'Fixed Single
          Caption         =   "Checking"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   21.75
-            Charset         =   134
+            Name            =   "Arial"
+            Size            =   15.75
+            Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H80000008&
-         Height          =   690
+         Height          =   450
          Left            =   120
-         TabIndex        =   35
+         TabIndex        =   20
          Top             =   240
-         Width           =   3825
+         Width           =   3350
       End
    End
    Begin VB.Frame Frame1 
       Caption         =   "TV –≈œ¢"
-      Height          =   5700
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   4450
       Left            =   120
       TabIndex        =   1
       Top             =   960
-      Width           =   12375
-      Begin VB.TextBox txtDeviceKey 
+      Width           =   10820
+      Begin VB.Label lbTVInfo 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
+         BackColor       =   &H80000005&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "None"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   540
-         Left            =   8190
-         Locked          =   -1  'True
+         ForeColor       =   &H80000008&
+         Height          =   345
+         Index           =   14
+         Left            =   7180
+         TabIndex        =   36
+         Top             =   3940
+         Width           =   3500
+      End
+      Begin VB.Label lbTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "None"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000008&
+         Height          =   345
+         Index           =   13
+         Left            =   3650
+         TabIndex        =   35
+         Top             =   3940
+         Width           =   3500
+      End
+      Begin VB.Label lbTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "None"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000008&
+         Height          =   345
+         Index           =   12
+         Left            =   120
+         TabIndex        =   34
+         Top             =   3940
+         Width           =   3500
+      End
+      Begin VB.Label lbTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "None"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000008&
+         Height          =   350
+         Index           =   11
+         Left            =   7180
+         TabIndex        =   33
+         Top             =   3120
+         Width           =   3500
+      End
+      Begin VB.Label lbTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "None"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000008&
+         Height          =   350
+         Index           =   10
+         Left            =   3650
+         TabIndex        =   32
+         Top             =   3120
+         Width           =   3500
+      End
+      Begin VB.Label lbTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "None"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000008&
+         Height          =   350
+         Index           =   9
+         Left            =   120
          TabIndex        =   31
-         Text            =   "None"
-         Top             =   5025
-         Width           =   4000
+         Top             =   3120
+         Width           =   3500
       End
-      Begin VB.TextBox txtMacAddr 
+      Begin VB.Label lbTVInfo 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
+         BackColor       =   &H80000005&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "None"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   540
-         Left            =   8190
-         Locked          =   -1  'True
+         ForeColor       =   &H80000008&
+         Height          =   350
+         Index           =   8
+         Left            =   7180
+         TabIndex        =   30
+         Top             =   2300
+         Width           =   3500
+      End
+      Begin VB.Label lbTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "None"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000008&
+         Height          =   350
+         Index           =   7
+         Left            =   3650
          TabIndex        =   29
-         Text            =   "None"
-         Top             =   3945
-         Width           =   4000
+         Top             =   2300
+         Width           =   3500
       End
-      Begin VB.TextBox txtResolution 
+      Begin VB.Label lbTVInfo 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
+         BackColor       =   &H80000005&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "None"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   540
-         Left            =   4150
-         Locked          =   -1  'True
+         ForeColor       =   &H80000008&
+         Height          =   350
+         Index           =   6
+         Left            =   120
+         TabIndex        =   28
+         Top             =   2300
+         Width           =   3500
+      End
+      Begin VB.Label lbTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "None"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000008&
+         Height          =   350
+         Index           =   5
+         Left            =   7180
+         TabIndex        =   27
+         Top             =   1480
+         Width           =   3500
+      End
+      Begin VB.Label lbTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "None"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000008&
+         Height          =   350
+         Index           =   4
+         Left            =   3650
          TabIndex        =   26
-         Text            =   "None"
-         Top             =   3945
-         Width           =   4000
+         Top             =   1480
+         Width           =   3500
       End
-      Begin VB.TextBox txtHdcpKey 
+      Begin VB.Label lbTVInfo 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
+         BackColor       =   &H80000005&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "None"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   540
+         ForeColor       =   &H80000008&
+         Height          =   350
+         Index           =   3
          Left            =   120
-         Locked          =   -1  'True
          TabIndex        =   25
-         Text            =   "None"
-         Top             =   3945
-         Width           =   4000
+         Top             =   1480
+         Width           =   3500
       End
-      Begin VB.TextBox txtArea 
+      Begin VB.Label lbTVInfo 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
+         BackColor       =   &H80000005&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "None"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   540
-         Left            =   4150
-         Locked          =   -1  'True
+         ForeColor       =   &H80000008&
+         Height          =   350
+         Index           =   2
+         Left            =   7180
+         TabIndex        =   24
+         Top             =   660
+         Width           =   3500
+      End
+      Begin VB.Label lbTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "None"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000008&
+         Height          =   350
+         Index           =   1
+         Left            =   3650
          TabIndex        =   23
-         Text            =   "None"
-         Top             =   5025
-         Width           =   4000
+         Top             =   660
+         Width           =   3500
       End
-      Begin VB.TextBox txtCarrier 
+      Begin VB.Label lbTVInfo 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
+         BackColor       =   &H80000005&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "None"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   540
-         Left            =   8190
-         Locked          =   -1  'True
-         TabIndex        =   21
-         Text            =   "None"
-         Top             =   2865
-         Width           =   4000
-      End
-      Begin VB.TextBox txtPanelName 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
-         BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
-         Left            =   4150
-         Locked          =   -1  'True
-         TabIndex        =   18
-         Text            =   "None"
-         Top             =   2865
-         Width           =   4000
-      End
-      Begin VB.TextBox txtTwoPointFourVer 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
-         BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
+         ForeColor       =   &H80000008&
+         Height          =   350
+         Index           =   0
          Left            =   120
-         Locked          =   -1  'True
-         TabIndex        =   17
-         Text            =   "None"
-         Top             =   2865
-         Width           =   4000
-      End
-      Begin VB.TextBox txtPartitionVer 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
-         BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
-         Left            =   120
-         Locked          =   -1  'True
-         TabIndex        =   15
-         Text            =   "None"
-         Top             =   5025
-         Width           =   4000
-      End
-      Begin VB.TextBox txtChannel 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
-         BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
-         Left            =   8190
-         Locked          =   -1  'True
-         TabIndex        =   13
-         Text            =   "None"
-         Top             =   1785
-         Width           =   4000
-      End
-      Begin VB.TextBox txtDimension 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
-         BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
-         Left            =   4150
-         Locked          =   -1  'True
-         TabIndex        =   10
-         Text            =   "None"
-         Top             =   1785
-         Width           =   4000
-      End
-      Begin VB.TextBox txtHWVer 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
-         BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
-         Left            =   120
-         Locked          =   -1  'True
-         TabIndex        =   9
-         Text            =   "None"
-         Top             =   1785
-         Width           =   4000
-      End
-      Begin VB.TextBox txtFlashInfo 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
-         BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
-         Left            =   8190
-         Locked          =   -1  'True
-         TabIndex        =   7
-         Text            =   "None"
-         Top             =   700
-         Width           =   4000
-      End
-      Begin VB.TextBox txtSysVer 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
-         BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
-         Left            =   4150
-         Locked          =   -1  'True
-         TabIndex        =   5
-         Text            =   "None"
-         Top             =   700
-         Width           =   4000
-      End
-      Begin VB.TextBox txtModelInfo 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BackColor       =   &H00FFFFFF&
-         BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
-         Left            =   120
-         Locked          =   -1  'True
-         TabIndex        =   3
-         Text            =   "None"
-         Top             =   700
-         Width           =   4000
+         TabIndex        =   22
+         Top             =   660
+         Width           =   3500
       End
       Begin VB.Label lbTitle 
          Alignment       =   2  'Center
@@ -431,8 +488,8 @@ Begin VB.Form Form1
          BorderStyle     =   1  'Fixed Single
          Caption         =   "Device Key"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   14.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -440,12 +497,12 @@ Begin VB.Form Form1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H80000008&
-         Height          =   450
+         Height          =   410
          Index           =   14
-         Left            =   8190
-         TabIndex        =   30
-         Top             =   4560
-         Width           =   4000
+         Left            =   7180
+         TabIndex        =   16
+         Top             =   3520
+         Width           =   3500
       End
       Begin VB.Label lbTitle 
          Alignment       =   2  'Center
@@ -454,8 +511,8 @@ Begin VB.Form Form1
          BorderStyle     =   1  'Fixed Single
          Caption         =   "MAC µÿ÷∑"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   14.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -463,22 +520,22 @@ Begin VB.Form Form1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H80000008&
-         Height          =   450
+         Height          =   410
          Index           =   11
-         Left            =   8190
-         TabIndex        =   28
-         Top             =   3480
-         Width           =   4000
+         Left            =   7180
+         TabIndex        =   15
+         Top             =   2700
+         Width           =   3500
       End
       Begin VB.Label lbTitle 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
          BorderStyle     =   1  'Fixed Single
-         Caption         =   "HDCP"
+         Caption         =   "HDCP Key"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   14.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -486,12 +543,12 @@ Begin VB.Form Form1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H80000008&
-         Height          =   450
+         Height          =   410
          Index           =   9
          Left            =   120
-         TabIndex        =   27
-         Top             =   3480
-         Width           =   4000
+         TabIndex        =   14
+         Top             =   2700
+         Width           =   3500
       End
       Begin VB.Label lbTitle 
          Alignment       =   2  'Center
@@ -500,8 +557,8 @@ Begin VB.Form Form1
          BorderStyle     =   1  'Fixed Single
          Caption         =   "4K/2K"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   14.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -509,12 +566,12 @@ Begin VB.Form Form1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H80000008&
-         Height          =   450
+         Height          =   410
          Index           =   10
-         Left            =   4150
-         TabIndex        =   24
-         Top             =   3480
-         Width           =   4000
+         Left            =   3650
+         TabIndex        =   13
+         Top             =   2700
+         Width           =   3500
       End
       Begin VB.Label lbTitle 
          Alignment       =   2  'Center
@@ -523,8 +580,8 @@ Begin VB.Form Form1
          BorderStyle     =   1  'Fixed Single
          Caption         =   "«¯”Ú"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   14.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -532,12 +589,12 @@ Begin VB.Form Form1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H80000008&
-         Height          =   450
+         Height          =   410
          Index           =   13
-         Left            =   4150
-         TabIndex        =   22
-         Top             =   4560
-         Width           =   4000
+         Left            =   3650
+         TabIndex        =   12
+         Top             =   3520
+         Width           =   3500
       End
       Begin VB.Label lbTitle 
          Alignment       =   2  'Center
@@ -546,8 +603,8 @@ Begin VB.Form Form1
          BorderStyle     =   1  'Fixed Single
          Caption         =   "≤•øÿ∆ΩÃ®"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   14.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -555,12 +612,12 @@ Begin VB.Form Form1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H80000008&
-         Height          =   450
+         Height          =   410
          Index           =   8
-         Left            =   8190
-         TabIndex        =   20
-         Top             =   2400
-         Width           =   4000
+         Left            =   7180
+         TabIndex        =   11
+         Top             =   1880
+         Width           =   3500
       End
       Begin VB.Label lbTitle 
          Alignment       =   2  'Center
@@ -569,8 +626,8 @@ Begin VB.Form Form1
          BorderStyle     =   1  'Fixed Single
          Caption         =   "2.4G ∞Ê±æ"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   14.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -578,12 +635,12 @@ Begin VB.Form Form1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H80000008&
-         Height          =   450
+         Height          =   410
          Index           =   6
          Left            =   120
-         TabIndex        =   19
-         Top             =   2400
-         Width           =   4000
+         TabIndex        =   10
+         Top             =   1880
+         Width           =   3500
       End
       Begin VB.Label lbTitle 
          Alignment       =   2  'Center
@@ -592,8 +649,8 @@ Begin VB.Form Form1
          BorderStyle     =   1  'Fixed Single
          Caption         =   "∆¡–Õ∫≈"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   14.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -601,12 +658,12 @@ Begin VB.Form Form1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H80000008&
-         Height          =   450
+         Height          =   410
          Index           =   7
-         Left            =   4150
-         TabIndex        =   16
-         Top             =   2400
-         Width           =   4000
+         Left            =   3650
+         TabIndex        =   9
+         Top             =   1880
+         Width           =   3500
       End
       Begin VB.Label lbTitle 
          Alignment       =   2  'Center
@@ -615,8 +672,8 @@ Begin VB.Form Form1
          BorderStyle     =   1  'Fixed Single
          Caption         =   "∑÷«¯∞Ê±æ"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   14.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -624,12 +681,12 @@ Begin VB.Form Form1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H80000008&
-         Height          =   450
+         Height          =   410
          Index           =   12
          Left            =   120
-         TabIndex        =   14
-         Top             =   4560
-         Width           =   4000
+         TabIndex        =   8
+         Top             =   3520
+         Width           =   3500
       End
       Begin VB.Label lbTitle 
          Alignment       =   2  'Center
@@ -638,8 +695,8 @@ Begin VB.Form Form1
          BorderStyle     =   1  'Fixed Single
          Caption         =   "«˛µ¿"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   14.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -647,12 +704,12 @@ Begin VB.Form Form1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H80000008&
-         Height          =   450
+         Height          =   410
          Index           =   5
-         Left            =   8190
-         TabIndex        =   12
-         Top             =   1320
-         Width           =   4000
+         Left            =   7180
+         TabIndex        =   7
+         Top             =   1060
+         Width           =   3500
       End
       Begin VB.Label lbTitle 
          Alignment       =   2  'Center
@@ -661,8 +718,8 @@ Begin VB.Form Form1
          BorderStyle     =   1  'Fixed Single
          Caption         =   "”≤º˛∞Ê±æ"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   14.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -670,12 +727,12 @@ Begin VB.Form Form1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H80000008&
-         Height          =   450
+         Height          =   410
          Index           =   3
          Left            =   120
-         TabIndex        =   11
-         Top             =   1320
-         Width           =   4000
+         TabIndex        =   6
+         Top             =   1060
+         Width           =   3500
       End
       Begin VB.Label lbTitle 
          Alignment       =   2  'Center
@@ -684,8 +741,8 @@ Begin VB.Form Form1
          BorderStyle     =   1  'Fixed Single
          Caption         =   "2D/3D"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   14.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -693,12 +750,12 @@ Begin VB.Form Form1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H80000008&
-         Height          =   450
+         Height          =   410
          Index           =   4
-         Left            =   4150
-         TabIndex        =   8
-         Top             =   1320
-         Width           =   4000
+         Left            =   3650
+         TabIndex        =   5
+         Top             =   1060
+         Width           =   3500
       End
       Begin VB.Label lbTitle 
          Alignment       =   2  'Center
@@ -707,8 +764,8 @@ Begin VB.Form Form1
          BorderStyle     =   1  'Fixed Single
          Caption         =   "Flash –≈œ¢"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   14.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -716,12 +773,12 @@ Begin VB.Form Form1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H80000008&
-         Height          =   450
+         Height          =   405
          Index           =   2
-         Left            =   8190
-         TabIndex        =   6
+         Left            =   7180
+         TabIndex        =   4
          Top             =   240
-         Width           =   4000
+         Width           =   3500
       End
       Begin VB.Label lbTitle 
          Alignment       =   2  'Center
@@ -730,8 +787,8 @@ Begin VB.Form Form1
          BorderStyle     =   1  'Fixed Single
          Caption         =   "œµÕ≥∞Ê±æ"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   14.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -739,12 +796,12 @@ Begin VB.Form Form1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H80000008&
-         Height          =   450
+         Height          =   410
          Index           =   1
-         Left            =   4150
-         TabIndex        =   4
+         Left            =   3650
+         TabIndex        =   3
          Top             =   240
-         Width           =   4005
+         Width           =   3500
       End
       Begin VB.Label lbTitle 
          Alignment       =   2  'Center
@@ -753,8 +810,8 @@ Begin VB.Form Form1
          BorderStyle     =   1  'Fixed Single
          Caption         =   "ª˙–Õ"
          BeginProperty Font 
-            Name            =   "Œ¢»Ì—≈∫⁄"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   14.25
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -762,16 +819,16 @@ Begin VB.Form Form1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H80000008&
-         Height          =   450
+         Height          =   410
          Index           =   0
          Left            =   120
          TabIndex        =   2
          Top             =   240
-         Width           =   4000
+         Width           =   3500
       End
    End
    Begin MSCommLib.MSComm MSComm1 
-      Left            =   10920
+      Left            =   9360
       Top             =   120
       _ExtentX        =   1005
       _ExtentY        =   1005
@@ -781,7 +838,7 @@ Begin VB.Form Form1
    Begin VB.Label Label1 
       Caption         =   "Label1"
       BeginProperty Font 
-         Name            =   "Œ¢»Ì—≈∫⁄"
+         Name            =   "Arial"
          Size            =   24
          Charset         =   0
          Weight          =   400
@@ -791,7 +848,7 @@ Begin VB.Form Form1
       EndProperty
       Height          =   615
       Left            =   240
-      TabIndex        =   34
+      TabIndex        =   19
       Top             =   120
       Width           =   4575
    End
@@ -865,64 +922,64 @@ Private Sub subInitInterface()
     'Whether the CheckBox of database file(*.mdb) selected or not.
     'If not, config the TextBox
     If Not IsModelSelected Then
-        txtModelInfo.Text = strChkBoxUnselected
-        txtModelInfo.BackColor = &HE0E0E0
+        lbTVInfo(0).Caption = strChkBoxUnselected
+        lbTVInfo(0).BackColor = &HE0E0E0
     End If
     If Not IsSysVerSelected Then
-        txtSysVer.Text = strChkBoxUnselected
-        txtSysVer.BackColor = &HE0E0E0
+        lbTVInfo(1).Caption = strChkBoxUnselected
+        lbTVInfo(1).BackColor = &HE0E0E0
     End If
     If Not IsFlashInfoSelected Then
-        txtFlashInfo.Text = strChkBoxUnselected
-        txtFlashInfo.BackColor = &HE0E0E0
+        lbTVInfo(2).Caption = strChkBoxUnselected
+        lbTVInfo(2).BackColor = &HE0E0E0
     End If
     If Not IsHardwareVerSelected Then
-        txtHWVer.Text = strChkBoxUnselected
-        txtHWVer.BackColor = &HE0E0E0
+        lbTVInfo(3).Caption = strChkBoxUnselected
+        lbTVInfo(3).BackColor = &HE0E0E0
     End If
     If Not IsDimensionSelected Then
-        txtDimension.Text = strChkBoxUnselected
-        txtDimension.BackColor = &HE0E0E0
+        lbTVInfo(4).Caption = strChkBoxUnselected
+        lbTVInfo(4).BackColor = &HE0E0E0
     End If
     If Not IsChannelSelected Then
-        txtChannel.Text = strChkBoxUnselected
-        txtChannel.BackColor = &HE0E0E0
+        lbTVInfo(5).Caption = strChkBoxUnselected
+        lbTVInfo(5).BackColor = &HE0E0E0
     End If
     If Not Is24GVerSelected Then
-        txtTwoPointFourVer.Text = strChkBoxUnselected
-        txtTwoPointFourVer.BackColor = &HE0E0E0
+        lbTVInfo(6).Caption = strChkBoxUnselected
+        lbTVInfo(6).BackColor = &HE0E0E0
     End If
     If Not IsPanelSelected Then
-        txtPanelName.Text = strChkBoxUnselected
-        txtPanelName.BackColor = &HE0E0E0
+        lbTVInfo(7).Caption = strChkBoxUnselected
+        lbTVInfo(7).BackColor = &HE0E0E0
     End If
     If Not IsCarrierSelected Then
-        txtCarrier.Text = strChkBoxUnselected
-        txtCarrier.BackColor = &HE0E0E0
+        lbTVInfo(8).Caption = strChkBoxUnselected
+        lbTVInfo(8).BackColor = &HE0E0E0
     End If
     If Not IsHDCPSelected Then
-        txtHdcpKey.Text = strChkBoxUnselected
-        txtHdcpKey.BackColor = &HE0E0E0
+        lbTVInfo(9).Caption = strChkBoxUnselected
+        lbTVInfo(9).BackColor = &HE0E0E0
     End If
     If Not IsResolutionSelected Then
-        txtResolution.Text = strChkBoxUnselected
-        txtResolution.BackColor = &HE0E0E0
+        lbTVInfo(10).Caption = strChkBoxUnselected
+        lbTVInfo(10).BackColor = &HE0E0E0
     End If
     If Not IsMACAddrSelected Then
-        txtMacAddr.Text = strChkBoxUnselected
-        txtMacAddr.BackColor = &HE0E0E0
+        lbTVInfo(11).Caption = strChkBoxUnselected
+        lbTVInfo(11).BackColor = &HE0E0E0
     End If
     If Not IsPartitionVerSelected Then
-        txtPartitionVer.Text = strChkBoxUnselected
-        txtPartitionVer.BackColor = &HE0E0E0
+        lbTVInfo(12).Caption = strChkBoxUnselected
+        lbTVInfo(12).BackColor = &HE0E0E0
     End If
     If Not IsAreaVerSelected Then
-        txtArea.Text = strChkBoxUnselected
-        txtArea.BackColor = &HE0E0E0
+        lbTVInfo(13).Caption = strChkBoxUnselected
+        lbTVInfo(13).BackColor = &HE0E0E0
     End If
     If Not IsDeviceKeySelected Then
-        txtDeviceKey.Text = strChkBoxUnselected
-        txtDeviceKey.BackColor = &HE0E0E0
+        lbTVInfo(14).Caption = strChkBoxUnselected
+        lbTVInfo(14).BackColor = &HE0E0E0
     End If
 End Sub
 
@@ -977,71 +1034,71 @@ Private Sub subInitBeforeRunning()
     strSerialNo = ""
     
     If IsModelSelected Then
-        txtModelInfo.Text = strNoRecvData
-        txtModelInfo.BackColor = &HFFFFFF
+        lbTVInfo(0).Caption = strNoRecvData
+        lbTVInfo(0).BackColor = &HFFFFFF
     End If
     If IsSysVerSelected Then
-        txtSysVer.Text = strNoRecvData
-        txtSysVer.BackColor = &HFFFFFF
+        lbTVInfo(1).Caption = strNoRecvData
+        lbTVInfo(1).BackColor = &HFFFFFF
     End If
     If IsFlashInfoSelected Then
-        txtFlashInfo.Text = strNoRecvData
-        txtFlashInfo.BackColor = &HFFFFFF
+        lbTVInfo(2).Caption = strNoRecvData
+        lbTVInfo(2).BackColor = &HFFFFFF
     End If
     If IsHardwareVerSelected Then
-        txtHWVer.Text = strNoRecvData
-        txtHWVer.BackColor = &HFFFFFF
+        lbTVInfo(3).Caption = strNoRecvData
+        lbTVInfo(3).BackColor = &HFFFFFF
     End If
     If IsDimensionSelected Then
-        txtDimension.Text = strNoRecvData
-        txtDimension.BackColor = &HFFFFFF
+        lbTVInfo(4).Caption = strNoRecvData
+        lbTVInfo(4).BackColor = &HFFFFFF
     End If
     If IsChannelSelected Then
-        txtChannel.Text = strNoRecvData
-        txtChannel.BackColor = &HFFFFFF
+        lbTVInfo(5).Caption = strNoRecvData
+        lbTVInfo(5).BackColor = &HFFFFFF
     End If
     If Is24GVerSelected Then
-        txtTwoPointFourVer.Text = strNoRecvData
-        txtTwoPointFourVer.BackColor = &HFFFFFF
+        lbTVInfo(6).Caption = strNoRecvData
+        lbTVInfo(6).BackColor = &HFFFFFF
     End If
     If IsPanelSelected Then
-        txtPanelName.Text = strNoRecvData
-        txtPanelName.BackColor = &HFFFFFF
+        lbTVInfo(7).Caption = strNoRecvData
+        lbTVInfo(7).BackColor = &HFFFFFF
     End If
     If IsCarrierSelected Then
-        txtCarrier.Text = strNoRecvData
-        txtCarrier.BackColor = &HFFFFFF
+        lbTVInfo(8).Caption = strNoRecvData
+        lbTVInfo(8).BackColor = &HFFFFFF
     End If
     If IsHDCPSelected Then
-        txtHdcpKey.Text = strNoRecvData
-        txtHdcpKey.BackColor = &HFFFFFF
+        lbTVInfo(9).Caption = strNoRecvData
+        lbTVInfo(9).BackColor = &HFFFFFF
     End If
     If IsResolutionSelected Then
-        txtResolution.Text = strNoRecvData
-        txtResolution.BackColor = &HFFFFFF
+        lbTVInfo(10).Caption = strNoRecvData
+        lbTVInfo(10).BackColor = &HFFFFFF
     End If
     If IsMACAddrSelected Then
-        txtMacAddr.Text = strNoRecvData
-        txtMacAddr.BackColor = &HFFFFFF
+        lbTVInfo(11).Caption = strNoRecvData
+        lbTVInfo(11).BackColor = &HFFFFFF
     End If
     If IsPartitionVerSelected Then
-        txtPartitionVer.Text = strNoRecvData
-        txtPartitionVer.BackColor = &HFFFFFF
+        lbTVInfo(12).Caption = strNoRecvData
+        lbTVInfo(12).BackColor = &HFFFFFF
     End If
     If IsAreaVerSelected Then
-        txtArea.Text = strNoRecvData
-        txtArea.BackColor = &HFFFFFF
+        lbTVInfo(13).Caption = strNoRecvData
+        lbTVInfo(13).BackColor = &HFFFFFF
     End If
     If IsDeviceKeySelected Then
-        txtDeviceKey.Text = strNoRecvData
-        txtDeviceKey.BackColor = &HFFFFFF
+        lbTVInfo(14).Caption = strNoRecvData
+        lbTVInfo(14).BackColor = &HFFFFFF
     End If
     
     lbResult.Caption = "Checking"
     lbResult.BackColor = &HFFFFFF
     Log_Clear
     TxtReceive.ForeColor = &H80000008
-    lbResult.FontSize = 22
+    'lbResult.FontSize = 22
     
 End Sub
 
@@ -1467,77 +1524,77 @@ RESEND_CMD_16:
     EXIT_FAC_MODE
     DelayMS StepTime
    
-    If txtModelInfo.Text = strNoRecvData Then
+    If lbTVInfo(0).Caption = strNoRecvData Then
         IsAllDataMatch = False
-        txtModelInfo.BackColor = &HFF&
+        lbTVInfo(0).BackColor = &HFF&
     End If
     
-    If txtSysVer.Text = strNoRecvData Then
+    If lbTVInfo(1).Caption = strNoRecvData Then
         IsAllDataMatch = False
-        txtSysVer.BackColor = &HFF&
+        lbTVInfo(1).BackColor = &HFF&
     End If
     
-    If txtFlashInfo.Text = strNoRecvData Then
+    If lbTVInfo(2).Caption = strNoRecvData Then
         IsAllDataMatch = False
-        txtFlashInfo.BackColor = &HFF&
+        lbTVInfo(2).BackColor = &HFF&
     End If
     
-    If txtHWVer.Text = strNoRecvData Then
+    If lbTVInfo(3).Caption = strNoRecvData Then
         IsAllDataMatch = False
-        txtHWVer.BackColor = &HFF&
+        lbTVInfo(3).BackColor = &HFF&
     End If
-    If txtDimension.Text = strNoRecvData Then
+    If lbTVInfo(4).Caption = strNoRecvData Then
         IsAllDataMatch = False
-        txtDimension.BackColor = &HFF&
-    End If
-    
-    If txtChannel.Text = strNoRecvData Then
-        IsAllDataMatch = False
-        txtChannel.BackColor = &HFF&
+        lbTVInfo(4).BackColor = &HFF&
     End If
     
-    If txtPartitionVer.Text = strNoRecvData Then
+    If lbTVInfo(5).Caption = strNoRecvData Then
         IsAllDataMatch = False
-        txtPartitionVer.BackColor = &HFF&
+        lbTVInfo(5).BackColor = &HFF&
     End If
     
-    If txtTwoPointFourVer.Text = strNoRecvData Then
+    If lbTVInfo(12).Caption = strNoRecvData Then
         IsAllDataMatch = False
-        txtTwoPointFourVer.BackColor = &HFF&
+        lbTVInfo(12).BackColor = &HFF&
     End If
     
-    If txtPanelName.Text = strNoRecvData Then
+    If lbTVInfo(6).Caption = strNoRecvData Then
         IsAllDataMatch = False
-        txtPanelName.BackColor = &HFF&
+        lbTVInfo(6).BackColor = &HFF&
     End If
     
-    If txtCarrier.Text = strNoRecvData Then
+    If lbTVInfo(7).Caption = strNoRecvData Then
         IsAllDataMatch = False
-        txtCarrier.BackColor = &HFF&
+        lbTVInfo(7).BackColor = &HFF&
     End If
     
-    If txtArea.Text = strNoRecvData Then
+    If lbTVInfo(8).Caption = strNoRecvData Then
         IsAllDataMatch = False
-        txtArea.BackColor = &HFF&
+        lbTVInfo(8).BackColor = &HFF&
     End If
     
-    If txtHdcpKey.Text = strNoRecvData Then
+    If lbTVInfo(13).Caption = strNoRecvData Then
         IsAllDataMatch = False
-        txtHdcpKey.BackColor = &HFF&
-    End If
-    If txtResolution.Text = strNoRecvData Then
-        IsAllDataMatch = False
-        txtResolution.BackColor = &HFF&
+        lbTVInfo(13).BackColor = &HFF&
     End If
     
-    If txtMacAddr.Text = strNoRecvData Then
+    If lbTVInfo(9).Caption = strNoRecvData Then
         IsAllDataMatch = False
-        txtMacAddr.BackColor = &HFF&
+        lbTVInfo(9).BackColor = &HFF&
+    End If
+    If lbTVInfo(10).Caption = strNoRecvData Then
+        IsAllDataMatch = False
+        lbTVInfo(10).BackColor = &HFF&
     End If
     
-    If txtDeviceKey.Text = strNoRecvData Then
+    If lbTVInfo(11).Caption = strNoRecvData Then
         IsAllDataMatch = False
-        txtDeviceKey.BackColor = &HFF&
+        lbTVInfo(11).BackColor = &HFF&
+    End If
+    
+    If lbTVInfo(14).Caption = strNoRecvData Then
+        IsAllDataMatch = False
+        lbTVInfo(14).BackColor = &HFF&
     End If
     
     If Not IsAllDataMatch Then
@@ -1578,21 +1635,21 @@ Private Sub saveAllData()
         rs.Fields(0) = strCurrentModelName
         rs.Fields(1) = strSerialNo
 
-        rs.Fields(2) = txtModelInfo.Text
-        rs.Fields(3) = txtSysVer.Text
-        rs.Fields(4) = txtFlashInfo.Text
-        rs.Fields(5) = txtHWVer.Text
-        rs.Fields(6) = txtDimension.Text
-        rs.Fields(7) = txtChannel.Text
-        rs.Fields(8) = txtPartitionVer.Text
-        rs.Fields(9) = txtTwoPointFourVer.Text
-        rs.Fields(10) = txtPanelName.Text
-        rs.Fields(11) = txtCarrier.Text
-        rs.Fields(12) = txtArea.Text
-        rs.Fields(13) = txtHdcpKey.Text
-        rs.Fields(14) = txtResolution.Text
-        rs.Fields(15) = txtMacAddr.Text
-        rs.Fields(16) = txtDeviceKey.Text
+        rs.Fields(2) = lbTVInfo(0).Caption
+        rs.Fields(3) = lbTVInfo(1).Caption
+        rs.Fields(4) = lbTVInfo(2).Caption
+        rs.Fields(5) = lbTVInfo(3).Caption
+        rs.Fields(6) = lbTVInfo(4).Caption
+        rs.Fields(7) = lbTVInfo(5).Caption
+        rs.Fields(8) = lbTVInfo(12).Caption
+        rs.Fields(9) = lbTVInfo(6).Caption
+        rs.Fields(10) = lbTVInfo(7).Caption
+        rs.Fields(11) = lbTVInfo(8).Caption
+        rs.Fields(12) = lbTVInfo(13).Caption
+        rs.Fields(13) = lbTVInfo(9).Caption
+        rs.Fields(14) = lbTVInfo(10).Caption
+        rs.Fields(15) = lbTVInfo(11).Caption
+        rs.Fields(16) = lbTVInfo(14).Caption
         
         rs.Fields(17) = Date
         rs.Fields(18) = Time
@@ -1743,25 +1800,25 @@ On Error GoTo Err
                     If IsSysVerSelected Then
                         If SysVerSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtSysVer.BackColor = &HFF00&
+                            lbTVInfo(1).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtSysVer.BackColor = &HFF&
+                            lbTVInfo(1).BackColor = &HFF&
                         End If
                         
-                        txtSysVer.Text = receiveData
+                        lbTVInfo(1).Caption = receiveData
                     End If
                 Case 3                                     'Flash Info
                     isCmdDataRecv = True
                     If IsFlashInfoSelected Then
-                        txtFlashInfo.Text = receiveData & "G"
+                        lbTVInfo(2).Caption = receiveData & "G"
                         
-                        If FlashInfoSpec = txtFlashInfo.Text Then
+                        If FlashInfoSpec = lbTVInfo(2).Caption Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtFlashInfo.BackColor = &HFF00&
+                            lbTVInfo(2).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtFlashInfo.BackColor = &HFF&
+                            lbTVInfo(2).BackColor = &HFF&
                         End If
                     End If
                 Case 4                                     'Hardware Version
@@ -1769,29 +1826,29 @@ On Error GoTo Err
                     If IsHardwareVerSelected Then
                         If HardwareVerSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtHWVer.BackColor = &HFF00&
+                            lbTVInfo(3).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtHWVer.BackColor = &HFF&
+                            lbTVInfo(3).BackColor = &HFF&
                         End If
                         
-                        txtHWVer.Text = receiveData
+                        lbTVInfo(3).Caption = receiveData
                     End If
                 Case 5                                     '3D\2D
                     isCmdDataRecv = True
                     If IsDimensionSelected Then
                         If receiveData = "00" Then
-                            txtDimension.Text = "3D"
+                            lbTVInfo(4).Caption = "3D"
                         Else
-                            txtDimension.Text = "2D"
+                            lbTVInfo(4).Caption = "2D"
                         End If
                         
-                        If DimensionSpec = txtDimension.Text Then
+                        If DimensionSpec = lbTVInfo(4).Caption Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtDimension.BackColor = &HFF00&
+                            lbTVInfo(4).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtDimension.BackColor = &HFF&
+                            lbTVInfo(4).BackColor = &HFF&
                         End If
                     End If
                 Case 6                                     '2.4G Version
@@ -1799,39 +1856,39 @@ On Error GoTo Err
                     If Is24GVerSelected Then
                         If TwoPointFourGVerSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtTwoPointFourVer.BackColor = &HFF00&
+                            lbTVInfo(6).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtTwoPointFourVer.BackColor = &HFF&
+                            lbTVInfo(6).BackColor = &HFF&
                         End If
                         
-                        txtTwoPointFourVer.Text = receiveData
+                        lbTVInfo(6).Caption = receiveData
                     End If
                 Case 7                                     'Panel Name
                     isCmdDataRecv = True
                     If IsPanelSelected Then
                         If PanelSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtPanelName.BackColor = &HFF00&
+                            lbTVInfo(7).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtPanelName.BackColor = &HFF&
+                            lbTVInfo(7).BackColor = &HFF&
                         End If
                         
-                        txtPanelName.Text = receiveData
+                        lbTVInfo(7).Caption = receiveData
                     End If
                 Case 8                                     'Carrier Info
                     isCmdDataRecv = True
                     If IsCarrierSelected Then
                         If CarrierSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtCarrier.BackColor = &HFF00&
+                            lbTVInfo(8).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtCarrier.BackColor = &HFF&
+                            lbTVInfo(8).BackColor = &HFF&
                         End If
                         
-                        txtCarrier.Text = receiveData
+                        lbTVInfo(8).Caption = receiveData
                     End If
                 Case 9                                     'HDCP Key
                     isCmdDataRecv = True
@@ -1839,12 +1896,12 @@ On Error GoTo Err
                         'HDCP Key return 0x30 means HDCP Key is NOT written.
                         If receiveData = "30" Then
                             IsAllDataMatch = False
-                            txtHdcpKey.BackColor = &HFF&
-                            txtHdcpKey.Text = "HDCP Key Œ¥…’¬º"
+                            lbTVInfo(9).BackColor = &HFF&
+                            lbTVInfo(9).Caption = "HDCP Key Œ¥…’¬º"
                         Else
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtHdcpKey.BackColor = &HFF00&
-                            txtHdcpKey.Text = "HDCP Key “—…’¬º"
+                            lbTVInfo(9).BackColor = &HFF00&
+                            lbTVInfo(9).Caption = "HDCP Key “—…’¬º"
                         End If
                     End If
                 Case 10                                    'Model Name
@@ -1852,29 +1909,29 @@ On Error GoTo Err
                     If IsModelSelected Then
                         If ModelSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtModelInfo.BackColor = &HFF00&
+                            lbTVInfo(0).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtModelInfo.BackColor = &HFF&
+                            lbTVInfo(0).BackColor = &HFF&
                         End If
                         
-                        txtModelInfo.Text = receiveData
+                        lbTVInfo(0).Caption = receiveData
                     End If
                 Case 11                                    '4K\2K
                     isCmdDataRecv = True
                     If IsResolutionSelected Then
                         If receiveData = "00" Then
-                            txtResolution.Text = "4K"
+                            lbTVInfo(10).Caption = "4K"
                         Else
-                            txtResolution.Text = "2K"
+                            lbTVInfo(10).Caption = "2K"
                         End If
                         
-                        If ResolutionSpec = txtResolution.Text Then
+                        If ResolutionSpec = lbTVInfo(10).Caption Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtResolution.BackColor = &HFF00&
+                            lbTVInfo(10).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtResolution.BackColor = &HFF&
+                            lbTVInfo(10).BackColor = &HFF&
                         End If
                     End If
                 Case 12                                    'MAC Address
@@ -1893,12 +1950,12 @@ On Error GoTo Err
                                 
                                 TxtReceive.ForeColor = &HFF&
                                 IsAllDataMatch = False
-                                txtMacAddr.BackColor = &HFF&
-                                txtMacAddr.Text = "MAC µÿ÷∑÷ÿ∏¥"
+                                lbTVInfo(11).BackColor = &HFF&
+                                lbTVInfo(11).Caption = "MAC µÿ÷∑÷ÿ∏¥"
                             Else
                                 IsAllDataMatch = True And IsAllDataMatch
-                                txtMacAddr.BackColor = &HFF00&
-                                txtMacAddr.Text = receiveData
+                                lbTVInfo(11).BackColor = &HFF00&
+                                lbTVInfo(11).Caption = receiveData
                             End If
                             
                             Set cn = Nothing
@@ -1906,8 +1963,8 @@ On Error GoTo Err
                             sqlstring = ""
                         Else
                             Log_Info "The lenght of MAC address is wrong."
-                            txtMacAddr.BackColor = &HFF&
-                            txtMacAddr.Text = receiveData
+                            lbTVInfo(11).BackColor = &HFF&
+                            lbTVInfo(11).Caption = receiveData
                         End If
                     End If
                 Case 13                                    'Channel Info
@@ -1915,52 +1972,52 @@ On Error GoTo Err
                     If IsChannelSelected Then
                         If ChannelSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtChannel.BackColor = &HFF00&
+                            lbTVInfo(5).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtChannel.BackColor = &HFF&
+                            lbTVInfo(5).BackColor = &HFF&
                         End If
                         
-                        txtChannel.Text = receiveData
+                        lbTVInfo(5).Caption = receiveData
                     End If
                 Case 14                                    'Partition Version
                     isCmdDataRecv = True
                     If IsPartitionVerSelected Then
                         If PartitionVerSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtPartitionVer.BackColor = &HFF00&
+                            lbTVInfo(12).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtPartitionVer.BackColor = &HFF&
+                            lbTVInfo(12).BackColor = &HFF&
                         End If
                         
-                        txtPartitionVer.Text = receiveData
+                        lbTVInfo(12).Caption = receiveData
                     End If
                 Case 15                                    'Area Info
                     isCmdDataRecv = True
                     If IsAreaVerSelected Then
                         If AreaSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtArea.BackColor = &HFF00&
+                            lbTVInfo(13).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtArea.BackColor = &HFF&
+                            lbTVInfo(13).BackColor = &HFF&
                         End If
                         
-                        txtArea.Text = receiveData
+                        lbTVInfo(13).Caption = receiveData
                     End If
                 Case 16                                    'Device Key
                     isCmdDataRecv = True
                     If IsDeviceKeySelected Then
                         If Len(receiveData) = 32 Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtDeviceKey.BackColor = &HFF00&
+                            lbTVInfo(14).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtDeviceKey.BackColor = &HFF&
+                            lbTVInfo(14).BackColor = &HFF&
                         End If
                         
-                        txtDeviceKey.Text = Strings.Right(receiveData, 5)
+                        lbTVInfo(14).Caption = Strings.Right(receiveData, 5)
                     End If
                 Case Else
                     Log_Info "Unknown command"
@@ -2017,25 +2074,25 @@ On Error GoTo Err
                     If IsSysVerSelected Then
                         If SysVerSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtSysVer.BackColor = &HFF00&
+                            lbTVInfo(1).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtSysVer.BackColor = &HFF&
+                            lbTVInfo(1).BackColor = &HFF&
                         End If
                         
-                        txtSysVer.Text = receiveData
+                        lbTVInfo(1).Caption = receiveData
                     End If
                 Case 3                                     'Flash Info
                     isCmdDataRecv = True
                     If IsFlashInfoSelected Then
-                        txtFlashInfo.Text = receiveData & "G"
+                        lbTVInfo(2).Caption = receiveData & "G"
                         
-                        If FlashInfoSpec = txtFlashInfo.Text Then
+                        If FlashInfoSpec = lbTVInfo(2).Caption Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtFlashInfo.BackColor = &HFF00&
+                            lbTVInfo(2).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtFlashInfo.BackColor = &HFF&
+                            lbTVInfo(2).BackColor = &HFF&
                         End If
                     End If
                 Case 4                                     'Hardware Version
@@ -2043,29 +2100,29 @@ On Error GoTo Err
                     If IsHardwareVerSelected Then
                         If HardwareVerSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtHWVer.BackColor = &HFF00&
+                            lbTVInfo(3).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtHWVer.BackColor = &HFF&
+                            lbTVInfo(3).BackColor = &HFF&
                         End If
                         
-                        txtHWVer.Text = receiveData
+                        lbTVInfo(3).Caption = receiveData
                     End If
                 Case 5                                     '3D\2D
                     isCmdDataRecv = True
                     If IsDimensionSelected Then
                         If receiveData = "00" Then
-                            txtDimension.Text = "3D"
+                            lbTVInfo(4).Caption = "3D"
                         Else
-                            txtDimension.Text = "2D"
+                            lbTVInfo(4).Caption = "2D"
                         End If
                         
-                        If DimensionSpec = txtDimension.Text Then
+                        If DimensionSpec = lbTVInfo(4).Caption Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtDimension.BackColor = &HFF00&
+                            lbTVInfo(4).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtDimension.BackColor = &HFF&
+                            lbTVInfo(4).BackColor = &HFF&
                         End If
                     End If
                 Case 6                                     '2.4G Version
@@ -2073,39 +2130,39 @@ On Error GoTo Err
                     If Is24GVerSelected Then
                         If TwoPointFourGVerSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtTwoPointFourVer.BackColor = &HFF00&
+                            lbTVInfo(6).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtTwoPointFourVer.BackColor = &HFF&
+                            lbTVInfo(6).BackColor = &HFF&
                         End If
                         
-                        txtTwoPointFourVer.Text = receiveData
+                        lbTVInfo(6).Caption = receiveData
                     End If
                 Case 7                                     'Panel Name
                     isCmdDataRecv = True
                     If IsPanelSelected Then
                         If PanelSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtPanelName.BackColor = &HFF00&
+                            lbTVInfo(7).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtPanelName.BackColor = &HFF&
+                            lbTVInfo(7).BackColor = &HFF&
                         End If
                         
-                        txtPanelName.Text = receiveData
+                        lbTVInfo(7).Caption = receiveData
                     End If
                 Case 8                                     'Carrier Info
                     isCmdDataRecv = True
                     If IsCarrierSelected Then
                         If CarrierSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtCarrier.BackColor = &HFF00&
+                            lbTVInfo(8).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtCarrier.BackColor = &HFF&
+                            lbTVInfo(8).BackColor = &HFF&
                         End If
                         
-                        txtCarrier.Text = receiveData
+                        lbTVInfo(8).Caption = receiveData
                     End If
                 Case 9                                     'HDCP Key
                     isCmdDataRecv = True
@@ -2113,12 +2170,12 @@ On Error GoTo Err
                         'HDCP Key return 0x30 means HDCP Key is NOT written.
                         If receiveData = "30" Then
                             IsAllDataMatch = False
-                            txtHdcpKey.BackColor = &HFF&
-                            txtHdcpKey.Text = "HDCP Key Œ¥…’¬º"
+                            lbTVInfo(9).BackColor = &HFF&
+                            lbTVInfo(9).Caption = "HDCP Key Œ¥…’¬º"
                         Else
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtHdcpKey.BackColor = &HFF00&
-                            txtHdcpKey.Text = "HDCP Key “—…’¬º"
+                            lbTVInfo(9).BackColor = &HFF00&
+                            lbTVInfo(9).Caption = "HDCP Key “—…’¬º"
                         End If
                     End If
                 Case 10                                    'Model Name
@@ -2126,29 +2183,29 @@ On Error GoTo Err
                     If IsModelSelected Then
                         If ModelSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtModelInfo.BackColor = &HFF00&
+                            lbTVInfo(0).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtModelInfo.BackColor = &HFF&
+                            lbTVInfo(0).BackColor = &HFF&
                         End If
                         
-                        txtModelInfo.Text = receiveData
+                        lbTVInfo(0).Caption = receiveData
                     End If
                 Case 11                                    '4K\2K
                     isCmdDataRecv = True
                     If IsResolutionSelected Then
                         If receiveData = "00" Then
-                            txtResolution.Text = "4K"
+                            lbTVInfo(10).Caption = "4K"
                         Else
-                            txtResolution.Text = "2K"
+                            lbTVInfo(10).Caption = "2K"
                         End If
                         
-                        If ResolutionSpec = txtResolution.Text Then
+                        If ResolutionSpec = lbTVInfo(10).Caption Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtResolution.BackColor = &HFF00&
+                            lbTVInfo(10).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtResolution.BackColor = &HFF&
+                            lbTVInfo(10).BackColor = &HFF&
                         End If
                     End If
                 Case 12                                    'MAC Address
@@ -2167,12 +2224,12 @@ On Error GoTo Err
                                 
                                 TxtReceive.ForeColor = &HFF&
                                 IsAllDataMatch = False
-                                txtMacAddr.BackColor = &HFF&
-                                txtMacAddr.Text = "MAC µÿ÷∑÷ÿ∏¥"
+                                lbTVInfo(11).BackColor = &HFF&
+                                lbTVInfo(11).Caption = "MAC µÿ÷∑÷ÿ∏¥"
                             Else
                                 IsAllDataMatch = True And IsAllDataMatch
-                                txtMacAddr.BackColor = &HFF00&
-                                txtMacAddr.Text = receiveData
+                                lbTVInfo(11).BackColor = &HFF00&
+                                lbTVInfo(11).Caption = receiveData
                             End If
                             
                             Set cn = Nothing
@@ -2180,8 +2237,8 @@ On Error GoTo Err
                             sqlstring = ""
                         Else
                             Log_Info "The lenght of MAC address is wrong."
-                            txtMacAddr.BackColor = &HFF&
-                            txtMacAddr.Text = receiveData
+                            lbTVInfo(11).BackColor = &HFF&
+                            lbTVInfo(11).Caption = receiveData
                         End If
                     End If
                 Case 13                                    'Channel Info
@@ -2189,52 +2246,52 @@ On Error GoTo Err
                     If IsChannelSelected Then
                         If ChannelSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtChannel.BackColor = &HFF00&
+                            lbTVInfo(5).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtChannel.BackColor = &HFF&
+                            lbTVInfo(5).BackColor = &HFF&
                         End If
                         
-                        txtChannel.Text = receiveData
+                        lbTVInfo(5).Caption = receiveData
                     End If
                 Case 14                                    'Partition Version
                     isCmdDataRecv = True
                     If IsPartitionVerSelected Then
                         If PartitionVerSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtPartitionVer.BackColor = &HFF00&
+                            lbTVInfo(12).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtPartitionVer.BackColor = &HFF&
+                            lbTVInfo(12).BackColor = &HFF&
                         End If
                         
-                        txtPartitionVer.Text = receiveData
+                        lbTVInfo(12).Caption = receiveData
                     End If
                 Case 15                                    'Area Info
                     isCmdDataRecv = True
                     If IsAreaVerSelected Then
                         If AreaSpec = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtArea.BackColor = &HFF00&
+                            lbTVInfo(13).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtArea.BackColor = &HFF&
+                            lbTVInfo(13).BackColor = &HFF&
                         End If
                         
-                        txtArea.Text = receiveData
+                        lbTVInfo(13).Caption = receiveData
                     End If
                 Case 16                                    'Device Key
                     isCmdDataRecv = True
                     If IsDeviceKeySelected Then
                         If Len(receiveData) = 32 Then
                             IsAllDataMatch = True And IsAllDataMatch
-                            txtDeviceKey.BackColor = &HFF00&
+                            lbTVInfo(14).BackColor = &HFF00&
                         Else
                             IsAllDataMatch = False
-                            txtDeviceKey.BackColor = &HFF&
+                            lbTVInfo(14).BackColor = &HFF&
                         End If
                         
-                        txtDeviceKey.Text = Strings.Right(receiveData, 5)
+                        lbTVInfo(14).Caption = Strings.Right(receiveData, 5)
                     End If
                 Case Else
                     Log_Info "Unknown command"

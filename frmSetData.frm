@@ -1,10 +1,10 @@
 VERSION 5.00
 Begin VB.Form frmSetData 
    Caption         =   "²ÎÊýÉèÖÃ"
-   ClientHeight    =   7605
+   ClientHeight    =   6630
    ClientLeft      =   6435
    ClientTop       =   3210
-   ClientWidth     =   12615
+   ClientWidth     =   11070
    BeginProperty Font 
       Name            =   "Arial Narrow"
       Size            =   18
@@ -17,8 +17,8 @@ Begin VB.Form frmSetData
    Icon            =   "frmSetData.frx":0000
    LinkTopic       =   "Form4"
    MaxButton       =   0   'False
-   ScaleHeight     =   7605
-   ScaleWidth      =   12615
+   ScaleHeight     =   6630
+   ScaleWidth      =   11070
    Begin VB.Frame Frame3 
       Caption         =   "Í¨Ñ¶Ä£Ê½"
       BeginProperty Font 
@@ -31,9 +31,9 @@ Begin VB.Form frmSetData
          Strikethrough   =   0   'False
       EndProperty
       Height          =   795
-      Left            =   7560
-      TabIndex        =   40
-      Top             =   6720
+      Left            =   7080
+      TabIndex        =   16
+      Top             =   5760
       Width           =   2055
       Begin VB.OptionButton optNetwork 
          Caption         =   "ÍøÂç"
@@ -48,7 +48,7 @@ Begin VB.Form frmSetData
          EndProperty
          Height          =   250
          Left            =   1200
-         TabIndex        =   42
+         TabIndex        =   18
          Top             =   360
          Width           =   735
       End
@@ -65,7 +65,7 @@ Begin VB.Form frmSetData
          EndProperty
          Height          =   250
          Left            =   240
-         TabIndex        =   41
+         TabIndex        =   17
          Top             =   360
          Width           =   735
       End
@@ -81,571 +81,598 @@ Begin VB.Form frmSetData
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   5700
+      Height          =   4700
       Left            =   120
       TabIndex        =   8
       Top             =   960
-      Width           =   12375
-      Begin VB.CheckBox Check15 
-         BackColor       =   &H00808080&
-         Caption         =   "Device Key"
+      Width           =   10820
+      Begin VB.TextBox txtTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00E0E0E0&
          BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   450
-         Left            =   8190
-         TabIndex        =   38
-         Top             =   4560
-         Width           =   4000
+         Height          =   400
+         Index           =   14
+         Left            =   7185
+         TabIndex        =   42
+         Text            =   "----"
+         Top             =   4140
+         Width           =   3500
       End
-      Begin VB.CheckBox Check14 
-         BackColor       =   &H00808080&
-         Caption         =   "ÇøÓò"
+      Begin VB.TextBox txtTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
          BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   450
-         Left            =   4150
-         TabIndex        =   37
-         Top             =   4560
-         Width           =   4000
+         Height          =   400
+         Index           =   13
+         Left            =   3645
+         TabIndex        =   41
+         Text            =   "None"
+         Top             =   4140
+         Width           =   3500
       End
-      Begin VB.CheckBox Check13 
+      Begin VB.TextBox txtTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   400
+         Index           =   12
+         Left            =   120
+         TabIndex        =   40
+         Text            =   "None"
+         Top             =   4140
+         Width           =   3500
+      End
+      Begin VB.CheckBox chkTitle 
          BackColor       =   &H00808080&
          Caption         =   "·ÖÇø°æ±¾"
          BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   450
+         Height          =   410
+         Index           =   12
          Left            =   120
-         TabIndex        =   36
-         Top             =   4560
-         Width           =   4000
+         TabIndex        =   39
+         Top             =   3720
+         Width           =   3500
       End
-      Begin VB.CheckBox Check12 
+      Begin VB.CheckBox chkTitle 
          BackColor       =   &H00808080&
-         Caption         =   "MAC µØÖ·"
+         Caption         =   "ÇøÓò"
          BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   450
-         Left            =   8190
-         TabIndex        =   35
-         Top             =   3480
-         Width           =   4000
+         Height          =   410
+         Index           =   13
+         Left            =   3645
+         TabIndex        =   38
+         Top             =   3720
+         Width           =   3500
       End
-      Begin VB.CheckBox Check11 
+      Begin VB.CheckBox chkTitle 
+         BackColor       =   &H00808080&
+         Caption         =   "Device Key"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   410
+         Index           =   14
+         Left            =   7185
+         TabIndex        =   37
+         Top             =   3720
+         Width           =   3500
+      End
+      Begin VB.TextBox txtTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00E0E0E0&
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   400
+         Index           =   11
+         Left            =   7185
+         TabIndex        =   36
+         Text            =   "----"
+         Top             =   3270
+         Width           =   3500
+      End
+      Begin VB.TextBox txtTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   400
+         Index           =   10
+         Left            =   3645
+         TabIndex        =   35
+         Text            =   "None"
+         Top             =   3270
+         Width           =   3500
+      End
+      Begin VB.TextBox txtTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00E0E0E0&
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   400
+         Index           =   9
+         Left            =   120
+         TabIndex        =   34
+         Text            =   "----"
+         Top             =   3270
+         Width           =   3500
+      End
+      Begin VB.CheckBox chkTitle 
+         BackColor       =   &H00808080&
+         Caption         =   "HDCP Key"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   410
+         Index           =   9
+         Left            =   120
+         TabIndex        =   33
+         Top             =   2850
+         Width           =   3500
+      End
+      Begin VB.CheckBox chkTitle 
          BackColor       =   &H00808080&
          Caption         =   "4K/2K"
          BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   450
-         Left            =   4150
-         TabIndex        =   34
-         Top             =   3480
-         Width           =   4000
-      End
-      Begin VB.CheckBox Check10 
-         BackColor       =   &H00808080&
-         Caption         =   "HDCP"
-         BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   450
-         Left            =   120
-         TabIndex        =   33
-         Top             =   3480
-         Width           =   4000
-      End
-      Begin VB.CheckBox Check9 
-         BackColor       =   &H00808080&
-         Caption         =   "²¥¿ØÆ½Ì¨"
-         BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   450
-         Left            =   8190
+         Height          =   410
+         Index           =   10
+         Left            =   3645
          TabIndex        =   32
-         Top             =   2400
-         Width           =   4000
+         Top             =   2850
+         Width           =   3500
       End
-      Begin VB.CheckBox Check8 
+      Begin VB.CheckBox chkTitle 
          BackColor       =   &H00808080&
-         Caption         =   "ÆÁÐÍºÅ"
+         Caption         =   "MAC µØÖ·"
          BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   450
-         Left            =   4150
+         Height          =   410
+         Index           =   11
+         Left            =   7185
          TabIndex        =   31
-         Top             =   2400
-         Width           =   4000
+         Top             =   2850
+         Width           =   3500
       End
-      Begin VB.CheckBox Check7 
+      Begin VB.TextBox txtTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   400
+         Index           =   8
+         Left            =   7185
+         TabIndex        =   30
+         Text            =   "None"
+         Top             =   2400
+         Width           =   3500
+      End
+      Begin VB.TextBox txtTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   400
+         Index           =   7
+         Left            =   3645
+         TabIndex        =   29
+         Text            =   "None"
+         Top             =   2400
+         Width           =   3500
+      End
+      Begin VB.TextBox txtTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   400
+         Index           =   6
+         Left            =   120
+         TabIndex        =   28
+         Text            =   "None"
+         Top             =   2400
+         Width           =   3500
+      End
+      Begin VB.CheckBox chkTitle 
          BackColor       =   &H00808080&
          Caption         =   "2.4G °æ±¾"
          BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   450
+         Height          =   410
+         Index           =   6
          Left            =   120
-         TabIndex        =   30
-         Top             =   2400
-         Width           =   4000
+         TabIndex        =   27
+         Top             =   1980
+         Width           =   3500
       End
-      Begin VB.CheckBox Check6 
+      Begin VB.CheckBox chkTitle 
          BackColor       =   &H00808080&
-         Caption         =   "ÇþµÀ"
+         Caption         =   "ÆÁÐÍºÅ"
          BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   450
-         Left            =   8190
-         TabIndex        =   29
-         Top             =   1320
-         Width           =   4000
+         Height          =   410
+         Index           =   7
+         Left            =   3645
+         TabIndex        =   26
+         Top             =   1980
+         Width           =   3500
       End
-      Begin VB.CheckBox Check5 
+      Begin VB.CheckBox chkTitle 
          BackColor       =   &H00808080&
-         Caption         =   "2D/3D"
+         Caption         =   "²¥¿ØÆ½Ì¨"
          BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   450
-         Left            =   4150
-         TabIndex        =   28
-         Top             =   1320
-         Width           =   4000
+         Height          =   410
+         Index           =   8
+         Left            =   7185
+         TabIndex        =   25
+         Top             =   1980
+         Width           =   3500
       End
-      Begin VB.CheckBox Check4 
+      Begin VB.TextBox txtTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   400
+         Index           =   5
+         Left            =   7185
+         TabIndex        =   24
+         Text            =   "None"
+         Top             =   1530
+         Width           =   3500
+      End
+      Begin VB.TextBox txtTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   400
+         Index           =   4
+         Left            =   3645
+         TabIndex        =   23
+         Text            =   "None"
+         Top             =   1530
+         Width           =   3500
+      End
+      Begin VB.TextBox txtTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   400
+         Index           =   3
+         Left            =   120
+         TabIndex        =   22
+         Text            =   "None"
+         Top             =   1530
+         Width           =   3500
+      End
+      Begin VB.CheckBox chkTitle 
          BackColor       =   &H00808080&
          Caption         =   "Ó²¼þ°æ±¾"
          BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   450
+         Height          =   410
+         Index           =   3
          Left            =   120
-         TabIndex        =   27
-         Top             =   1320
-         Width           =   4000
+         TabIndex        =   21
+         Top             =   1110
+         Width           =   3500
       End
-      Begin VB.CheckBox Check3 
+      Begin VB.CheckBox chkTitle 
+         BackColor       =   &H00808080&
+         Caption         =   "2D/3D"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   410
+         Index           =   4
+         Left            =   3645
+         TabIndex        =   20
+         Top             =   1110
+         Width           =   3500
+      End
+      Begin VB.CheckBox chkTitle 
+         BackColor       =   &H00808080&
+         Caption         =   "ÇþµÀ"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   410
+         Index           =   5
+         Left            =   7185
+         TabIndex        =   19
+         Top             =   1110
+         Width           =   3500
+      End
+      Begin VB.CheckBox chkTitle 
          BackColor       =   &H00808080&
          Caption         =   "Flash ÐÅÏ¢"
          BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   450
-         Left            =   8190
-         TabIndex        =   26
+         Height          =   410
+         Index           =   2
+         Left            =   7180
+         TabIndex        =   14
          Top             =   240
-         Width           =   4000
+         Width           =   3500
       End
-      Begin VB.CheckBox Check2 
+      Begin VB.CheckBox chkTitle 
          BackColor       =   &H00808080&
          Caption         =   "ÏµÍ³°æ±¾"
          BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   450
-         Left            =   4150
-         TabIndex        =   25
+         Height          =   410
+         Index           =   1
+         Left            =   3650
+         TabIndex        =   13
          Top             =   240
-         Width           =   4000
+         Width           =   3500
       End
-      Begin VB.CheckBox Check1 
+      Begin VB.CheckBox chkTitle 
          BackColor       =   &H00808080&
          Caption         =   "»úÐÍ"
          BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   450
+         Height          =   410
+         Index           =   0
          Left            =   120
-         TabIndex        =   24
-         Top             =   240
-         Width           =   4000
-      End
-      Begin VB.TextBox txtModelInfoSpec 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
-         Left            =   120
-         TabIndex        =   23
-         Text            =   "None"
-         Top             =   700
-         Width           =   4000
-      End
-      Begin VB.TextBox txtSysVerSpec 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
-         Left            =   4150
-         TabIndex        =   22
-         Text            =   "None"
-         Top             =   700
-         Width           =   4000
-      End
-      Begin VB.TextBox txtFlashInfoSpec 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
-         Left            =   8190
-         TabIndex        =   21
-         Text            =   "None"
-         Top             =   700
-         Width           =   4000
-      End
-      Begin VB.TextBox txtHWVerSpec 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
-         Left            =   120
-         TabIndex        =   20
-         Text            =   "None"
-         Top             =   1785
-         Width           =   4000
-      End
-      Begin VB.TextBox txtDimensionSpec 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
-         Left            =   4150
-         TabIndex        =   19
-         Text            =   "None"
-         Top             =   1785
-         Width           =   4000
-      End
-      Begin VB.TextBox txtChannelSpec 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
-         Left            =   8190
-         TabIndex        =   18
-         Text            =   "None"
-         Top             =   1785
-         Width           =   4000
-      End
-      Begin VB.TextBox txtPartitionVerSpec 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
-         Left            =   120
-         TabIndex        =   17
-         Text            =   "None"
-         Top             =   5025
-         Width           =   4000
-      End
-      Begin VB.TextBox txtTwoPointFourVerSpec 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
-         Left            =   120
-         TabIndex        =   16
-         Text            =   "None"
-         Top             =   2865
-         Width           =   4000
-      End
-      Begin VB.TextBox txtPanelNameSpec 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
-         Left            =   4150
-         TabIndex        =   15
-         Text            =   "None"
-         Top             =   2865
-         Width           =   4000
-      End
-      Begin VB.TextBox txtCarrierSpec 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
-         Left            =   8190
-         TabIndex        =   14
-         Text            =   "None"
-         Top             =   2865
-         Width           =   4000
-      End
-      Begin VB.TextBox txtAreaSpec 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
-         Left            =   4150
-         TabIndex        =   13
-         Text            =   "None"
-         Top             =   5025
-         Width           =   4000
-      End
-      Begin VB.TextBox txtHdcpKeySpec 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BackColor       =   &H00E0E0E0&
-         BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   540
-         Left            =   120
-         Locked          =   -1  'True
          TabIndex        =   12
-         Text            =   "----"
-         Top             =   3945
-         Width           =   4000
+         Top             =   240
+         Width           =   3500
       End
-      Begin VB.TextBox txtResolutionSpec 
+      Begin VB.TextBox txtTVInfo 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   540
-         Left            =   4150
+         Height          =   400
+         Index           =   0
+         Left            =   120
          TabIndex        =   11
          Text            =   "None"
-         Top             =   3945
-         Width           =   4000
+         Top             =   660
+         Width           =   3500
       End
-      Begin VB.TextBox txtMacAddrSpec 
+      Begin VB.TextBox txtTVInfo 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
-         BackColor       =   &H00E0E0E0&
          BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   540
-         Left            =   8190
-         Locked          =   -1  'True
+         Height          =   400
+         Index           =   1
+         Left            =   3650
          TabIndex        =   10
-         Text            =   "----"
-         Top             =   3945
-         Width           =   4000
+         Text            =   "None"
+         Top             =   660
+         Width           =   3500
       End
-      Begin VB.TextBox txtDeviceKeySpec 
+      Begin VB.TextBox txtTVInfo 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
-         BackColor       =   &H00E0E0E0&
          BeginProperty Font 
-            Name            =   "Î¢ÈíÑÅºÚ"
-            Size            =   15.75
+            Name            =   "Arial"
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   540
-         Left            =   8190
-         Locked          =   -1  'True
+         Height          =   400
+         Index           =   2
+         Left            =   7180
          TabIndex        =   9
-         Text            =   "----"
-         Top             =   5025
-         Width           =   4000
+         Text            =   "None"
+         Top             =   660
+         Width           =   3500
       End
    End
    Begin VB.Frame Frame1 
@@ -662,8 +689,8 @@ Begin VB.Form frmSetData
       Height          =   795
       Left            =   120
       TabIndex        =   4
-      Top             =   6720
-      Width           =   7335
+      Top             =   5760
+      Width           =   6855
       Begin VB.TextBox Text1 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
@@ -696,7 +723,7 @@ Begin VB.Form frmSetData
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   3810
+         Left            =   3610
          TabIndex        =   1
          Text            =   "500"
          Top             =   300
@@ -715,7 +742,7 @@ Begin VB.Form frmSetData
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   6120
+         Left            =   5720
          TabIndex        =   2
          Text            =   "1"
          Top             =   300
@@ -750,7 +777,7 @@ Begin VB.Form frmSetData
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   2400
+         Left            =   2200
          TabIndex        =   6
          Top             =   360
          Width           =   1400
@@ -767,13 +794,13 @@ Begin VB.Form frmSetData
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   5210
+         Left            =   4810
          TabIndex        =   5
          Top             =   360
          Width           =   900
       End
    End
-   Begin VB.CommandButton Command1 
+   Begin VB.CommandButton cmdSave 
       Caption         =   "±£´æ"
       BeginProperty Font 
          Name            =   "Arial"
@@ -785,15 +812,15 @@ Begin VB.Form frmSetData
          Strikethrough   =   0   'False
       EndProperty
       Height          =   435
-      Left            =   11400
+      Left            =   9840
       TabIndex        =   3
-      Top             =   6960
+      Top             =   6000
       Width           =   975
    End
    Begin VB.Label Label1 
       Caption         =   "Label1"
       BeginProperty Font 
-         Name            =   "Î¢ÈíÑÅºÚ"
+         Name            =   "Arial"
          Size            =   24
          Charset         =   0
          Weight          =   400
@@ -803,7 +830,7 @@ Begin VB.Form frmSetData
       EndProperty
       Height          =   615
       Left            =   120
-      TabIndex        =   39
+      TabIndex        =   15
       Top             =   120
       Width           =   4575
    End
@@ -828,94 +855,94 @@ Private Sub Form_Load()
     Text3.Text = rs("SN_Len")
     
     'Read the Spec data from database and show them into the TextBox
-    txtModelInfoSpec.Text = rs("ModelM")
-    txtSysVerSpec.Text = rs("SysVerM")
-    txtFlashInfoSpec.Text = rs("FlashInfoM")
-    txtHWVerSpec.Text = rs("HardwareVerM")
-    txtDimensionSpec.Text = rs("DimensionM")
-    txtChannelSpec.Text = rs("ChannelM")
-    txtTwoPointFourVerSpec.Text = rs("24GVerM")
-    txtPanelNameSpec.Text = rs("PanelM")
-    txtCarrierSpec.Text = rs("CarrierM")
-    txtResolutionSpec.Text = rs("ResolutionM")
-    txtPartitionVerSpec.Text = rs("PartitionVerM")
-    txtAreaSpec.Text = rs("AreaM")
+    txtTVInfo(0).Text = rs("ModelM")
+    txtTVInfo(1).Text = rs("SysVerM")
+    txtTVInfo(2).Text = rs("FlashInfoM")
+    txtTVInfo(3).Text = rs("HardwareVerM")
+    txtTVInfo(4).Text = rs("DimensionM")
+    txtTVInfo(5).Text = rs("ChannelM")
+    txtTVInfo(6).Text = rs("24GVerM")
+    txtTVInfo(7).Text = rs("PanelM")
+    txtTVInfo(8).Text = rs("CarrierM")
+    txtTVInfo(10).Text = rs("ResolutionM")
+    txtTVInfo(12).Text = rs("PartitionVerM")
+    txtTVInfo(13).Text = rs("AreaM")
 
     'Whether the CheckBox selected or not.
     If rs("Model") Then
-        Check1.Value = 1
+        chkTitle(0).Value = 1
     Else
-        Check1.Value = 0
+        chkTitle(0).Value = 0
     End If
     If rs("SysVer") Then
-        Check2.Value = 1
+        chkTitle(1).Value = 1
     Else
-        Check2.Value = 0
+        chkTitle(1).Value = 0
     End If
     If rs("FlashInfo") Then
-        Check3.Value = 1
+        chkTitle(2).Value = 1
     Else
-        Check3.Value = 0
+        chkTitle(2).Value = 0
     End If
     If rs("HardwareVer") Then
-        Check4.Value = 1
+        chkTitle(3).Value = 1
     Else
-        Check4.Value = 0
+        chkTitle(3).Value = 0
     End If
     If rs("Dimension") Then
-        Check5.Value = 1
+        chkTitle(4).Value = 1
     Else
-        Check5.Value = 0
+        chkTitle(4).Value = 0
     End If
     If rs("Channel") Then
-        Check6.Value = 1
+        chkTitle(5).Value = 1
     Else
-        Check6.Value = 0
+        chkTitle(5).Value = 0
     End If
     If rs("24GVer") Then
-        Check7.Value = 1
+        chkTitle(6).Value = 1
     Else
-        Check7.Value = 0
+        chkTitle(6).Value = 0
     End If
     If rs("Panel") Then
-        Check8.Value = 1
+        chkTitle(7).Value = 1
     Else
-        Check8.Value = 0
+        chkTitle(7).Value = 0
     End If
     If rs("Carrier") Then
-        Check9.Value = 1
+        chkTitle(8).Value = 1
     Else
-        Check9.Value = 0
+        chkTitle(8).Value = 0
     End If
     If rs("HDCP") Then
-        Check10.Value = 1
+        chkTitle(9).Value = 1
     Else
-        Check10.Value = 0
+        chkTitle(9).Value = 0
     End If
     If rs("Resolution") Then
-        Check11.Value = 1
+        chkTitle(10).Value = 1
     Else
-        Check11.Value = 0
+        chkTitle(10).Value = 0
     End If
     If rs("MACAddr") Then
-        Check12.Value = 1
+        chkTitle(11).Value = 1
     Else
-        Check12.Value = 0
+        chkTitle(11).Value = 0
     End If
     If rs("PartitionVer") Then
-        Check13.Value = 1
+        chkTitle(12).Value = 1
     Else
-        Check13.Value = 0
+        chkTitle(12).Value = 0
     End If
     If rs("Area") Then
-        Check14.Value = 1
+        chkTitle(13).Value = 1
     Else
-        Check14.Value = 0
+        chkTitle(13).Value = 0
     End If
     If rs("DeviceKey") Then
-        Check15.Value = 1
+        chkTitle(14).Value = 1
     Else
-        Check15.Value = 0
+        chkTitle(14).Value = 0
     End If
 
     Set rs = Nothing
@@ -924,7 +951,10 @@ Private Sub Form_Load()
 
 End Sub
 
-Private Sub Command1_Click()
+Private Sub cmdSave_Click()
+    Dim i As Integer
+
+    i = 0
 
     sqlstring = "select * from CheckItem where Mark='" & strCurrentModelName & "'"
     Executesql (sqlstring)
@@ -934,105 +964,23 @@ Private Sub Command1_Click()
     rs.Fields(2) = Val(Text2.Text)                         'Delayms
     rs.Fields(3) = Val(Text3.Text)                         'SN_Len
 
-    If Check1.Value = 1 Then                               'ModelM
-        rs.Fields(16) = True
-        rs.Fields(4) = txtModelInfoSpec.Text
-    ElseIf Check1.Value = 0 Then
-        rs.Fields(16) = False
-        'rs.Fields(4) = strChkBoxUnselected
-    End If
-    If Check2.Value = 1 Then                               'SysVerM
-        rs.Fields(17) = True
-        rs.Fields(5) = txtSysVerSpec.Text
-    ElseIf Check2.Value = 0 Then
-        rs.Fields(17) = False
-        'rs.Fields(5) = strChkBoxUnselected
-    End If
-    If Check3.Value = 1 Then                               'FlashInfoM
-        rs.Fields(18) = True
-        rs.Fields(6) = txtFlashInfoSpec.Text
-    ElseIf Check3.Value = 0 Then
-        rs.Fields(18) = False
-        'rs.Fields(6) = strChkBoxUnselected
-    End If
-    If Check4.Value = 1 Then                               'HardwareVerM
-        rs.Fields(19) = True
-        rs.Fields(7) = txtHWVerSpec.Text
-    ElseIf Check4.Value = 0 Then
-        rs.Fields(19) = False
-        'rs.Fields(7) = strChkBoxUnselected
-    End If
-    If Check5.Value = 1 Then                               'DimensionM
-        rs.Fields(20) = True
-        rs.Fields(8) = txtDimensionSpec.Text
-    ElseIf Check5.Value = 0 Then
-        rs.Fields(20) = False
-        'rs.Fields(8) = strChkBoxUnselected
-    End If
-    If Check6.Value = 1 Then                               'ChannelM
-        rs.Fields(21) = True
-        rs.Fields(9) = txtChannelSpec.Text
-    ElseIf Check6.Value = 0 Then
-        rs.Fields(21) = False
-        'rs.Fields(9) = strChkBoxUnselected
-    End If
-    If Check7.Value = 1 Then                               '24GVerM
-        rs.Fields(23) = True
-        rs.Fields(11) = txtTwoPointFourVerSpec.Text
-    ElseIf Check7.Value = 0 Then
-        rs.Fields(23) = False
-        'rs.Fields(11) = strChkBoxUnselected
-    End If
-    If Check8.Value = 1 Then                               'PanelM
-        rs.Fields(24) = True
-        rs.Fields(12) = txtPanelNameSpec.Text
-    ElseIf Check8.Value = 0 Then
-        rs.Fields(24) = False
-        'rs.Fields(12) = strChkBoxUnselected
-    End If
-    If Check9.Value = 1 Then                               'CarrierM
-        rs.Fields(25) = True
-        rs.Fields(13) = txtCarrierSpec.Text
-    ElseIf Check9.Value = 0 Then
-        rs.Fields(25) = False
-        'rs.Fields(13) = strChkBoxUnselected
-    End If
-    If Check10.Value = 1 Then                              'HDCPM
-        rs.Fields(27) = True
-    ElseIf Check10.Value = 0 Then
-        rs.Fields(27) = False
-    End If
-    If Check11.Value = 1 Then                              'ResolutionM
-        rs.Fields(28) = True
-        rs.Fields(15) = txtResolutionSpec.Text
-    ElseIf Check11.Value = 0 Then
-        rs.Fields(28) = False
-        'rs.Fields(15) = strChkBoxUnselected
-    End If
-    If Check12.Value = 1 Then                              'MACAddrM
-        rs.Fields(29) = True
-    ElseIf Check12.Value = 0 Then
-        rs.Fields(29) = False
-    End If
-    If Check13.Value = 1 Then                              'PartitionVerM
-        rs.Fields(22) = True
-        rs.Fields(10) = txtPartitionVerSpec.Text
-    ElseIf Check13.Value = 0 Then
-        rs.Fields(22) = False
-        'rs.Fields(10) = strChkBoxUnselected
-    End If
-    If Check14.Value = 1 Then                              'AreaM
-        rs.Fields(26) = True
-        rs.Fields(14) = txtAreaSpec.Text
-    ElseIf Check14.Value = 0 Then
-        rs.Fields(26) = False
-        'rs.Fields(14) = strChkBoxUnselected
-    End If
-    If Check15.Value = 1 Then                              'DeviceKeyM
-        rs.Fields(30) = True
-    ElseIf Check15.Value = 0 Then
-        rs.Fields(30) = False
-    End If
+    For i = 0 To itemNumOfTvInfo
+        If chkTitle(i).Value = 1 Then
+            rs.Fields(i + 16) = True
+            
+            If Not (i = 9 Or i = 11 Or i = 14) Then
+                If i = 10 Then
+                    rs.Fields(13) = txtTVInfo(i).Text
+                ElseIf i = 12 Or i = 13 Then
+                    rs.Fields(i + 2) = txtTVInfo(i).Text
+                Else
+                    rs.Fields(i + 4) = txtTVInfo(i).Text
+                End If
+            End If
+        ElseIf chkTitle(i).Value = 0 Then
+            rs.Fields(i + 16) = False
+        End If
+    Next i
  
     rs.Update
 
