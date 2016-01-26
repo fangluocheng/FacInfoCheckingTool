@@ -829,8 +829,10 @@ Private Sub Form_Load()
     IsStop = False
     
     If isUartMode Then
+        tbSetComPort.Enabled = True
         subInitComPort
     Else
+        tbSetComPort.Enabled = False
         subInitNetwork
     End If
     
