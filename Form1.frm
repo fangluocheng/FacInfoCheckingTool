@@ -424,7 +424,7 @@ Begin VB.Form Form1
          Top             =   700
          Width           =   4000
       End
-      Begin VB.Label Label16 
+      Begin VB.Label lbTitle 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
@@ -441,12 +441,13 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
+         Index           =   14
          Left            =   8190
          TabIndex        =   30
          Top             =   4560
          Width           =   4000
       End
-      Begin VB.Label Label15 
+      Begin VB.Label lbTitle 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
@@ -463,12 +464,13 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
+         Index           =   11
          Left            =   8190
          TabIndex        =   28
          Top             =   3480
          Width           =   4000
       End
-      Begin VB.Label Label13 
+      Begin VB.Label lbTitle 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
@@ -485,12 +487,13 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
+         Index           =   9
          Left            =   120
          TabIndex        =   27
          Top             =   3480
          Width           =   4000
       End
-      Begin VB.Label Label14 
+      Begin VB.Label lbTitle 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
@@ -507,12 +510,13 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
+         Index           =   10
          Left            =   4150
          TabIndex        =   24
          Top             =   3480
          Width           =   4000
       End
-      Begin VB.Label Label12 
+      Begin VB.Label lbTitle 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
@@ -529,12 +533,13 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
+         Index           =   13
          Left            =   4150
          TabIndex        =   22
          Top             =   4560
          Width           =   4000
       End
-      Begin VB.Label Label11 
+      Begin VB.Label lbTitle 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
@@ -551,12 +556,13 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
+         Index           =   8
          Left            =   8190
          TabIndex        =   20
          Top             =   2400
          Width           =   4000
       End
-      Begin VB.Label Label9 
+      Begin VB.Label lbTitle 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
@@ -573,12 +579,13 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
+         Index           =   6
          Left            =   120
          TabIndex        =   19
          Top             =   2400
          Width           =   4000
       End
-      Begin VB.Label Label10 
+      Begin VB.Label lbTitle 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
@@ -595,12 +602,13 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
+         Index           =   7
          Left            =   4150
          TabIndex        =   16
          Top             =   2400
          Width           =   4000
       End
-      Begin VB.Label Label8 
+      Begin VB.Label lbTitle 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
@@ -617,12 +625,13 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
+         Index           =   12
          Left            =   120
          TabIndex        =   14
          Top             =   4560
          Width           =   4000
       End
-      Begin VB.Label Label7 
+      Begin VB.Label lbTitle 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
@@ -639,12 +648,13 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
+         Index           =   5
          Left            =   8190
          TabIndex        =   12
          Top             =   1320
          Width           =   4000
       End
-      Begin VB.Label Label5 
+      Begin VB.Label lbTitle 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
@@ -661,12 +671,13 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
+         Index           =   3
          Left            =   120
          TabIndex        =   11
          Top             =   1320
          Width           =   4000
       End
-      Begin VB.Label Label6 
+      Begin VB.Label lbTitle 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
@@ -683,12 +694,13 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
+         Index           =   4
          Left            =   4150
          TabIndex        =   8
          Top             =   1320
          Width           =   4000
       End
-      Begin VB.Label Label4 
+      Begin VB.Label lbTitle 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
@@ -705,12 +717,13 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
+         Index           =   2
          Left            =   8190
          TabIndex        =   6
          Top             =   240
          Width           =   4000
       End
-      Begin VB.Label Label3 
+      Begin VB.Label lbTitle 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
@@ -727,12 +740,13 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
+         Index           =   1
          Left            =   4150
          TabIndex        =   4
          Top             =   240
          Width           =   4005
       End
-      Begin VB.Label Label2 
+      Begin VB.Label lbTitle 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
@@ -749,6 +763,7 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   450
+         Index           =   0
          Left            =   120
          TabIndex        =   2
          Top             =   240
