@@ -876,7 +876,7 @@ Dim IsAllDataMatch As Boolean
 
 Private Sub Form_Load()
     i = 0
-    SetTVCurrentComBaud = 115200
+    'SetTVCurrentComBaud = 115200
 
     StepTime = IsStepTime
     If StepTime < 500 Then

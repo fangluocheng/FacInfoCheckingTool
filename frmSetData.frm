@@ -845,6 +845,9 @@ Option Explicit
 
 
 Private Sub Form_Load()
+    Dim i As Integer
+    
+    i = 0
 
     sqlstring = "select * from CheckItem where Mark='" & strCurrentModelName & "'"
     Executesql (sqlstring)
@@ -855,95 +858,24 @@ Private Sub Form_Load()
     Text3.Text = rs("SN_Len")
     
     'Read the Spec data from database and show them into the TextBox
-    txtTVInfo(0).Text = rs("ModelM")
-    txtTVInfo(1).Text = rs("SysVerM")
-    txtTVInfo(2).Text = rs("FlashInfoM")
-    txtTVInfo(3).Text = rs("HardwareVerM")
-    txtTVInfo(4).Text = rs("DimensionM")
-    txtTVInfo(5).Text = rs("ChannelM")
-    txtTVInfo(6).Text = rs("24GVerM")
-    txtTVInfo(7).Text = rs("PanelM")
-    txtTVInfo(8).Text = rs("CarrierM")
-    txtTVInfo(10).Text = rs("ResolutionM")
-    txtTVInfo(12).Text = rs("PartitionVerM")
-    txtTVInfo(13).Text = rs("AreaM")
+    For i = 0 To (itemNumOfTvInfo - 3)
+        If i <= 8 Then
+            txtTVInfo(i).Text = rs.Fields(i + 4)
+        ElseIf i = 9 Then
+            txtTVInfo(10).Text = rs.Fields(i + 4)
+        ElseIf i > 9 Then
+            txtTVInfo(i + 2).Text = rs.Fields(i + 4)
+        End If
+    Next i
 
     'Whether the CheckBox selected or not.
-    If rs("Model") Then
-        chkTitle(0).Value = 1
-    Else
-        chkTitle(0).Value = 0
-    End If
-    If rs("SysVer") Then
-        chkTitle(1).Value = 1
-    Else
-        chkTitle(1).Value = 0
-    End If
-    If rs("FlashInfo") Then
-        chkTitle(2).Value = 1
-    Else
-        chkTitle(2).Value = 0
-    End If
-    If rs("HardwareVer") Then
-        chkTitle(3).Value = 1
-    Else
-        chkTitle(3).Value = 0
-    End If
-    If rs("Dimension") Then
-        chkTitle(4).Value = 1
-    Else
-        chkTitle(4).Value = 0
-    End If
-    If rs("Channel") Then
-        chkTitle(5).Value = 1
-    Else
-        chkTitle(5).Value = 0
-    End If
-    If rs("24GVer") Then
-        chkTitle(6).Value = 1
-    Else
-        chkTitle(6).Value = 0
-    End If
-    If rs("Panel") Then
-        chkTitle(7).Value = 1
-    Else
-        chkTitle(7).Value = 0
-    End If
-    If rs("Carrier") Then
-        chkTitle(8).Value = 1
-    Else
-        chkTitle(8).Value = 0
-    End If
-    If rs("HDCP") Then
-        chkTitle(9).Value = 1
-    Else
-        chkTitle(9).Value = 0
-    End If
-    If rs("Resolution") Then
-        chkTitle(10).Value = 1
-    Else
-        chkTitle(10).Value = 0
-    End If
-    If rs("MACAddr") Then
-        chkTitle(11).Value = 1
-    Else
-        chkTitle(11).Value = 0
-    End If
-    If rs("PartitionVer") Then
-        chkTitle(12).Value = 1
-    Else
-        chkTitle(12).Value = 0
-    End If
-    If rs("Area") Then
-        chkTitle(13).Value = 1
-    Else
-        chkTitle(13).Value = 0
-    End If
-    If rs("DeviceKey") Then
-        chkTitle(14).Value = 1
-    Else
-        chkTitle(14).Value = 0
-    End If
+    For i = 0 To itemNumOfTvInfo
+        If rs.Fields(i + 16) Then
+            chkTitle(i).Value = 1
+        Else
+            chkTitle(i).Value = 0
+        End If
+    Next i
 
     Set rs = Nothing
     Set cn = Nothing
