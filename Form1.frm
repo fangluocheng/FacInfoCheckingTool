@@ -1606,236 +1606,7 @@ On Error GoTo Err
                 End If
             Next i
             
-            Select Case cmdIdentifyNum
-                Case 0
-                    isCmdDataRecv = True
-                Case 2                                     'Model Name
-                    isCmdDataRecv = True
-                    If chkTitleFlag(0) Then
-                        If strTvInfoSpec(0) = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(0).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(0).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(0).Caption = receiveData
-                    End If
-                Case 3                                     'System Version
-                    isCmdDataRecv = True
-                    If chkTitleFlag(1) Then
-                        If strTvInfoSpec(1) = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(1).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(1).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(1).Caption = receiveData
-                    End If
-                Case 4                                     'Flash Info
-                    isCmdDataRecv = True
-                    If chkTitleFlag(2) Then
-                        lbTVInfo(2).Caption = receiveData & "G"
-                        
-                        If strTvInfoSpec(2) = lbTVInfo(2).Caption Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(2).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(2).BackColor = &HFF&
-                        End If
-                    End If
-                Case 5                                     'Hardware Version
-                    isCmdDataRecv = True
-                    If chkTitleFlag(3) Then
-                        If strTvInfoSpec(3) = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(3).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(3).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(3).Caption = receiveData
-                    End If
-                Case 6                                     '3D\2D
-                    isCmdDataRecv = True
-                    If chkTitleFlag(4) Then
-                        If receiveData = "00" Then
-                            lbTVInfo(4).Caption = "3D"
-                        Else
-                            lbTVInfo(4).Caption = "2D"
-                        End If
-                        
-                        If strTvInfoSpec(4) = lbTVInfo(4).Caption Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(4).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(4).BackColor = &HFF&
-                        End If
-                    End If
-                Case 7                                     'Channel Info
-                    isCmdDataRecv = True
-                    If chkTitleFlag(5) Then
-                        If strTvInfoSpec(5) = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(5).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(5).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(5).Caption = receiveData
-                    End If
-                Case 8                                     '2.4G Version
-                    isCmdDataRecv = True
-                    If chkTitleFlag(6) Then
-                        If strTvInfoSpec(6) = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(6).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(6).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(6).Caption = receiveData
-                    End If
-                Case 9                                     'Panel Name
-                    isCmdDataRecv = True
-                    If chkTitleFlag(7) Then
-                        If strTvInfoSpec(7) = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(7).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(7).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(7).Caption = receiveData
-                    End If
-                Case 10                                    'Carrier Info
-                    isCmdDataRecv = True
-                    If chkTitleFlag(8) Then
-                        If strTvInfoSpec(8) = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(8).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(8).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(8).Caption = receiveData
-                    End If
-                Case 11                                    'HDCP Key
-                    isCmdDataRecv = True
-                    If chkTitleFlag(9) Then
-                        'HDCP Key return 0x30 means HDCP Key is NOT written.
-                        If receiveData = "30" Then
-                            IsAllDataMatch = False
-                            lbTVInfo(9).BackColor = &HFF&
-                            lbTVInfo(9).Caption = "HDCP Key Œ¥…’¬º"
-                        Else
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(9).BackColor = &HFF00&
-                            lbTVInfo(9).Caption = "HDCP Key “—…’¬º"
-                        End If
-                    End If
-                Case 12                                    '4K\2K
-                    isCmdDataRecv = True
-                    If chkTitleFlag(10) Then
-                        If receiveData = "00" Then
-                            lbTVInfo(10).Caption = "4K"
-                        Else
-                            lbTVInfo(10).Caption = "2K"
-                        End If
-                        
-                        If strTvInfoSpec(9) = lbTVInfo(10).Caption Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(10).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(10).BackColor = &HFF&
-                        End If
-                    End If
-                Case 13                                    'MAC Address
-                    isCmdDataRecv = True
-                    If chkTitleFlag(11) Then
-                        If Len(receiveData) = 12 Then
-                            sqlstring = "select * from DataRecord where MACAddr='" & receiveData & "'"
-                            Executesql (sqlstring)
-                            
-                            If rs.RecordCount > 0 Then
-                                If rs.RecordCount = 1 Then
-                                    Log_Info "The MAC Address is the same as a TV whose SerialNO is [" & rs("SerialNO") & "]."
-                                Else
-                                    Log_Info "There are some TV whose MAC Address are the same. Please check the database file!!!"
-                                End If
-                                
-                                TxtReceive.ForeColor = &HFF&
-                                IsAllDataMatch = False
-                                lbTVInfo(11).BackColor = &HFF&
-                                lbTVInfo(11).Caption = "MAC µÿ÷∑÷ÿ∏¥"
-                            Else
-                                IsAllDataMatch = True And IsAllDataMatch
-                                lbTVInfo(11).BackColor = &HFF00&
-                                lbTVInfo(11).Caption = receiveData
-                            End If
-                            
-                            Set cn = Nothing
-                            Set rs = Nothing
-                            sqlstring = ""
-                        Else
-                            Log_Info "The lenght of MAC address is wrong."
-                            lbTVInfo(11).BackColor = &HFF&
-                            lbTVInfo(11).Caption = receiveData
-                        End If
-                    End If
-                Case 14                                    'Partition Version
-                    isCmdDataRecv = True
-                    If chkTitleFlag(12) Then
-                        If strTvInfoSpec(10) = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(12).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(12).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(12).Caption = receiveData
-                    End If
-                Case 15                                    'Area Info
-                    isCmdDataRecv = True
-                    If chkTitleFlag(13) Then
-                        If strTvInfoSpec(11) = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(13).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(13).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(13).Caption = receiveData
-                    End If
-                Case 16                                    'Device Key
-                    isCmdDataRecv = True
-                    If chkTitleFlag(14) Then
-                        If Len(receiveData) = 32 Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(14).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(14).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(14).Caption = Strings.Right(receiveData, 5)
-                    End If
-                Case Else
-                    Log_Info "Unknown command"
-            End Select
+            infoCompare cmdIdentifyNum, receiveData
         Else
             TxtReceive.Text = TxtReceive.Text & vbCrLf
             TxtReceive.SelStart = Len(TxtReceive.Text)
@@ -1890,236 +1661,7 @@ On Error GoTo Err
                 End If
             Next i
             
-            Select Case cmdIdentifyNum
-                Case 0
-                    isCmdDataRecv = True
-                Case 2                                     'Model Name
-                    isCmdDataRecv = True
-                    If chkTitleFlag(0) Then
-                        If strTvInfoSpec(0) = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(0).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(0).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(0).Caption = receiveData
-                    End If
-                Case 3                                     'System Version
-                    isCmdDataRecv = True
-                    If chkTitleFlag(1) Then
-                        If strTvInfoSpec(1) = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(1).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(1).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(1).Caption = receiveData
-                    End If
-                Case 4                                     'Flash Info
-                    isCmdDataRecv = True
-                    If chkTitleFlag(2) Then
-                        lbTVInfo(2).Caption = receiveData & "G"
-                        
-                        If strTvInfoSpec(2) = lbTVInfo(2).Caption Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(2).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(2).BackColor = &HFF&
-                        End If
-                    End If
-                Case 5                                     'Hardware Version
-                    isCmdDataRecv = True
-                    If chkTitleFlag(3) Then
-                        If strTvInfoSpec(3) = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(3).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(3).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(3).Caption = receiveData
-                    End If
-                Case 6                                     '3D\2D
-                    isCmdDataRecv = True
-                    If chkTitleFlag(4) Then
-                        If receiveData = "00" Then
-                            lbTVInfo(4).Caption = "3D"
-                        Else
-                            lbTVInfo(4).Caption = "2D"
-                        End If
-                        
-                        If strTvInfoSpec(4) = lbTVInfo(4).Caption Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(4).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(4).BackColor = &HFF&
-                        End If
-                    End If
-                Case 7                                     'Channel Info
-                    isCmdDataRecv = True
-                    If chkTitleFlag(5) Then
-                        If strTvInfoSpec(5) = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(5).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(5).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(5).Caption = receiveData
-                    End If
-                Case 8                                     '2.4G Version
-                    isCmdDataRecv = True
-                    If chkTitleFlag(6) Then
-                        If strTvInfoSpec(6) = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(6).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(6).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(6).Caption = receiveData
-                    End If
-                Case 9                                     'Panel Name
-                    isCmdDataRecv = True
-                    If chkTitleFlag(7) Then
-                        If strTvInfoSpec(7) = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(7).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(7).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(7).Caption = receiveData
-                    End If
-                Case 10                                    'Carrier Info
-                    isCmdDataRecv = True
-                    If chkTitleFlag(8) Then
-                        If strTvInfoSpec(8) = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(8).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(8).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(8).Caption = receiveData
-                    End If
-                Case 11                                    'HDCP Key
-                    isCmdDataRecv = True
-                    If chkTitleFlag(9) Then
-                        'HDCP Key return 0x30 means HDCP Key is NOT written.
-                        If receiveData = "30" Then
-                            IsAllDataMatch = False
-                            lbTVInfo(9).BackColor = &HFF&
-                            lbTVInfo(9).Caption = "HDCP Key Œ¥…’¬º"
-                        Else
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(9).BackColor = &HFF00&
-                            lbTVInfo(9).Caption = "HDCP Key “—…’¬º"
-                        End If
-                    End If
-                Case 12                                    '4K\2K
-                    isCmdDataRecv = True
-                    If chkTitleFlag(10) Then
-                        If receiveData = "00" Then
-                            lbTVInfo(10).Caption = "4K"
-                        Else
-                            lbTVInfo(10).Caption = "2K"
-                        End If
-                        
-                        If strTvInfoSpec(9) = lbTVInfo(10).Caption Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(10).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(10).BackColor = &HFF&
-                        End If
-                    End If
-                Case 13                                    'MAC Address
-                    isCmdDataRecv = True
-                    If chkTitleFlag(11) Then
-                        If Len(receiveData) = 12 Then
-                            sqlstring = "select * from DataRecord where MACAddr='" & receiveData & "'"
-                            Executesql (sqlstring)
-                            
-                            If rs.RecordCount > 0 Then
-                                If rs.RecordCount = 1 Then
-                                    Log_Info "The MAC Address is the same as a TV whose SerialNO is [" & rs("SerialNO") & "]."
-                                Else
-                                    Log_Info "There are some TV whose MAC Address are the same. Please check the database file!!!"
-                                End If
-                                
-                                TxtReceive.ForeColor = &HFF&
-                                IsAllDataMatch = False
-                                lbTVInfo(11).BackColor = &HFF&
-                                lbTVInfo(11).Caption = "MAC µÿ÷∑÷ÿ∏¥"
-                            Else
-                                IsAllDataMatch = True And IsAllDataMatch
-                                lbTVInfo(11).BackColor = &HFF00&
-                                lbTVInfo(11).Caption = receiveData
-                            End If
-                            
-                            Set cn = Nothing
-                            Set rs = Nothing
-                            sqlstring = ""
-                        Else
-                            Log_Info "The lenght of MAC address is wrong."
-                            lbTVInfo(11).BackColor = &HFF&
-                            lbTVInfo(11).Caption = receiveData
-                        End If
-                    End If
-                Case 14                                    'Partition Version
-                    isCmdDataRecv = True
-                    If chkTitleFlag(12) Then
-                        If strTvInfoSpec(10) = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(12).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(12).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(12).Caption = receiveData
-                    End If
-                Case 15                                    'Area Info
-                    isCmdDataRecv = True
-                    If chkTitleFlag(13) Then
-                        If strTvInfoSpec(11) = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(13).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(13).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(13).Caption = receiveData
-                    End If
-                Case 16                                    'Device Key
-                    isCmdDataRecv = True
-                    If chkTitleFlag(14) Then
-                        If Len(receiveData) = 32 Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(14).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(14).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(14).Caption = Strings.Right(receiveData, 5)
-                    End If
-                Case Else
-                    Log_Info "Unknown command"
-            End Select
+            infoCompare cmdIdentifyNum, receiveData
         Else
             TxtReceive.Text = TxtReceive.Text & vbCrLf
             TxtReceive.SelStart = Len(TxtReceive.Text)
@@ -2134,4 +1676,237 @@ End Sub
 Private Sub tcpClient_Connect()
     'Success to connect the TV.
     isNetworkConnected = True
+End Sub
+
+Private Sub infoCompare(cmdIdx As Integer, recvData As String)
+    Select Case cmdIdx
+        Case 0
+            isCmdDataRecv = True
+        Case 2                                             'Model Name
+            isCmdDataRecv = True
+            If chkTitleFlag(0) Then
+                If strTvInfoSpec(0) = recvData Then
+                    IsAllDataMatch = True And IsAllDataMatch
+                    lbTVInfo(0).BackColor = &HFF00&
+                Else
+                    IsAllDataMatch = False
+                    lbTVInfo(0).BackColor = &HFF&
+                End If
+                        
+                lbTVInfo(0).Caption = recvData
+            End If
+        Case 3                                     'System Version
+            isCmdDataRecv = True
+            If chkTitleFlag(1) Then
+                If strTvInfoSpec(1) = recvData Then
+                    IsAllDataMatch = True And IsAllDataMatch
+                    lbTVInfo(1).BackColor = &HFF00&
+                Else
+                    IsAllDataMatch = False
+                    lbTVInfo(1).BackColor = &HFF&
+                End If
+                        
+                lbTVInfo(1).Caption = recvData
+            End If
+        Case 4                                     'Flash Info
+            isCmdDataRecv = True
+            If chkTitleFlag(2) Then
+                lbTVInfo(2).Caption = recvData & "G"
+                        
+                If strTvInfoSpec(2) = lbTVInfo(2).Caption Then
+                    IsAllDataMatch = True And IsAllDataMatch
+                    lbTVInfo(2).BackColor = &HFF00&
+                Else
+                    IsAllDataMatch = False
+                    lbTVInfo(2).BackColor = &HFF&
+                End If
+            End If
+        Case 5                                     'Hardware Version
+            isCmdDataRecv = True
+            If chkTitleFlag(3) Then
+                If strTvInfoSpec(3) = recvData Then
+                    IsAllDataMatch = True And IsAllDataMatch
+                    lbTVInfo(3).BackColor = &HFF00&
+                Else
+                    IsAllDataMatch = False
+                    lbTVInfo(3).BackColor = &HFF&
+                End If
+                        
+                lbTVInfo(3).Caption = recvData
+            End If
+        Case 6                                     '3D\2D
+            isCmdDataRecv = True
+            If chkTitleFlag(4) Then
+                If recvData = "00" Then
+                    lbTVInfo(4).Caption = "3D"
+                Else
+                    lbTVInfo(4).Caption = "2D"
+                End If
+                        
+                If strTvInfoSpec(4) = lbTVInfo(4).Caption Then
+                    IsAllDataMatch = True And IsAllDataMatch
+                    lbTVInfo(4).BackColor = &HFF00&
+                Else
+                    IsAllDataMatch = False
+                    lbTVInfo(4).BackColor = &HFF&
+                End If
+            End If
+        Case 7                                     'Channel Info
+            isCmdDataRecv = True
+            If chkTitleFlag(5) Then
+                If strTvInfoSpec(5) = recvData Then
+                    IsAllDataMatch = True And IsAllDataMatch
+                    lbTVInfo(5).BackColor = &HFF00&
+                Else
+                    IsAllDataMatch = False
+                    lbTVInfo(5).BackColor = &HFF&
+                End If
+                        
+                lbTVInfo(5).Caption = recvData
+            End If
+        Case 8                                     '2.4G Version
+            isCmdDataRecv = True
+            If chkTitleFlag(6) Then
+                If strTvInfoSpec(6) = recvData Then
+                    IsAllDataMatch = True And IsAllDataMatch
+                    lbTVInfo(6).BackColor = &HFF00&
+                Else
+                    IsAllDataMatch = False
+                    lbTVInfo(6).BackColor = &HFF&
+                End If
+                        
+                lbTVInfo(6).Caption = recvData
+            End If
+        Case 9                                     'Panel Name
+            isCmdDataRecv = True
+            If chkTitleFlag(7) Then
+                If strTvInfoSpec(7) = recvData Then
+                    IsAllDataMatch = True And IsAllDataMatch
+                    lbTVInfo(7).BackColor = &HFF00&
+                Else
+                    IsAllDataMatch = False
+                    lbTVInfo(7).BackColor = &HFF&
+                End If
+                        
+                lbTVInfo(7).Caption = recvData
+            End If
+        Case 10                                    'Carrier Info
+            isCmdDataRecv = True
+            If chkTitleFlag(8) Then
+                If strTvInfoSpec(8) = recvData Then
+                    IsAllDataMatch = True And IsAllDataMatch
+                    lbTVInfo(8).BackColor = &HFF00&
+                Else
+                    IsAllDataMatch = False
+                    lbTVInfo(8).BackColor = &HFF&
+                End If
+                        
+                lbTVInfo(8).Caption = recvData
+            End If
+        Case 11                                    'HDCP Key
+            isCmdDataRecv = True
+            If chkTitleFlag(9) Then
+                'HDCP Key return 0x30 means HDCP Key is NOT written.
+                If recvData = "30" Then
+                    IsAllDataMatch = False
+                    lbTVInfo(9).BackColor = &HFF&
+                    lbTVInfo(9).Caption = "HDCP Key Œ¥…’¬º"
+                Else
+                    IsAllDataMatch = True And IsAllDataMatch
+                    lbTVInfo(9).BackColor = &HFF00&
+                    lbTVInfo(9).Caption = "HDCP Key “—…’¬º"
+                End If
+            End If
+        Case 12                                    '4K\2K
+            isCmdDataRecv = True
+            If chkTitleFlag(10) Then
+                If recvData = "00" Then
+                    lbTVInfo(10).Caption = "4K"
+                Else
+                    lbTVInfo(10).Caption = "2K"
+                End If
+                        
+                If strTvInfoSpec(9) = lbTVInfo(10).Caption Then
+                    IsAllDataMatch = True And IsAllDataMatch
+                    lbTVInfo(10).BackColor = &HFF00&
+                Else
+                    IsAllDataMatch = False
+                    lbTVInfo(10).BackColor = &HFF&
+                End If
+            End If
+        Case 13                                    'MAC Address
+            isCmdDataRecv = True
+            If chkTitleFlag(11) Then
+                If Len(recvData) = 12 Then
+                    sqlstring = "select * from DataRecord where MACAddr='" & recvData & "'"
+                    Executesql (sqlstring)
+                            
+                    If rs.RecordCount > 0 Then
+                        If rs.RecordCount = 1 Then
+                            Log_Info "The MAC Address is the same as a TV whose SerialNO is [" & rs("SerialNO") & "]."
+                        Else
+                            Log_Info "There are some TV whose MAC Address are the same. Please check the database file!!!"
+                        End If
+                                
+                        TxtReceive.ForeColor = &HFF&
+                        IsAllDataMatch = False
+                        lbTVInfo(11).BackColor = &HFF&
+                        lbTVInfo(11).Caption = "MAC µÿ÷∑÷ÿ∏¥"
+                    Else
+                        IsAllDataMatch = True And IsAllDataMatch
+                        lbTVInfo(11).BackColor = &HFF00&
+                        lbTVInfo(11).Caption = recvData
+                    End If
+                            
+                    Set cn = Nothing
+                    Set rs = Nothing
+                    sqlstring = ""
+                Else
+                    Log_Info "The lenght of MAC address is wrong."
+                    lbTVInfo(11).BackColor = &HFF&
+                    lbTVInfo(11).Caption = recvData
+                End If
+            End If
+        Case 14                                    'Partition Version
+            isCmdDataRecv = True
+            If chkTitleFlag(12) Then
+                If strTvInfoSpec(10) = recvData Then
+                    IsAllDataMatch = True And IsAllDataMatch
+                    lbTVInfo(12).BackColor = &HFF00&
+                Else
+                    IsAllDataMatch = False
+                    lbTVInfo(12).BackColor = &HFF&
+                End If
+                        
+                lbTVInfo(12).Caption = recvData
+            End If
+        Case 15                                    'Area Info
+            isCmdDataRecv = True
+            If chkTitleFlag(13) Then
+                If strTvInfoSpec(11) = recvData Then
+                    IsAllDataMatch = True And IsAllDataMatch
+                    lbTVInfo(13).BackColor = &HFF00&
+                Else
+                    IsAllDataMatch = False
+                    lbTVInfo(13).BackColor = &HFF&
+                End If
+                        
+                lbTVInfo(13).Caption = recvData
+            End If
+        Case 16                                    'Device Key
+            isCmdDataRecv = True
+            If chkTitleFlag(14) Then
+                If Len(recvData) = 32 Then
+                    IsAllDataMatch = True And IsAllDataMatch
+                    lbTVInfo(14).BackColor = &HFF00&
+                Else
+                    IsAllDataMatch = False
+                    lbTVInfo(14).BackColor = &HFF&
+                End If
+                        
+                lbTVInfo(14).Caption = Strings.Right(recvData, 5)
+            End If
+        Case Else
+            Log_Info "Unknown command"
+    End Select
 End Sub
