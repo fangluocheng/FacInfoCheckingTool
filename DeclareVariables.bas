@@ -8,21 +8,7 @@ Public i As Integer
 '------------------------------------------------------------------------------
 '    Variable mapping the check items in "CheckItem".
 '------------------------------------------------------------------------------
-Public IsModelSelected As Boolean
-Public IsSysVerSelected As Boolean
-Public IsFlashInfoSelected As Boolean
-Public IsHardwareVerSelected As Boolean
-Public IsDimensionSelected As Boolean
-Public IsChannelSelected As Boolean
-Public IsPartitionVerSelected As Boolean
-Public Is24GVerSelected As Boolean
-Public IsPanelSelected As Boolean
-Public IsCarrierSelected As Boolean
-Public IsAreaVerSelected As Boolean
-Public IsHDCPSelected As Boolean
-Public IsResolutionSelected As Boolean
-Public IsMACAddrSelected As Boolean
-Public IsDeviceKeySelected As Boolean
+Public chkTitleFlag(14) As Boolean
 Public isUartMode As Boolean
 Public isNetworkConnected As Boolean
 

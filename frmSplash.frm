@@ -215,21 +215,9 @@ On Error GoTo ErrExit
     IsStepTime = rs("Delayms")
     barcodeLen = rs("SN_Len")
     
-    IsModelSelected = rs("Model")
-    IsSysVerSelected = rs("SysVer")
-    IsFlashInfoSelected = rs("FlashInfo")
-    IsHardwareVerSelected = rs("HardwareVer")
-    IsDimensionSelected = rs("Dimension")
-    IsChannelSelected = rs("Channel")
-    IsPartitionVerSelected = rs("PartitionVer")
-    Is24GVerSelected = rs("24GVer")
-    IsPanelSelected = rs("Panel")
-    IsCarrierSelected = rs("Carrier")
-    IsAreaVerSelected = rs("Area")
-    IsHDCPSelected = rs("HDCP")
-    IsResolutionSelected = rs("Resolution")
-    IsMACAddrSelected = rs("MACAddr")
-    IsDeviceKeySelected = rs("DeviceKey")
+    For i = 0 To itemNumOfTvInfo
+        chkTitleFlag(i) = rs.Fields(i + 16)
+    Next i
     
     ModelSpec = rs("ModelM")
     SysVerSpec = rs("SysVerM")

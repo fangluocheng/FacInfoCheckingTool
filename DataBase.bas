@@ -9,7 +9,7 @@ Public Function Executesql(sqlstr As String)
 
     Dim strPath As String
 On Error GoTo ADOERROR
-    strPath = App.path
+    strPath = App.Path
     If Right(strPath, 1) <> "\" Then strPath = strPath & "\"
 
     Set cn = New ADODB.Connection
@@ -25,42 +25,3 @@ ADOERROR:
     MsgBox Err.Source & "------" & Err.Description
    
 End Function
-
-'Public Function Executesql3(sqlstr As String)
-
-'    Dim strPath As String
-'    Dim strSerialNo As Long
-'    Dim a, b, c, d As Long
-    
-'    a = 20
-'    b = 5
-'    c = 6
-'    d = 1
-    
-'On Error GoTo ADOERROR
-'    strPath = App.path
-'    If Right(strPath, 1) <> "\" Then strPath = strPath & "\"
-    
-'    Set cn = New ADODB.Connection
-'    Set rs = New ADODB.Recordset
-    
-'    rs.CursorLocation = adUseClient
-'    cn.ConnectionString = "provider=microsoft.jet.oledb.4.0;data source=" & strPath & "facInfoData.mdb"
-'    cn.Open
-'    rs.Open "select * from DataRecord", cn, adOpenDynamic, adLockOptimistic
-'    rs.AddNew
-
-'    rs.Fields(0) = strCurrentModelName
-'    rs.Fields(1) = strSerialNo
-'    rs.Fields(2) = b
-'    rs.Fields(3) = c
-'    rs.Fields(4) = d
-'    rs.Update
-
-'    Exit Function
-
-'ADOERROR:
-'    MsgBox Err.Source & "------" & Err.Description
-   
-'End Function
-
