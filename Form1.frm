@@ -27,7 +27,7 @@ Begin VB.Form Form1
          Name            =   "Arial"
          Size            =   9
          Charset         =   0
-         Weight          =   700
+         Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
@@ -1860,6 +1860,16 @@ On Error GoTo Err
     If (bytesTotal > 0) Then
         receiveData = ""
         tcpClient.GetData ReceiveArr, vbByte, bytesTotal
+        
+        For i = 0 To (bytesTotal - 1) Step 1
+            If (ReceiveArr(i) < 16) Then
+                receiveData = receiveData & "0" & Hex(ReceiveArr(i)) & Space(1)
+            Else
+                receiveData = receiveData & Hex(ReceiveArr(i)) & Space(1)
+            End If
+        Next i
+        
+        Log_Info receiveData
         
         If bytesTotal > 3 Then
             receiveData = ""
