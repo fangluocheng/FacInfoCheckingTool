@@ -509,7 +509,7 @@ Begin VB.Form Form1
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
          BorderStyle     =   1  'Fixed Single
-         Caption         =   "MAC 地址"
+         Caption         =   "区域"
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   14.25
@@ -532,7 +532,7 @@ Begin VB.Form Form1
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
          BorderStyle     =   1  'Fixed Single
-         Caption         =   "HDCP Key"
+         Caption         =   "分区版本"
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   14.25
@@ -578,7 +578,7 @@ Begin VB.Form Form1
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
          BorderStyle     =   1  'Fixed Single
-         Caption         =   "区域"
+         Caption         =   "MAC 地址"
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   14.25
@@ -670,7 +670,7 @@ Begin VB.Form Form1
          Appearance      =   0  'Flat
          BackColor       =   &H00808080&
          BorderStyle     =   1  'Fixed Single
-         Caption         =   "分区版本"
+         Caption         =   "HDCP Key"
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   14.25
@@ -1275,18 +1275,18 @@ RESEND_CMD_9:
 RESEND_CMD_10:
     If chkTitleFlag(9) Then
         ClearComBuf
-        READ_HDCP_KEY
+        READ_PARTITION_VER
         DelayMS StepTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
         
         If isCmdDataRecv = False Then
             If j > cmdResendTimes Then
                 j = 0
-                Log_Info "Cannot read the HDCP Key!!!"
+                Log_Info "Cannot read the partition version!!!"
                 GoTo RESEND_CMD_11
             Else
                 j = j + 1
-                Log_Info "Resend cmd READ_HDCP_KEY!!!"
+                Log_Info "Resend cmd READ_PARTITION_VER!!!"
                 GoTo RESEND_CMD_10
             End If
         Else
@@ -1321,18 +1321,18 @@ RESEND_CMD_11:
 RESEND_CMD_12:
     If chkTitleFlag(11) Then
         ClearComBuf
-        READ_MAC_ADDRESS
+        READ_AREA_INFO
         DelayMS StepTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
         
         If isCmdDataRecv = False Then
             If j > cmdResendTimes Then
                 j = 0
-                Log_Info "Cannot read the MAC Address!!!"
+                Log_Info "Cannot read the area info!!!"
                 GoTo RESEND_CMD_13
             Else
                 j = j + 1
-                Log_Info "Resend cmd READ_MAC_ADDRESS!!!"
+                Log_Info "Resend cmd READ_AREA_INFO!!!"
                 GoTo RESEND_CMD_12
             End If
         Else
@@ -1344,18 +1344,18 @@ RESEND_CMD_12:
 RESEND_CMD_13:
     If chkTitleFlag(12) Then
         ClearComBuf
-        READ_PARTITION_VER
+        READ_HDCP_KEY
         DelayMS StepTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
         
         If isCmdDataRecv = False Then
             If j > cmdResendTimes Then
                 j = 0
-                Log_Info "Cannot read the partition version!!!"
+                Log_Info "Cannot read the HDCP Key!!!"
                 GoTo RESEND_CMD_14
             Else
                 j = j + 1
-                Log_Info "Resend cmd READ_PARTITION_VER!!!"
+                Log_Info "Resend cmd READ_HDCP_KEY!!!"
                 GoTo RESEND_CMD_13
             End If
         Else
@@ -1367,18 +1367,18 @@ RESEND_CMD_13:
 RESEND_CMD_14:
     If chkTitleFlag(13) Then
         ClearComBuf
-        READ_AREA_INFO
+        READ_MAC_ADDRESS
         DelayMS StepTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
         
         If isCmdDataRecv = False Then
             If j > cmdResendTimes Then
                 j = 0
-                Log_Info "Cannot read the area info!!!"
+                Log_Info "Cannot read the MAC Address!!!"
                 GoTo RESEND_CMD_15
             Else
                 j = j + 1
-                Log_Info "Resend cmd READ_AREA_INFO!!!"
+                Log_Info "Resend cmd READ_MAC_ADDRESS!!!"
                 GoTo RESEND_CMD_14
             End If
         Else
@@ -1591,7 +1591,7 @@ On Error GoTo Err
             
             'Data starts from ReceiveArr(firstByteOfDataIdx + 3). DataLength is ReceiveArr(firstByteOfDataIdx + 2).
             For i = (firstByteOfDataIdx + 3) To ((firstByteOfDataIdx + 3) + ReceiveArr(firstByteOfDataIdx + 2) - 1) Step 1
-                If cmdIdentifyNum = 6 Or cmdIdentifyNum = 11 Or cmdIdentifyNum = 12 Or cmdIdentifyNum = 13 Then
+                If cmdIdentifyNum = 6 Or cmdIdentifyNum = 12 Or cmdIdentifyNum = 14 Or cmdIdentifyNum = 15 Then
                     If (ReceiveArr(i) < 16) Then
                         receiveData = receiveData & "0" & Hex(ReceiveArr(i))
                     Else
@@ -1646,7 +1646,7 @@ On Error GoTo Err
             receiveData = ""
             
             For i = 3 To (bytesTotal - 1) Step 1
-                If cmdIdentifyNum = 6 Or cmdIdentifyNum = 11 Or cmdIdentifyNum = 12 Or cmdIdentifyNum = 13 Then
+                If cmdIdentifyNum = 6 Or cmdIdentifyNum = 12 Or cmdIdentifyNum = 14 Or cmdIdentifyNum = 15 Then
                     If (ReceiveArr(i) < 16) Then
                         receiveData = receiveData & "0" & Hex(ReceiveArr(i))
                     Else
@@ -1803,19 +1803,18 @@ Private Sub infoCompare(cmdIdx As Integer, recvData As String)
                         
                 lbTVInfo(8).Caption = recvData
             End If
-        Case 11                                    'HDCP Key
+        Case 11                                    'Partition Version
             isCmdDataRecv = True
             If chkTitleFlag(9) Then
-                'HDCP Key return 0x30 means HDCP Key is NOT written.
-                If recvData = "30" Then
-                    IsAllDataMatch = False
-                    lbTVInfo(9).BackColor = &HFF&
-                    lbTVInfo(9).Caption = "HDCP Key 未烧录"
-                Else
+                If strTvInfoSpec(9) = recvData Then
                     IsAllDataMatch = True And IsAllDataMatch
                     lbTVInfo(9).BackColor = &HFF00&
-                    lbTVInfo(9).Caption = "HDCP Key 已烧录"
+                Else
+                    IsAllDataMatch = False
+                    lbTVInfo(9).BackColor = &HFF&
                 End If
+                        
+                lbTVInfo(9).Caption = recvData
             End If
         Case 12                                    '4K\2K
             isCmdDataRecv = True
@@ -1826,7 +1825,7 @@ Private Sub infoCompare(cmdIdx As Integer, recvData As String)
                     lbTVInfo(10).Caption = "2K"
                 End If
                         
-                If strTvInfoSpec(9) = lbTVInfo(10).Caption Then
+                If strTvInfoSpec(10) = lbTVInfo(10).Caption Then
                     IsAllDataMatch = True And IsAllDataMatch
                     lbTVInfo(10).BackColor = &HFF00&
                 Else
@@ -1834,9 +1833,36 @@ Private Sub infoCompare(cmdIdx As Integer, recvData As String)
                     lbTVInfo(10).BackColor = &HFF&
                 End If
             End If
-        Case 13                                    'MAC Address
+        Case 13                                    'Area Info
             isCmdDataRecv = True
             If chkTitleFlag(11) Then
+                If strTvInfoSpec(11) = recvData Then
+                    IsAllDataMatch = True And IsAllDataMatch
+                    lbTVInfo(11).BackColor = &HFF00&
+                Else
+                    IsAllDataMatch = False
+                    lbTVInfo(11).BackColor = &HFF&
+                End If
+                        
+                lbTVInfo(11).Caption = recvData
+            End If
+        Case 14                                    'HDCP Key
+            isCmdDataRecv = True
+            If chkTitleFlag(12) Then
+                'HDCP Key return 0x30 means HDCP Key is NOT written.
+                If recvData = "30" Then
+                    IsAllDataMatch = False
+                    lbTVInfo(12).BackColor = &HFF&
+                    lbTVInfo(12).Caption = "HDCP Key 未烧录"
+                Else
+                    IsAllDataMatch = True And IsAllDataMatch
+                    lbTVInfo(12).BackColor = &HFF00&
+                    lbTVInfo(12).Caption = "HDCP Key 已烧录"
+                End If
+            End If
+        Case 15                                    'MAC Address
+            isCmdDataRecv = True
+            If chkTitleFlag(13) Then
                 If Len(recvData) = 12 Then
                     sqlstring = "select * from DataRecord where MACAddr='" & recvData & "'"
                     Executesql (sqlstring)
@@ -1850,12 +1876,12 @@ Private Sub infoCompare(cmdIdx As Integer, recvData As String)
                                 
                         TxtReceive.ForeColor = &HFF&
                         IsAllDataMatch = False
-                        lbTVInfo(11).BackColor = &HFF&
-                        lbTVInfo(11).Caption = "MAC 地址重复"
+                        lbTVInfo(13).BackColor = &HFF&
+                        lbTVInfo(13).Caption = "MAC 地址重复"
                     Else
                         IsAllDataMatch = True And IsAllDataMatch
-                        lbTVInfo(11).BackColor = &HFF00&
-                        lbTVInfo(11).Caption = recvData
+                        lbTVInfo(13).BackColor = &HFF00&
+                        lbTVInfo(13).Caption = recvData
                     End If
                             
                     Set cn = Nothing
@@ -1863,35 +1889,9 @@ Private Sub infoCompare(cmdIdx As Integer, recvData As String)
                     sqlstring = ""
                 Else
                     Log_Info "The lenght of MAC address is wrong."
-                    lbTVInfo(11).BackColor = &HFF&
-                    lbTVInfo(11).Caption = recvData
-                End If
-            End If
-        Case 14                                    'Partition Version
-            isCmdDataRecv = True
-            If chkTitleFlag(12) Then
-                If strTvInfoSpec(10) = recvData Then
-                    IsAllDataMatch = True And IsAllDataMatch
-                    lbTVInfo(12).BackColor = &HFF00&
-                Else
-                    IsAllDataMatch = False
-                    lbTVInfo(12).BackColor = &HFF&
-                End If
-                        
-                lbTVInfo(12).Caption = recvData
-            End If
-        Case 15                                    'Area Info
-            isCmdDataRecv = True
-            If chkTitleFlag(13) Then
-                If strTvInfoSpec(11) = recvData Then
-                    IsAllDataMatch = True And IsAllDataMatch
-                    lbTVInfo(13).BackColor = &HFF00&
-                Else
-                    IsAllDataMatch = False
                     lbTVInfo(13).BackColor = &HFF&
+                    lbTVInfo(13).Caption = recvData
                 End If
-                        
-                lbTVInfo(13).Caption = recvData
             End If
         Case 16                                    'Device Key
             isCmdDataRecv = True

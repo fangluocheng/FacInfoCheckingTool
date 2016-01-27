@@ -298,23 +298,23 @@ Public Sub READ_CARRIER_INFO()
     End If
 End Sub
 
-Public Sub READ_HDCP_KEY()
+Public Sub READ_PARTITION_VER()
 
     Dim SendDataBuf(0 To 9) As Byte
     
-    '6E 51 86 01 FE 77 05 00 00 34
+    '6E 51 86 03 FE 77 13 00 00 20
     SendDataBuf(0) = &H6E
     SendDataBuf(1) = &H51
     SendDataBuf(2) = &H86
-    SendDataBuf(3) = &H1
+    SendDataBuf(3) = &H3
     SendDataBuf(4) = &HFE
     SendDataBuf(5) = &H77
-    SendDataBuf(6) = &H5
+    SendDataBuf(6) = &H13
     SendDataBuf(7) = &H0
     SendDataBuf(8) = &H0
-    SendDataBuf(9) = &H34
+    SendDataBuf(9) = &H20
     
-    Log_Info "Read HDCP key"
+    Log_Info "Read partition version(DDR)"
     cmdIdentifyNum = 11
     isCmdDataRecv = False
     
@@ -352,60 +352,6 @@ Public Sub READ_RESOLUTION_INFO()
     End If
 End Sub
 
-Public Sub READ_MAC_ADDRESS()
-
-    Dim SendDataBuf(0 To 9) As Byte
-    
-    '6E 51 86 01 FE F0 01 01 00 B6
-    SendDataBuf(0) = &H6E
-    SendDataBuf(1) = &H51
-    SendDataBuf(2) = &H86
-    SendDataBuf(3) = &H1
-    SendDataBuf(4) = &HFE
-    SendDataBuf(5) = &HF0
-    SendDataBuf(6) = &H1
-    SendDataBuf(7) = &H1
-    SendDataBuf(8) = &H0
-    SendDataBuf(9) = &HB6
-    
-    Log_Info "Read MAC address"
-    cmdIdentifyNum = 13
-    isCmdDataRecv = False
-    
-    If isUartMode Then
-        Form1.MSComm1.Output = SendDataBuf
-    Else
-        Form1.tcpClient.SendData SendDataBuf
-    End If
-End Sub
-
-Public Sub READ_PARTITION_VER()
-
-    Dim SendDataBuf(0 To 9) As Byte
-    
-    '6E 51 86 03 FE 77 13 00 00 20
-    SendDataBuf(0) = &H6E
-    SendDataBuf(1) = &H51
-    SendDataBuf(2) = &H86
-    SendDataBuf(3) = &H3
-    SendDataBuf(4) = &HFE
-    SendDataBuf(5) = &H77
-    SendDataBuf(6) = &H13
-    SendDataBuf(7) = &H0
-    SendDataBuf(8) = &H0
-    SendDataBuf(9) = &H20
-    
-    Log_Info "Read partition version(DDR)"
-    cmdIdentifyNum = 14
-    isCmdDataRecv = False
-    
-    If isUartMode Then
-        Form1.MSComm1.Output = SendDataBuf
-    Else
-        Form1.tcpClient.SendData SendDataBuf
-    End If
-End Sub
-
 Public Sub READ_AREA_INFO()
 
     Dim SendDataBuf(0 To 9) As Byte
@@ -423,6 +369,60 @@ Public Sub READ_AREA_INFO()
     SendDataBuf(9) = &H2
     
     Log_Info "Read area information"
+    cmdIdentifyNum = 13
+    isCmdDataRecv = False
+    
+    If isUartMode Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
+End Sub
+
+Public Sub READ_HDCP_KEY()
+
+    Dim SendDataBuf(0 To 9) As Byte
+    
+    '6E 51 86 01 FE 77 05 00 00 34
+    SendDataBuf(0) = &H6E
+    SendDataBuf(1) = &H51
+    SendDataBuf(2) = &H86
+    SendDataBuf(3) = &H1
+    SendDataBuf(4) = &HFE
+    SendDataBuf(5) = &H77
+    SendDataBuf(6) = &H5
+    SendDataBuf(7) = &H0
+    SendDataBuf(8) = &H0
+    SendDataBuf(9) = &H34
+    
+    Log_Info "Read HDCP key"
+    cmdIdentifyNum = 14
+    isCmdDataRecv = False
+    
+    If isUartMode Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
+End Sub
+
+Public Sub READ_MAC_ADDRESS()
+
+    Dim SendDataBuf(0 To 9) As Byte
+    
+    '6E 51 86 01 FE F0 01 01 00 B6
+    SendDataBuf(0) = &H6E
+    SendDataBuf(1) = &H51
+    SendDataBuf(2) = &H86
+    SendDataBuf(3) = &H1
+    SendDataBuf(4) = &HFE
+    SendDataBuf(5) = &HF0
+    SendDataBuf(6) = &H1
+    SendDataBuf(7) = &H1
+    SendDataBuf(8) = &H0
+    SendDataBuf(9) = &HB6
+    
+    Log_Info "Read MAC address"
     cmdIdentifyNum = 15
     isCmdDataRecv = False
     

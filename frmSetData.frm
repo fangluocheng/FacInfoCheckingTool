@@ -110,6 +110,7 @@ Begin VB.Form frmSetData
       Begin VB.TextBox txtTVInfo 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H00E0E0E0&
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   12
@@ -123,13 +124,14 @@ Begin VB.Form frmSetData
          Index           =   13
          Left            =   3645
          TabIndex        =   41
-         Text            =   "None"
+         Text            =   "----"
          Top             =   4140
          Width           =   3500
       End
       Begin VB.TextBox txtTVInfo 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BackColor       =   &H00E0E0E0&
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   12
@@ -143,13 +145,13 @@ Begin VB.Form frmSetData
          Index           =   12
          Left            =   120
          TabIndex        =   40
-         Text            =   "None"
+         Text            =   "----"
          Top             =   4140
          Width           =   3500
       End
       Begin VB.CheckBox chkTitle 
          BackColor       =   &H00808080&
-         Caption         =   "分区版本"
+         Caption         =   "HDCP Key"
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   12
@@ -168,7 +170,7 @@ Begin VB.Form frmSetData
       End
       Begin VB.CheckBox chkTitle 
          BackColor       =   &H00808080&
-         Caption         =   "区域"
+         Caption         =   "MAC 地址"
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   12
@@ -207,7 +209,6 @@ Begin VB.Form frmSetData
       Begin VB.TextBox txtTVInfo 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
-         BackColor       =   &H00E0E0E0&
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   12
@@ -221,7 +222,7 @@ Begin VB.Form frmSetData
          Index           =   11
          Left            =   7185
          TabIndex        =   36
-         Text            =   "----"
+         Text            =   "None"
          Top             =   3270
          Width           =   3500
       End
@@ -248,7 +249,6 @@ Begin VB.Form frmSetData
       Begin VB.TextBox txtTVInfo 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
-         BackColor       =   &H00E0E0E0&
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   12
@@ -262,13 +262,13 @@ Begin VB.Form frmSetData
          Index           =   9
          Left            =   120
          TabIndex        =   34
-         Text            =   "----"
+         Text            =   "None"
          Top             =   3270
          Width           =   3500
       End
       Begin VB.CheckBox chkTitle 
          BackColor       =   &H00808080&
-         Caption         =   "HDCP Key"
+         Caption         =   "分区版本"
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   12
@@ -306,7 +306,7 @@ Begin VB.Form frmSetData
       End
       Begin VB.CheckBox chkTitle 
          BackColor       =   &H00808080&
-         Caption         =   "MAC 地址"
+         Caption         =   "区域"
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   12
@@ -840,7 +840,6 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-
 Option Explicit
 
 
@@ -859,13 +858,7 @@ Private Sub Form_Load()
     
     'Read the Spec data from database and show them into the TextBox
     For i = 0 To (itemNumOfTvInfo - 3)
-        If i <= 8 Then
-            txtTVInfo(i).Text = rs.Fields(i + 4)
-        ElseIf i = 9 Then
-            txtTVInfo(10).Text = rs.Fields(i + 4)
-        ElseIf i > 9 Then
-            txtTVInfo(i + 2).Text = rs.Fields(i + 4)
-        End If
+        txtTVInfo(i).Text = rs.Fields(i + 4)
     Next i
 
     'Whether the CheckBox selected or not.
@@ -899,15 +892,8 @@ Private Sub cmdSave_Click()
     For i = 0 To itemNumOfTvInfo
         If chkTitle(i).Value = 1 Then
             rs.Fields(i + 16) = True
-            
-            If Not (i = 9 Or i = 11 Or i = 14) Then
-                If i = 10 Then
-                    rs.Fields(13) = txtTVInfo(i).Text
-                ElseIf i = 12 Or i = 13 Then
-                    rs.Fields(i + 2) = txtTVInfo(i).Text
-                Else
-                    rs.Fields(i + 4) = txtTVInfo(i).Text
-                End If
+            If i <= (itemNumOfTvInfo - 3) Then
+                rs.Fields(i + 4) = txtTVInfo(i).Text
             End If
         ElseIf chkTitle(i).Value = 0 Then
             rs.Fields(i + 16) = False
