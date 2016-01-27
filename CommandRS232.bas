@@ -55,6 +55,33 @@ Public Sub EXIT_FAC_MODE()
     End If
 End Sub
 
+Public Sub READ_MODEL_NAME()
+
+    Dim SendDataBuf(0 To 9) As Byte
+    
+    '6E 51 86 03 FE 77 15 00 00 26
+    SendDataBuf(0) = &H6E
+    SendDataBuf(1) = &H51
+    SendDataBuf(2) = &H86
+    SendDataBuf(3) = &H3
+    SendDataBuf(4) = &HFE
+    SendDataBuf(5) = &H77
+    SendDataBuf(6) = &H15
+    SendDataBuf(7) = &H0
+    SendDataBuf(8) = &H0
+    SendDataBuf(9) = &H26
+    
+    Log_Info "Read model name"
+    cmdIdentifyNum = 2
+    isCmdDataRecv = False
+    
+    If isUartMode Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
+End Sub
+
 Public Sub READ_SYS_VERSION()
 
     Dim SendDataBuf(0 To 9) As Byte
@@ -72,7 +99,7 @@ Public Sub READ_SYS_VERSION()
     SendDataBuf(9) = &HB1
     
     Log_Info "Read system version"
-    cmdIdentifyNum = 2
+    cmdIdentifyNum = 3
     isCmdDataRecv = False
     
     If isUartMode Then
@@ -99,7 +126,7 @@ Public Sub READ_FLASH_INFO()
     SendDataBuf(9) = &H3C
     
     Log_Info "Read Flash information"
-    cmdIdentifyNum = 3
+    cmdIdentifyNum = 4
     isCmdDataRecv = False
     
     If isUartMode Then
@@ -126,7 +153,7 @@ Public Sub READ_HARDWARE_VERSION()
     SendDataBuf(9) = &H25
     
     Log_Info "Read hardware version"
-    cmdIdentifyNum = 4
+    cmdIdentifyNum = 5
     isCmdDataRecv = False
 
     If isUartMode Then
@@ -153,196 +180,7 @@ Public Sub READ_DIMENSION_INFO()
     SendDataBuf(9) = &H2A
     
     Log_Info "Support 3D or not"
-    cmdIdentifyNum = 5
-    isCmdDataRecv = False
-    
-    If isUartMode Then
-        Form1.MSComm1.Output = SendDataBuf
-    Else
-        Form1.tcpClient.SendData SendDataBuf
-    End If
-End Sub
-
-Public Sub READ_24G_VERSION()
-
-    Dim SendDataBuf(0 To 9) As Byte
-    
-    '6E 51 86 03 FE 77 14 00 00 27
-    SendDataBuf(0) = &H6E
-    SendDataBuf(1) = &H51
-    SendDataBuf(2) = &H86
-    SendDataBuf(3) = &H3
-    SendDataBuf(4) = &HFE
-    SendDataBuf(5) = &H77
-    SendDataBuf(6) = &H14
-    SendDataBuf(7) = &H0
-    SendDataBuf(8) = &H0
-    SendDataBuf(9) = &H27
-    
-    Log_Info "Read 2.4G Version"
     cmdIdentifyNum = 6
-    isCmdDataRecv = False
-    
-    If isUartMode Then
-        Form1.MSComm1.Output = SendDataBuf
-    Else
-        Form1.tcpClient.SendData SendDataBuf
-    End If
-End Sub
-
-Public Sub READ_PANEL_NAME()
-
-    Dim SendDataBuf(0 To 9) As Byte
-    
-    '6E 51 86 03 FE 77 17 00 00 24
-    SendDataBuf(0) = &H6E
-    SendDataBuf(1) = &H51
-    SendDataBuf(2) = &H86
-    SendDataBuf(3) = &H3
-    SendDataBuf(4) = &HFE
-    SendDataBuf(5) = &H77
-    SendDataBuf(6) = &H17
-    SendDataBuf(7) = &H0
-    SendDataBuf(8) = &H0
-    SendDataBuf(9) = &H24
-    
-    Log_Info "Read panel name"
-    cmdIdentifyNum = 7
-    isCmdDataRecv = False
-    
-    If isUartMode Then
-        Form1.MSComm1.Output = SendDataBuf
-    Else
-        Form1.tcpClient.SendData SendDataBuf
-    End If
-End Sub
-
-Public Sub READ_CARRIER_INFO()
-
-    Dim SendDataBuf(0 To 9) As Byte
-    
-    '6E 51 86 03 FE 77 18 00 00 2B
-    SendDataBuf(0) = &H6E
-    SendDataBuf(1) = &H51
-    SendDataBuf(2) = &H86
-    SendDataBuf(3) = &H3
-    SendDataBuf(4) = &HFE
-    SendDataBuf(5) = &H77
-    SendDataBuf(6) = &H18
-    SendDataBuf(7) = &H0
-    SendDataBuf(8) = &H0
-    SendDataBuf(9) = &H2B
-    
-    Log_Info "Read carrier information"
-    cmdIdentifyNum = 8
-    isCmdDataRecv = False
-    
-    If isUartMode Then
-        Form1.MSComm1.Output = SendDataBuf
-    Else
-        Form1.tcpClient.SendData SendDataBuf
-    End If
-End Sub
-
-Public Sub READ_HDCP_KEY()
-
-    Dim SendDataBuf(0 To 9) As Byte
-    
-    '6E 51 86 01 FE 77 05 00 00 34
-    SendDataBuf(0) = &H6E
-    SendDataBuf(1) = &H51
-    SendDataBuf(2) = &H86
-    SendDataBuf(3) = &H1
-    SendDataBuf(4) = &HFE
-    SendDataBuf(5) = &H77
-    SendDataBuf(6) = &H5
-    SendDataBuf(7) = &H0
-    SendDataBuf(8) = &H0
-    SendDataBuf(9) = &H34
-    
-    Log_Info "Read HDCP key"
-    cmdIdentifyNum = 9
-    isCmdDataRecv = False
-    
-    If isUartMode Then
-        Form1.MSComm1.Output = SendDataBuf
-    Else
-        Form1.tcpClient.SendData SendDataBuf
-    End If
-End Sub
-
-Public Sub READ_MODEL_NAME()
-
-    Dim SendDataBuf(0 To 9) As Byte
-    
-    '6E 51 86 03 FE 77 15 00 00 26
-    SendDataBuf(0) = &H6E
-    SendDataBuf(1) = &H51
-    SendDataBuf(2) = &H86
-    SendDataBuf(3) = &H3
-    SendDataBuf(4) = &HFE
-    SendDataBuf(5) = &H77
-    SendDataBuf(6) = &H15
-    SendDataBuf(7) = &H0
-    SendDataBuf(8) = &H0
-    SendDataBuf(9) = &H26
-    
-    Log_Info "Read model name"
-    cmdIdentifyNum = 10
-    isCmdDataRecv = False
-    
-    If isUartMode Then
-        Form1.MSComm1.Output = SendDataBuf
-    Else
-        Form1.tcpClient.SendData SendDataBuf
-    End If
-End Sub
-
-Public Sub READ_RESOLUTION_INFO()
-
-    Dim SendDataBuf(0 To 9) As Byte
-    
-    '6E 51 86 03 FE 77 20 00 00 13
-    SendDataBuf(0) = &H6E
-    SendDataBuf(1) = &H51
-    SendDataBuf(2) = &H86
-    SendDataBuf(3) = &H3
-    SendDataBuf(4) = &HFE
-    SendDataBuf(5) = &H77
-    SendDataBuf(6) = &H20
-    SendDataBuf(7) = &H0
-    SendDataBuf(8) = &H0
-    SendDataBuf(9) = &H13
-    
-    Log_Info "Support 4K or 2K"
-    cmdIdentifyNum = 11
-    isCmdDataRecv = False
-    
-    If isUartMode Then
-        Form1.MSComm1.Output = SendDataBuf
-    Else
-        Form1.tcpClient.SendData SendDataBuf
-    End If
-End Sub
-
-Public Sub READ_MAC_ADDRESS()
-
-    Dim SendDataBuf(0 To 9) As Byte
-    
-    '6E 51 86 01 FE F0 01 01 00 B6
-    SendDataBuf(0) = &H6E
-    SendDataBuf(1) = &H51
-    SendDataBuf(2) = &H86
-    SendDataBuf(3) = &H1
-    SendDataBuf(4) = &HFE
-    SendDataBuf(5) = &HF0
-    SendDataBuf(6) = &H1
-    SendDataBuf(7) = &H1
-    SendDataBuf(8) = &H0
-    SendDataBuf(9) = &HB6
-    
-    Log_Info "Read MAC address"
-    cmdIdentifyNum = 12
     isCmdDataRecv = False
     
     If isUartMode Then
@@ -369,6 +207,168 @@ Public Sub READ_CHANNEL_INFO()
     SendDataBuf(9) = &H3
     
     Log_Info "Read channel information"
+    cmdIdentifyNum = 7
+    isCmdDataRecv = False
+    
+    If isUartMode Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
+End Sub
+
+Public Sub READ_24G_VERSION()
+
+    Dim SendDataBuf(0 To 9) As Byte
+    
+    '6E 51 86 03 FE 77 14 00 00 27
+    SendDataBuf(0) = &H6E
+    SendDataBuf(1) = &H51
+    SendDataBuf(2) = &H86
+    SendDataBuf(3) = &H3
+    SendDataBuf(4) = &HFE
+    SendDataBuf(5) = &H77
+    SendDataBuf(6) = &H14
+    SendDataBuf(7) = &H0
+    SendDataBuf(8) = &H0
+    SendDataBuf(9) = &H27
+    
+    Log_Info "Read 2.4G Version"
+    cmdIdentifyNum = 8
+    isCmdDataRecv = False
+    
+    If isUartMode Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
+End Sub
+
+Public Sub READ_PANEL_NAME()
+
+    Dim SendDataBuf(0 To 9) As Byte
+    
+    '6E 51 86 03 FE 77 17 00 00 24
+    SendDataBuf(0) = &H6E
+    SendDataBuf(1) = &H51
+    SendDataBuf(2) = &H86
+    SendDataBuf(3) = &H3
+    SendDataBuf(4) = &HFE
+    SendDataBuf(5) = &H77
+    SendDataBuf(6) = &H17
+    SendDataBuf(7) = &H0
+    SendDataBuf(8) = &H0
+    SendDataBuf(9) = &H24
+    
+    Log_Info "Read panel name"
+    cmdIdentifyNum = 9
+    isCmdDataRecv = False
+    
+    If isUartMode Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
+End Sub
+
+Public Sub READ_CARRIER_INFO()
+
+    Dim SendDataBuf(0 To 9) As Byte
+    
+    '6E 51 86 03 FE 77 18 00 00 2B
+    SendDataBuf(0) = &H6E
+    SendDataBuf(1) = &H51
+    SendDataBuf(2) = &H86
+    SendDataBuf(3) = &H3
+    SendDataBuf(4) = &HFE
+    SendDataBuf(5) = &H77
+    SendDataBuf(6) = &H18
+    SendDataBuf(7) = &H0
+    SendDataBuf(8) = &H0
+    SendDataBuf(9) = &H2B
+    
+    Log_Info "Read carrier information"
+    cmdIdentifyNum = 10
+    isCmdDataRecv = False
+    
+    If isUartMode Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
+End Sub
+
+Public Sub READ_HDCP_KEY()
+
+    Dim SendDataBuf(0 To 9) As Byte
+    
+    '6E 51 86 01 FE 77 05 00 00 34
+    SendDataBuf(0) = &H6E
+    SendDataBuf(1) = &H51
+    SendDataBuf(2) = &H86
+    SendDataBuf(3) = &H1
+    SendDataBuf(4) = &HFE
+    SendDataBuf(5) = &H77
+    SendDataBuf(6) = &H5
+    SendDataBuf(7) = &H0
+    SendDataBuf(8) = &H0
+    SendDataBuf(9) = &H34
+    
+    Log_Info "Read HDCP key"
+    cmdIdentifyNum = 11
+    isCmdDataRecv = False
+    
+    If isUartMode Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
+End Sub
+
+Public Sub READ_RESOLUTION_INFO()
+
+    Dim SendDataBuf(0 To 9) As Byte
+    
+    '6E 51 86 03 FE 77 20 00 00 13
+    SendDataBuf(0) = &H6E
+    SendDataBuf(1) = &H51
+    SendDataBuf(2) = &H86
+    SendDataBuf(3) = &H3
+    SendDataBuf(4) = &HFE
+    SendDataBuf(5) = &H77
+    SendDataBuf(6) = &H20
+    SendDataBuf(7) = &H0
+    SendDataBuf(8) = &H0
+    SendDataBuf(9) = &H13
+    
+    Log_Info "Support 4K or 2K"
+    cmdIdentifyNum = 12
+    isCmdDataRecv = False
+    
+    If isUartMode Then
+        Form1.MSComm1.Output = SendDataBuf
+    Else
+        Form1.tcpClient.SendData SendDataBuf
+    End If
+End Sub
+
+Public Sub READ_MAC_ADDRESS()
+
+    Dim SendDataBuf(0 To 9) As Byte
+    
+    '6E 51 86 01 FE F0 01 01 00 B6
+    SendDataBuf(0) = &H6E
+    SendDataBuf(1) = &H51
+    SendDataBuf(2) = &H86
+    SendDataBuf(3) = &H1
+    SendDataBuf(4) = &HFE
+    SendDataBuf(5) = &HF0
+    SendDataBuf(6) = &H1
+    SendDataBuf(7) = &H1
+    SendDataBuf(8) = &H0
+    SendDataBuf(9) = &HB6
+    
+    Log_Info "Read MAC address"
     cmdIdentifyNum = 13
     isCmdDataRecv = False
     

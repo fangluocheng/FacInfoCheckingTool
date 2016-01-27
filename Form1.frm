@@ -1591,7 +1591,7 @@ On Error GoTo Err
             
             'Data starts from ReceiveArr(firstByteOfDataIdx + 3). DataLength is ReceiveArr(firstByteOfDataIdx + 2).
             For i = (firstByteOfDataIdx + 3) To ((firstByteOfDataIdx + 3) + ReceiveArr(firstByteOfDataIdx + 2) - 1) Step 1
-                If cmdIdentifyNum = 5 Or cmdIdentifyNum = 9 Or cmdIdentifyNum = 11 Or cmdIdentifyNum = 12 Then
+                If cmdIdentifyNum = 6 Or cmdIdentifyNum = 11 Or cmdIdentifyNum = 12 Or cmdIdentifyNum = 13 Then
                     If (ReceiveArr(i) < 16) Then
                         receiveData = receiveData & "0" & Hex(ReceiveArr(i))
                     Else
@@ -1609,7 +1609,20 @@ On Error GoTo Err
             Select Case cmdIdentifyNum
                 Case 0
                     isCmdDataRecv = True
-                Case 2                                     'System Version
+                Case 2                                     'Model Name
+                    isCmdDataRecv = True
+                    If chkTitleFlag(0) Then
+                        If ModelSpec = receiveData Then
+                            IsAllDataMatch = True And IsAllDataMatch
+                            lbTVInfo(0).BackColor = &HFF00&
+                        Else
+                            IsAllDataMatch = False
+                            lbTVInfo(0).BackColor = &HFF&
+                        End If
+                        
+                        lbTVInfo(0).Caption = receiveData
+                    End If
+                Case 3                                     'System Version
                     isCmdDataRecv = True
                     If chkTitleFlag(1) Then
                         If SysVerSpec = receiveData Then
@@ -1622,7 +1635,7 @@ On Error GoTo Err
                         
                         lbTVInfo(1).Caption = receiveData
                     End If
-                Case 3                                     'Flash Info
+                Case 4                                     'Flash Info
                     isCmdDataRecv = True
                     If chkTitleFlag(2) Then
                         lbTVInfo(2).Caption = receiveData & "G"
@@ -1635,7 +1648,7 @@ On Error GoTo Err
                             lbTVInfo(2).BackColor = &HFF&
                         End If
                     End If
-                Case 4                                     'Hardware Version
+                Case 5                                     'Hardware Version
                     isCmdDataRecv = True
                     If chkTitleFlag(3) Then
                         If HardwareVerSpec = receiveData Then
@@ -1648,7 +1661,7 @@ On Error GoTo Err
                         
                         lbTVInfo(3).Caption = receiveData
                     End If
-                Case 5                                     '3D\2D
+                Case 6                                     '3D\2D
                     isCmdDataRecv = True
                     If chkTitleFlag(4) Then
                         If receiveData = "00" Then
@@ -1665,7 +1678,20 @@ On Error GoTo Err
                             lbTVInfo(4).BackColor = &HFF&
                         End If
                     End If
-                Case 6                                     '2.4G Version
+                Case 7                                     'Channel Info
+                    isCmdDataRecv = True
+                    If chkTitleFlag(5) Then
+                        If ChannelSpec = receiveData Then
+                            IsAllDataMatch = True And IsAllDataMatch
+                            lbTVInfo(5).BackColor = &HFF00&
+                        Else
+                            IsAllDataMatch = False
+                            lbTVInfo(5).BackColor = &HFF&
+                        End If
+                        
+                        lbTVInfo(5).Caption = receiveData
+                    End If
+                Case 8                                     '2.4G Version
                     isCmdDataRecv = True
                     If chkTitleFlag(6) Then
                         If TwoPointFourGVerSpec = receiveData Then
@@ -1678,7 +1704,7 @@ On Error GoTo Err
                         
                         lbTVInfo(6).Caption = receiveData
                     End If
-                Case 7                                     'Panel Name
+                Case 9                                     'Panel Name
                     isCmdDataRecv = True
                     If chkTitleFlag(7) Then
                         If PanelSpec = receiveData Then
@@ -1691,7 +1717,7 @@ On Error GoTo Err
                         
                         lbTVInfo(7).Caption = receiveData
                     End If
-                Case 8                                     'Carrier Info
+                Case 10                                    'Carrier Info
                     isCmdDataRecv = True
                     If chkTitleFlag(8) Then
                         If CarrierSpec = receiveData Then
@@ -1704,7 +1730,7 @@ On Error GoTo Err
                         
                         lbTVInfo(8).Caption = receiveData
                     End If
-                Case 9                                     'HDCP Key
+                Case 11                                    'HDCP Key
                     isCmdDataRecv = True
                     If chkTitleFlag(9) Then
                         'HDCP Key return 0x30 means HDCP Key is NOT written.
@@ -1718,20 +1744,7 @@ On Error GoTo Err
                             lbTVInfo(9).Caption = "HDCP Key ÒÑÉÕÂ¼"
                         End If
                     End If
-                Case 10                                    'Model Name
-                    isCmdDataRecv = True
-                    If chkTitleFlag(0) Then
-                        If ModelSpec = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(0).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(0).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(0).Caption = receiveData
-                    End If
-                Case 11                                    '4K\2K
+                Case 12                                    '4K\2K
                     isCmdDataRecv = True
                     If chkTitleFlag(10) Then
                         If receiveData = "00" Then
@@ -1748,7 +1761,7 @@ On Error GoTo Err
                             lbTVInfo(10).BackColor = &HFF&
                         End If
                     End If
-                Case 12                                    'MAC Address
+                Case 13                                    'MAC Address
                     isCmdDataRecv = True
                     If chkTitleFlag(11) Then
                         If Len(receiveData) = 12 Then
@@ -1780,19 +1793,6 @@ On Error GoTo Err
                             lbTVInfo(11).BackColor = &HFF&
                             lbTVInfo(11).Caption = receiveData
                         End If
-                    End If
-                Case 13                                    'Channel Info
-                    isCmdDataRecv = True
-                    If chkTitleFlag(5) Then
-                        If ChannelSpec = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(5).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(5).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(5).Caption = receiveData
                     End If
                 Case 14                                    'Partition Version
                     isCmdDataRecv = True
@@ -1865,7 +1865,7 @@ On Error GoTo Err
             receiveData = ""
             
             For i = 3 To (bytesTotal - 1) Step 1
-                If cmdIdentifyNum = 5 Or cmdIdentifyNum = 9 Or cmdIdentifyNum = 11 Or cmdIdentifyNum = 12 Then
+                If cmdIdentifyNum = 6 Or cmdIdentifyNum = 11 Or cmdIdentifyNum = 12 Or cmdIdentifyNum = 13 Then
                     If (ReceiveArr(i) < 16) Then
                         receiveData = receiveData & "0" & Hex(ReceiveArr(i))
                     Else
@@ -1883,7 +1883,20 @@ On Error GoTo Err
             Select Case cmdIdentifyNum
                 Case 0
                     isCmdDataRecv = True
-                Case 2                                     'System Version
+                Case 2                                     'Model Name
+                    isCmdDataRecv = True
+                    If chkTitleFlag(0) Then
+                        If ModelSpec = receiveData Then
+                            IsAllDataMatch = True And IsAllDataMatch
+                            lbTVInfo(0).BackColor = &HFF00&
+                        Else
+                            IsAllDataMatch = False
+                            lbTVInfo(0).BackColor = &HFF&
+                        End If
+                        
+                        lbTVInfo(0).Caption = receiveData
+                    End If
+                Case 3                                     'System Version
                     isCmdDataRecv = True
                     If chkTitleFlag(1) Then
                         If SysVerSpec = receiveData Then
@@ -1896,7 +1909,7 @@ On Error GoTo Err
                         
                         lbTVInfo(1).Caption = receiveData
                     End If
-                Case 3                                     'Flash Info
+                Case 4                                     'Flash Info
                     isCmdDataRecv = True
                     If chkTitleFlag(2) Then
                         lbTVInfo(2).Caption = receiveData & "G"
@@ -1909,7 +1922,7 @@ On Error GoTo Err
                             lbTVInfo(2).BackColor = &HFF&
                         End If
                     End If
-                Case 4                                     'Hardware Version
+                Case 5                                     'Hardware Version
                     isCmdDataRecv = True
                     If chkTitleFlag(3) Then
                         If HardwareVerSpec = receiveData Then
@@ -1922,7 +1935,7 @@ On Error GoTo Err
                         
                         lbTVInfo(3).Caption = receiveData
                     End If
-                Case 5                                     '3D\2D
+                Case 6                                     '3D\2D
                     isCmdDataRecv = True
                     If chkTitleFlag(4) Then
                         If receiveData = "00" Then
@@ -1939,7 +1952,20 @@ On Error GoTo Err
                             lbTVInfo(4).BackColor = &HFF&
                         End If
                     End If
-                Case 6                                     '2.4G Version
+                Case 7                                     'Channel Info
+                    isCmdDataRecv = True
+                    If chkTitleFlag(5) Then
+                        If ChannelSpec = receiveData Then
+                            IsAllDataMatch = True And IsAllDataMatch
+                            lbTVInfo(5).BackColor = &HFF00&
+                        Else
+                            IsAllDataMatch = False
+                            lbTVInfo(5).BackColor = &HFF&
+                        End If
+                        
+                        lbTVInfo(5).Caption = receiveData
+                    End If
+                Case 8                                     '2.4G Version
                     isCmdDataRecv = True
                     If chkTitleFlag(6) Then
                         If TwoPointFourGVerSpec = receiveData Then
@@ -1952,7 +1978,7 @@ On Error GoTo Err
                         
                         lbTVInfo(6).Caption = receiveData
                     End If
-                Case 7                                     'Panel Name
+                Case 9                                     'Panel Name
                     isCmdDataRecv = True
                     If chkTitleFlag(7) Then
                         If PanelSpec = receiveData Then
@@ -1965,7 +1991,7 @@ On Error GoTo Err
                         
                         lbTVInfo(7).Caption = receiveData
                     End If
-                Case 8                                     'Carrier Info
+                Case 10                                    'Carrier Info
                     isCmdDataRecv = True
                     If chkTitleFlag(8) Then
                         If CarrierSpec = receiveData Then
@@ -1978,7 +2004,7 @@ On Error GoTo Err
                         
                         lbTVInfo(8).Caption = receiveData
                     End If
-                Case 9                                     'HDCP Key
+                Case 11                                    'HDCP Key
                     isCmdDataRecv = True
                     If chkTitleFlag(9) Then
                         'HDCP Key return 0x30 means HDCP Key is NOT written.
@@ -1992,20 +2018,7 @@ On Error GoTo Err
                             lbTVInfo(9).Caption = "HDCP Key ÒÑÉÕÂ¼"
                         End If
                     End If
-                Case 10                                    'Model Name
-                    isCmdDataRecv = True
-                    If chkTitleFlag(0) Then
-                        If ModelSpec = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(0).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(0).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(0).Caption = receiveData
-                    End If
-                Case 11                                    '4K\2K
+                Case 12                                    '4K\2K
                     isCmdDataRecv = True
                     If chkTitleFlag(10) Then
                         If receiveData = "00" Then
@@ -2022,7 +2035,7 @@ On Error GoTo Err
                             lbTVInfo(10).BackColor = &HFF&
                         End If
                     End If
-                Case 12                                    'MAC Address
+                Case 13                                    'MAC Address
                     isCmdDataRecv = True
                     If chkTitleFlag(11) Then
                         If Len(receiveData) = 12 Then
@@ -2054,19 +2067,6 @@ On Error GoTo Err
                             lbTVInfo(11).BackColor = &HFF&
                             lbTVInfo(11).Caption = receiveData
                         End If
-                    End If
-                Case 13                                    'Channel Info
-                    isCmdDataRecv = True
-                    If chkTitleFlag(5) Then
-                        If ChannelSpec = receiveData Then
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(5).BackColor = &HFF00&
-                        Else
-                            IsAllDataMatch = False
-                            lbTVInfo(5).BackColor = &HFF&
-                        End If
-                        
-                        lbTVInfo(5).Caption = receiveData
                     End If
                 Case 14                                    'Partition Version
                     isCmdDataRecv = True
