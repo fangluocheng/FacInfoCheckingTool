@@ -1635,21 +1635,9 @@ Private Sub saveAllData()
         rs.Fields(0) = strCurrentModelName
         rs.Fields(1) = strSerialNo
 
-        rs.Fields(2) = lbTVInfo(0).Caption
-        rs.Fields(3) = lbTVInfo(1).Caption
-        rs.Fields(4) = lbTVInfo(2).Caption
-        rs.Fields(5) = lbTVInfo(3).Caption
-        rs.Fields(6) = lbTVInfo(4).Caption
-        rs.Fields(7) = lbTVInfo(5).Caption
-        rs.Fields(8) = lbTVInfo(12).Caption
-        rs.Fields(9) = lbTVInfo(6).Caption
-        rs.Fields(10) = lbTVInfo(7).Caption
-        rs.Fields(11) = lbTVInfo(8).Caption
-        rs.Fields(12) = lbTVInfo(13).Caption
-        rs.Fields(13) = lbTVInfo(9).Caption
-        rs.Fields(14) = lbTVInfo(10).Caption
-        rs.Fields(15) = lbTVInfo(11).Caption
-        rs.Fields(16) = lbTVInfo(14).Caption
+        For i = 0 To itemNumOfTvInfo
+            rs.Fields(i + 2) = lbTVInfo(i).Caption
+        Next i
         
         rs.Fields(17) = Date
         rs.Fields(18) = Time
