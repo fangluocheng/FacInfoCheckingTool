@@ -219,18 +219,9 @@ On Error GoTo ErrExit
         chkTitleFlag(i) = rs.Fields(i + 16)
     Next i
     
-    ModelSpec = rs("ModelM")
-    SysVerSpec = rs("SysVerM")
-    FlashInfoSpec = rs("FlashInfoM")
-    HardwareVerSpec = rs("HardwareVerM")
-    DimensionSpec = rs("DimensionM")
-    ChannelSpec = rs("ChannelM")
-    PartitionVerSpec = rs("PartitionVerM")
-    TwoPointFourGVerSpec = rs("24GVerM")
-    PanelSpec = rs("PanelM")
-    CarrierSpec = rs("CarrierM")
-    AreaSpec = rs("AreaM")
-    ResolutionSpec = rs("ResolutionM")
+    For i = 0 To 11
+        strTvInfoSpec(i) = rs.Fields(i + 4)
+    Next i
 
     Set rs = Nothing
     Set cn = Nothing

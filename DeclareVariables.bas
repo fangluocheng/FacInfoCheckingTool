@@ -18,19 +18,7 @@ Public isNetworkConnected As Boolean
 Public SetTVCurrentComBaud As Long                         'ComBaud
 Public IsStepTime As Long                                  'Delayms
 Public barcodeLen As Integer                               'SN_Len
-Public ModelSpec As String                                 'ModelM
-Public SysVerSpec As String                                'SysVerM
-Public FlashInfoSpec As String                             'FlashInfoM
-Public HardwareVerSpec As String                           'HardwareVerM
-Public DimensionSpec As String                             'DimensionM
-Public ChannelSpec As String                               'ChannelM
-Public PartitionVerSpec As String                          'PartitionVerM
-Public TwoPointFourGVerSpec As String                      '24GVerM
-Public PanelSpec As String                                 'PanelM
-Public CarrierSpec As String                               'CarrierM
-Public AreaSpec As String                                  'AreaM
-Public ResolutionSpec As String                            'ResolutionM
-
+Public strTvInfoSpec(11) As String
 
 Public IsStop As Boolean
 Public IsACK As Boolean

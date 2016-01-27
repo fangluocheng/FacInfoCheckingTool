@@ -1612,7 +1612,7 @@ On Error GoTo Err
                 Case 2                                     'Model Name
                     isCmdDataRecv = True
                     If chkTitleFlag(0) Then
-                        If ModelSpec = receiveData Then
+                        If strTvInfoSpec(0) = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(0).BackColor = &HFF00&
                         Else
@@ -1625,7 +1625,7 @@ On Error GoTo Err
                 Case 3                                     'System Version
                     isCmdDataRecv = True
                     If chkTitleFlag(1) Then
-                        If SysVerSpec = receiveData Then
+                        If strTvInfoSpec(1) = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(1).BackColor = &HFF00&
                         Else
@@ -1640,7 +1640,7 @@ On Error GoTo Err
                     If chkTitleFlag(2) Then
                         lbTVInfo(2).Caption = receiveData & "G"
                         
-                        If FlashInfoSpec = lbTVInfo(2).Caption Then
+                        If strTvInfoSpec(2) = lbTVInfo(2).Caption Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(2).BackColor = &HFF00&
                         Else
@@ -1651,7 +1651,7 @@ On Error GoTo Err
                 Case 5                                     'Hardware Version
                     isCmdDataRecv = True
                     If chkTitleFlag(3) Then
-                        If HardwareVerSpec = receiveData Then
+                        If strTvInfoSpec(3) = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(3).BackColor = &HFF00&
                         Else
@@ -1670,7 +1670,7 @@ On Error GoTo Err
                             lbTVInfo(4).Caption = "2D"
                         End If
                         
-                        If DimensionSpec = lbTVInfo(4).Caption Then
+                        If strTvInfoSpec(4) = lbTVInfo(4).Caption Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(4).BackColor = &HFF00&
                         Else
@@ -1681,7 +1681,7 @@ On Error GoTo Err
                 Case 7                                     'Channel Info
                     isCmdDataRecv = True
                     If chkTitleFlag(5) Then
-                        If ChannelSpec = receiveData Then
+                        If strTvInfoSpec(5) = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(5).BackColor = &HFF00&
                         Else
@@ -1694,7 +1694,7 @@ On Error GoTo Err
                 Case 8                                     '2.4G Version
                     isCmdDataRecv = True
                     If chkTitleFlag(6) Then
-                        If TwoPointFourGVerSpec = receiveData Then
+                        If strTvInfoSpec(6) = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(6).BackColor = &HFF00&
                         Else
@@ -1707,7 +1707,7 @@ On Error GoTo Err
                 Case 9                                     'Panel Name
                     isCmdDataRecv = True
                     If chkTitleFlag(7) Then
-                        If PanelSpec = receiveData Then
+                        If strTvInfoSpec(7) = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(7).BackColor = &HFF00&
                         Else
@@ -1720,7 +1720,7 @@ On Error GoTo Err
                 Case 10                                    'Carrier Info
                     isCmdDataRecv = True
                     If chkTitleFlag(8) Then
-                        If CarrierSpec = receiveData Then
+                        If strTvInfoSpec(8) = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(8).BackColor = &HFF00&
                         Else
@@ -1753,7 +1753,7 @@ On Error GoTo Err
                             lbTVInfo(10).Caption = "2K"
                         End If
                         
-                        If ResolutionSpec = lbTVInfo(10).Caption Then
+                        If strTvInfoSpec(9) = lbTVInfo(10).Caption Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(10).BackColor = &HFF00&
                         Else
@@ -1797,7 +1797,7 @@ On Error GoTo Err
                 Case 14                                    'Partition Version
                     isCmdDataRecv = True
                     If chkTitleFlag(12) Then
-                        If PartitionVerSpec = receiveData Then
+                        If strTvInfoSpec(10) = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(12).BackColor = &HFF00&
                         Else
@@ -1810,7 +1810,7 @@ On Error GoTo Err
                 Case 15                                    'Area Info
                     isCmdDataRecv = True
                     If chkTitleFlag(13) Then
-                        If AreaSpec = receiveData Then
+                        If strTvInfoSpec(11) = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(13).BackColor = &HFF00&
                         Else
@@ -1886,7 +1886,7 @@ On Error GoTo Err
                 Case 2                                     'Model Name
                     isCmdDataRecv = True
                     If chkTitleFlag(0) Then
-                        If ModelSpec = receiveData Then
+                        If strTvInfoSpec(0) = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(0).BackColor = &HFF00&
                         Else
@@ -1899,7 +1899,7 @@ On Error GoTo Err
                 Case 3                                     'System Version
                     isCmdDataRecv = True
                     If chkTitleFlag(1) Then
-                        If SysVerSpec = receiveData Then
+                        If strTvInfoSpec(1) = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(1).BackColor = &HFF00&
                         Else
@@ -1914,7 +1914,7 @@ On Error GoTo Err
                     If chkTitleFlag(2) Then
                         lbTVInfo(2).Caption = receiveData & "G"
                         
-                        If FlashInfoSpec = lbTVInfo(2).Caption Then
+                        If strTvInfoSpec(2) = lbTVInfo(2).Caption Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(2).BackColor = &HFF00&
                         Else
@@ -1925,7 +1925,7 @@ On Error GoTo Err
                 Case 5                                     'Hardware Version
                     isCmdDataRecv = True
                     If chkTitleFlag(3) Then
-                        If HardwareVerSpec = receiveData Then
+                        If strTvInfoSpec(3) = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(3).BackColor = &HFF00&
                         Else
@@ -1944,7 +1944,7 @@ On Error GoTo Err
                             lbTVInfo(4).Caption = "2D"
                         End If
                         
-                        If DimensionSpec = lbTVInfo(4).Caption Then
+                        If strTvInfoSpec(4) = lbTVInfo(4).Caption Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(4).BackColor = &HFF00&
                         Else
@@ -1955,7 +1955,7 @@ On Error GoTo Err
                 Case 7                                     'Channel Info
                     isCmdDataRecv = True
                     If chkTitleFlag(5) Then
-                        If ChannelSpec = receiveData Then
+                        If strTvInfoSpec(5) = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(5).BackColor = &HFF00&
                         Else
@@ -1968,7 +1968,7 @@ On Error GoTo Err
                 Case 8                                     '2.4G Version
                     isCmdDataRecv = True
                     If chkTitleFlag(6) Then
-                        If TwoPointFourGVerSpec = receiveData Then
+                        If strTvInfoSpec(6) = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(6).BackColor = &HFF00&
                         Else
@@ -1981,7 +1981,7 @@ On Error GoTo Err
                 Case 9                                     'Panel Name
                     isCmdDataRecv = True
                     If chkTitleFlag(7) Then
-                        If PanelSpec = receiveData Then
+                        If strTvInfoSpec(7) = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(7).BackColor = &HFF00&
                         Else
@@ -1994,7 +1994,7 @@ On Error GoTo Err
                 Case 10                                    'Carrier Info
                     isCmdDataRecv = True
                     If chkTitleFlag(8) Then
-                        If CarrierSpec = receiveData Then
+                        If strTvInfoSpec(8) = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(8).BackColor = &HFF00&
                         Else
@@ -2027,7 +2027,7 @@ On Error GoTo Err
                             lbTVInfo(10).Caption = "2K"
                         End If
                         
-                        If ResolutionSpec = lbTVInfo(10).Caption Then
+                        If strTvInfoSpec(9) = lbTVInfo(10).Caption Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(10).BackColor = &HFF00&
                         Else
@@ -2071,7 +2071,7 @@ On Error GoTo Err
                 Case 14                                    'Partition Version
                     isCmdDataRecv = True
                     If chkTitleFlag(12) Then
-                        If PartitionVerSpec = receiveData Then
+                        If strTvInfoSpec(10) = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(12).BackColor = &HFF00&
                         Else
@@ -2084,7 +2084,7 @@ On Error GoTo Err
                 Case 15                                    'Area Info
                     isCmdDataRecv = True
                     If chkTitleFlag(13) Then
-                        If AreaSpec = receiveData Then
+                        If strTvInfoSpec(11) = receiveData Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(13).BackColor = &HFF00&
                         Else
