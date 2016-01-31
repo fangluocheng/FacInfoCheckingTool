@@ -24,6 +24,8 @@ Public IsStop As Boolean
 Public IsACK As Boolean
 
 Public strCurrentModelName As String
+Public strDataBindingExcelFileName As String
+Public isOpenDataBindingExcelFile As Boolean
 
 Public SetTVCurrentComID As Integer
 Public SetData As Integer

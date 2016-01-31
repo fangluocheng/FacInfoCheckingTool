@@ -1,11 +1,12 @@
 VERSION 5.00
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmSplash 
    BackColor       =   &H00808080&
    BorderStyle     =   3  'Fixed Dialog
-   ClientHeight    =   2190
+   ClientHeight    =   2580
    ClientLeft      =   255
    ClientTop       =   1410
-   ClientWidth     =   4020
+   ClientWidth     =   3885
    ClipControls    =   0   'False
    ControlBox      =   0   'False
    Icon            =   "frmSplash.frx":0000
@@ -13,10 +14,35 @@ Begin VB.Form frmSplash
    LinkTopic       =   "Form2"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   2190
-   ScaleWidth      =   4020
+   ScaleHeight     =   2580
+   ScaleWidth      =   3885
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CheckBox chkOpenExcelFile 
+      BackColor       =   &H00808080&
+      Caption         =   "机卡绑定机型"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Left            =   2040
+      TabIndex        =   4
+      Top             =   2040
+      Width           =   1455
+   End
+   Begin MSComDlg.CommonDialog comDialogOpenExcelFile 
+      Left            =   360
+      Top             =   2040
+      _ExtentX        =   847
+      _ExtentY        =   847
+      _Version        =   393216
+   End
    Begin VB.ComboBox cmbModelName 
       BackColor       =   &H00E0E0E0&
       BeginProperty Font 
@@ -59,9 +85,10 @@ Begin VB.Form frmSplash
       Width           =   825
    End
    Begin VB.Label Label2 
+      Alignment       =   2  'Center
       AutoSize        =   -1  'True
       BackColor       =   &H00808080&
-      Caption         =   "工厂信息校验工具"
+      Caption         =   "乐视工厂信息校验工具"
       BeginProperty Font 
          Name            =   "宋体"
          Size            =   15.75
@@ -73,10 +100,10 @@ Begin VB.Form frmSplash
       EndProperty
       ForeColor       =   &H00000000&
       Height          =   315
-      Left            =   600
+      Left            =   120
       TabIndex        =   2
       Top             =   240
-      Width           =   2640
+      Width           =   3660
    End
    Begin VB.Label Label1 
       BackColor       =   &H00808080&
@@ -227,7 +254,21 @@ On Error GoTo ErrExit
     Set cn = Nothing
     sqlstring = ""
 
-    Form1.Show
+    If chkOpenExcelFile.Value = 0 Then
+        isOpenDataBindingExcelFile = False
+        Form1.Show
+    Else
+        isOpenDataBindingExcelFile = True
+        ' Set filters.
+        comDialogOpenExcelFile.Filter = "Excel Files 97-2003 (*.xls)|*.xls|Excel Files (*.xlsx)|*.xlsx"
+        ' Specify default filter.
+        comDialogOpenExcelFile.FilterIndex = 2
+
+        comDialogOpenExcelFile.ShowOpen
+        
+        strDataBindingExcelFileName = comDialogOpenExcelFile.FileName
+        Form1.Show
+    End If
 
     Exit Sub
     
