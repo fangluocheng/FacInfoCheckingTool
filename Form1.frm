@@ -876,7 +876,6 @@ Dim IsAllDataMatch As Boolean
 
 Private Sub Form_Load()
     i = 0
-    'SetTVCurrentComBaud = 115200
 
     StepTime = IsStepTime
     If StepTime < 500 Then
@@ -1015,8 +1014,10 @@ Private Sub subInitAfterRunning()
     txtInput.Text = ""
     txtInput.SetFocus
     
-    isNetworkConnected = False
-    tcpClient.Close
+    If isUartMode = False Then
+        isNetworkConnected = False
+        tcpClient.Close
+    End If
 End Sub
 
 Private Sub subMainProcesser()
@@ -1032,7 +1033,7 @@ On Error GoTo ErrExit
         If IsStop = True Then
             Exit Sub
         End If
-        txtInput = scanbarcode
+        txtInput.Text = scanbarcode
     Else
         'ShowError_Sys (6)
         GoTo FAIL
@@ -1489,12 +1490,12 @@ Private Sub txtInput_KeyPress(KeyAscii As Integer)
     'ASCII = 13 means "Enter" of keyboard.
     If KeyAscii = 13 Then
         IsStop = False
-        isNetworkConnected = False
         
         If txtInput.Locked = False Then
             If isUartMode = True Then
                 subMainProcesser
             Else
+                isNetworkConnected = False
                 Do
                     tcpClient.Connect
                     Call DelaySWithCmdFlag(cmdReceiveWaitS * 2, isNetworkConnected)
@@ -1683,7 +1684,7 @@ Private Sub infoCompare(cmdIdx As Integer, recvData As String)
         isCmdDataRecv = True
 
         If cmdIdx = (i + 2) Then
-            If cmdIdx = 4 Then
+            If cmdIdx = 4 Then                             '2.4G Version
                 If chkTitleFlag(2) Then
                     lbTVInfo(2).Caption = recvData & "G"
                             
@@ -1695,7 +1696,7 @@ Private Sub infoCompare(cmdIdx As Integer, recvData As String)
                         lbTVInfo(2).BackColor = &HFF&
                     End If
                 End If
-            ElseIf cmdIdx = 6 Then
+            ElseIf cmdIdx = 6 Then                         '2D or 3D
                 If chkTitleFlag(4) Then
                     If recvData = "00" Then
                         lbTVInfo(4).Caption = "3D"
@@ -1711,7 +1712,7 @@ Private Sub infoCompare(cmdIdx As Integer, recvData As String)
                         lbTVInfo(4).BackColor = &HFF&
                     End If
                 End If
-            ElseIf cmdIdx = 12 Then
+            ElseIf cmdIdx = 12 Then                        '4K or 2K
                 If chkTitleFlag(10) Then
                     If recvData = "00" Then
                         lbTVInfo(10).Caption = "4K"
@@ -1727,7 +1728,7 @@ Private Sub infoCompare(cmdIdx As Integer, recvData As String)
                         lbTVInfo(10).BackColor = &HFF&
                     End If
                 End If
-            ElseIf cmdIdx = 14 Then
+            ElseIf cmdIdx = 14 Then                        'HDCP Key
                 If chkTitleFlag(12) Then
                     'HDCP Key return 0x30 means HDCP Key is NOT written.
                     If recvData = "30" Then
@@ -1740,7 +1741,7 @@ Private Sub infoCompare(cmdIdx As Integer, recvData As String)
                         lbTVInfo(12).Caption = "HDCP Key ÒÑÉÕÂ¼"
                     End If
                 End If
-            ElseIf cmdIdx = 15 Then
+            ElseIf cmdIdx = 15 Then                        'MAC Address
                 If chkTitleFlag(13) Then
                     If Len(recvData) = 12 Then
                         sqlstring = "select * from DataRecord where MACAddr='" & recvData & "'"
@@ -1772,18 +1773,19 @@ Private Sub infoCompare(cmdIdx As Integer, recvData As String)
                         lbTVInfo(13).Caption = recvData
                     End If
                 End If
-            ElseIf cmdIdx = 16 Then
+            ElseIf cmdIdx = 16 Then                        'Device Key
                 isCmdDataRecv = True
                 If chkTitleFlag(14) Then
-                    If Len(recvData) = 32 Then
+                    lbTVInfo(14).Caption = Strings.Right(recvData, 5)
+
+                    If lbTVInfo(14).Caption = Strings.Right(Trim(txtInput.Text), 5) _
+                    And Len(Trim(txtInput.Text)) >= 5 Then
                         IsAllDataMatch = True And IsAllDataMatch
                         lbTVInfo(14).BackColor = &HFF00&
                     Else
                         IsAllDataMatch = False
                         lbTVInfo(14).BackColor = &HFF&
                     End If
-                            
-                    lbTVInfo(14).Caption = Strings.Right(recvData, 5)
                 End If
             Else
                 If chkTitleFlag(i) Then
