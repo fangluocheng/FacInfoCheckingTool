@@ -1,5 +1,5 @@
 VERSION 5.00
-Begin VB.Form Form2 
+Begin VB.Form frmComPort 
    Caption         =   "ÉèÖÃ´®¿Ú"
    ClientHeight    =   1935
    ClientLeft      =   120
@@ -82,7 +82,7 @@ Begin VB.Form Form2
       End
    End
 End
-Attribute VB_Name = "Form2"
+Attribute VB_Name = "frmComPort"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
