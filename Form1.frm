@@ -1480,7 +1480,7 @@ End Sub
 
 
 Private Sub tbSetComPort_Click()
-    Form2.Show
+    frmComPort.Show
 End Sub
 
 Private Sub txtInput_KeyPress(KeyAscii As Integer)
