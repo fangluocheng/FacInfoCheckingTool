@@ -1497,18 +1497,28 @@ Private Sub txtInput_KeyPress(KeyAscii As Integer)
             Else
                 isNetworkConnected = False
                 Do
-                    tcpClient.Connect
+                    If tcpClient.State = sckClosed Then
+                        Log_Info "TCP Connect"
+                        tcpClient.Connect
+                        txtInput.Locked = True
+                    End If
                     Call DelaySWithCmdFlag(cmdReceiveWaitS * 2, isNetworkConnected)
                 
-                    If isNetworkConnected = True Then
+                    If tcpClient.State = sckConnected Then
                         subMainProcesser
                         Exit Do
                     Else
-                        tcpClient.Close
+                        If tcpClient.State <> sckClosed Then
+                            tcpClient.Close
+                        End If
                         i = i + 1
                     End If
                     Log_Info "Re-connect to TV."
                 Loop While i <= 5
+                txtInput.Locked = False
+                txtInput.Text = ""
+                MsgBox "Please connect TV and PC by network." & vbCrLf & _
+                    "Set PC IP to 192.168.1.2"
             End If
         End If
          
@@ -1516,6 +1526,8 @@ Private Sub txtInput_KeyPress(KeyAscii As Integer)
             Exit Sub
         End If
     End If
+    Exit Sub
+    
 End Sub
 
 Private Sub vbSetSPEC_Click()
