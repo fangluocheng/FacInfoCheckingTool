@@ -1517,8 +1517,8 @@ Private Sub txtInput_KeyPress(KeyAscii As Integer)
                 Loop While i <= 5
                 txtInput.Locked = False
                 txtInput.Text = ""
-                MsgBox "Please connect TV and PC by network." & vbCrLf & _
-                    "Set PC IP to 192.168.1.2"
+                'MsgBox "Please connect TV and PC by network." & vbCrLf & _
+                '    "Set PC IP to 192.168.1.2"
             End If
         End If
          
