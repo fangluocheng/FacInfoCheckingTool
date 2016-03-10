@@ -4,7 +4,7 @@ Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
 Begin VB.Form Form1 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "工厂信息校验工具"
-   ClientHeight    =   6510
+   ClientHeight    =   7335
    ClientLeft      =   45
    ClientTop       =   735
    ClientWidth     =   14730
@@ -12,7 +12,7 @@ Begin VB.Form Form1
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   6510
+   ScaleHeight     =   7335
    ScaleWidth      =   14730
    StartUpPosition =   2  'CenterScreen
    Begin MSWinsockLib.Winsock tcpClient 
@@ -32,7 +32,7 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   6255
+      Height          =   7095
       Left            =   11040
       MultiLine       =   -1  'True
       ScrollBars      =   2  'Vertical
@@ -58,7 +58,7 @@ Begin VB.Form Form1
       Height          =   850
       Left            =   3840
       TabIndex        =   18
-      Top             =   5520
+      Top             =   6360
       Width           =   7095
       Begin VB.TextBox txtInput 
          Alignment       =   2  'Center
@@ -95,7 +95,7 @@ Begin VB.Form Form1
       Height          =   850
       Left            =   120
       TabIndex        =   17
-      Top             =   5520
+      Top             =   6360
       Width           =   3615
       Begin VB.Label lbResult 
          Alignment       =   2  'Center
@@ -131,11 +131,57 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   4450
+      Height          =   5295
       Left            =   120
       TabIndex        =   1
       Top             =   960
       Width           =   10820
+      Begin VB.Label lbTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "None"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000008&
+         Height          =   345
+         Index           =   15
+         Left            =   120
+         TabIndex        =   38
+         Top             =   4760
+         Width           =   3500
+      End
+      Begin VB.Label lbTitle 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00808080&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "Widevine Key"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   14.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000008&
+         Height          =   405
+         Index           =   15
+         Left            =   120
+         TabIndex        =   37
+         Top             =   4340
+         Width           =   3495
+      End
       Begin VB.Label lbTVInfo 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
@@ -1503,7 +1549,7 @@ Private Sub txtInput_KeyPress(KeyAscii As Integer)
                         txtInput.Locked = True
                     End If
                     Call DelaySWithCmdFlag(cmdReceiveWaitS * 2, isNetworkConnected)
-                
+
                     If tcpClient.State = sckConnected Then
                         subMainProcesser
                         Exit Do
@@ -1619,7 +1665,7 @@ On Error GoTo Err
                 End If
             Next i
             
-            infoCompare cmdIdentifyNum, receiveData
+            InfoCompare cmdIdentifyNum, receiveData
         Else
             TxtReceive.Text = TxtReceive.Text & vbCrLf
             TxtReceive.SelStart = Len(TxtReceive.Text)
@@ -1674,7 +1720,7 @@ On Error GoTo Err
                 End If
             Next i
             
-            infoCompare cmdIdentifyNum, receiveData
+            InfoCompare cmdIdentifyNum, receiveData
         Else
             TxtReceive.Text = TxtReceive.Text & vbCrLf
             TxtReceive.SelStart = Len(TxtReceive.Text)
@@ -1691,7 +1737,7 @@ Private Sub tcpClient_Connect()
     isNetworkConnected = True
 End Sub
 
-Private Sub infoCompare(cmdIdx As Integer, recvData As String)
+Private Sub InfoCompare(cmdIdx As Integer, recvData As String)
     For i = 0 To 14
         isCmdDataRecv = True
 
@@ -1761,9 +1807,10 @@ Private Sub infoCompare(cmdIdx As Integer, recvData As String)
                                 
                         If rs.RecordCount > 0 Then
                             If rs.RecordCount = 1 Then
-                                Log_Info "The MAC Address is the same as a TV whose SerialNO is [" & rs("SerialNO") & "]."
+                                Log_Clear
+                                Log_Info "请检查此电视机的条码是否为 [" & rs("SerialNO") & "]."
                             Else
-                                Log_Info "There are some TV whose MAC Address are the same. Please check the database file!!!"
+                                Log_Info "在数据库中发现有多个相同的 MAC 地址，请检查"
                             End If
                                     
                             TxtReceive.ForeColor = &HFF&

@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin VB.Form frmSetData 
    Caption         =   "参数设置"
-   ClientHeight    =   6630
+   ClientHeight    =   7470
    ClientLeft      =   6435
    ClientTop       =   3210
    ClientWidth     =   11070
@@ -17,7 +17,7 @@ Begin VB.Form frmSetData
    Icon            =   "frmSetData.frx":0000
    LinkTopic       =   "Form4"
    MaxButton       =   0   'False
-   ScaleHeight     =   6630
+   ScaleHeight     =   7470
    ScaleWidth      =   11070
    Begin VB.Frame Frame3 
       Caption         =   "通讯模式"
@@ -33,7 +33,7 @@ Begin VB.Form frmSetData
       Height          =   795
       Left            =   7080
       TabIndex        =   16
-      Top             =   5760
+      Top             =   6600
       Width           =   2055
       Begin VB.OptionButton optNetwork 
          Caption         =   "网络"
@@ -81,11 +81,51 @@ Begin VB.Form frmSetData
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   4700
+      Height          =   5535
       Left            =   120
       TabIndex        =   8
       Top             =   960
       Width           =   10820
+      Begin VB.TextBox txtTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00E0E0E0&
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   400
+         Index           =   15
+         Left            =   120
+         TabIndex        =   44
+         Text            =   "----"
+         Top             =   5010
+         Width           =   3500
+      End
+      Begin VB.CheckBox chkTitle 
+         BackColor       =   &H00808080&
+         Caption         =   "Widevine Key"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   410
+         Index           =   15
+         Left            =   120
+         TabIndex        =   43
+         Top             =   4590
+         Width           =   3500
+      End
       Begin VB.TextBox txtTVInfo 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
@@ -689,7 +729,7 @@ Begin VB.Form frmSetData
       Height          =   795
       Left            =   120
       TabIndex        =   4
-      Top             =   5760
+      Top             =   6600
       Width           =   6855
       Begin VB.TextBox Text1 
          Alignment       =   2  'Center
@@ -814,7 +854,7 @@ Begin VB.Form frmSetData
       Height          =   435
       Left            =   9840
       TabIndex        =   3
-      Top             =   6000
+      Top             =   6840
       Width           =   975
    End
    Begin VB.Label Label1 
