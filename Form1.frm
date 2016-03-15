@@ -1456,8 +1456,31 @@ RESEND_CMD_15:
             GoTo RESEND_CMD_16
         End If
     End If
-    
+
 RESEND_CMD_16:
+    If chkTitleFlag(15) Then
+        ClearComBuf
+        READ_WIDEVINE_KEY
+        DelayMS StepTime
+        Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
+        
+        If isCmdDataRecv = False Then
+            If j > cmdResendTimes Then
+                j = 0
+                Log_Info "Cannot read the Widevine key!!!"
+                GoTo RESEND_CMD_17
+            Else
+                j = j + 1
+                Log_Info "Resend cmd READ_WIDEVINE_KEY!!!"
+                GoTo RESEND_CMD_16
+            End If
+        Else
+            j = 0
+            GoTo RESEND_CMD_17
+        End If
+    End If
+
+RESEND_CMD_17:
     ClearComBuf
     'Either PASS or FAIL, send "Exit factory mode" cmd.
     EXIT_FAC_MODE
@@ -1650,7 +1673,9 @@ On Error GoTo Err
             
             'Data starts from ReceiveArr(firstByteOfDataIdx + 3). DataLength is ReceiveArr(firstByteOfDataIdx + 2).
             For i = (firstByteOfDataIdx + 3) To ((firstByteOfDataIdx + 3) + ReceiveArr(firstByteOfDataIdx + 2) - 1) Step 1
-                If cmdIdentifyNum = 6 Or cmdIdentifyNum = 12 Or cmdIdentifyNum = 14 Or cmdIdentifyNum = 15 Then
+                If cmdIdentifyNum = 6 Or cmdIdentifyNum = 12 Or _
+                    cmdIdentifyNum = 14 Or cmdIdentifyNum = 15 Or _
+                    cmdIdentifyNum = 17 Then
                     If (ReceiveArr(i) < 16) Then
                         receiveData = receiveData & "0" & Hex(ReceiveArr(i))
                     Else
@@ -1701,11 +1726,13 @@ On Error GoTo Err
         
         Log_Info receiveData
         
-        If bytesTotal > 3 Then
+        If bytesTotal >= 3 Then
             receiveData = ""
             
             For i = 3 To (bytesTotal - 1) Step 1
-                If cmdIdentifyNum = 6 Or cmdIdentifyNum = 12 Or cmdIdentifyNum = 14 Or cmdIdentifyNum = 15 Then
+                If cmdIdentifyNum = 6 Or cmdIdentifyNum = 12 Or _
+                    cmdIdentifyNum = 14 Or cmdIdentifyNum = 15 Or _
+                    cmdIdentifyNum = 17 Then
                     If (ReceiveArr(i) < 16) Then
                         receiveData = receiveData & "0" & Hex(ReceiveArr(i))
                     Else
@@ -1738,7 +1765,7 @@ Private Sub tcpClient_Connect()
 End Sub
 
 Private Sub InfoCompare(cmdIdx As Integer, recvData As String)
-    For i = 0 To 14
+    For i = 0 To 15
         isCmdDataRecv = True
 
         If cmdIdx = (i + 2) Then
@@ -1844,6 +1871,20 @@ Private Sub InfoCompare(cmdIdx As Integer, recvData As String)
                     Else
                         IsAllDataMatch = False
                         lbTVInfo(14).BackColor = &HFF&
+                    End If
+                End If
+            ElseIf cmdIdx = 17 Then
+                isCmdDataRecv = True
+                If chkTitleFlag(15) Then
+                    'Widevine Key return 0x01 means Widevine Key is written.
+                    If recvData = "01" Then
+                        IsAllDataMatch = True And IsAllDataMatch
+                        lbTVInfo(15).BackColor = &HFF00&
+                        lbTVInfo(15).Caption = "Widevine Key ÒÑÉÕÂ¼"
+                    Else
+                        IsAllDataMatch = False
+                        lbTVInfo(15).BackColor = &HFF&
+                        lbTVInfo(15).Caption = "Widevine Key Î´ÉÕÂ¼"
                     End If
                 End If
             Else

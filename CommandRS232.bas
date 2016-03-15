@@ -349,3 +349,22 @@ Public Sub READ_DEVICE_KEY()
     SendCmd
 End Sub
 
+Public Sub READ_WIDEVINE_KEY()
+    '6E 51 86 01 FE 77 38 00 00 09
+    mSendDataBuf(0) = &H6E
+    mSendDataBuf(1) = &H51
+    mSendDataBuf(2) = &H86
+    mSendDataBuf(3) = &H1
+    mSendDataBuf(4) = &HFE
+    mSendDataBuf(5) = &H77
+    mSendDataBuf(6) = &H38
+    mSendDataBuf(7) = &H0
+    mSendDataBuf(8) = &H0
+    mSendDataBuf(9) = &H9
+    
+    Log_Info "Read widevine key"
+    cmdIdentifyNum = 17
+    isCmdDataRecv = False
+    
+    SendCmd
+End Sub

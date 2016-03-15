@@ -897,7 +897,7 @@ Private Sub Form_Load()
     Text3.Text = rs("SN_Len")
     
     'Read the Spec data from database and show them into the TextBox
-    For i = 0 To (itemNumOfTvInfo - 3)
+    For i = 0 To (itemNumOfTvInfo - 4)
         txtTVInfo(i).Text = rs.Fields(i + 4)
     Next i
 
@@ -932,7 +932,7 @@ Private Sub cmdSave_Click()
     For i = 0 To itemNumOfTvInfo
         If chkTitle(i).Value = 1 Then
             rs.Fields(i + 16) = True
-            If i <= (itemNumOfTvInfo - 3) Then
+            If i <= (itemNumOfTvInfo - 4) Then
                 rs.Fields(i + 4) = txtTVInfo(i).Text
             End If
         ElseIf chkTitle(i).Value = 0 Then

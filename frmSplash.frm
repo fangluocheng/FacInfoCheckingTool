@@ -106,8 +106,6 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Dim ss As Boolean
-
 Private Sub Form_Click()
     Unload Me
 End Sub
@@ -127,7 +125,6 @@ End Sub
 Private Sub Form_Load()
 
 On Error GoTo ErrExit
-    ss = False
 
     lblVersion.Caption = "Version " & App.Major & "." & App.Minor & "." & App.Revision
  
