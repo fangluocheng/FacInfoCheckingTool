@@ -368,3 +368,23 @@ Public Sub READ_WIDEVINE_KEY()
     
     SendCmd
 End Sub
+
+Public Sub READ_PLAYREADY_KEY()
+    '6E 51 86 01 FE 77 39 00 00 08
+    mSendDataBuf(0) = &H6E
+    mSendDataBuf(1) = &H51
+    mSendDataBuf(2) = &H86
+    mSendDataBuf(3) = &H1
+    mSendDataBuf(4) = &HFE
+    mSendDataBuf(5) = &H77
+    mSendDataBuf(6) = &H39
+    mSendDataBuf(7) = &H0
+    mSendDataBuf(8) = &H0
+    mSendDataBuf(9) = &H8
+    
+    Log_Info "Read playready key"
+    cmdIdentifyNum = 18
+    isCmdDataRecv = False
+    
+    SendCmd
+End Sub

@@ -6,7 +6,7 @@ Begin VB.Form frmSetData
    ClientTop       =   3210
    ClientWidth     =   11070
    BeginProperty Font 
-      Name            =   "Arial Narrow"
+      Name            =   "Arial"
       Size            =   18
       Charset         =   0
       Weight          =   400
@@ -86,6 +86,46 @@ Begin VB.Form frmSetData
       TabIndex        =   8
       Top             =   960
       Width           =   10820
+      Begin VB.TextBox txtTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00E0E0E0&
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   400
+         Index           =   16
+         Left            =   3645
+         TabIndex        =   46
+         Text            =   "----"
+         Top             =   5010
+         Width           =   3500
+      End
+      Begin VB.CheckBox chkTitle 
+         BackColor       =   &H00808080&
+         Caption         =   "Playready Key"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   410
+         Index           =   16
+         Left            =   3645
+         TabIndex        =   45
+         Top             =   4590
+         Width           =   3500
+      End
       Begin VB.TextBox txtTVInfo 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat

@@ -153,6 +153,52 @@ Begin VB.Form Form1
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   345
+         Index           =   16
+         Left            =   3650
+         TabIndex        =   40
+         Top             =   4760
+         Width           =   3495
+      End
+      Begin VB.Label lbTitle 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00808080&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "Playready Key"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   14.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000008&
+         Height          =   405
+         Index           =   16
+         Left            =   3650
+         TabIndex        =   39
+         Top             =   4340
+         Width           =   3495
+      End
+      Begin VB.Label lbTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "None"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000008&
+         Height          =   345
          Index           =   15
          Left            =   120
          TabIndex        =   38
@@ -1481,6 +1527,29 @@ RESEND_CMD_16:
     End If
 
 RESEND_CMD_17:
+    If chkTitleFlag(16) Then
+        ClearComBuf
+        READ_PLAYREADY_KEY
+        DelayMS StepTime
+        Call DelaySWithCmdFlag(cmdReceiveWaitS, isCmdDataRecv)
+        
+        If isCmdDataRecv = False Then
+            If j > cmdResendTimes Then
+                j = 0
+                Log_Info "Cannot read the Playready key!!!"
+                GoTo RESEND_CMD_18
+            Else
+                j = j + 1
+                Log_Info "Resend cmd READ_PLAYREADY_KEY!!!"
+                GoTo RESEND_CMD_17
+            End If
+        Else
+            j = 0
+            GoTo RESEND_CMD_18
+        End If
+    End If
+
+RESEND_CMD_18:
     ClearComBuf
     'Either PASS or FAIL, send "Exit factory mode" cmd.
     EXIT_FAC_MODE
@@ -1675,7 +1744,7 @@ On Error GoTo Err
             For i = (firstByteOfDataIdx + 3) To ((firstByteOfDataIdx + 3) + ReceiveArr(firstByteOfDataIdx + 2) - 1) Step 1
                 If cmdIdentifyNum = 6 Or cmdIdentifyNum = 12 Or _
                     cmdIdentifyNum = 14 Or cmdIdentifyNum = 15 Or _
-                    cmdIdentifyNum = 17 Then
+                    cmdIdentifyNum = 17 Or cmdIdentifyNum = 18 Then
                     If (ReceiveArr(i) < 16) Then
                         receiveData = receiveData & "0" & Hex(ReceiveArr(i))
                     Else
@@ -1732,7 +1801,7 @@ On Error GoTo Err
             For i = 3 To (bytesTotal - 1) Step 1
                 If cmdIdentifyNum = 6 Or cmdIdentifyNum = 12 Or _
                     cmdIdentifyNum = 14 Or cmdIdentifyNum = 15 Or _
-                    cmdIdentifyNum = 17 Then
+                    cmdIdentifyNum = 17 Or cmdIdentifyNum = 18 Then
                     If (ReceiveArr(i) < 16) Then
                         receiveData = receiveData & "0" & Hex(ReceiveArr(i))
                     Else
@@ -1765,7 +1834,7 @@ Private Sub tcpClient_Connect()
 End Sub
 
 Private Sub InfoCompare(cmdIdx As Integer, recvData As String)
-    For i = 0 To 15
+    For i = 0 To 16
         isCmdDataRecv = True
 
         If cmdIdx = (i + 2) Then
@@ -1885,6 +1954,20 @@ Private Sub InfoCompare(cmdIdx As Integer, recvData As String)
                         IsAllDataMatch = False
                         lbTVInfo(15).BackColor = &HFF&
                         lbTVInfo(15).Caption = "Widevine Key Î´ÉÕÂ¼"
+                    End If
+                End If
+            ElseIf cmdIdx = 18 Then
+                isCmdDataRecv = True
+                If chkTitleFlag(16) Then
+                    'Playready Key return 0x01 means Playready Key is written.
+                    If recvData = "01" Then
+                        IsAllDataMatch = True And IsAllDataMatch
+                        lbTVInfo(16).BackColor = &HFF00&
+                        lbTVInfo(16).Caption = "Playready Key ÒÑÉÕÂ¼"
+                    Else
+                        IsAllDataMatch = False
+                        lbTVInfo(16).BackColor = &HFF&
+                        lbTVInfo(16).Caption = "Playready Key Î´ÉÕÂ¼"
                     End If
                 End If
             Else

@@ -8,7 +8,7 @@ Public i As Integer
 '------------------------------------------------------------------------------
 '    Variable mapping the check items in "CheckItem".
 '------------------------------------------------------------------------------
-Public chkTitleFlag(15) As Boolean
+Public chkTitleFlag(16) As Boolean
 Public isUartMode As Boolean
 Public isNetworkConnected As Boolean
 
@@ -43,7 +43,7 @@ Public Const strChkBoxUnselected As String = "----"
 Public Const strNoRecvData As String = "None"
 Public Const cmdResendTimes As Integer = 2
 Public Const cmdReceiveWaitS As Integer = 5
-Public Const itemNumOfTvInfo As Integer = 15
+Public Const itemNumOfTvInfo As Integer = 16
 Public Const strRemoteHost As String = "192.168.1.11"
 Public Const lngRemotePort As Long = 8888
 
