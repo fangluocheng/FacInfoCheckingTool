@@ -2,6 +2,7 @@ VERSION 5.00
 Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "MSCOMM32.OCX"
 Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
 Begin VB.Form Form1 
+   BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
    Caption         =   "工厂信息校验工具"
    ClientHeight    =   7335
@@ -15,6 +16,20 @@ Begin VB.Form Form1
    ScaleHeight     =   7335
    ScaleWidth      =   14730
    StartUpPosition =   2  'CenterScreen
+   Begin VB.PictureBox PictureBrand 
+      Appearance      =   0  'Flat
+      AutoSize        =   -1  'True
+      BackColor       =   &H80000005&
+      ForeColor       =   &H80000008&
+      Height          =   780
+      Left            =   120
+      Picture         =   "Form1.frx":1DF72
+      ScaleHeight     =   750
+      ScaleWidth      =   2520
+      TabIndex        =   41
+      Top             =   120
+      Width           =   2550
+   End
    Begin MSWinsockLib.Winsock tcpClient 
       Left            =   10440
       Top             =   240
@@ -45,6 +60,7 @@ Begin VB.Form Form1
       Top             =   240
    End
    Begin VB.Frame Frame3 
+      BackColor       =   &H00E0E0E0&
       Caption         =   "条码"
       BeginProperty Font 
          Name            =   "Arial"
@@ -82,6 +98,7 @@ Begin VB.Form Form1
       End
    End
    Begin VB.Frame Frame2 
+      BackColor       =   &H00E0E0E0&
       Caption         =   "测试结果"
       BeginProperty Font 
          Name            =   "Arial"
@@ -121,6 +138,7 @@ Begin VB.Form Form1
       End
    End
    Begin VB.Frame Frame1 
+      BackColor       =   &H00E0E0E0&
       Caption         =   "TV 信息"
       BeginProperty Font 
          Name            =   "Arial"
@@ -928,21 +946,27 @@ Begin VB.Form Form1
       DTREnable       =   -1  'True
    End
    Begin VB.Label Label1 
+      Alignment       =   2  'Center
+      Appearance      =   0  'Flat
+      BackColor       =   &H80000005&
+      BackStyle       =   0  'Transparent
+      BorderStyle     =   1  'Fixed Single
       Caption         =   "Label1"
       BeginProperty Font 
          Name            =   "Arial"
-         Size            =   24
+         Size            =   36
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   615
-      Left            =   240
+      ForeColor       =   &H80000008&
+      Height          =   780
+      Left            =   2655
       TabIndex        =   19
       Top             =   120
-      Width           =   4575
+      Width           =   8280
    End
    Begin VB.Menu vbSet 
       Caption         =   "设置"
