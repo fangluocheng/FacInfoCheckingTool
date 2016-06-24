@@ -38,6 +38,8 @@ Begin VB.Form Form1
       _Version        =   393216
    End
    Begin VB.TextBox TxtReceive 
+      Appearance      =   0  'Flat
+      BackColor       =   &H80000006&
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   9
@@ -47,10 +49,10 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
+      ForeColor       =   &H0000FF00&
       Height          =   7095
       Left            =   11040
       MultiLine       =   -1  'True
-      ScrollBars      =   2  'Vertical
       TabIndex        =   21
       Top             =   120
       Width           =   3585

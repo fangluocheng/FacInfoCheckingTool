@@ -1,5 +1,6 @@
 VERSION 5.00
 Begin VB.Form frmSetData 
+   BackColor       =   &H00E0E0E0&
    Caption         =   "参数设置"
    ClientHeight    =   7470
    ClientLeft      =   6435
@@ -19,7 +20,22 @@ Begin VB.Form frmSetData
    MaxButton       =   0   'False
    ScaleHeight     =   7470
    ScaleWidth      =   11070
+   Begin VB.PictureBox PictureBrand 
+      Appearance      =   0  'Flat
+      AutoSize        =   -1  'True
+      BackColor       =   &H80000005&
+      ForeColor       =   &H80000008&
+      Height          =   780
+      Left            =   120
+      Picture         =   "frmSetData.frx":1DF72
+      ScaleHeight     =   750
+      ScaleWidth      =   2520
+      TabIndex        =   46
+      Top             =   120
+      Width           =   2550
+   End
    Begin VB.Frame Frame3 
+      BackColor       =   &H00E0E0E0&
       Caption         =   "通讯模式"
       BeginProperty Font 
          Name            =   "Arial"
@@ -32,7 +48,7 @@ Begin VB.Form frmSetData
       EndProperty
       Height          =   795
       Left            =   7080
-      TabIndex        =   16
+      TabIndex        =   15
       Top             =   6600
       Width           =   2055
       Begin VB.OptionButton optNetwork 
@@ -48,7 +64,7 @@ Begin VB.Form frmSetData
          EndProperty
          Height          =   250
          Left            =   1200
-         TabIndex        =   18
+         TabIndex        =   17
          Top             =   360
          Width           =   735
       End
@@ -65,12 +81,13 @@ Begin VB.Form frmSetData
          EndProperty
          Height          =   250
          Left            =   240
-         TabIndex        =   17
+         TabIndex        =   16
          Top             =   360
          Width           =   735
       End
    End
    Begin VB.Frame Frame2 
+      BackColor       =   &H00E0E0E0&
       Caption         =   "TV 信息"
       BeginProperty Font 
          Name            =   "Arial"
@@ -102,7 +119,7 @@ Begin VB.Form frmSetData
          Height          =   400
          Index           =   16
          Left            =   3645
-         TabIndex        =   46
+         TabIndex        =   45
          Text            =   "----"
          Top             =   5010
          Width           =   3500
@@ -122,7 +139,7 @@ Begin VB.Form frmSetData
          Height          =   410
          Index           =   16
          Left            =   3645
-         TabIndex        =   45
+         TabIndex        =   44
          Top             =   4590
          Width           =   3500
       End
@@ -142,7 +159,7 @@ Begin VB.Form frmSetData
          Height          =   400
          Index           =   15
          Left            =   120
-         TabIndex        =   44
+         TabIndex        =   43
          Text            =   "----"
          Top             =   5010
          Width           =   3500
@@ -162,7 +179,7 @@ Begin VB.Form frmSetData
          Height          =   410
          Index           =   15
          Left            =   120
-         TabIndex        =   43
+         TabIndex        =   42
          Top             =   4590
          Width           =   3500
       End
@@ -182,27 +199,6 @@ Begin VB.Form frmSetData
          Height          =   400
          Index           =   14
          Left            =   7185
-         TabIndex        =   42
-         Text            =   "----"
-         Top             =   4140
-         Width           =   3500
-      End
-      Begin VB.TextBox txtTVInfo 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BackColor       =   &H00E0E0E0&
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   12
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   400
-         Index           =   13
-         Left            =   3645
          TabIndex        =   41
          Text            =   "----"
          Top             =   4140
@@ -222,9 +218,30 @@ Begin VB.Form frmSetData
             Strikethrough   =   0   'False
          EndProperty
          Height          =   400
+         Index           =   13
+         Left            =   3645
+         TabIndex        =   40
+         Text            =   "----"
+         Top             =   4140
+         Width           =   3500
+      End
+      Begin VB.TextBox txtTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00E0E0E0&
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   400
          Index           =   12
          Left            =   120
-         TabIndex        =   40
+         TabIndex        =   39
          Text            =   "----"
          Top             =   4140
          Width           =   3500
@@ -244,7 +261,7 @@ Begin VB.Form frmSetData
          Height          =   410
          Index           =   12
          Left            =   120
-         TabIndex        =   39
+         TabIndex        =   38
          Top             =   3720
          Width           =   3500
       End
@@ -263,7 +280,7 @@ Begin VB.Form frmSetData
          Height          =   410
          Index           =   13
          Left            =   3645
-         TabIndex        =   38
+         TabIndex        =   37
          Top             =   3720
          Width           =   3500
       End
@@ -282,7 +299,7 @@ Begin VB.Form frmSetData
          Height          =   410
          Index           =   14
          Left            =   7185
-         TabIndex        =   37
+         TabIndex        =   36
          Top             =   3720
          Width           =   3500
       End
@@ -301,7 +318,7 @@ Begin VB.Form frmSetData
          Height          =   400
          Index           =   11
          Left            =   7185
-         TabIndex        =   36
+         TabIndex        =   35
          Text            =   "None"
          Top             =   3270
          Width           =   3500
@@ -321,7 +338,7 @@ Begin VB.Form frmSetData
          Height          =   400
          Index           =   10
          Left            =   3645
-         TabIndex        =   35
+         TabIndex        =   34
          Text            =   "None"
          Top             =   3270
          Width           =   3500
@@ -341,7 +358,7 @@ Begin VB.Form frmSetData
          Height          =   400
          Index           =   9
          Left            =   120
-         TabIndex        =   34
+         TabIndex        =   33
          Text            =   "None"
          Top             =   3270
          Width           =   3500
@@ -361,7 +378,7 @@ Begin VB.Form frmSetData
          Height          =   410
          Index           =   9
          Left            =   120
-         TabIndex        =   33
+         TabIndex        =   32
          Top             =   2850
          Width           =   3500
       End
@@ -380,7 +397,7 @@ Begin VB.Form frmSetData
          Height          =   410
          Index           =   10
          Left            =   3645
-         TabIndex        =   32
+         TabIndex        =   31
          Top             =   2850
          Width           =   3500
       End
@@ -399,7 +416,7 @@ Begin VB.Form frmSetData
          Height          =   410
          Index           =   11
          Left            =   7185
-         TabIndex        =   31
+         TabIndex        =   30
          Top             =   2850
          Width           =   3500
       End
@@ -418,7 +435,7 @@ Begin VB.Form frmSetData
          Height          =   400
          Index           =   8
          Left            =   7185
-         TabIndex        =   30
+         TabIndex        =   29
          Text            =   "None"
          Top             =   2400
          Width           =   3500
@@ -438,7 +455,7 @@ Begin VB.Form frmSetData
          Height          =   400
          Index           =   7
          Left            =   3645
-         TabIndex        =   29
+         TabIndex        =   28
          Text            =   "None"
          Top             =   2400
          Width           =   3500
@@ -458,7 +475,7 @@ Begin VB.Form frmSetData
          Height          =   400
          Index           =   6
          Left            =   120
-         TabIndex        =   28
+         TabIndex        =   27
          Text            =   "None"
          Top             =   2400
          Width           =   3500
@@ -478,7 +495,7 @@ Begin VB.Form frmSetData
          Height          =   410
          Index           =   6
          Left            =   120
-         TabIndex        =   27
+         TabIndex        =   26
          Top             =   1980
          Width           =   3500
       End
@@ -497,7 +514,7 @@ Begin VB.Form frmSetData
          Height          =   410
          Index           =   7
          Left            =   3645
-         TabIndex        =   26
+         TabIndex        =   25
          Top             =   1980
          Width           =   3500
       End
@@ -516,7 +533,7 @@ Begin VB.Form frmSetData
          Height          =   410
          Index           =   8
          Left            =   7185
-         TabIndex        =   25
+         TabIndex        =   24
          Top             =   1980
          Width           =   3500
       End
@@ -535,7 +552,7 @@ Begin VB.Form frmSetData
          Height          =   400
          Index           =   5
          Left            =   7185
-         TabIndex        =   24
+         TabIndex        =   23
          Text            =   "None"
          Top             =   1530
          Width           =   3500
@@ -555,7 +572,7 @@ Begin VB.Form frmSetData
          Height          =   400
          Index           =   4
          Left            =   3645
-         TabIndex        =   23
+         TabIndex        =   22
          Text            =   "None"
          Top             =   1530
          Width           =   3500
@@ -575,7 +592,7 @@ Begin VB.Form frmSetData
          Height          =   400
          Index           =   3
          Left            =   120
-         TabIndex        =   22
+         TabIndex        =   21
          Text            =   "None"
          Top             =   1530
          Width           =   3500
@@ -595,7 +612,7 @@ Begin VB.Form frmSetData
          Height          =   410
          Index           =   3
          Left            =   120
-         TabIndex        =   21
+         TabIndex        =   20
          Top             =   1110
          Width           =   3500
       End
@@ -614,7 +631,7 @@ Begin VB.Form frmSetData
          Height          =   410
          Index           =   4
          Left            =   3645
-         TabIndex        =   20
+         TabIndex        =   19
          Top             =   1110
          Width           =   3500
       End
@@ -633,7 +650,7 @@ Begin VB.Form frmSetData
          Height          =   410
          Index           =   5
          Left            =   7185
-         TabIndex        =   19
+         TabIndex        =   18
          Top             =   1110
          Width           =   3500
       End
@@ -756,6 +773,7 @@ Begin VB.Form frmSetData
       End
    End
    Begin VB.Frame Frame1 
+      BackColor       =   &H00E0E0E0&
       Caption         =   "串口设置"
       BeginProperty Font 
          Name            =   "Arial"
@@ -898,21 +916,27 @@ Begin VB.Form frmSetData
       Width           =   975
    End
    Begin VB.Label Label1 
+      Alignment       =   2  'Center
+      Appearance      =   0  'Flat
+      BackColor       =   &H80000005&
+      BackStyle       =   0  'Transparent
+      BorderStyle     =   1  'Fixed Single
       Caption         =   "Label1"
       BeginProperty Font 
          Name            =   "Arial"
-         Size            =   24
+         Size            =   36
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   615
-      Left            =   120
-      TabIndex        =   15
+      ForeColor       =   &H80000008&
+      Height          =   780
+      Left            =   2655
+      TabIndex        =   47
       Top             =   120
-      Width           =   4575
+      Width           =   8280
    End
 End
 Attribute VB_Name = "frmSetData"

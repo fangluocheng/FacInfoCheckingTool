@@ -1,5 +1,6 @@
 VERSION 5.00
 Begin VB.Form frmComPort 
+   BackColor       =   &H00E0E0E0&
    Caption         =   "ÉèÖÃ´®¿Ú"
    ClientHeight    =   1935
    ClientLeft      =   120
@@ -12,6 +13,7 @@ Begin VB.Form frmComPort
    ScaleWidth      =   3735
    StartUpPosition =   3  'Windows Default
    Begin VB.Frame Frame1 
+      BackColor       =   &H00E0E0E0&
       Caption         =   "ComSet"
       ForeColor       =   &H00FF0000&
       Height          =   1935
@@ -36,6 +38,7 @@ Begin VB.Form frmComPort
          Width           =   855
       End
       Begin VB.Frame Frame3 
+         BackColor       =   &H00E0E0E0&
          Caption         =   "TV"
          ForeColor       =   &H000000C0&
          Height          =   1455
