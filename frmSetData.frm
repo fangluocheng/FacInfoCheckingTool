@@ -20,6 +20,7 @@ Begin VB.Form frmSetData
    MaxButton       =   0   'False
    ScaleHeight     =   7470
    ScaleWidth      =   11070
+   StartUpPosition =   1  'CenterOwner
    Begin VB.PictureBox PictureBrand 
       Appearance      =   0  'Flat
       AutoSize        =   -1  'True

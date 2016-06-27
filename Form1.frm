@@ -8,14 +8,33 @@ Begin VB.Form Form1
    ClientHeight    =   7335
    ClientLeft      =   45
    ClientTop       =   735
-   ClientWidth     =   14730
+   ClientWidth     =   14580
    Icon            =   "Form1.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   7335
-   ScaleWidth      =   14730
+   ScaleWidth      =   14580
    StartUpPosition =   2  'CenterScreen
+   Begin VB.TextBox TxtReceive 
+      Appearance      =   0  'Flat
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00008000&
+      Height          =   7095
+      Left            =   11040
+      MultiLine       =   -1  'True
+      TabIndex        =   21
+      Top             =   120
+      Width           =   3465
+   End
    Begin VB.PictureBox PictureBrand 
       Appearance      =   0  'Flat
       AutoSize        =   -1  'True
@@ -36,26 +55,6 @@ Begin VB.Form Form1
       _ExtentX        =   741
       _ExtentY        =   741
       _Version        =   393216
-   End
-   Begin VB.TextBox TxtReceive 
-      Appearance      =   0  'Flat
-      BackColor       =   &H80000006&
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   9
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H0000FF00&
-      Height          =   7095
-      Left            =   11040
-      MultiLine       =   -1  'True
-      TabIndex        =   21
-      Top             =   120
-      Width           =   3585
    End
    Begin VB.Timer Timer1 
       Left            =   9960
