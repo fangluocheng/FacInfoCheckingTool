@@ -952,6 +952,14 @@ Private Sub Form_Load()
     
     i = 0
 
+    If isUartMode Then
+        optUart.Value = True
+        optNetwork.Value = False
+    Else
+        optUart.Value = False
+        optNetwork.Value = True
+    End If
+    
     sqlstring = "select * from CheckItem where Mark='" & strCurrentModelName & "'"
     Executesql (sqlstring)
 

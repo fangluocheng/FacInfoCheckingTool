@@ -165,12 +165,8 @@ On Error GoTo ErrExit
         SetDay = rs("Day")
         If rs("CommunicationMode") = "UART" Then
             isUartMode = True
-            frmSetData.optUart.Value = True
-            frmSetData.optNetwork.Value = False
         Else
             isUartMode = False
-            frmSetData.optUart.Value = False
-            frmSetData.optNetwork.Value = True
         End If
     Else
         MsgBox "Read Data Error,Please Check Your Database!", vbOKOnly + vbInformation, "Warning!"
@@ -180,7 +176,7 @@ On Error GoTo ErrExit
     Set rs = Nothing
 
     sqlstring = ""
-    cmbModelName = strCurrentModelName
+    cmbModelName.Text = strCurrentModelName
 
     If SetData <> Day(Date) Then
         sqlstring = "select * from CommonTable where Mark='ATS'"
@@ -204,7 +200,7 @@ Private Sub Form_Unload(Cancel As Integer)
 
 On Error GoTo ErrExit
 
-    strCurrentModelName = cmbModelName
+    strCurrentModelName = cmbModelName.Text
     sqlstring = ""
     sqlstring = "update CommonTable set CurrentModelName='" & strCurrentModelName & "' where Mark='ATS'"
     Executesql (sqlstring)
