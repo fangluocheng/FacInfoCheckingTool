@@ -50,6 +50,8 @@ Public Const lngRemotePort As Long = 8888
 Public Sub Log_Info(strLog As String)
     Form1.TxtReceive.Text = Form1.TxtReceive.Text + strLog + vbCrLf
     Form1.TxtReceive.SelStart = Len(Form1.TxtReceive)
+    
+    SaveLogInFile strLog
 End Sub
 
 Public Sub Log_Clear()
