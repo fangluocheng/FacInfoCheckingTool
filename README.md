@@ -16,6 +16,6 @@
 2. 进入 `C:\Windows\SysWOW64` 文件夹，找到 `cmd.exe` 这个文件。右击，选择“以管理员身份运行”。
 3. 按照下面的截图输入两条命令注册上述两个控件。
 
-![register_ocx_in_windows7_64](https://github.com/heray1990/FacInfoCheckingTool/raw/master/Images/register_ocx_in_windows7_64.png)
+![register_ocx_in_windows7_64](https://github.com/heray1990/FacInfoCheckingTool/raw/master/Images/register_ocx_in_windows7_64.PNG)
 
 > Note: 上述的 `C:\Windows\SysWOW64` 文件夹是针对 Windows 64 位系统的，对于 32 位系统，需要改成 `C:\Windows\System32`。
