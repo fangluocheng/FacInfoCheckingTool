@@ -8,7 +8,7 @@
 
 #### 注册 MSCOMM32.OCX 和 MSWINSCK.OCX
 
-由于此工具用到了串口通讯和网口通讯，所以在使用之前，需要确保电视注册了 MSCOMM32.OCX 和 MSWINSCK.OCX 两个控件。
+由于此工具用到了串口通讯和网口通讯，所以在使用之前，需要确保电脑注册了 MSCOMM32.OCX 和 MSWINSCK.OCX 两个控件。
 
 对于 Windows 7 64 位系统，按照如下步骤进行注册：
 
