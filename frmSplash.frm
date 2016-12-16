@@ -192,7 +192,7 @@ On Error GoTo ErrExit
     Exit Sub
     
 ErrExit:
-       MsgBox Err.Description, vbCritical, Err.Source
+    MsgBox Err.Description, vbCritical, Err.Source
        
 End Sub
 
@@ -233,6 +233,6 @@ On Error GoTo ErrExit
     Exit Sub
     
 ErrExit:
-    MsgBox ("The Licence Key is Wrong.")
+    MsgBox Err.Description, vbCritical, Err.Source
     
 End Sub

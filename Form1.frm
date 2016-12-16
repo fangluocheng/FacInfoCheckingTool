@@ -1,6 +1,7 @@
 VERSION 5.00
 Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "MSCOMM32.OCX"
 Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
+Object = "{1752FF26-D6C9-4BC8-BFE9-7D0CA26DED89}#1.0#0"; "BDaqOcx.dll"
 Begin VB.Form Form1 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
@@ -946,6 +947,11 @@ Begin VB.Form Form1
       _Version        =   393216
       DTREnable       =   -1  'True
    End
+   Begin BDaqOcxLibCtl.InstantDoCtrl InstantDoCtrl1 
+      Left            =   8760
+      OleObjectBlob   =   "Form1.frx":24226
+      Top             =   360
+   End
    Begin VB.Label Label1 
       Alignment       =   2  'Center
       Appearance      =   0  'Flat
@@ -977,6 +983,9 @@ Begin VB.Form Form1
       Begin VB.Menu vbSetSPEC 
          Caption         =   "设置数据规格"
       End
+      Begin VB.Menu vbCancelWarning 
+         Caption         =   "取消警报"
+      End
    End
 End
 Attribute VB_Name = "Form1"
@@ -986,7 +995,6 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Dim RES As Long
 Dim Result As Boolean
 Dim StepTime As Long
 Dim IsAllDataMatch As Boolean
@@ -1008,7 +1016,7 @@ Private Sub Form_Load()
         tbSetComPort.Enabled = False
         subInitNetwork
     End If
-    
+    SubInitPCIE1730
     subInitInterface
 
     Label1 = strCurrentModelName
@@ -1026,7 +1034,7 @@ On Error GoTo ErrExit
 Exit Sub
 
 ErrExit:
-        MsgBox Err.Description, vbCritical, Err.Source
+    MsgBox err.Description, vbCritical, err.Source
 End Sub
 
 
@@ -1061,7 +1069,10 @@ Private Sub subInitComPort()
     sqlstring = ""
 
     ComInit
+End Sub
 
+Private Sub SubInitPCIE1730()
+    InstantDoCtrl1.setSelectedDevice 1
 End Sub
 
 Private Sub subInitNetwork()
@@ -1139,6 +1150,8 @@ End Sub
 
 Private Sub subMainProcesser()
     Dim i, j As Integer
+    Dim error As ErrorCode
+    error = Success
 
 On Error GoTo ErrExit
     subInitBeforeRunning
@@ -1597,18 +1610,30 @@ PASS:
     lbResult.Caption = "PASS"
     lbResult.BackColor = &HFF00&
     Call subInitAfterRunning
-    
+    DelayMS 5000
+    error = InstantDoCtrl1.WritePort(0, 2)
+    If error <> Success Then
+        HandleError (error)
+    End If
+    DelayMS 2000
+    error = InstantDoCtrl1.WritePort(0, 0)
+    If error <> Success Then
+        HandleError (error)
+    End If
     Exit Sub
 
 FAIL:
     lbResult.Caption = "NG"
     lbResult.BackColor = &HFF&
     Call subInitAfterRunning
-
+    error = InstantDoCtrl1.WritePort(0, 1)
+    If error <> Success Then
+        HandleError (error)
+    End If
     Exit Sub
 
 ErrExit:
-    MsgBox Err.Description, vbCritical, Err.Source
+    MsgBox err.Description, vbCritical, err.Source
 
 End Sub
 
@@ -1690,7 +1715,15 @@ Private Sub txtInput_KeyPress(KeyAscii As Integer)
         End If
     End If
     Exit Sub
-    
+End Sub
+
+Private Sub vbCancelWarning_Click()
+    Dim err As ErrorCode
+    err = Success
+    err = InstantDoCtrl1.WritePort(0, 0)
+    If err <> Success Then
+        HandleError (err)
+    End If
 End Sub
 
 Private Sub vbSetSPEC_Click()
@@ -1703,7 +1736,7 @@ End Sub
 '------------------------------------------------------------------------------
 Private Sub MSComm1_OnComm()
     
-On Error GoTo Err
+On Error GoTo err
     Select Case MSComm1.CommEvent
         Case comEvReceive
             DelayMS StepTime
@@ -1711,13 +1744,13 @@ On Error GoTo Err
         'Case comEvSend
         Case Else
     End Select
-Err:
+err:
   
 End Sub
 
 Private Sub hexReceive()
  
-On Error GoTo Err
+On Error GoTo err
     Dim ReceiveArr() As Byte
     Dim receiveData As String
     Dim Counter As Integer
@@ -1793,13 +1826,13 @@ On Error GoTo Err
         'Ignore empty data
     End If
     
-Err:
+err:
 
 End Sub
 
 
 Private Sub tcpClient_DataArrival(ByVal bytesTotal As Long)
-On Error GoTo Err
+On Error GoTo err
     Dim ReceiveArr() As Byte
     Dim receiveData As String
     Dim i, tmp, firstByteOfDataIdx As Integer
@@ -1850,7 +1883,7 @@ On Error GoTo Err
         'Ignore empty data
     End If
     
-Err:
+err:
 End Sub
 
 Private Sub tcpClient_Connect()
@@ -2010,4 +2043,18 @@ Private Sub InfoCompare(cmdIdx As Integer, recvData As String)
             End If
         End If
     Next i
+End Sub
+
+Private Sub HandleError(ByVal err As ErrorCode)
+    Dim utility As BDaqUtility
+    Dim errorMessage As String
+    Dim res As ErrorCode
+        
+    Set utility = New BDaqUtility
+        
+    res = utility.EnumToString("ErrorCode", err, errorMessage)
+    
+    If err <> Success Then
+        MsgBox "Sorry ! There're some errors happened, the error code is: " & errorMessage
+    End If
 End Sub
