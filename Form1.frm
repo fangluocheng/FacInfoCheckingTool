@@ -1,7 +1,7 @@
 VERSION 5.00
+Object = "{1752FF26-D6C9-4BC8-BFE9-7D0CA26DED89}#1.0#0"; "BDaqOcx.dll"
 Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "MSCOMM32.OCX"
 Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
-Object = "{1752FF26-D6C9-4BC8-BFE9-7D0CA26DED89}#1.0#0"; "BDaqOcx.dll"
 Begin VB.Form Form1 
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
@@ -1016,7 +1016,10 @@ Private Sub Form_Load()
         tbSetComPort.Enabled = False
         subInitNetwork
     End If
-    SubInitPCIE1730
+    If isConnect1730 Then
+        SubInitPCIE1730
+    End If
+    vbCancelWarning.Visible = isConnect1730
     subInitInterface
 
     Label1 = strCurrentModelName
@@ -1610,15 +1613,17 @@ PASS:
     lbResult.Caption = "PASS"
     lbResult.BackColor = &HFF00&
     Call subInitAfterRunning
-    DelayMS 5000
-    error = InstantDoCtrl1.WritePort(0, 2)
-    If error <> Success Then
-        HandleError (error)
-    End If
-    DelayMS 2000
-    error = InstantDoCtrl1.WritePort(0, 0)
-    If error <> Success Then
-        HandleError (error)
+    If isConnect1730 Then
+        DelayMS delayMs01
+        error = InstantDoCtrl1.WritePort(0, 2)
+        If error <> Success Then
+            HandleError (error)
+        End If
+        DelayMS delayMs02
+        error = InstantDoCtrl1.WritePort(0, 0)
+        If error <> Success Then
+            HandleError (error)
+        End If
     End If
     Exit Sub
 
@@ -1626,9 +1631,11 @@ FAIL:
     lbResult.Caption = "NG"
     lbResult.BackColor = &HFF&
     Call subInitAfterRunning
-    error = InstantDoCtrl1.WritePort(0, 1)
-    If error <> Success Then
-        HandleError (error)
+    If isConnect1730 Then
+        error = InstantDoCtrl1.WritePort(0, 1)
+        If error <> Success Then
+            HandleError (error)
+        End If
     End If
     Exit Sub
 

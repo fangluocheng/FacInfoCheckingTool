@@ -192,7 +192,7 @@ On Error GoTo ErrExit
     Exit Sub
     
 ErrExit:
-    MsgBox Err.Description, vbCritical, Err.Source
+    MsgBox err.Description, vbCritical, err.Source
        
 End Sub
 
@@ -215,6 +215,9 @@ On Error GoTo ErrExit
     SetTVCurrentComBaud = rs("ComBaud")
     IsStepTime = rs("Delayms")
     barcodeLen = rs("SN_Len")
+    isConnect1730 = rs("Connect1730")
+    delayMs01 = rs("DelayMs01")
+    delayMs02 = rs("DelayMs02")
     
     For i = 0 To itemNumOfTvInfo
         chkTitleFlag(i) = rs.Fields(i + 16)
@@ -233,6 +236,6 @@ On Error GoTo ErrExit
     Exit Sub
     
 ErrExit:
-    MsgBox Err.Description, vbCritical, Err.Source
+    MsgBox err.Description, vbCritical, err.Source
     
 End Sub

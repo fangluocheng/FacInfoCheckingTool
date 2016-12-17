@@ -39,6 +39,10 @@ Public countTime As Long
 
 Public cmdIdentifyNum As Integer
 
+Public isConnect1730 As Boolean
+Public delayMs01 As Long
+Public delayMs02 As Long
+
 Public Const strChkBoxUnselected As String = "----"
 Public Const strNoRecvData As String = "None"
 Public Const cmdResendTimes As Integer = 2
@@ -76,7 +80,7 @@ On Error GoTo ShowError
     Exit Sub
 
 ShowError:
-    MsgBox Err.Source & "------" & Err.Description
+    MsgBox err.Source & "------" & err.Description
     Exit Sub
 End Sub
 
@@ -95,7 +99,7 @@ On Error GoTo ShowError
     Exit Sub
 
 ShowError:
-    MsgBox Err.Source & "------" & Err.Description
+    MsgBox err.Source & "------" & err.Description
     Exit Sub
 End Sub
 

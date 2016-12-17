@@ -2,7 +2,7 @@ VERSION 5.00
 Begin VB.Form frmSetData 
    BackColor       =   &H00E0E0E0&
    Caption         =   "参数设置"
-   ClientHeight    =   7470
+   ClientHeight    =   8325
    ClientLeft      =   6435
    ClientTop       =   3210
    ClientWidth     =   11070
@@ -18,9 +18,116 @@ Begin VB.Form frmSetData
    Icon            =   "frmSetData.frx":0000
    LinkTopic       =   "Form4"
    MaxButton       =   0   'False
-   ScaleHeight     =   7470
+   ScaleHeight     =   8325
    ScaleWidth      =   11070
    StartUpPosition =   1  'CenterOwner
+   Begin VB.Frame Frame4 
+      BackColor       =   &H00E0E0E0&
+      Caption         =   "PCIE-1730"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   795
+      Left            =   120
+      TabIndex        =   48
+      Top             =   7440
+      Width           =   9015
+      Begin VB.CheckBox CheckConnect1730 
+         Caption         =   "连接IO卡"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   10.5
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   240
+         TabIndex        =   53
+         Top             =   360
+         Width           =   1335
+      End
+      Begin VB.TextBox Text5 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   10.5
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   7800
+         TabIndex        =   50
+         Text            =   "1"
+         Top             =   300
+         Width           =   950
+      End
+      Begin VB.TextBox Text4 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   10.5
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Left            =   3840
+         TabIndex        =   49
+         Text            =   "500"
+         Top             =   300
+         Width           =   950
+      End
+      Begin VB.Label Label7 
+         Caption         =   "开关自动弹起时间(ms)"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   10.5
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   5520
+         TabIndex        =   52
+         Top             =   360
+         Width           =   2220
+      End
+      Begin VB.Label Label6 
+         Caption         =   "拔线时间 (ms)"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   10.5
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   2280
+         TabIndex        =   51
+         Top             =   360
+         Width           =   1395
+      End
+   End
    Begin VB.PictureBox PictureBrand 
       Appearance      =   0  'Flat
       AutoSize        =   -1  'True
@@ -913,7 +1020,7 @@ Begin VB.Form frmSetData
       Height          =   435
       Left            =   9840
       TabIndex        =   3
-      Top             =   6840
+      Top             =   7800
       Width           =   975
    End
    Begin VB.Label Label1 
@@ -948,6 +1055,20 @@ Attribute VB_Exposed = False
 Option Explicit
 
 
+Private Sub CheckConnect1730_Click()
+    If CheckConnect1730.Value = 1 Then
+        Text4.Locked = False
+        Text5.Locked = False
+        Text4.BackColor = &H80000005
+        Text5.BackColor = &H80000005
+    ElseIf CheckConnect1730.Value = 0 Then
+        Text4.Locked = True
+        Text5.Locked = True
+        Text4.BackColor = &HE0E0E0
+        Text5.BackColor = &HE0E0E0
+    End If
+End Sub
+
 Private Sub Form_Load()
     Dim i As Integer
     
@@ -968,6 +1089,13 @@ Private Sub Form_Load()
     Text1.Text = rs("ComBaud")
     Text2.Text = rs("Delayms")
     Text3.Text = rs("SN_Len")
+    Text4.Text = rs("DelayMs01")
+    Text5.Text = rs("DelayMs02")
+    If rs("Connect1730") Then
+        CheckConnect1730.Value = 1
+    Else
+        CheckConnect1730.Value = 0
+    End If
     
     'Read the Spec data from database and show them into the TextBox
     For i = 0 To (itemNumOfTvInfo - 4)
@@ -987,6 +1115,7 @@ Private Sub Form_Load()
     Set cn = Nothing
     sqlstring = ""
 
+    CheckConnect1730_Click
 End Sub
 
 Private Sub cmdSave_Click()
@@ -1001,6 +1130,14 @@ Private Sub cmdSave_Click()
     rs.Fields(1) = Val(Text1.Text)                         'ComBaud
     rs.Fields(2) = Val(Text2.Text)                         'Delayms
     rs.Fields(3) = Val(Text3.Text)                         'SN_Len
+    rs.Fields(34) = Val(Text4.Text)                        'DelayMs01
+    rs.Fields(35) = Val(Text5.Text)                        'DelayMs02
+    
+    If CheckConnect1730.Value = 1 Then
+        rs.Fields(33) = True
+    ElseIf CheckConnect1730.Value = 0 Then
+        rs.Fields(33) = False
+    End If
 
     For i = 0 To itemNumOfTvInfo
         If chkTitle(i).Value = 1 Then
