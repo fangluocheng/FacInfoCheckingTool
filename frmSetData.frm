@@ -1073,21 +1073,6 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-
-'Private Sub CheckConnect1730_Click()
-'    If CheckConnect1730.Value = 1 Then
-'        Text4.Locked = False
-'        Text5.Locked = False
-'        Text4.BackColor = &H80000005
-'        Text5.BackColor = &H80000005
-'    ElseIf CheckConnect1730.Value = 0 Then
-'        Text4.Locked = True
-'        Text5.Locked = True
-'        Text4.BackColor = &HE0E0E0
-'        Text5.BackColor = &HE0E0E0
-'    End If
-'End Sub
-
 Private Sub Form_Load()
     Dim i As Integer
     
@@ -1130,21 +1115,6 @@ Private Sub Form_Load()
     Set cn = Nothing
     sqlstring = ""
 
-    If isConnect1730 Then
-        Text4.Locked = False
-        Text5.Locked = False
-        Text6.Locked = False
-        Text4.BackColor = &H80000005
-        Text5.BackColor = &H80000005
-        Text6.BackColor = &H80000005
-    Else
-        Text4.Locked = True
-        Text5.Locked = True
-        Text6.Locked = True
-        Text4.BackColor = &HE0E0E0
-        Text5.BackColor = &HE0E0E0
-        Text6.BackColor = &HE0E0E0
-    End If
 End Sub
 
 Private Sub cmdSave_Click()
