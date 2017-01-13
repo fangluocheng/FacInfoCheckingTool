@@ -1026,7 +1026,6 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
-
 On Error GoTo ErrExit
   
     If MSComm1.PortOpen = True Then
@@ -1075,7 +1074,7 @@ Private Sub subInitComPort()
 End Sub
 
 Private Sub SubInitPCIE1730()
-    InstantDoCtrl1.setSelectedDevice 1
+    InstantDoCtrl1.setSelectedDevice port1730
 End Sub
 
 Private Sub subInitNetwork()

@@ -38,8 +38,9 @@ Begin VB.Form frmSetData
       TabIndex        =   48
       Top             =   7440
       Width           =   9015
-      Begin VB.CheckBox CheckConnect1730 
-         Caption         =   "连接IO卡"
+      Begin VB.TextBox Text6 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   10.5
@@ -49,11 +50,12 @@ Begin VB.Form frmSetData
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   255
-         Left            =   240
+         Height          =   360
+         Left            =   1000
          TabIndex        =   53
-         Top             =   360
-         Width           =   1335
+         Text            =   "500"
+         Top             =   300
+         Width           =   950
       End
       Begin VB.TextBox Text5 
          Alignment       =   2  'Center
@@ -92,6 +94,23 @@ Begin VB.Form frmSetData
          Text            =   "500"
          Top             =   300
          Width           =   950
+      End
+      Begin VB.Label Label5 
+         Caption         =   "Port"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   10.5
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   120
+         TabIndex        =   54
+         Top             =   360
+         Width           =   795
       End
       Begin VB.Label Label7 
          Caption         =   "开关自动弹起时间(ms)"
@@ -1055,19 +1074,19 @@ Attribute VB_Exposed = False
 Option Explicit
 
 
-Private Sub CheckConnect1730_Click()
-    If CheckConnect1730.Value = 1 Then
-        Text4.Locked = False
-        Text5.Locked = False
-        Text4.BackColor = &H80000005
-        Text5.BackColor = &H80000005
-    ElseIf CheckConnect1730.Value = 0 Then
-        Text4.Locked = True
-        Text5.Locked = True
-        Text4.BackColor = &HE0E0E0
-        Text5.BackColor = &HE0E0E0
-    End If
-End Sub
+'Private Sub CheckConnect1730_Click()
+'    If CheckConnect1730.Value = 1 Then
+'        Text4.Locked = False
+'        Text5.Locked = False
+'        Text4.BackColor = &H80000005
+'        Text5.BackColor = &H80000005
+'    ElseIf CheckConnect1730.Value = 0 Then
+'        Text4.Locked = True
+'        Text5.Locked = True
+'        Text4.BackColor = &HE0E0E0
+'        Text5.BackColor = &HE0E0E0
+'    End If
+'End Sub
 
 Private Sub Form_Load()
     Dim i As Integer
@@ -1091,11 +1110,7 @@ Private Sub Form_Load()
     Text3.Text = rs("SN_Len")
     Text4.Text = rs("DelayMs01")
     Text5.Text = rs("DelayMs02")
-    If rs("Connect1730") Then
-        CheckConnect1730.Value = 1
-    Else
-        CheckConnect1730.Value = 0
-    End If
+    Text6.Text = rs("1730Port")
     
     'Read the Spec data from database and show them into the TextBox
     For i = 0 To (itemNumOfTvInfo - 4)
@@ -1115,7 +1130,21 @@ Private Sub Form_Load()
     Set cn = Nothing
     sqlstring = ""
 
-    CheckConnect1730_Click
+    If isConnect1730 Then
+        Text4.Locked = False
+        Text5.Locked = False
+        Text6.Locked = False
+        Text4.BackColor = &H80000005
+        Text5.BackColor = &H80000005
+        Text6.BackColor = &H80000005
+    Else
+        Text4.Locked = True
+        Text5.Locked = True
+        Text6.Locked = True
+        Text4.BackColor = &HE0E0E0
+        Text5.BackColor = &HE0E0E0
+        Text6.BackColor = &HE0E0E0
+    End If
 End Sub
 
 Private Sub cmdSave_Click()
@@ -1132,12 +1161,7 @@ Private Sub cmdSave_Click()
     rs.Fields(3) = Val(Text3.Text)                         'SN_Len
     rs.Fields(34) = Val(Text4.Text)                        'DelayMs01
     rs.Fields(35) = Val(Text5.Text)                        'DelayMs02
-    
-    If CheckConnect1730.Value = 1 Then
-        rs.Fields(33) = True
-    ElseIf CheckConnect1730.Value = 0 Then
-        rs.Fields(33) = False
-    End If
+    rs.Fields(36) = Val(Text6.Text)                        '1730Port
 
     For i = 0 To itemNumOfTvInfo
         If chkTitle(i).Value = 1 Then

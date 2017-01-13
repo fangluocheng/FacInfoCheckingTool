@@ -17,6 +17,24 @@ Begin VB.Form frmSplash
    ScaleWidth      =   4005
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CheckBox CheckConnect1730 
+      BackColor       =   &H00E0E0E0&
+      Caption         =   "Á¬½ÓIO¿¨"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   10.5
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   255
+      Left            =   360
+      TabIndex        =   5
+      Top             =   1920
+      Width           =   1335
+   End
    Begin VB.PictureBox Picture1 
       Appearance      =   0  'Flat
       AutoSize        =   -1  'True
@@ -189,6 +207,29 @@ On Error GoTo ErrExit
         Set rs = Nothing
         sqlstring = ""
     End If
+    
+    strCurrentModelName = cmbModelName.Text
+    sqlstring = ""
+    sqlstring = "update CommonTable set CurrentModelName='" & strCurrentModelName & "' where Mark='ATS'"
+    Executesql (sqlstring)
+    
+    Set cn = Nothing
+    Set rs = Nothing
+    sqlstring = ""
+    
+    sqlstring = "select * from CheckItem where Mark='" & strCurrentModelName & "'"
+    Executesql (sqlstring)
+
+    If rs("Connect1730") Then
+        CheckConnect1730.Value = 1
+    Else
+        CheckConnect1730.Value = 0
+    End If
+    
+    Set rs = Nothing
+    Set cn = Nothing
+    sqlstring = ""
+    
     Exit Sub
     
 ErrExit:
@@ -215,9 +256,9 @@ On Error GoTo ErrExit
     SetTVCurrentComBaud = rs("ComBaud")
     IsStepTime = rs("Delayms")
     barcodeLen = rs("SN_Len")
-    isConnect1730 = rs("Connect1730")
     delayMs01 = rs("DelayMs01")
     delayMs02 = rs("DelayMs02")
+    port1730 = rs("1730Port")
     
     For i = 0 To itemNumOfTvInfo
         chkTitleFlag(i) = rs.Fields(i + 16)
@@ -226,6 +267,16 @@ On Error GoTo ErrExit
     For i = 0 To 11
         strTvInfoSpec(i) = rs.Fields(i + 4)
     Next i
+    
+    If CheckConnect1730.Value = 1 Then
+        rs.Fields(33) = True
+        isConnect1730 = True
+    ElseIf CheckConnect1730.Value = 0 Then
+        rs.Fields(33) = False
+        isConnect1730 = False
+    End If
+
+    rs.Update
 
     Set rs = Nothing
     Set cn = Nothing
