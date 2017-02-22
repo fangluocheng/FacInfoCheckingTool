@@ -1,8 +1,8 @@
 VERSION 5.00
 Begin VB.Form frmSetData 
-   BackColor       =   &H00E0E0E0&
+   BackColor       =   &H80000001&
    Caption         =   "参数设置"
-   ClientHeight    =   8325
+   ClientHeight    =   8370
    ClientLeft      =   6435
    ClientTop       =   3210
    ClientWidth     =   11070
@@ -18,11 +18,28 @@ Begin VB.Form frmSetData
    Icon            =   "frmSetData.frx":0000
    LinkTopic       =   "Form4"
    MaxButton       =   0   'False
-   ScaleHeight     =   8325
+   ScaleHeight     =   8370
    ScaleWidth      =   11070
    StartUpPosition =   1  'CenterOwner
+   Begin VB.TextBox url_input 
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
+      Left            =   1440
+      TabIndex        =   54
+      Text            =   "http://192.168.8.22:6394/ws/r/aws_ttsrv2?wsdl"
+      Top             =   7920
+      Width           =   7695
+   End
    Begin VB.Frame Frame4 
-      BackColor       =   &H00E0E0E0&
+      BorderStyle     =   0  'None
       Caption         =   "PCIE-1730"
       BeginProperty Font 
          Name            =   "Arial"
@@ -33,10 +50,10 @@ Begin VB.Form frmSetData
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   795
+      Height          =   675
       Left            =   120
-      TabIndex        =   48
-      Top             =   7440
+      TabIndex        =   47
+      Top             =   7080
       Width           =   9015
       Begin VB.TextBox Text6 
          Alignment       =   2  'Center
@@ -52,14 +69,15 @@ Begin VB.Form frmSetData
          EndProperty
          Height          =   360
          Left            =   1000
-         TabIndex        =   53
+         TabIndex        =   52
          Text            =   "500"
-         Top             =   300
+         Top             =   180
          Width           =   950
       End
       Begin VB.TextBox Text5 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
+         BorderStyle     =   0  'None
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   10.5
@@ -71,9 +89,9 @@ Begin VB.Form frmSetData
          EndProperty
          Height          =   360
          Left            =   7800
-         TabIndex        =   50
+         TabIndex        =   49
          Text            =   "1"
-         Top             =   300
+         Top             =   180
          Width           =   950
       End
       Begin VB.TextBox Text4 
@@ -90,9 +108,9 @@ Begin VB.Form frmSetData
          EndProperty
          Height          =   360
          Left            =   3840
-         TabIndex        =   49
+         TabIndex        =   48
          Text            =   "500"
-         Top             =   300
+         Top             =   180
          Width           =   950
       End
       Begin VB.Label Label5 
@@ -108,8 +126,8 @@ Begin VB.Form frmSetData
          EndProperty
          Height          =   255
          Left            =   120
-         TabIndex        =   54
-         Top             =   360
+         TabIndex        =   53
+         Top             =   240
          Width           =   795
       End
       Begin VB.Label Label7 
@@ -125,8 +143,8 @@ Begin VB.Form frmSetData
          EndProperty
          Height          =   255
          Left            =   5520
-         TabIndex        =   52
-         Top             =   360
+         TabIndex        =   51
+         Top             =   240
          Width           =   2220
       End
       Begin VB.Label Label6 
@@ -142,28 +160,13 @@ Begin VB.Form frmSetData
          EndProperty
          Height          =   255
          Left            =   2280
-         TabIndex        =   51
-         Top             =   360
+         TabIndex        =   50
+         Top             =   240
          Width           =   1395
       End
    End
-   Begin VB.PictureBox PictureBrand 
-      Appearance      =   0  'Flat
-      AutoSize        =   -1  'True
-      BackColor       =   &H80000005&
-      ForeColor       =   &H80000008&
-      Height          =   780
-      Left            =   120
-      Picture         =   "frmSetData.frx":1DF72
-      ScaleHeight     =   750
-      ScaleWidth      =   2520
-      TabIndex        =   46
-      Top             =   120
-      Width           =   2550
-   End
    Begin VB.Frame Frame3 
-      BackColor       =   &H00E0E0E0&
-      Caption         =   "通讯模式"
+      BorderStyle     =   0  'None
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   9
@@ -173,10 +176,10 @@ Begin VB.Form frmSetData
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   795
+      Height          =   675
       Left            =   7080
       TabIndex        =   15
-      Top             =   6600
+      Top             =   6240
       Width           =   2055
       Begin VB.OptionButton optNetwork 
          Caption         =   "网络"
@@ -192,7 +195,7 @@ Begin VB.Form frmSetData
          Height          =   250
          Left            =   1200
          TabIndex        =   17
-         Top             =   360
+         Top             =   240
          Width           =   735
       End
       Begin VB.OptionButton optUart 
@@ -209,13 +212,12 @@ Begin VB.Form frmSetData
          Height          =   250
          Left            =   240
          TabIndex        =   16
-         Top             =   360
+         Top             =   240
          Width           =   735
       End
    End
    Begin VB.Frame Frame2 
-      BackColor       =   &H00E0E0E0&
-      Caption         =   "TV 信息"
+      BorderStyle     =   0  'None
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   9
@@ -228,7 +230,7 @@ Begin VB.Form frmSetData
       Height          =   5535
       Left            =   120
       TabIndex        =   8
-      Top             =   960
+      Top             =   600
       Width           =   10820
       Begin VB.TextBox txtTVInfo 
          Alignment       =   2  'Center
@@ -900,8 +902,7 @@ Begin VB.Form frmSetData
       End
    End
    Begin VB.Frame Frame1 
-      BackColor       =   &H00E0E0E0&
-      Caption         =   "串口设置"
+      BorderStyle     =   0  'None
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   9
@@ -911,10 +912,10 @@ Begin VB.Form frmSetData
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   795
+      Height          =   675
       Left            =   120
       TabIndex        =   4
-      Top             =   6600
+      Top             =   6240
       Width           =   6855
       Begin VB.TextBox Text1 
          Alignment       =   2  'Center
@@ -932,7 +933,7 @@ Begin VB.Form frmSetData
          Left            =   1000
          TabIndex        =   0
          Text            =   "115200"
-         Top             =   300
+         Top             =   180
          Width           =   950
       End
       Begin VB.TextBox Text2 
@@ -951,7 +952,7 @@ Begin VB.Form frmSetData
          Left            =   3610
          TabIndex        =   1
          Text            =   "500"
-         Top             =   300
+         Top             =   180
          Width           =   950
       End
       Begin VB.TextBox Text3 
@@ -970,7 +971,7 @@ Begin VB.Form frmSetData
          Left            =   5720
          TabIndex        =   2
          Text            =   "1"
-         Top             =   300
+         Top             =   180
          Width           =   950
       End
       Begin VB.Label Label2 
@@ -987,7 +988,7 @@ Begin VB.Form frmSetData
          Height          =   255
          Left            =   240
          TabIndex        =   7
-         Top             =   360
+         Top             =   240
          Width           =   750
       End
       Begin VB.Label Label3 
@@ -1002,10 +1003,10 @@ Begin VB.Form frmSetData
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   2200
+         Left            =   2205
          TabIndex        =   6
-         Top             =   360
-         Width           =   1400
+         Top             =   240
+         Width           =   1395
       End
       Begin VB.Label Label4 
          Caption         =   "条码长度"
@@ -1019,9 +1020,9 @@ Begin VB.Form frmSetData
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   4810
+         Left            =   4815
          TabIndex        =   5
-         Top             =   360
+         Top             =   240
          Width           =   900
       End
    End
@@ -1037,33 +1038,51 @@ Begin VB.Form frmSetData
          Strikethrough   =   0   'False
       EndProperty
       Height          =   435
-      Left            =   9840
+      Left            =   9960
       TabIndex        =   3
       Top             =   7800
       Width           =   975
    End
-   Begin VB.Label Label1 
+   Begin VB.Label url_label 
+      BackColor       =   &H80000001&
+      Caption         =   "ERP URL :"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H8000000E&
+      Height          =   255
+      Left            =   120
+      TabIndex        =   55
+      Top             =   7980
+      Width           =   1215
+   End
+   Begin VB.Label label1 
       Alignment       =   2  'Center
       Appearance      =   0  'Flat
       BackColor       =   &H80000005&
       BackStyle       =   0  'Transparent
-      BorderStyle     =   1  'Fixed Single
-      Caption         =   "Label1"
+      Caption         =   "Model"
       BeginProperty Font 
          Name            =   "Arial"
-         Size            =   36
+         Size            =   18
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H80000008&
-      Height          =   780
-      Left            =   2655
-      TabIndex        =   47
+      ForeColor       =   &H8000000E&
+      Height          =   540
+      Left            =   135
+      TabIndex        =   46
       Top             =   120
-      Width           =   8280
+      Width           =   10800
    End
 End
 Attribute VB_Name = "frmSetData"
@@ -1175,4 +1194,3 @@ Private Sub cmdSave_Click()
     Unload Form1
 
 End Sub
-

@@ -1,54 +1,38 @@
 VERSION 5.00
 Object = "{1752FF26-D6C9-4BC8-BFE9-7D0CA26DED89}#1.0#0"; "BDaqOcx.dll"
-Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "MSCOMM32.OCX"
+Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "mscomm32.ocx"
 Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
 Begin VB.Form Form1 
-   BackColor       =   &H00E0E0E0&
+   BackColor       =   &H80000001&
    BorderStyle     =   1  'Fixed Single
    Caption         =   "工厂信息校验工具"
-   ClientHeight    =   7335
+   ClientHeight    =   7740
    ClientLeft      =   45
    ClientTop       =   735
-   ClientWidth     =   14580
+   ClientWidth     =   14115
    Icon            =   "Form1.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7335
-   ScaleWidth      =   14580
+   ScaleHeight     =   7740
+   ScaleWidth      =   14115
    StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox TxtReceive 
-      Appearance      =   0  'Flat
       BeginProperty Font 
          Name            =   "Arial"
-         Size            =   9
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00008000&
-      Height          =   7095
+      Height          =   7455
       Left            =   11040
       MultiLine       =   -1  'True
-      TabIndex        =   21
-      Top             =   120
-      Width           =   3465
-   End
-   Begin VB.PictureBox PictureBrand 
-      Appearance      =   0  'Flat
-      AutoSize        =   -1  'True
-      BackColor       =   &H80000005&
-      ForeColor       =   &H80000008&
-      Height          =   780
-      Left            =   120
-      Picture         =   "Form1.frx":1DF72
-      ScaleHeight     =   750
-      ScaleWidth      =   2520
       TabIndex        =   41
       Top             =   120
-      Width           =   2550
+      Width           =   3000
    End
    Begin MSWinsockLib.Winsock tcpClient 
       Left            =   10440
@@ -62,8 +46,7 @@ Begin VB.Form Form1
       Top             =   240
    End
    Begin VB.Frame Frame3 
-      BackColor       =   &H00E0E0E0&
-      Caption         =   "条码"
+      BorderStyle     =   0  'None
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   9
@@ -73,10 +56,10 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   850
+      Height          =   800
       Left            =   3840
       TabIndex        =   18
-      Top             =   6360
+      Top             =   6120
       Width           =   7095
       Begin VB.TextBox txtInput 
          Alignment       =   2  'Center
@@ -95,13 +78,12 @@ Begin VB.Form Form1
          Left            =   120
          TabIndex        =   0
          Text            =   "123456789"
-         Top             =   240
+         Top             =   160
          Width           =   6850
       End
    End
    Begin VB.Frame Frame2 
-      BackColor       =   &H00E0E0E0&
-      Caption         =   "测试结果"
+      BorderStyle     =   0  'None
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   9
@@ -111,10 +93,10 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   850
+      Height          =   800
       Left            =   120
       TabIndex        =   17
-      Top             =   6360
+      Top             =   6120
       Width           =   3615
       Begin VB.Label lbResult 
          Alignment       =   2  'Center
@@ -132,16 +114,15 @@ Begin VB.Form Form1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H80000008&
-         Height          =   450
+         Height          =   480
          Left            =   120
          TabIndex        =   20
-         Top             =   240
+         Top             =   160
          Width           =   3350
       End
    End
    Begin VB.Frame Frame1 
-      BackColor       =   &H00E0E0E0&
-      Caption         =   "TV 信息"
+      BorderStyle     =   0  'None
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   9
@@ -154,7 +135,7 @@ Begin VB.Form Form1
       Height          =   5295
       Left            =   120
       TabIndex        =   1
-      Top             =   960
+      Top             =   720
       Width           =   10820
       Begin VB.Label lbTVInfo 
          Alignment       =   2  'Center
@@ -175,7 +156,7 @@ Begin VB.Form Form1
          Height          =   345
          Index           =   16
          Left            =   3650
-         TabIndex        =   40
+         TabIndex        =   39
          Top             =   4760
          Width           =   3495
       End
@@ -198,7 +179,7 @@ Begin VB.Form Form1
          Height          =   405
          Index           =   16
          Left            =   3650
-         TabIndex        =   39
+         TabIndex        =   38
          Top             =   4340
          Width           =   3495
       End
@@ -221,7 +202,7 @@ Begin VB.Form Form1
          Height          =   345
          Index           =   15
          Left            =   120
-         TabIndex        =   38
+         TabIndex        =   37
          Top             =   4760
          Width           =   3500
       End
@@ -244,7 +225,7 @@ Begin VB.Form Form1
          Height          =   405
          Index           =   15
          Left            =   120
-         TabIndex        =   37
+         TabIndex        =   36
          Top             =   4340
          Width           =   3495
       End
@@ -267,7 +248,7 @@ Begin VB.Form Form1
          Height          =   345
          Index           =   14
          Left            =   7180
-         TabIndex        =   36
+         TabIndex        =   35
          Top             =   3940
          Width           =   3500
       End
@@ -290,7 +271,7 @@ Begin VB.Form Form1
          Height          =   345
          Index           =   13
          Left            =   3650
-         TabIndex        =   35
+         TabIndex        =   34
          Top             =   3940
          Width           =   3500
       End
@@ -313,7 +294,7 @@ Begin VB.Form Form1
          Height          =   345
          Index           =   12
          Left            =   120
-         TabIndex        =   34
+         TabIndex        =   33
          Top             =   3940
          Width           =   3500
       End
@@ -336,7 +317,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   11
          Left            =   7180
-         TabIndex        =   33
+         TabIndex        =   32
          Top             =   3120
          Width           =   3500
       End
@@ -359,7 +340,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   10
          Left            =   3650
-         TabIndex        =   32
+         TabIndex        =   31
          Top             =   3120
          Width           =   3500
       End
@@ -382,7 +363,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   9
          Left            =   120
-         TabIndex        =   31
+         TabIndex        =   30
          Top             =   3120
          Width           =   3500
       End
@@ -405,7 +386,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   8
          Left            =   7180
-         TabIndex        =   30
+         TabIndex        =   29
          Top             =   2300
          Width           =   3500
       End
@@ -428,7 +409,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   7
          Left            =   3650
-         TabIndex        =   29
+         TabIndex        =   28
          Top             =   2300
          Width           =   3500
       End
@@ -451,7 +432,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   6
          Left            =   120
-         TabIndex        =   28
+         TabIndex        =   27
          Top             =   2300
          Width           =   3500
       End
@@ -474,7 +455,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   5
          Left            =   7180
-         TabIndex        =   27
+         TabIndex        =   26
          Top             =   1480
          Width           =   3500
       End
@@ -497,7 +478,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   4
          Left            =   3650
-         TabIndex        =   26
+         TabIndex        =   25
          Top             =   1480
          Width           =   3500
       End
@@ -520,7 +501,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   3
          Left            =   120
-         TabIndex        =   25
+         TabIndex        =   24
          Top             =   1480
          Width           =   3500
       End
@@ -543,7 +524,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   2
          Left            =   7180
-         TabIndex        =   24
+         TabIndex        =   23
          Top             =   660
          Width           =   3500
       End
@@ -566,7 +547,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   1
          Left            =   3650
-         TabIndex        =   23
+         TabIndex        =   22
          Top             =   660
          Width           =   3500
       End
@@ -589,7 +570,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   0
          Left            =   120
-         TabIndex        =   22
+         TabIndex        =   21
          Top             =   660
          Width           =   3500
       End
@@ -947,9 +928,29 @@ Begin VB.Form Form1
       _Version        =   393216
       DTREnable       =   -1  'True
    End
+   Begin VB.Label Label2 
+      Alignment       =   2  'Center
+      BackColor       =   &H80000001&
+      Caption         =   "WWW.ECHOM.COM"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   20.25
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   -1  'True
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H8000000E&
+      Height          =   495
+      Left            =   120
+      TabIndex        =   40
+      Top             =   7080
+      Width           =   10815
+   End
    Begin BDaqOcxLibCtl.InstantDoCtrl InstantDoCtrl1 
       Left            =   8760
-      OleObjectBlob   =   "Form1.frx":24226
+      OleObjectBlob   =   "Form1.frx":1DF72
       Top             =   360
    End
    Begin VB.Label Label1 
@@ -957,23 +958,22 @@ Begin VB.Form Form1
       Appearance      =   0  'Flat
       BackColor       =   &H80000005&
       BackStyle       =   0  'Transparent
-      BorderStyle     =   1  'Fixed Single
-      Caption         =   "Label1"
+      Caption         =   "Model"
       BeginProperty Font 
          Name            =   "Arial"
-         Size            =   36
+         Size            =   21.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H80000008&
-      Height          =   780
-      Left            =   2655
+      ForeColor       =   &H8000000E&
+      Height          =   660
+      Left            =   135
       TabIndex        =   19
       Top             =   120
-      Width           =   8280
+      Width           =   10800
    End
    Begin VB.Menu vbSet 
       Caption         =   "设置"
