@@ -45,6 +45,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private Sub Command1_Click()
+On Error GoTo ErrExit
     Dim objHTTP As New XMLHTTP
     Dim strEnvelope As String
     Dim strReturn As String
@@ -102,6 +103,15 @@ Private Sub Command1_Click()
         End If
     ElseIf strStatus = "N" Then
         MsgBox "在 ERP 系统上找不到这台电视的整机码！"
+    End If
+
+    Exit Sub
+
+ErrExit:
+    If Err.Number = -2146697211 Then
+        MsgBox "未联网，请检查网络", vbCritical, Err.Source
+    Else
+        MsgBox Err.Description, vbCritical, Err.Source
     End If
 End Sub
 
