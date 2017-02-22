@@ -9,21 +9,29 @@ Begin VB.Form Form1
    ScaleHeight     =   3840
    ScaleWidth      =   5415
    StartUpPosition =   3  'Windows Default
+   Begin VB.TextBox TextInput 
+      Height          =   300
+      Left            =   120
+      TabIndex        =   2
+      Text            =   "Text1"
+      Top             =   120
+      Width           =   5175
+   End
    Begin VB.Timer Timer1 
       Left            =   120
       Top             =   3360
    End
    Begin VB.TextBox TextResult 
-      Height          =   3015
+      Height          =   2655
       Left            =   120
       MultiLine       =   -1  'True
       TabIndex        =   1
       Text            =   "Form1.frx":0000
-      Top             =   120
+      Top             =   480
       Width           =   5175
    End
    Begin VB.CommandButton Command1 
-      Caption         =   "Command1"
+      Caption         =   "获取MAC"
       Height          =   495
       Left            =   4200
       TabIndex        =   0
@@ -41,34 +49,60 @@ Private Sub Command1_Click()
     Dim strEnvelope As String
     Dim strReturn As String
     Dim objReturn As New DOMDocument
-    Dim dblTax As Double
-    Dim strQuery As String
+    Dim objNodeList As MSXML2.IXMLDOMNodeList
+    Dim strStatus As String
+    Dim strMacAddr As String
+    Dim strActicode As String
     
-    strEnvelope = TestWebPost()
+    strEnvelope = TestWebPost(TextInput.Text)
 
     'Set up to post to our local server
     objHTTP.open "POST", "http://192.168.8.22:6394/ws/r/aws_ttsrv2?wsdl", False
 
     'Set a standard SOAP/ XML header
     objHTTP.setRequestHeader "Content-Type", "text/xml;charset=UTF-8"
-    'objHTTP.setRequestHeader "Content-Length", Len(strEnvelope)
     objHTTP.setRequestHeader "SOAPAction", """"""
 
     'Make the SOAP call
     objHTTP.send strEnvelope
 
     'Get the return envelope
-    strReturn = objHTTP.responseText
-    TextResult.Text = objHTTP.responseText
+    strReturn = Replace(Replace(objHTTP.responseText, "&lt;", "<"), "&gt;", ">")
+    TextResult.Text = strReturn
 
     'Load the return envelope into a DOM
     objReturn.loadXML strReturn
+    
+    'Query the return envelope, then get acticode and MAC Address
+    strQuery = "/SOAP-ENV:Envelope/SOAP-ENV:Body/fjs1:GetCsfi020Response/fjs1:response/" & _
+                "Response/ResponseContent/Document/RecordSet/Master/Record/Field"
+    Set objNodeList = objReturn.selectNodes(strQuery)
 
-    'Query the return envelope
-    'strQuery = _
-    '    "SOAP:Envelope/SOAP:Body/m:GetSalesTaxResponse/SalesTax"
-    '    dblTax = objReturn.selectSingleNode(strQuery).Text
-    MsgBox "End"
+    If Not objNodeList Is Nothing Then
+        Dim objNode As MSXML2.IXMLDOMNode
+            
+        For Each objNode In objNodeList
+                If Trim(objNode.selectSingleNode("@name").Text) = "status" Then
+                    strStatus = Trim(objNode.selectSingleNode("@value").Text)
+                End If
+                If Trim(objNode.selectSingleNode("@name").Text) = "maccode" Then
+                    strMacAddr = Trim(objNode.selectSingleNode("@value").Text)
+                End If
+                If Trim(objNode.selectSingleNode("@name").Text) = "acticode" Then
+                    strActicode = Trim(objNode.selectSingleNode("@value").Text)
+                End If
+            Next objNode
+        End If
+
+    If strStatus = "Y" Then
+        If strActicode = "Y" Then
+            MsgBox "MAC Address: " & strMacAddr
+        ElseIf strActicode = "N" Then
+            MsgBox "此整机码无效！"
+        End If
+    ElseIf strStatus = "N" Then
+        MsgBox "在 ERP 系统上找不到这台电视的整机码！"
+    End If
 End Sub
 
 Public Function createHeaderXML() As String
@@ -89,11 +123,10 @@ Public Function createPartXML(snCode As String) As String
                 "&lt;/Request&gt;"
 End Function
 
-Public Function TestWebPost() As String
-
+Public Function TestWebPost(snCode As String) As String
     Dim testString As String
 
-    testString = createHeaderXML() + createPartXML("7930B65P500746MMZA500001") + createEndXML()
+    testString = createHeaderXML() + createPartXML(snCode) + createEndXML()
 
     TestWebPost = testString
 End Function
