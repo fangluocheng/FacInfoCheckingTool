@@ -37,10 +37,10 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Private Sub Command1_Click()
-    Dim objHTTP As New MSXML.XMLHTTPRequest
+    Dim objHTTP As New XMLHTTP
     Dim strEnvelope As String
     Dim strReturn As String
-    Dim objReturn As New MSXML.DOMDocument
+    Dim objReturn As New DOMDocument
     Dim dblTax As Double
     Dim strQuery As String
     
@@ -58,11 +58,11 @@ Private Sub Command1_Click()
     objHTTP.send strEnvelope
 
     'Get the return envelope
-    'strReturn = objHTTP.responseText
-    TextResult.Text = objHTTP.Status & ": " & objHTTP.responseText
+    strReturn = objHTTP.responseText
+    TextResult.Text = objHTTP.responseText
 
     'Load the return envelope into a DOM
-    'objReturn.loadXML strReturn
+    objReturn.loadXML strReturn
 
     'Query the return envelope
     'strQuery = _
@@ -81,9 +81,11 @@ Public Function createEndXML()
     createEndXML = "</tip:request></tip:GetCsfi020Request></soapenv:Body></soapenv:Envelope>"
 End Function
 
-Public Function createPartXML() As String
+Public Function createPartXML(snCode As String) As String
     createPartXML = "&lt;Request&gt; &lt;Access&gt; &lt;Authentication user=""tiptop"" password=""tiptop""/&gt; &lt;Connection application="""" source=""192.168.8.22""/&gt; &lt;Organization name=""echom_gz""/&gt; &lt;Locale language=""zh_cn""/&gt; &lt;/Access&gt;" & _
-                "&lt;RequestContent&gt; &lt;Document&gt; &lt;RecordSet id=""1""&gt; &lt;Master name=""tc_sfh_file""&gt; &lt;Record&gt; &lt;Field name=""tc_sfh04"" value=""7930B65P500746MMZA500001""/&gt; &lt;/Record&gt; &lt;/Master&gt; &lt;/RecordSet&gt; &lt;/Document&gt; &lt;/RequestContent&gt;" & _
+                "&lt;RequestContent&gt; &lt;Document&gt; &lt;RecordSet id=""1""&gt; &lt;Master name=""tc_sfh_file""&gt; &lt;Record&gt; &lt;Field name=""tc_sfh04"" value=" & _
+                """" & snCode & """" & _
+                "/&gt; &lt;/Record&gt; &lt;/Master&gt; &lt;/RecordSet&gt; &lt;/Document&gt; &lt;/RequestContent&gt;" & _
                 "&lt;/Request&gt;"
 End Function
 
@@ -91,7 +93,7 @@ Public Function TestWebPost() As String
 
     Dim testString As String
 
-    testString = createHeaderXML() + createPartXML() + createEndXML()
+    testString = createHeaderXML() + createPartXML("7930B65P500746MMZA500001") + createEndXML()
 
     TestWebPost = testString
 End Function
