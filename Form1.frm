@@ -3,7 +3,7 @@ Object = "{1752FF26-D6C9-4BC8-BFE9-7D0CA26DED89}#1.0#0"; "BDaqOcx.dll"
 Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "mscomm32.ocx"
 Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
 Begin VB.Form Form1 
-   BackColor       =   &H80000001&
+   BackColor       =   &H8000000C&
    BorderStyle     =   1  'Fixed Single
    Caption         =   "工厂信息校验工具"
    ClientHeight    =   7740
@@ -930,7 +930,7 @@ Begin VB.Form Form1
    End
    Begin VB.Label Label2 
       Alignment       =   2  'Center
-      BackColor       =   &H80000001&
+      BackColor       =   &H8000000C&
       Caption         =   "WWW.ECHOM.COM"
       BeginProperty Font 
          Name            =   "Verdana"
@@ -998,6 +998,7 @@ Option Explicit
 Dim Result As Boolean
 Dim StepTime As Long
 Dim IsAllDataMatch As Boolean
+Dim strErpMacAddr As String
 
 Private Sub Form_Load()
     i = 0
@@ -1151,16 +1152,25 @@ Private Sub subInitAfterRunning()
 End Sub
 
 Private Sub subMainProcesser()
+On Error GoTo ErrExit
     Dim i, j As Integer
     Dim error As ErrorCode
+    Dim objHTTP As New XMLHTTP
+    Dim strEnvelope As String
+    Dim strReturn As String
+    Dim objReturn As New DOMDocument
+    Dim objNodeList As MSXML2.IXMLDOMNodeList
+    Dim strErpStatus As String
+    Dim strErpActicode As String
+    Dim strQuery As String
+    
     error = Success
-
-On Error GoTo ErrExit
+    
     subInitBeforeRunning
     If IsStop = True Then
         Exit Sub
     End If
-
+    
     If IsSNWriteSuccess = funSNWrite Then
         If IsStop = True Then
             Exit Sub
@@ -1170,9 +1180,58 @@ On Error GoTo ErrExit
         'ShowError_Sys (6)
         GoTo FAIL
     End If
-
-On Error GoTo ErrExit
+    
     j = 0
+
+    strEnvelope = TestWebPost(txtInput.Text)
+
+    'Set up to post to our local server
+    objHTTP.Open "POST", "http://192.168.8.22:6394/ws/r/aws_ttsrv2?wsdl", False
+
+    'Set a standard SOAP/ XML header
+    objHTTP.setRequestHeader "Content-Type", "text/xml;charset=UTF-8"
+    objHTTP.setRequestHeader "SOAPAction", """"""
+
+    'Make the SOAP call
+    objHTTP.send strEnvelope
+
+    'Get the return envelope
+    strReturn = Replace(Replace(objHTTP.responseText, "&lt;", "<"), "&gt;", ">")
+    SaveLogInFile strReturn
+
+    'Load the return envelope into a DOM
+    objReturn.loadXML strReturn
+    
+    'Query the return envelope, then get acticode and MAC Address
+    strQuery = "/SOAP-ENV:Envelope/SOAP-ENV:Body/fjs1:GetCsfi020Response/fjs1:response/" & _
+                "Response/ResponseContent/Document/RecordSet/Master/Record/Field"
+    Set objNodeList = objReturn.selectNodes(strQuery)
+
+    If Not objNodeList Is Nothing Then
+        Dim objNode As MSXML2.IXMLDOMNode
+            
+        For Each objNode In objNodeList
+                If Trim(objNode.selectSingleNode("@name").Text) = "status" Then
+                    strErpStatus = Trim(objNode.selectSingleNode("@value").Text)
+                End If
+                If Trim(objNode.selectSingleNode("@name").Text) = "maccode" Then
+                    strErpMacAddr = Trim(objNode.selectSingleNode("@value").Text)
+                End If
+                If Trim(objNode.selectSingleNode("@name").Text) = "acticode" Then
+                    strErpActicode = Trim(objNode.selectSingleNode("@value").Text)
+                End If
+            Next objNode
+        End If
+
+    If strErpStatus = "Y" Then
+        If strErpActicode = "N" Then
+            MsgBox "此整机码无效！"
+            GoTo FAIL
+        End If
+    ElseIf strErpStatus = "N" Then
+        MsgBox "在 ERP 系统上找不到这台电视的整机码！"
+        GoTo FAIL
+    End If
 
 RESEND_CMD_0:
     ClearComBuf
@@ -1639,8 +1698,11 @@ FAIL:
     Exit Sub
 
 ErrExit:
-    MsgBox err.Description, vbCritical, err.Source
-
+    If err.Number = -2146697211 Then
+        MsgBox "未联网，请检查网络", vbCritical, err.Source
+    Else
+        MsgBox err.Description, vbCritical, err.Source
+    End If
 End Sub
 
 
@@ -1962,25 +2024,16 @@ Private Sub InfoCompare(cmdIdx As Integer, recvData As String)
             ElseIf cmdIdx = 15 Then                        'MAC Address
                 If chkTitleFlag(13) Then
                     If Len(recvData) = 12 Then
-                        sqlstring = "select * from DataRecord where MACAddr='" & recvData & "'"
-                        Executesql (sqlstring)
-                                
-                        If rs.RecordCount > 0 Then
-                            If rs.RecordCount = 1 Then
-                                Log_Clear
-                                Log_Info "请检查此电视机的条码是否为 [" & rs("SerialNO") & "]."
-                            Else
-                                Log_Info "在数据库中发现有多个相同的 MAC 地址，请检查"
-                            End If
-                                    
-                            TxtReceive.ForeColor = &HFF&
-                            IsAllDataMatch = False
-                            lbTVInfo(13).BackColor = &HFF&
-                            lbTVInfo(13).Caption = "MAC 地址重复"
-                        Else
+                        If strErpMacAddr = recvData Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(13).BackColor = &HFF00&
                             lbTVInfo(13).Caption = recvData
+                        Else
+                            TxtReceive.ForeColor = &HFF&
+                            IsAllDataMatch = False
+                            lbTVInfo(13).BackColor = &HFF&
+                            lbTVInfo(13).Caption = "MAC 地址与整机码不对应"
+                            Log_Info "这台电视的 MAC 地址与 ERP 系统上的不一致，请检查。"
                         End If
                                 
                         Set cn = Nothing
@@ -2064,3 +2117,30 @@ Private Sub HandleError(ByVal err As ErrorCode)
         MsgBox "Sorry ! There're some errors happened, the error code is: " & errorMessage
     End If
 End Sub
+
+Public Function createHeaderXML() As String
+    createHeaderXML = "<?xml version=""1.0"" encoding=""UTF-8"" standalone=""no""?>" & _
+                "<soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:tip=""http://www.dsc.com.tw/tiptop/TIPTOPServiceGateWay"">" & _
+                "<soapenv:Header/><soapenv:Body><tip:GetCsfi020Request><tip:request>"
+End Function
+
+Public Function createEndXML()
+    createEndXML = "</tip:request></tip:GetCsfi020Request></soapenv:Body></soapenv:Envelope>"
+End Function
+
+Public Function createPartXML(snCode As String) As String
+    createPartXML = "&lt;Request&gt; &lt;Access&gt; &lt;Authentication user=""tiptop"" password=""tiptop""/&gt; &lt;Connection application="""" source=""192.168.8.22""/&gt; &lt;Organization name=""echom_gz""/&gt; &lt;Locale language=""zh_cn""/&gt; &lt;/Access&gt;" & _
+                "&lt;RequestContent&gt; &lt;Document&gt; &lt;RecordSet id=""1""&gt; &lt;Master name=""tc_sfh_file""&gt; &lt;Record&gt; &lt;Field name=""tc_sfh04"" value=" & _
+                """" & snCode & """" & _
+                "/&gt; &lt;/Record&gt; &lt;/Master&gt; &lt;/RecordSet&gt; &lt;/Document&gt; &lt;/RequestContent&gt;" & _
+                "&lt;/Request&gt;"
+End Function
+
+Public Function TestWebPost(snCode As String) As String
+    Dim testString As String
+
+    testString = createHeaderXML() + createPartXML(snCode) + createEndXML()
+
+    TestWebPost = testString
+End Function
+

@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin VB.Form frmSetData 
-   BackColor       =   &H80000001&
+   BackColor       =   &H8000000C&
    Caption         =   "≤Œ ˝…Ë÷√"
    ClientHeight    =   8370
    ClientLeft      =   6435
@@ -1044,7 +1044,7 @@ Begin VB.Form frmSetData
       Width           =   975
    End
    Begin VB.Label url_label 
-      BackColor       =   &H80000001&
+      BackColor       =   &H8000000C&
       Caption         =   "ERP URL :"
       BeginProperty Font 
          Name            =   "Arial"
@@ -1068,15 +1068,6 @@ Begin VB.Form frmSetData
       BackColor       =   &H80000005&
       BackStyle       =   0  'Transparent
       Caption         =   "Model"
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   18
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
       ForeColor       =   &H8000000E&
       Height          =   540
       Left            =   135
