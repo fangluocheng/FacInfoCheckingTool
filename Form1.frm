@@ -1242,7 +1242,7 @@ On Error GoTo ErrExit
         End If
 
     If strErpStatus = "Y" Then
-        If strErpActicode = "N" Then
+        If strErpActicode = "Y" Then
             MsgBox "此整机码无效！"
             GoTo FAIL
         End If
@@ -2153,7 +2153,7 @@ Public Function createEndXML()
 End Function
 
 Public Function createPartXML(snCode As String) As String
-    createPartXML = "&lt;Request&gt; &lt;Access&gt; &lt;Authentication user=""tiptop"" password=""tiptop""/&gt; &lt;Connection application="""" source=""192.168.8.22""/&gt; &lt;Organization name=""echom_gz""/&gt; &lt;Locale language=""zh_cn""/&gt; &lt;/Access&gt;" & _
+    createPartXML = "&lt;Request&gt; &lt;Access&gt; &lt;Authentication user=""tiptop"" password=""tiptop""/&gt; &lt;Connection application="""" source=""192.168.8.12""/&gt; &lt;Organization name=""ks_sjg""/&gt; &lt;Locale language=""zh_cn""/&gt; &lt;/Access&gt;" & _
                 "&lt;RequestContent&gt; &lt;Document&gt; &lt;RecordSet id=""1""&gt; &lt;Master name=""tc_sfh_file""&gt; &lt;Record&gt; &lt;Field name=""tc_sfh04"" value=" & _
                 """" & snCode & """" & _
                 "/&gt; &lt;/Record&gt; &lt;/Master&gt; &lt;/RecordSet&gt; &lt;/Document&gt; &lt;/RequestContent&gt;" & _
