@@ -3,8 +3,6 @@ Option Explicit
 
 Public strBuff As String
 
-Public i As Integer
-
 '------------------------------------------------------------------------------
 '    Variable mapping the check items in "CheckItem".
 '------------------------------------------------------------------------------
@@ -43,6 +41,7 @@ Public isConnect1730 As Boolean
 Public delayMs01 As Long
 Public delayMs02 As Long
 Public port1730 As Long
+Public strErpUrl As String
 
 Public Const strChkBoxUnselected As String = "----"
 Public Const strNoRecvData As String = "None"

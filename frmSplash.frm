@@ -238,8 +238,8 @@ ErrExit:
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
-
 On Error GoTo ErrExit
+    Dim i As Integer
 
     strCurrentModelName = cmbModelName.Text
     sqlstring = ""
@@ -259,6 +259,7 @@ On Error GoTo ErrExit
     delayMs01 = rs("DelayMs01")
     delayMs02 = rs("DelayMs02")
     port1730 = rs("1730Port")
+    strErpUrl = rs("ErpUrl")
     
     For i = 0 To itemNumOfTvInfo
         chkTitleFlag(i) = rs.Fields(i + 16)

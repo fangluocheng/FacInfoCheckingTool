@@ -1001,6 +1001,8 @@ Dim IsAllDataMatch As Boolean
 Dim strErpMacAddr As String
 
 Private Sub Form_Load()
+    Dim i As Integer
+
     i = 0
 
     StepTime = IsStepTime
@@ -1042,6 +1044,8 @@ End Sub
 
 
 Private Sub subInitInterface()
+    Dim i As Integer
+
     txtInput.Text = ""
     txtInput.Locked = False
     isCmdDataRecv = False
@@ -1103,6 +1107,8 @@ Private Function funSNWrite() As Boolean
 End Function
 
 Private Sub subInitBeforeRunning()
+    Dim i As Integer
+
     IsSNWriteSuccess = True
     IsAllDataMatch = True
     txtInput.Locked = True
@@ -1186,7 +1192,7 @@ On Error GoTo ErrExit
     strEnvelope = TestWebPost(txtInput.Text)
 
     'Set up to post to our local server
-    objHTTP.Open "POST", "http://192.168.8.22:6394/ws/r/aws_ttsrv2?wsdl", False
+    objHTTP.Open "POST", strErpUrl, False
 
     'Set a standard SOAP/ XML header
     objHTTP.setRequestHeader "Content-Type", "text/xml;charset=UTF-8"
@@ -1232,6 +1238,8 @@ On Error GoTo ErrExit
         MsgBox "在 ERP 系统上找不到这台电视的整机码！"
         GoTo FAIL
     End If
+    
+    Log_Info "MAC Address on the server: " & strErpMacAddr
 
 RESEND_CMD_0:
     ClearComBuf
@@ -1665,7 +1673,7 @@ RESEND_CMD_18:
         GoTo FAIL
     End If
 
-    Call saveAllData
+    'Call saveAllData
     
 PASS:
     lbResult.Caption = "PASS"
@@ -1699,7 +1707,8 @@ FAIL:
 
 ErrExit:
     If err.Number = -2146697211 Then
-        MsgBox "未联网，请检查网络", vbCritical, err.Source
+        MsgBox "无法连接ERP系统，请检查网络", vbCritical, "网络错误"
+        Call subInitAfterRunning
     Else
         MsgBox err.Description, vbCritical, err.Source
     End If
@@ -1707,6 +1716,7 @@ End Sub
 
 
 Private Sub saveAllData()
+    Dim i As Integer
 
     If strSerialNo = "" Then
         Exit Sub
@@ -1960,6 +1970,8 @@ Private Sub tcpClient_Connect()
 End Sub
 
 Private Sub InfoCompare(cmdIdx As Integer, recvData As String)
+    Dim i As Integer
+
     For i = 0 To 16
         isCmdDataRecv = True
 

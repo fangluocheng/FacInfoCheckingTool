@@ -21,7 +21,7 @@ Begin VB.Form frmSetData
    ScaleHeight     =   8370
    ScaleWidth      =   11070
    StartUpPosition =   1  'CenterOwner
-   Begin VB.TextBox url_input 
+   Begin VB.TextBox TextErpUrl 
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   9.75
@@ -34,7 +34,6 @@ Begin VB.Form frmSetData
       Height          =   360
       Left            =   1440
       TabIndex        =   54
-      Text            =   "http://192.168.8.22:6394/ws/r/aws_ttsrv2?wsdl"
       Top             =   7920
       Width           =   7695
    End
@@ -1085,8 +1084,9 @@ Option Explicit
 
 Private Sub Form_Load()
     Dim i As Integer
-    
-    i = 0
+    Dim itemNumOfTvInfoTxt As Integer
+
+    itemNumOfTvInfoTxt = itemNumOfTvInfo - 5
 
     If isUartMode Then
         optUart.Value = True
@@ -1106,9 +1106,10 @@ Private Sub Form_Load()
     Text4.Text = rs("DelayMs01")
     Text5.Text = rs("DelayMs02")
     Text6.Text = rs("1730Port")
+    TextErpUrl.Text = rs("ErpUrl")
     
     'Read the Spec data from database and show them into the TextBox
-    For i = 0 To (itemNumOfTvInfo - 4)
+    For i = 0 To itemNumOfTvInfoTxt
         txtTVInfo(i).Text = rs.Fields(i + 4)
     Next i
 
@@ -1129,8 +1130,9 @@ End Sub
 
 Private Sub cmdSave_Click()
     Dim i As Integer
+    Dim itemNumOfTvInfoTxt As Integer
 
-    i = 0
+    itemNumOfTvInfoTxt = itemNumOfTvInfo - 5
 
     sqlstring = "select * from CheckItem where Mark='" & strCurrentModelName & "'"
     Executesql (sqlstring)
@@ -1142,18 +1144,20 @@ Private Sub cmdSave_Click()
     rs.Fields(34) = Val(Text4.Text)                        'DelayMs01
     rs.Fields(35) = Val(Text5.Text)                        'DelayMs02
     rs.Fields(36) = Val(Text6.Text)                        '1730Port
+    rs.Fields(37) = TextErpUrl.Text                        'ErpUrl
 
     For i = 0 To itemNumOfTvInfo
         If chkTitle(i).Value = 1 Then
             rs.Fields(i + 16) = True
-            If i <= (itemNumOfTvInfo - 4) Then
-                rs.Fields(i + 4) = txtTVInfo(i).Text
-            End If
         ElseIf chkTitle(i).Value = 0 Then
             rs.Fields(i + 16) = False
         End If
     Next i
- 
+    
+    For i = 0 To itemNumOfTvInfoTxt
+        rs.Fields(i + 4) = txtTVInfo(i).Text
+    Next i
+
     rs.Update
 
     Set cn = Nothing
