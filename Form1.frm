@@ -6,7 +6,7 @@ Begin VB.Form Form1
    BackColor       =   &H8000000C&
    BorderStyle     =   1  'Fixed Single
    Caption         =   "工厂信息校验工具"
-   ClientHeight    =   7740
+   ClientHeight    =   7620
    ClientLeft      =   45
    ClientTop       =   735
    ClientWidth     =   14115
@@ -14,7 +14,7 @@ Begin VB.Form Form1
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7740
+   ScaleHeight     =   7620
    ScaleWidth      =   14115
    StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox TxtReceive 
@@ -27,7 +27,7 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   7455
+      Height          =   7350
       Left            =   11040
       MultiLine       =   -1  'True
       TabIndex        =   41
@@ -934,7 +934,7 @@ Begin VB.Form Form1
       Caption         =   "WWW.ECHOM.COM"
       BeginProperty Font 
          Name            =   "Verdana"
-         Size            =   20.25
+         Size            =   15.75
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
@@ -942,7 +942,7 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H8000000E&
-      Height          =   495
+      Height          =   375
       Left            =   120
       TabIndex        =   40
       Top             =   7080
@@ -1079,7 +1079,19 @@ Private Sub subInitComPort()
 End Sub
 
 Private Sub SubInitPCIE1730()
+On Error GoTo ErrExit
     InstantDoCtrl1.setSelectedDevice port1730
+
+ErrExit:
+    If err.Number = 5 Then
+        MsgBox "无法连接 PCIE 1730 卡，请检查！", vbCritical, err.Source
+    Else
+        MsgBox err.Description, vbCritical, err.Source
+    End If
+    
+    'Unload Me
+    'Unload Form1
+    End
 End Sub
 
 Private Sub subInitNetwork()
