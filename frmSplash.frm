@@ -148,7 +148,6 @@ Private Sub Form_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub Form_Load()
-
 On Error GoTo ErrExit
 
     lblVersion.Caption = "Version " & App.Major & "." & App.Minor & "." & App.Revision
