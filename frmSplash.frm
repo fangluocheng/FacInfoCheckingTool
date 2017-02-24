@@ -235,8 +235,6 @@ On Error GoTo ErrExit
         strTvInfoSpec(i) = rs.Fields(i + 2)
     Next i
 
-    rs.Update
-
     Set rs = Nothing
     Set cn = Nothing
     sqlstring = ""
@@ -251,6 +249,8 @@ On Error GoTo ErrExit
         rs.Fields(6) = False
         isConnect1730 = False
     End If
+    
+    rs.Update
     
     Set rs = Nothing
     Set cn = Nothing
