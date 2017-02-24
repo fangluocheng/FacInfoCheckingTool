@@ -1201,9 +1201,11 @@ On Error GoTo ErrExit
     
     j = 0
 
-    strEnvelope = TestWebPost(txtInput.Text)
+    strEnvelope = TestWebPost(txtInput.Text, strErpOrganization)
 
     'Set up to post to our local server
+    'Debug URL: http://192.168.8.22:6394/ws/r/aws_ttsrv2?wsdl
+    'ERP URL: http://192.168.8.12:6394/ws/r/aws_ttsrv2?wsdl
     objHTTP.Open "POST", strErpUrl, False
 
     'Set a standard SOAP/ XML header
@@ -2152,18 +2154,19 @@ Public Function createEndXML()
     createEndXML = "</tip:request></tip:GetCsfi020Request></soapenv:Body></soapenv:Envelope>"
 End Function
 
-Public Function createPartXML(snCode As String) As String
-    createPartXML = "&lt;Request&gt; &lt;Access&gt; &lt;Authentication user=""tiptop"" password=""tiptop""/&gt; &lt;Connection application="""" source=""192.168.8.12""/&gt; &lt;Organization name=""ks_sjg""/&gt; &lt;Locale language=""zh_cn""/&gt; &lt;/Access&gt;" & _
+Public Function createPartXML(snCode As String, strOrganization As String) As String
+    createPartXML = "&lt;Request&gt; &lt;Access&gt; &lt;Authentication user=""tiptop"" password=""tiptop""/&gt; &lt;Connection application="""" source=""192.168.8.12""/&gt;" & _
+                "&lt;Organization name=" & """" & strOrganization & """" & "/&gt; &lt;Locale language=""zh_cn""/&gt; &lt;/Access&gt;" & _
                 "&lt;RequestContent&gt; &lt;Document&gt; &lt;RecordSet id=""1""&gt; &lt;Master name=""tc_sfh_file""&gt; &lt;Record&gt; &lt;Field name=""tc_sfh04"" value=" & _
                 """" & snCode & """" & _
                 "/&gt; &lt;/Record&gt; &lt;/Master&gt; &lt;/RecordSet&gt; &lt;/Document&gt; &lt;/RequestContent&gt;" & _
                 "&lt;/Request&gt;"
 End Function
 
-Public Function TestWebPost(snCode As String) As String
+Public Function TestWebPost(snCode As String, strOrganization As String) As String
     Dim testString As String
 
-    testString = createHeaderXML() + createPartXML(snCode) + createEndXML()
+    testString = createHeaderXML() + createPartXML(snCode, strOrganization) + createEndXML()
 
     TestWebPost = testString
 End Function

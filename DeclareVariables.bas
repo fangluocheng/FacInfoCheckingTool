@@ -26,8 +26,6 @@ Public strDataBindingExcelFileName As String
 Public isOpenDataBindingExcelFile As Boolean
 
 Public SetTVCurrentComID As Integer
-Public SetData As Integer
-Public SetDay As Integer
 
 Public IsSNWriteSuccess As Boolean
 Public isCmdDataRecv As Boolean
@@ -42,6 +40,7 @@ Public delayMs01 As Long
 Public delayMs02 As Long
 Public port1730 As Long
 Public strErpUrl As String
+Public strErpOrganization As String
 
 Public Const strChkBoxUnselected As String = "----"
 Public Const strNoRecvData As String = "None"

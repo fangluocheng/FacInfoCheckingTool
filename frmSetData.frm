@@ -21,6 +21,22 @@ Begin VB.Form frmSetData
    ScaleHeight     =   8370
    ScaleWidth      =   11070
    StartUpPosition =   1  'CenterOwner
+   Begin VB.TextBox TextErpOrganization 
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
+      Left            =   9240
+      TabIndex        =   57
+      Top             =   6240
+      Width           =   1695
+   End
    Begin VB.TextBox TextErpUrl 
       BeginProperty Font 
          Name            =   "Arial"
@@ -32,10 +48,10 @@ Begin VB.Form frmSetData
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      Left            =   1440
+      Left            =   1320
       TabIndex        =   54
-      Top             =   7920
-      Width           =   7695
+      Top             =   6240
+      Width           =   6255
    End
    Begin VB.Frame Frame4 
       BorderStyle     =   0  'None
@@ -52,7 +68,7 @@ Begin VB.Form frmSetData
       Height          =   675
       Left            =   120
       TabIndex        =   47
-      Top             =   7080
+      Top             =   7560
       Width           =   9015
       Begin VB.TextBox Text6 
          Alignment       =   2  'Center
@@ -76,7 +92,6 @@ Begin VB.Form frmSetData
       Begin VB.TextBox Text5 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
-         BorderStyle     =   0  'None
          BeginProperty Font 
             Name            =   "Arial"
             Size            =   10.5
@@ -178,7 +193,7 @@ Begin VB.Form frmSetData
       Height          =   675
       Left            =   7080
       TabIndex        =   15
-      Top             =   6240
+      Top             =   6720
       Width           =   2055
       Begin VB.OptionButton optNetwork 
          Caption         =   "ÍøÂç"
@@ -914,7 +929,7 @@ Begin VB.Form frmSetData
       Height          =   675
       Left            =   120
       TabIndex        =   4
-      Top             =   6240
+      Top             =   6720
       Width           =   6855
       Begin VB.TextBox Text1 
          Alignment       =   2  'Center
@@ -1042,6 +1057,25 @@ Begin VB.Form frmSetData
       Top             =   7800
       Width           =   975
    End
+   Begin VB.Label Label8 
+      BackColor       =   &H8000000C&
+      Caption         =   "ERP ÕËÌ× :"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H8000000E&
+      Height          =   255
+      Left            =   7920
+      TabIndex        =   56
+      Top             =   6300
+      Width           =   1215
+   End
    Begin VB.Label url_label 
       BackColor       =   &H8000000C&
       Caption         =   "ERP URL :"
@@ -1058,8 +1092,8 @@ Begin VB.Form frmSetData
       Height          =   255
       Left            =   120
       TabIndex        =   55
-      Top             =   7980
-      Width           =   1215
+      Top             =   6300
+      Width           =   1095
    End
    Begin VB.Label label1 
       Alignment       =   2  'Center
@@ -1100,22 +1134,16 @@ Private Sub Form_Load()
     Executesql (sqlstring)
 
     Label1 = strCurrentModelName
-    Text1.Text = rs("ComBaud")
-    Text2.Text = rs("Delayms")
     Text3.Text = rs("SN_Len")
-    Text4.Text = rs("DelayMs01")
-    Text5.Text = rs("DelayMs02")
-    Text6.Text = rs("1730Port")
-    TextErpUrl.Text = rs("ErpUrl")
     
     'Read the Spec data from database and show them into the TextBox
     For i = 0 To itemNumOfTvInfoTxt
-        txtTVInfo(i).Text = rs.Fields(i + 4)
+        txtTVInfo(i).Text = rs.Fields(i + 2)
     Next i
 
     'Whether the CheckBox selected or not.
     For i = 0 To itemNumOfTvInfo
-        If rs.Fields(i + 16) Then
+        If rs.Fields(i + 14) Then
             chkTitle(i).Value = 1
         Else
             chkTitle(i).Value = 0
@@ -1125,7 +1153,21 @@ Private Sub Form_Load()
     Set rs = Nothing
     Set cn = Nothing
     sqlstring = ""
+    
+    sqlstring = "select * from CommonTable where Mark='ATS'"
+    Executesql (sqlstring)
 
+    Text1.Text = rs("ComBaud")
+    Text2.Text = rs("Delayms")
+    Text4.Text = rs("DelayMs01")
+    Text5.Text = rs("DelayMs02")
+    Text6.Text = rs("1730Port")
+    TextErpUrl.Text = rs("ErpUrl")
+    TextErpOrganization.Text = rs("ErpOrganization")
+
+    Set rs = Nothing
+    Set cn = Nothing
+    sqlstring = ""
 End Sub
 
 Private Sub cmdSave_Click()
@@ -1138,24 +1180,18 @@ Private Sub cmdSave_Click()
     Executesql (sqlstring)
 
     'Set the text into the CheckItem table of database file.
-    rs.Fields(1) = Val(Text1.Text)                         'ComBaud
-    rs.Fields(2) = Val(Text2.Text)                         'Delayms
-    rs.Fields(3) = Val(Text3.Text)                         'SN_Len
-    rs.Fields(34) = Val(Text4.Text)                        'DelayMs01
-    rs.Fields(35) = Val(Text5.Text)                        'DelayMs02
-    rs.Fields(36) = Val(Text6.Text)                        '1730Port
-    rs.Fields(37) = TextErpUrl.Text                        'ErpUrl
+    rs.Fields(1) = Val(Text3.Text)                         'SN_Len
 
     For i = 0 To itemNumOfTvInfo
         If chkTitle(i).Value = 1 Then
-            rs.Fields(i + 16) = True
+            rs.Fields(i + 14) = True
         ElseIf chkTitle(i).Value = 0 Then
-            rs.Fields(i + 16) = False
+            rs.Fields(i + 14) = False
         End If
     Next i
     
     For i = 0 To itemNumOfTvInfoTxt
-        rs.Fields(i + 4) = txtTVInfo(i).Text
+        rs.Fields(i + 2) = txtTVInfo(i).Text
     Next i
 
     rs.Update
@@ -1167,13 +1203,21 @@ Private Sub cmdSave_Click()
     sqlstring = "select * from CommonTable where Mark='ATS'"
     Executesql (sqlstring)
 
+    rs.Fields(2) = Val(Text1.Text)                         'ComBaud
+    rs.Fields(5) = Val(Text2.Text)                         'Delayms
+    rs.Fields(7) = Val(Text4.Text)                         'DelayMs01
+    rs.Fields(8) = Val(Text5.Text)                         'DelayMs02
+    rs.Fields(9) = Val(Text6.Text)                         '1730Port
+    rs.Fields(10) = TextErpUrl.Text                        'ErpUrl
+    rs.Fields(11) = TextErpOrganization.Text               'ErpOrganization
+
     If rs.EOF = False Then
         If optUart.Value = True Then
-            rs.Fields(3) = "UART"
+            rs.Fields(4) = "UART"
         ElseIf optNetwork.Value = True Then
-            rs.Fields(3) = "Network"
+            rs.Fields(4) = "Network"
         Else
-            rs.Fields(3) = "UART"
+            rs.Fields(4) = "UART"
         End If
     Else
         MsgBox "Read Data Error,Please Check Your Database!", vbOKOnly + vbInformation, "Warning!"

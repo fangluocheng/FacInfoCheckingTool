@@ -97,7 +97,6 @@ Private Sub cmdExit_Click()
 End Sub
 
 Private Sub cmdSet_Click()
-
 On Error GoTo ErrExit
  
     If Len(Trim$(cmbTcomID.Text)) = 5 Then
@@ -113,7 +112,7 @@ On Error GoTo ErrExit
     sqlstring = "select * from CommonTable where Mark='ATS'"
     Executesql (sqlstring)
     
-    rs.Fields(2) = SetTVCurrentComID                       'ComID
+    rs.Fields(3) = SetTVCurrentComID                       'ComID
     rs.Update
     
     Set cn = Nothing
@@ -136,7 +135,7 @@ End With
     Exit Sub
 
 ErrExit:
-        MsgBox err.Description, vbCritical, err.Source
+    MsgBox err.Description, vbCritical, err.Source
 End Sub
 
 Private Sub Form_Load()
@@ -158,7 +157,7 @@ On Error GoTo ErrExit
 
     Exit Sub
 ErrExit:
-        MsgBox err.Description, vbCritical, err.Source
+    MsgBox err.Description, vbCritical, err.Source
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
