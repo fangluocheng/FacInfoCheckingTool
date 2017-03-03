@@ -2,52 +2,36 @@ VERSION 5.00
 Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "mscomm32.ocx"
 Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
 Begin VB.Form Form1 
-   BackColor       =   &H00E0E0E0&
+   BackColor       =   &H8000000C&
    BorderStyle     =   1  'Fixed Single
    Caption         =   "工厂信息校验工具"
-   ClientHeight    =   7335
+   ClientHeight    =   7620
    ClientLeft      =   45
    ClientTop       =   735
-   ClientWidth     =   14580
+   ClientWidth     =   14115
    Icon            =   "Form1.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7335
-   ScaleWidth      =   14580
+   ScaleHeight     =   7620
+   ScaleWidth      =   14115
    StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox TxtReceive 
-      Appearance      =   0  'Flat
       BeginProperty Font 
          Name            =   "Arial"
-         Size            =   9
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00008000&
-      Height          =   7095
+      Height          =   7350
       Left            =   11040
       MultiLine       =   -1  'True
-      TabIndex        =   21
-      Top             =   120
-      Width           =   3465
-   End
-   Begin VB.PictureBox PictureBrand 
-      Appearance      =   0  'Flat
-      AutoSize        =   -1  'True
-      BackColor       =   &H80000005&
-      ForeColor       =   &H80000008&
-      Height          =   780
-      Left            =   120
-      Picture         =   "Form1.frx":1DF72
-      ScaleHeight     =   750
-      ScaleWidth      =   2520
       TabIndex        =   41
       Top             =   120
-      Width           =   2550
+      Width           =   3000
    End
    Begin MSWinsockLib.Winsock tcpClient 
       Left            =   10440
@@ -61,8 +45,7 @@ Begin VB.Form Form1
       Top             =   240
    End
    Begin VB.Frame Frame3 
-      BackColor       =   &H00E0E0E0&
-      Caption         =   "条码"
+      BorderStyle     =   0  'None
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   9
@@ -72,10 +55,10 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   850
+      Height          =   800
       Left            =   3840
       TabIndex        =   18
-      Top             =   6360
+      Top             =   6120
       Width           =   7095
       Begin VB.TextBox txtInput 
          Alignment       =   2  'Center
@@ -94,13 +77,12 @@ Begin VB.Form Form1
          Left            =   120
          TabIndex        =   0
          Text            =   "123456789"
-         Top             =   240
+         Top             =   160
          Width           =   6850
       End
    End
    Begin VB.Frame Frame2 
-      BackColor       =   &H00E0E0E0&
-      Caption         =   "测试结果"
+      BorderStyle     =   0  'None
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   9
@@ -110,10 +92,10 @@ Begin VB.Form Form1
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   850
+      Height          =   800
       Left            =   120
       TabIndex        =   17
-      Top             =   6360
+      Top             =   6120
       Width           =   3615
       Begin VB.Label lbResult 
          Alignment       =   2  'Center
@@ -131,16 +113,15 @@ Begin VB.Form Form1
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H80000008&
-         Height          =   450
+         Height          =   480
          Left            =   120
          TabIndex        =   20
-         Top             =   240
+         Top             =   160
          Width           =   3350
       End
    End
    Begin VB.Frame Frame1 
-      BackColor       =   &H00E0E0E0&
-      Caption         =   "TV 信息"
+      BorderStyle     =   0  'None
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   9
@@ -153,7 +134,7 @@ Begin VB.Form Form1
       Height          =   5295
       Left            =   120
       TabIndex        =   1
-      Top             =   960
+      Top             =   720
       Width           =   10820
       Begin VB.Label lbTVInfo 
          Alignment       =   2  'Center
@@ -174,7 +155,7 @@ Begin VB.Form Form1
          Height          =   345
          Index           =   16
          Left            =   3650
-         TabIndex        =   40
+         TabIndex        =   39
          Top             =   4760
          Width           =   3495
       End
@@ -197,7 +178,7 @@ Begin VB.Form Form1
          Height          =   405
          Index           =   16
          Left            =   3650
-         TabIndex        =   39
+         TabIndex        =   38
          Top             =   4340
          Width           =   3495
       End
@@ -220,7 +201,7 @@ Begin VB.Form Form1
          Height          =   345
          Index           =   15
          Left            =   120
-         TabIndex        =   38
+         TabIndex        =   37
          Top             =   4760
          Width           =   3500
       End
@@ -243,7 +224,7 @@ Begin VB.Form Form1
          Height          =   405
          Index           =   15
          Left            =   120
-         TabIndex        =   37
+         TabIndex        =   36
          Top             =   4340
          Width           =   3495
       End
@@ -266,7 +247,7 @@ Begin VB.Form Form1
          Height          =   345
          Index           =   14
          Left            =   7180
-         TabIndex        =   36
+         TabIndex        =   35
          Top             =   3940
          Width           =   3500
       End
@@ -289,7 +270,7 @@ Begin VB.Form Form1
          Height          =   345
          Index           =   13
          Left            =   3650
-         TabIndex        =   35
+         TabIndex        =   34
          Top             =   3940
          Width           =   3500
       End
@@ -312,7 +293,7 @@ Begin VB.Form Form1
          Height          =   345
          Index           =   12
          Left            =   120
-         TabIndex        =   34
+         TabIndex        =   33
          Top             =   3940
          Width           =   3500
       End
@@ -335,7 +316,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   11
          Left            =   7180
-         TabIndex        =   33
+         TabIndex        =   32
          Top             =   3120
          Width           =   3500
       End
@@ -358,7 +339,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   10
          Left            =   3650
-         TabIndex        =   32
+         TabIndex        =   31
          Top             =   3120
          Width           =   3500
       End
@@ -381,7 +362,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   9
          Left            =   120
-         TabIndex        =   31
+         TabIndex        =   30
          Top             =   3120
          Width           =   3500
       End
@@ -404,7 +385,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   8
          Left            =   7180
-         TabIndex        =   30
+         TabIndex        =   29
          Top             =   2300
          Width           =   3500
       End
@@ -427,7 +408,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   7
          Left            =   3650
-         TabIndex        =   29
+         TabIndex        =   28
          Top             =   2300
          Width           =   3500
       End
@@ -450,7 +431,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   6
          Left            =   120
-         TabIndex        =   28
+         TabIndex        =   27
          Top             =   2300
          Width           =   3500
       End
@@ -473,7 +454,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   5
          Left            =   7180
-         TabIndex        =   27
+         TabIndex        =   26
          Top             =   1480
          Width           =   3500
       End
@@ -496,7 +477,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   4
          Left            =   3650
-         TabIndex        =   26
+         TabIndex        =   25
          Top             =   1480
          Width           =   3500
       End
@@ -519,7 +500,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   3
          Left            =   120
-         TabIndex        =   25
+         TabIndex        =   24
          Top             =   1480
          Width           =   3500
       End
@@ -542,7 +523,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   2
          Left            =   7180
-         TabIndex        =   24
+         TabIndex        =   23
          Top             =   660
          Width           =   3500
       End
@@ -565,7 +546,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   1
          Left            =   3650
-         TabIndex        =   23
+         TabIndex        =   22
          Top             =   660
          Width           =   3500
       End
@@ -588,7 +569,7 @@ Begin VB.Form Form1
          Height          =   350
          Index           =   0
          Left            =   120
-         TabIndex        =   22
+         TabIndex        =   21
          Top             =   660
          Width           =   3500
       End
@@ -946,28 +927,52 @@ Begin VB.Form Form1
       _Version        =   393216
       DTREnable       =   -1  'True
    End
+   Begin VB.Label Label2 
+      Alignment       =   2  'Center
+      BackColor       =   &H8000000C&
+      Caption         =   "WWW.ECHOM.COM"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   15.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   -1  'True
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H8000000E&
+      Height          =   375
+      Left            =   120
+      TabIndex        =   40
+      Top             =   7080
+      Width           =   10815
+   End
+   Begin BDaqOcxLibCtl.InstantDoCtrl InstantDoCtrl1 
+      Left            =   8760
+      OleObjectBlob   =   "Form1.frx":1DF72
+      Top             =   360
+   End
    Begin VB.Label Label1 
       Alignment       =   2  'Center
       Appearance      =   0  'Flat
       BackColor       =   &H80000005&
       BackStyle       =   0  'Transparent
-      BorderStyle     =   1  'Fixed Single
-      Caption         =   "Label1"
+      Caption         =   "Model"
       BeginProperty Font 
          Name            =   "Arial"
-         Size            =   36
+         Size            =   21.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H80000008&
-      Height          =   780
-      Left            =   2655
+      ForeColor       =   &H8000000E&
+      Height          =   660
+      Left            =   135
       TabIndex        =   19
       Top             =   120
-      Width           =   8280
+      Width           =   10800
    End
    Begin VB.Menu vbSet 
       Caption         =   "设置"
@@ -976,6 +981,9 @@ Begin VB.Form Form1
       End
       Begin VB.Menu vbSetSPEC 
          Caption         =   "设置数据规格"
+      End
+      Begin VB.Menu vbCancelWarning 
+         Caption         =   "取消警报"
       End
    End
 End
@@ -986,14 +994,12 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Dim RES As Long
 Dim Result As Boolean
 Dim StepTime As Long
 Dim IsAllDataMatch As Boolean
+Dim strErpMacAddr As String
 
 Private Sub Form_Load()
-    Dim i As Integer
-
     i = 0
 
     StepTime = IsStepTime
@@ -1010,13 +1016,17 @@ Private Sub Form_Load()
         tbSetComPort.Enabled = False
         subInitNetwork
     End If
-    
+    If isConnect1730 Then
+        SubInitPCIE1730
+    End If
+    vbCancelWarning.Visible = isConnect1730
     subInitInterface
 
     Label1 = strCurrentModelName
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
+
 On Error GoTo ErrExit
   
     If MSComm1.PortOpen = True Then
@@ -1027,13 +1037,11 @@ On Error GoTo ErrExit
 Exit Sub
 
 ErrExit:
-        MsgBox Err.Description, vbCritical, Err.Source
+    MsgBox err.Description, vbCritical, err.Source
 End Sub
 
 
 Private Sub subInitInterface()
-    Dim i As Integer
-
     txtInput.Text = ""
     txtInput.Locked = False
     isCmdDataRecv = False
@@ -1064,7 +1072,22 @@ Private Sub subInitComPort()
     sqlstring = ""
 
     ComInit
+End Sub
 
+Private Sub SubInitPCIE1730()
+On Error GoTo ErrExit
+    InstantDoCtrl1.setSelectedDevice port1730
+
+ErrExit:
+    If err.Number = 5 Then
+        MsgBox "无法连接 PCIE 1730 卡，请检查！", vbCritical, err.Source
+    Else
+        MsgBox err.Description, vbCritical, err.Source
+    End If
+    
+    'Unload Me
+    'Unload Form1
+    End
 End Sub
 
 Private Sub subInitNetwork()
@@ -1092,8 +1115,6 @@ Private Function funSNWrite() As Boolean
 End Function
 
 Private Sub subInitBeforeRunning()
-    Dim i As Integer
-
     IsSNWriteSuccess = True
     IsAllDataMatch = True
     txtInput.Locked = True
@@ -1143,14 +1164,25 @@ Private Sub subInitAfterRunning()
 End Sub
 
 Private Sub subMainProcesser()
-    Dim i, j As Integer
-
 On Error GoTo ErrExit
+    Dim i, j As Integer
+    Dim error As ErrorCode
+    Dim objHTTP As New XMLHTTP
+    Dim strEnvelope As String
+    Dim strReturn As String
+    Dim objReturn As New DOMDocument
+    Dim objNodeList As MSXML2.IXMLDOMNodeList
+    Dim strErpStatus As String
+    Dim strErpActicode As String
+    Dim strQuery As String
+    
+    error = Success
+    
     subInitBeforeRunning
     If IsStop = True Then
         Exit Sub
     End If
-
+    
     If IsSNWriteSuccess = funSNWrite Then
         If IsStop = True Then
             Exit Sub
@@ -1160,9 +1192,62 @@ On Error GoTo ErrExit
         'ShowError_Sys (6)
         GoTo FAIL
     End If
-
-On Error GoTo ErrExit
+    
     j = 0
+
+    strEnvelope = TestWebPost(txtInput.Text, strErpOrganization)
+
+    'Set up to post to our local server
+    'Debug URL: http://192.168.8.22:6394/ws/r/aws_ttsrv2?wsdl
+    'ERP URL: http://192.168.8.12:6394/ws/r/aws_ttsrv2?wsdl
+    objHTTP.Open "POST", strErpUrl, False
+
+    'Set a standard SOAP/ XML header
+    objHTTP.setRequestHeader "Content-Type", "text/xml;charset=UTF-8"
+    objHTTP.setRequestHeader "SOAPAction", """"""
+
+    'Make the SOAP call
+    objHTTP.send strEnvelope
+
+    'Get the return envelope
+    strReturn = Replace(Replace(objHTTP.responseText, "&lt;", "<"), "&gt;", ">")
+    SaveLogInFile strReturn
+
+    'Load the return envelope into a DOM
+    objReturn.loadXML strReturn
+    
+    'Query the return envelope, then get acticode and MAC Address
+    strQuery = "/SOAP-ENV:Envelope/SOAP-ENV:Body/fjs1:GetCsfi020Response/fjs1:response/" & _
+                "Response/ResponseContent/Document/RecordSet/Master/Record/Field"
+    Set objNodeList = objReturn.selectNodes(strQuery)
+
+    If Not objNodeList Is Nothing Then
+        Dim objNode As MSXML2.IXMLDOMNode
+            
+        For Each objNode In objNodeList
+                If Trim(objNode.selectSingleNode("@name").Text) = "status" Then
+                    strErpStatus = Trim(objNode.selectSingleNode("@value").Text)
+                End If
+                If Trim(objNode.selectSingleNode("@name").Text) = "maccode" Then
+                    strErpMacAddr = Trim(objNode.selectSingleNode("@value").Text)
+                End If
+                If Trim(objNode.selectSingleNode("@name").Text) = "acticode" Then
+                    strErpActicode = Trim(objNode.selectSingleNode("@value").Text)
+                End If
+            Next objNode
+        End If
+
+    If strErpStatus = "Y" Then
+        If strErpActicode = "Y" Then
+            MsgBox "此整机码无效！"
+            GoTo FAIL
+        End If
+    ElseIf strErpStatus = "N" Then
+        MsgBox "在 ERP 系统上找不到这台电视的整机码！"
+        GoTo FAIL
+    End If
+    
+    Log_Info "MAC Address on the server: " & strErpMacAddr
 
 RESEND_CMD_0:
     ClearComBuf
@@ -1596,30 +1681,49 @@ RESEND_CMD_18:
         GoTo FAIL
     End If
 
-    Call saveAllData
+    'Call saveAllData
     
 PASS:
     lbResult.Caption = "PASS"
     lbResult.BackColor = &HFF00&
     Call subInitAfterRunning
-    
+    If isConnect1730 Then
+        DelayMS delayMs01
+        error = InstantDoCtrl1.WritePort(0, 2)
+        If error <> Success Then
+            HandleError (error)
+        End If
+        DelayMS delayMs02
+        error = InstantDoCtrl1.WritePort(0, 0)
+        If error <> Success Then
+            HandleError (error)
+        End If
+    End If
     Exit Sub
 
 FAIL:
     lbResult.Caption = "NG"
     lbResult.BackColor = &HFF&
     Call subInitAfterRunning
-
+    If isConnect1730 Then
+        error = InstantDoCtrl1.WritePort(0, 1)
+        If error <> Success Then
+            HandleError (error)
+        End If
+    End If
     Exit Sub
 
 ErrExit:
-    MsgBox Err.Description, vbCritical, Err.Source
-
+    If err.Number = -2146697211 Then
+        MsgBox "无法连接ERP系统，请检查网络", vbCritical, "网络错误"
+        Call subInitAfterRunning
+    Else
+        MsgBox err.Description, vbCritical, err.Source
+    End If
 End Sub
 
 
 Private Sub saveAllData()
-    Dim i As Integer
 
     If strSerialNo = "" Then
         Exit Sub
@@ -1696,7 +1800,15 @@ Private Sub txtInput_KeyPress(KeyAscii As Integer)
         End If
     End If
     Exit Sub
-    
+End Sub
+
+Private Sub vbCancelWarning_Click()
+    Dim err As ErrorCode
+    err = Success
+    err = InstantDoCtrl1.WritePort(0, 0)
+    If err <> Success Then
+        HandleError (err)
+    End If
 End Sub
 
 Private Sub vbSetSPEC_Click()
@@ -1709,7 +1821,7 @@ End Sub
 '------------------------------------------------------------------------------
 Private Sub MSComm1_OnComm()
     
-On Error GoTo Err
+On Error GoTo err
     Select Case MSComm1.CommEvent
         Case comEvReceive
             DelayMS StepTime
@@ -1717,13 +1829,13 @@ On Error GoTo Err
         'Case comEvSend
         Case Else
     End Select
-Err:
+err:
   
 End Sub
 
 Private Sub hexReceive()
  
-On Error GoTo Err
+On Error GoTo err
     Dim ReceiveArr() As Byte
     Dim receiveData As String
     Dim Counter As Integer
@@ -1799,13 +1911,13 @@ On Error GoTo Err
         'Ignore empty data
     End If
     
-Err:
+err:
 
 End Sub
 
 
 Private Sub tcpClient_DataArrival(ByVal bytesTotal As Long)
-On Error GoTo Err
+On Error GoTo err
     Dim ReceiveArr() As Byte
     Dim receiveData As String
     Dim i, tmp, firstByteOfDataIdx As Integer
@@ -1856,7 +1968,7 @@ On Error GoTo Err
         'Ignore empty data
     End If
     
-Err:
+err:
 End Sub
 
 Private Sub tcpClient_Connect()
@@ -1865,8 +1977,6 @@ Private Sub tcpClient_Connect()
 End Sub
 
 Private Sub InfoCompare(cmdIdx As Integer, recvData As String)
-    Dim i As Integer
-
     For i = 0 To 16
         isCmdDataRecv = True
 
@@ -1931,25 +2041,16 @@ Private Sub InfoCompare(cmdIdx As Integer, recvData As String)
             ElseIf cmdIdx = 15 Then                        'MAC Address
                 If chkTitleFlag(13) Then
                     If Len(recvData) = 12 Then
-                        sqlstring = "select * from DataRecord where MACAddr='" & recvData & "'"
-                        Executesql (sqlstring)
-                                
-                        If rs.RecordCount > 0 Then
-                            If rs.RecordCount = 1 Then
-                                Log_Clear
-                                Log_Info "请检查此电视机的条码是否为 [" & rs("SerialNO") & "]."
-                            Else
-                                Log_Info "在数据库中发现有多个相同的 MAC 地址，请检查"
-                            End If
-                                    
-                            TxtReceive.ForeColor = &HFF&
-                            IsAllDataMatch = False
-                            lbTVInfo(13).BackColor = &HFF&
-                            lbTVInfo(13).Caption = "MAC 地址重复"
-                        Else
+                        If strErpMacAddr = recvData Then
                             IsAllDataMatch = True And IsAllDataMatch
                             lbTVInfo(13).BackColor = &HFF00&
                             lbTVInfo(13).Caption = recvData
+                        Else
+                            TxtReceive.ForeColor = &HFF&
+                            IsAllDataMatch = False
+                            lbTVInfo(13).BackColor = &HFF&
+                            lbTVInfo(13).Caption = "MAC 地址与整机码不对应"
+                            Log_Info "这台电视的 MAC 地址与 ERP 系统上的不一致，请检查。"
                         End If
                                 
                         Set cn = Nothing
@@ -2019,3 +2120,45 @@ Private Sub InfoCompare(cmdIdx As Integer, recvData As String)
         End If
     Next i
 End Sub
+
+Private Sub HandleError(ByVal err As ErrorCode)
+    Dim utility As BDaqUtility
+    Dim errorMessage As String
+    Dim res As ErrorCode
+        
+    Set utility = New BDaqUtility
+        
+    res = utility.EnumToString("ErrorCode", err, errorMessage)
+    
+    If err <> Success Then
+        MsgBox "Sorry ! There're some errors happened, the error code is: " & errorMessage
+    End If
+End Sub
+
+Public Function createHeaderXML() As String
+    createHeaderXML = "<?xml version=""1.0"" encoding=""UTF-8"" standalone=""no""?>" & _
+                "<soapenv:Envelope xmlns:soapenv=""http://schemas.xmlsoap.org/soap/envelope/"" xmlns:tip=""http://www.dsc.com.tw/tiptop/TIPTOPServiceGateWay"">" & _
+                "<soapenv:Header/><soapenv:Body><tip:GetCsfi020Request><tip:request>"
+End Function
+
+Public Function createEndXML()
+    createEndXML = "</tip:request></tip:GetCsfi020Request></soapenv:Body></soapenv:Envelope>"
+End Function
+
+Public Function createPartXML(snCode As String, strOrganization As String) As String
+    createPartXML = "&lt;Request&gt; &lt;Access&gt; &lt;Authentication user=""tiptop"" password=""tiptop""/&gt; &lt;Connection application="""" source=""192.168.8.12""/&gt;" & _
+                "&lt;Organization name=" & """" & strOrganization & """" & "/&gt; &lt;Locale language=""zh_cn""/&gt; &lt;/Access&gt;" & _
+                "&lt;RequestContent&gt; &lt;Document&gt; &lt;RecordSet id=""1""&gt; &lt;Master name=""tc_sfh_file""&gt; &lt;Record&gt; &lt;Field name=""tc_sfh04"" value=" & _
+                """" & snCode & """" & _
+                "/&gt; &lt;/Record&gt; &lt;/Master&gt; &lt;/RecordSet&gt; &lt;/Document&gt; &lt;/RequestContent&gt;" & _
+                "&lt;/Request&gt;"
+End Function
+
+Public Function TestWebPost(snCode As String, strOrganization As String) As String
+    Dim testString As String
+
+    testString = createHeaderXML() + createPartXML(snCode, strOrganization) + createEndXML()
+
+    TestWebPost = testString
+End Function
+

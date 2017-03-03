@@ -16,12 +16,12 @@ On Error GoTo ADOERROR
     Set rs = New ADODB.Recordset
 
     rs.CursorLocation = adUseClient
-    cn.ConnectionString = "provider=microsoft.jet.oledb.4.0;data source=" & strPath & "facInfoData.mdb"
+    cn.ConnectionString = "provider=microsoft.jet.oledb.4.0;data source=" & strPath & "settings.mdb"
     cn.Open
     rs.Open sqlstr, cn, adOpenDynamic, adLockOptimistic
     Exit Function
 
 ADOERROR:
-    MsgBox Err.Source & "------" & Err.Description
+    MsgBox err.Source & "------" & err.Description
    
 End Function

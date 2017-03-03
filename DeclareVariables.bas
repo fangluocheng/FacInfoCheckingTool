@@ -26,8 +26,6 @@ Public strDataBindingExcelFileName As String
 Public isOpenDataBindingExcelFile As Boolean
 
 Public SetTVCurrentComID As Integer
-Public SetData As Integer
-Public SetDay As Integer
 
 Public IsSNWriteSuccess As Boolean
 Public isCmdDataRecv As Boolean
@@ -36,6 +34,13 @@ Public strSerialNo As String
 Public countTime As Long
 
 Public cmdIdentifyNum As Integer
+
+Public isConnect1730 As Boolean
+Public delayMs01 As Long
+Public delayMs02 As Long
+Public port1730 As Long
+Public strErpUrl As String
+Public strErpOrganization As String
 
 Public Const strChkBoxUnselected As String = "----"
 Public Const strNoRecvData As String = "None"
@@ -74,7 +79,7 @@ On Error GoTo ShowError
     Exit Sub
 
 ShowError:
-    MsgBox Err.Source & "------" & Err.Description
+    MsgBox err.Source & "------" & err.Description
     Exit Sub
 End Sub
 
@@ -93,7 +98,7 @@ On Error GoTo ShowError
     Exit Sub
 
 ShowError:
-    MsgBox Err.Source & "------" & Err.Description
+    MsgBox err.Source & "------" & err.Description
     Exit Sub
 End Sub
 

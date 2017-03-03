@@ -112,7 +112,7 @@ On Error GoTo ErrExit
     sqlstring = "select * from CommonTable where Mark='ATS'"
     Executesql (sqlstring)
     
-    rs.Fields(2) = SetTVCurrentComID                       'ComID
+    rs.Fields(3) = SetTVCurrentComID                       'ComID
     rs.Update
     
     Set cn = Nothing
@@ -135,7 +135,7 @@ End With
     Exit Sub
 
 ErrExit:
-        MsgBox Err.Description, vbCritical, Err.Source
+    MsgBox err.Description, vbCritical, err.Source
 End Sub
 
 Private Sub Form_Load()
