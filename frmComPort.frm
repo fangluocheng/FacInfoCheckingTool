@@ -97,7 +97,6 @@ Private Sub cmdExit_Click()
 End Sub
 
 Private Sub cmdSet_Click()
-
 On Error GoTo ErrExit
  
     If Len(Trim$(cmbTcomID.Text)) = 5 Then
@@ -140,8 +139,8 @@ ErrExit:
 End Sub
 
 Private Sub Form_Load()
-
 On Error GoTo ErrExit
+    Dim i As Integer
 
     cmbTcomID.Text = "COM" & SetTVCurrentComID
     cmbTbaud.Text = SetTVCurrentComBaud
@@ -158,7 +157,7 @@ On Error GoTo ErrExit
 
     Exit Sub
 ErrExit:
-        MsgBox Err.Description, vbCritical, Err.Source
+    MsgBox err.Description, vbCritical, err.Source
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)

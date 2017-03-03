@@ -3,8 +3,6 @@ Option Explicit
 
 Public strBuff As String
 
-Public i As Integer
-
 '------------------------------------------------------------------------------
 '    Variable mapping the check items in "CheckItem".
 '------------------------------------------------------------------------------

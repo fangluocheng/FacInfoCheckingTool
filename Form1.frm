@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "MSCOMM32.OCX"
+Object = "{648A5603-2C6E-101B-82B6-000000000014}#1.1#0"; "mscomm32.ocx"
 Object = "{248DD890-BB45-11CF-9ABC-0080C7E7B78D}#1.0#0"; "MSWINSCK.OCX"
 Begin VB.Form Form1 
    BackColor       =   &H00E0E0E0&
@@ -992,6 +992,8 @@ Dim StepTime As Long
 Dim IsAllDataMatch As Boolean
 
 Private Sub Form_Load()
+    Dim i As Integer
+
     i = 0
 
     StepTime = IsStepTime
@@ -1015,7 +1017,6 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
-
 On Error GoTo ErrExit
   
     If MSComm1.PortOpen = True Then
@@ -1031,6 +1032,8 @@ End Sub
 
 
 Private Sub subInitInterface()
+    Dim i As Integer
+
     txtInput.Text = ""
     txtInput.Locked = False
     isCmdDataRecv = False
@@ -1089,6 +1092,8 @@ Private Function funSNWrite() As Boolean
 End Function
 
 Private Sub subInitBeforeRunning()
+    Dim i As Integer
+
     IsSNWriteSuccess = True
     IsAllDataMatch = True
     txtInput.Locked = True
@@ -1577,8 +1582,8 @@ RESEND_CMD_17:
 RESEND_CMD_18:
     ClearComBuf
     'Either PASS or FAIL, send "Exit factory mode" cmd.
-    EXIT_FAC_MODE
-    DelayMS StepTime
+    'EXIT_FAC_MODE
+    'DelayMS StepTime
 
     For i = 0 To itemNumOfTvInfo
         If lbTVInfo(i).Caption = strNoRecvData Then
@@ -1614,6 +1619,7 @@ End Sub
 
 
 Private Sub saveAllData()
+    Dim i As Integer
 
     If strSerialNo = "" Then
         Exit Sub
@@ -1859,6 +1865,8 @@ Private Sub tcpClient_Connect()
 End Sub
 
 Private Sub InfoCompare(cmdIdx As Integer, recvData As String)
+    Dim i As Integer
+
     For i = 0 To 16
         isCmdDataRecv = True
 

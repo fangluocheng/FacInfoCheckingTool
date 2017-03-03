@@ -130,7 +130,6 @@ Private Sub Form_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub Form_Load()
-
 On Error GoTo ErrExit
 
     lblVersion.Caption = "Version " & App.Major & "." & App.Minor & "." & App.Revision
@@ -197,8 +196,8 @@ ErrExit:
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
-
 On Error GoTo ErrExit
+    Dim i As Integer
 
     strCurrentModelName = cmbModelName.Text
     sqlstring = ""
@@ -233,6 +232,5 @@ On Error GoTo ErrExit
     Exit Sub
     
 ErrExit:
-    MsgBox ("The Licence Key is Wrong.")
-    
+    MsgBox err.Description, vbCritical, err.Source
 End Sub

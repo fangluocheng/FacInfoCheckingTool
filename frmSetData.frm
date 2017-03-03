@@ -947,11 +947,11 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-
 Private Sub Form_Load()
     Dim i As Integer
-    
-    i = 0
+    Dim itemNumOfTvInfoTxt As Integer
+
+    itemNumOfTvInfoTxt = itemNumOfTvInfo - 5
 
     If isUartMode Then
         optUart.Value = True
@@ -970,7 +970,7 @@ Private Sub Form_Load()
     Text3.Text = rs("SN_Len")
     
     'Read the Spec data from database and show them into the TextBox
-    For i = 0 To (itemNumOfTvInfo - 4)
+    For i = 0 To itemNumOfTvInfoTxt
         txtTVInfo(i).Text = rs.Fields(i + 4)
     Next i
 
@@ -991,8 +991,9 @@ End Sub
 
 Private Sub cmdSave_Click()
     Dim i As Integer
+    Dim itemNumOfTvInfoTxt As Integer
 
-    i = 0
+    itemNumOfTvInfoTxt = itemNumOfTvInfo - 5
 
     sqlstring = "select * from CheckItem where Mark='" & strCurrentModelName & "'"
     Executesql (sqlstring)
@@ -1005,14 +1006,15 @@ Private Sub cmdSave_Click()
     For i = 0 To itemNumOfTvInfo
         If chkTitle(i).Value = 1 Then
             rs.Fields(i + 16) = True
-            If i <= (itemNumOfTvInfo - 4) Then
-                rs.Fields(i + 4) = txtTVInfo(i).Text
-            End If
         ElseIf chkTitle(i).Value = 0 Then
             rs.Fields(i + 16) = False
         End If
     Next i
- 
+    
+    For i = 0 To itemNumOfTvInfoTxt
+        rs.Fields(i + 4) = txtTVInfo(i).Text
+    Next i
+
     rs.Update
 
     Set cn = Nothing
