@@ -1,8 +1,8 @@
 VERSION 5.00
 Begin VB.Form frmSetData 
-   BackColor       =   &H8000000C&
+   BackColor       =   &H00E0E0E0&
    Caption         =   "参数设置"
-   ClientHeight    =   8370
+   ClientHeight    =   7470
    ClientLeft      =   6435
    ClientTop       =   3210
    ClientWidth     =   11070
@@ -18,169 +18,26 @@ Begin VB.Form frmSetData
    Icon            =   "frmSetData.frx":0000
    LinkTopic       =   "Form4"
    MaxButton       =   0   'False
-   ScaleHeight     =   8370
+   ScaleHeight     =   7470
    ScaleWidth      =   11070
    StartUpPosition =   1  'CenterOwner
-   Begin VB.TextBox TextErpOrganization 
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   360
-      Left            =   9240
-      TabIndex        =   57
-      Top             =   6240
-      Width           =   1695
-   End
-   Begin VB.TextBox TextErpUrl 
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   360
-      Left            =   1320
-      TabIndex        =   54
-      Top             =   6240
-      Width           =   6255
-   End
-   Begin VB.Frame Frame4 
-      BorderStyle     =   0  'None
-      Caption         =   "PCIE-1730"
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   9
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   675
+   Begin VB.PictureBox PictureBrand 
+      Appearance      =   0  'Flat
+      AutoSize        =   -1  'True
+      BackColor       =   &H80000005&
+      ForeColor       =   &H80000008&
+      Height          =   780
       Left            =   120
-      TabIndex        =   47
-      Top             =   7560
-      Width           =   9015
-      Begin VB.TextBox Text6 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   10.5
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   360
-         Left            =   1000
-         TabIndex        =   52
-         Text            =   "500"
-         Top             =   180
-         Width           =   950
-      End
-      Begin VB.TextBox Text5 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   10.5
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   360
-         Left            =   7800
-         TabIndex        =   49
-         Text            =   "1"
-         Top             =   180
-         Width           =   950
-      End
-      Begin VB.TextBox Text4 
-         Alignment       =   2  'Center
-         Appearance      =   0  'Flat
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   10.5
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   360
-         Left            =   3840
-         TabIndex        =   48
-         Text            =   "500"
-         Top             =   180
-         Width           =   950
-      End
-      Begin VB.Label Label5 
-         Caption         =   "Port"
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   10.5
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   255
-         Left            =   120
-         TabIndex        =   53
-         Top             =   240
-         Width           =   795
-      End
-      Begin VB.Label Label7 
-         Caption         =   "开关自动弹起时间(ms)"
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   10.5
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   255
-         Left            =   5520
-         TabIndex        =   51
-         Top             =   240
-         Width           =   2220
-      End
-      Begin VB.Label Label6 
-         Caption         =   "拔线时间 (ms)"
-         BeginProperty Font 
-            Name            =   "Arial"
-            Size            =   10.5
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   255
-         Left            =   2280
-         TabIndex        =   50
-         Top             =   240
-         Width           =   1395
-      End
+      Picture         =   "frmSetData.frx":1DF72
+      ScaleHeight     =   750
+      ScaleWidth      =   2520
+      TabIndex        =   46
+      Top             =   120
+      Width           =   2550
    End
    Begin VB.Frame Frame3 
-      BorderStyle     =   0  'None
+      BackColor       =   &H00E0E0E0&
+      Caption         =   "通讯模式"
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   9
@@ -190,10 +47,10 @@ Begin VB.Form frmSetData
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   675
+      Height          =   795
       Left            =   7080
       TabIndex        =   15
-      Top             =   6720
+      Top             =   6600
       Width           =   2055
       Begin VB.OptionButton optNetwork 
          Caption         =   "网络"
@@ -209,7 +66,7 @@ Begin VB.Form frmSetData
          Height          =   250
          Left            =   1200
          TabIndex        =   17
-         Top             =   240
+         Top             =   360
          Width           =   735
       End
       Begin VB.OptionButton optUart 
@@ -226,12 +83,13 @@ Begin VB.Form frmSetData
          Height          =   250
          Left            =   240
          TabIndex        =   16
-         Top             =   240
+         Top             =   360
          Width           =   735
       End
    End
    Begin VB.Frame Frame2 
-      BorderStyle     =   0  'None
+      BackColor       =   &H00E0E0E0&
+      Caption         =   "TV 信息"
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   9
@@ -244,7 +102,7 @@ Begin VB.Form frmSetData
       Height          =   5535
       Left            =   120
       TabIndex        =   8
-      Top             =   600
+      Top             =   960
       Width           =   10820
       Begin VB.TextBox txtTVInfo 
          Alignment       =   2  'Center
@@ -916,7 +774,8 @@ Begin VB.Form frmSetData
       End
    End
    Begin VB.Frame Frame1 
-      BorderStyle     =   0  'None
+      BackColor       =   &H00E0E0E0&
+      Caption         =   "串口设置"
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   9
@@ -926,10 +785,10 @@ Begin VB.Form frmSetData
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   675
+      Height          =   795
       Left            =   120
       TabIndex        =   4
-      Top             =   6720
+      Top             =   6600
       Width           =   6855
       Begin VB.TextBox Text1 
          Alignment       =   2  'Center
@@ -947,7 +806,7 @@ Begin VB.Form frmSetData
          Left            =   1000
          TabIndex        =   0
          Text            =   "115200"
-         Top             =   180
+         Top             =   300
          Width           =   950
       End
       Begin VB.TextBox Text2 
@@ -966,7 +825,7 @@ Begin VB.Form frmSetData
          Left            =   3610
          TabIndex        =   1
          Text            =   "500"
-         Top             =   180
+         Top             =   300
          Width           =   950
       End
       Begin VB.TextBox Text3 
@@ -985,7 +844,7 @@ Begin VB.Form frmSetData
          Left            =   5720
          TabIndex        =   2
          Text            =   "1"
-         Top             =   180
+         Top             =   300
          Width           =   950
       End
       Begin VB.Label Label2 
@@ -1002,7 +861,7 @@ Begin VB.Form frmSetData
          Height          =   255
          Left            =   240
          TabIndex        =   7
-         Top             =   240
+         Top             =   360
          Width           =   750
       End
       Begin VB.Label Label3 
@@ -1017,10 +876,10 @@ Begin VB.Form frmSetData
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   2205
+         Left            =   2200
          TabIndex        =   6
-         Top             =   240
-         Width           =   1395
+         Top             =   360
+         Width           =   1400
       End
       Begin VB.Label Label4 
          Caption         =   "条码长度"
@@ -1034,9 +893,9 @@ Begin VB.Form frmSetData
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   4815
+         Left            =   4810
          TabIndex        =   5
-         Top             =   240
+         Top             =   360
          Width           =   900
       End
    End
@@ -1052,61 +911,33 @@ Begin VB.Form frmSetData
          Strikethrough   =   0   'False
       EndProperty
       Height          =   435
-      Left            =   9960
+      Left            =   9840
       TabIndex        =   3
-      Top             =   7800
+      Top             =   6840
       Width           =   975
    End
-   Begin VB.Label Label8 
-      BackColor       =   &H8000000C&
-      Caption         =   "ERP 账套 :"
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H8000000E&
-      Height          =   255
-      Left            =   7920
-      TabIndex        =   56
-      Top             =   6300
-      Width           =   1215
-   End
-   Begin VB.Label url_label 
-      BackColor       =   &H8000000C&
-      Caption         =   "ERP URL :"
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   700
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H8000000E&
-      Height          =   255
-      Left            =   120
-      TabIndex        =   55
-      Top             =   6300
-      Width           =   1095
-   End
-   Begin VB.Label label1 
+   Begin VB.Label Label1 
       Alignment       =   2  'Center
       Appearance      =   0  'Flat
       BackColor       =   &H80000005&
       BackStyle       =   0  'Transparent
-      Caption         =   "Model"
-      ForeColor       =   &H8000000E&
-      Height          =   540
-      Left            =   135
-      TabIndex        =   46
+      BorderStyle     =   1  'Fixed Single
+      Caption         =   "Label1"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   36
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H80000008&
+      Height          =   780
+      Left            =   2655
+      TabIndex        =   47
       Top             =   120
-      Width           =   10800
+      Width           =   8280
    End
 End
 Attribute VB_Name = "frmSetData"
@@ -1134,20 +965,18 @@ Private Sub Form_Load()
     Executesql (sqlstring)
 
     Label1 = strCurrentModelName
+    Text1.Text = rs("ComBaud")
+    Text2.Text = rs("Delayms")
     Text3.Text = rs("SN_Len")
     
     'Read the Spec data from database and show them into the TextBox
     For i = 0 To itemNumOfTvInfoTxt
-<<<<<<< HEAD
         txtTVInfo(i).Text = rs.Fields(i + 4)
-=======
-        txtTVInfo(i).Text = rs.Fields(i + 2)
->>>>>>> d433034e9df6ef7df777829a59fe6f28d75d7fb3
     Next i
 
     'Whether the CheckBox selected or not.
     For i = 0 To itemNumOfTvInfo
-        If rs.Fields(i + 14) Then
+        If rs.Fields(i + 16) Then
             chkTitle(i).Value = 1
         Else
             chkTitle(i).Value = 0
@@ -1157,21 +986,7 @@ Private Sub Form_Load()
     Set rs = Nothing
     Set cn = Nothing
     sqlstring = ""
-    
-    sqlstring = "select * from CommonTable where Mark='ATS'"
-    Executesql (sqlstring)
 
-    Text1.Text = rs("ComBaud")
-    Text2.Text = rs("Delayms")
-    Text4.Text = rs("DelayMs01")
-    Text5.Text = rs("DelayMs02")
-    Text6.Text = rs("1730Port")
-    TextErpUrl.Text = rs("ErpUrl")
-    TextErpOrganization.Text = rs("ErpOrganization")
-
-    Set rs = Nothing
-    Set cn = Nothing
-    sqlstring = ""
 End Sub
 
 Private Sub cmdSave_Click()
@@ -1184,26 +999,20 @@ Private Sub cmdSave_Click()
     Executesql (sqlstring)
 
     'Set the text into the CheckItem table of database file.
-    rs.Fields(1) = Val(Text3.Text)                         'SN_Len
+    rs.Fields(1) = Val(Text1.Text)                         'ComBaud
+    rs.Fields(2) = Val(Text2.Text)                         'Delayms
+    rs.Fields(3) = Val(Text3.Text)                         'SN_Len
 
     For i = 0 To itemNumOfTvInfo
         If chkTitle(i).Value = 1 Then
-<<<<<<< HEAD
             rs.Fields(i + 16) = True
-=======
-            rs.Fields(i + 14) = True
->>>>>>> d433034e9df6ef7df777829a59fe6f28d75d7fb3
         ElseIf chkTitle(i).Value = 0 Then
-            rs.Fields(i + 14) = False
+            rs.Fields(i + 16) = False
         End If
     Next i
     
     For i = 0 To itemNumOfTvInfoTxt
-<<<<<<< HEAD
         rs.Fields(i + 4) = txtTVInfo(i).Text
-=======
-        rs.Fields(i + 2) = txtTVInfo(i).Text
->>>>>>> d433034e9df6ef7df777829a59fe6f28d75d7fb3
     Next i
 
     rs.Update
@@ -1215,21 +1024,13 @@ Private Sub cmdSave_Click()
     sqlstring = "select * from CommonTable where Mark='ATS'"
     Executesql (sqlstring)
 
-    rs.Fields(2) = Val(Text1.Text)                         'ComBaud
-    rs.Fields(5) = Val(Text2.Text)                         'Delayms
-    rs.Fields(7) = Val(Text4.Text)                         'DelayMs01
-    rs.Fields(8) = Val(Text5.Text)                         'DelayMs02
-    rs.Fields(9) = Val(Text6.Text)                         '1730Port
-    rs.Fields(10) = TextErpUrl.Text                        'ErpUrl
-    rs.Fields(11) = TextErpOrganization.Text               'ErpOrganization
-
     If rs.EOF = False Then
         If optUart.Value = True Then
-            rs.Fields(4) = "UART"
+            rs.Fields(3) = "UART"
         ElseIf optNetwork.Value = True Then
-            rs.Fields(4) = "Network"
+            rs.Fields(3) = "Network"
         Else
-            rs.Fields(4) = "UART"
+            rs.Fields(3) = "UART"
         End If
     Else
         MsgBox "Read Data Error,Please Check Your Database!", vbOKOnly + vbInformation, "Warning!"
@@ -1245,3 +1046,4 @@ Private Sub cmdSave_Click()
     Unload Form1
 
 End Sub
+

@@ -17,24 +17,6 @@ Begin VB.Form frmSplash
    ScaleWidth      =   4005
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
-   Begin VB.CheckBox CheckConnect1730 
-      BackColor       =   &H00E0E0E0&
-      Caption         =   "Á¬½ÓIO¿¨"
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   10.5
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   255
-      Left            =   360
-      TabIndex        =   5
-      Top             =   1920
-      Width           =   1335
-   End
    Begin VB.PictureBox Picture1 
       Appearance      =   0  'Flat
       AutoSize        =   -1  'True
@@ -177,24 +159,13 @@ On Error GoTo ErrExit
     
     If rs.EOF = False Then
         strCurrentModelName = rs("CurrentModelName")
-        SetTVCurrentComBaud = rs("ComBaud")
         SetTVCurrentComID = rs("ComID")
-        IsStepTime = rs("Delayms")
-        delayMs01 = rs("DelayMs01")
-        delayMs02 = rs("DelayMs02")
-        port1730 = rs("1730Port")
-        strErpUrl = rs("ErpUrl")
-        strErpOrganization = rs("ErpOrganization")
-
+        SetData = rs("Date")
+        SetDay = rs("Day")
         If rs("CommunicationMode") = "UART" Then
             isUartMode = True
         Else
             isUartMode = False
-        End If
-        If rs("Connect1730") Then
-            CheckConnect1730.Value = 1
-        Else
-            CheckConnect1730.Value = 0
         End If
     Else
         MsgBox "Read Data Error,Please Check Your Database!", vbOKOnly + vbInformation, "Warning!"
@@ -202,15 +173,25 @@ On Error GoTo ErrExit
     
     Set cn = Nothing
     Set rs = Nothing
+
     sqlstring = ""
-
     cmbModelName.Text = strCurrentModelName
-    strCurrentModelName = cmbModelName.Text
 
+    If SetData <> Day(Date) Then
+        sqlstring = "select * from CommonTable where Mark='ATS'"
+        Executesql (sqlstring)
+        rs.Fields(4) = Day(Date)
+        rs.Fields(5) = SetDay + 1
+        rs.Update
+
+        Set cn = Nothing
+        Set rs = Nothing
+        sqlstring = ""
+    End If
     Exit Sub
     
 ErrExit:
-    MsgBox err.Description, vbCritical, err.Source
+       MsgBox Err.Description, vbCritical, Err.Source
        
 End Sub
 
@@ -220,41 +201,32 @@ On Error GoTo ErrExit
 
     strCurrentModelName = cmbModelName.Text
     sqlstring = ""
+    sqlstring = "update CommonTable set CurrentModelName='" & strCurrentModelName & "' where Mark='ATS'"
+    Executesql (sqlstring)
+    
+    Set cn = Nothing
+    Set rs = Nothing
+    sqlstring = ""
     
     sqlstring = "select * from CheckItem where Mark='" & strCurrentModelName & "'"
     Executesql (sqlstring)
-    
+
+    SetTVCurrentComBaud = rs("ComBaud")
+    IsStepTime = rs("Delayms")
     barcodeLen = rs("SN_Len")
     
     For i = 0 To itemNumOfTvInfo
-        chkTitleFlag(i) = rs.Fields(i + 14)
+        chkTitleFlag(i) = rs.Fields(i + 16)
     Next i
     
     For i = 0 To 11
-        strTvInfoSpec(i) = rs.Fields(i + 2)
+        strTvInfoSpec(i) = rs.Fields(i + 4)
     Next i
 
     Set rs = Nothing
     Set cn = Nothing
     sqlstring = ""
 
-    sqlstring = "select * from CommonTable where Mark='ATS'"
-    Executesql (sqlstring)
-    
-    If CheckConnect1730.Value = 1 Then
-        rs.Fields(6) = True
-        isConnect1730 = True
-    ElseIf CheckConnect1730.Value = 0 Then
-        rs.Fields(6) = False
-        isConnect1730 = False
-    End If
-    
-    rs.Update
-    
-    Set rs = Nothing
-    Set cn = Nothing
-    sqlstring = ""
-    
     Form1.Show
 
     Exit Sub
