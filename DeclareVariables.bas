@@ -18,7 +18,6 @@ Public IsStepTime As Long                                  'Delayms
 Public barcodeLen As Integer                               'SN_Len
 Public strTvInfoSpec(11) As String
 
-Public IsStop As Boolean
 Public IsACK As Boolean
 
 Public strCurrentModelName As String
@@ -71,10 +70,7 @@ On Error GoTo ShowError
         If flag = True Then
             Exit Sub
         End If
-        
-        If IsStop = True Then
-            Exit Sub
-        End If
+
     Wend
     Exit Sub
 
@@ -90,10 +86,6 @@ On Error GoTo ShowError
     start = Timer
     While (Timer - start) < (mmSec / 1000#)
         DoEvents
-   
-        If IsStop = True Then
-            Exit Sub
-        End If
     Wend
     Exit Sub
 

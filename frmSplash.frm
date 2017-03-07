@@ -220,6 +220,12 @@ On Error GoTo ErrExit
 
     strCurrentModelName = cmbModelName.Text
     sqlstring = ""
+    sqlstring = "update CommonTable set CurrentModelName='" & strCurrentModelName & "' where Mark='ATS'"
+    Executesql (sqlstring)
+    
+    Set cn = Nothing
+    Set rs = Nothing
+    sqlstring = ""
     
     sqlstring = "select * from CheckItem where Mark='" & strCurrentModelName & "'"
     Executesql (sqlstring)
