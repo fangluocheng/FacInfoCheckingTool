@@ -162,6 +162,7 @@ On Error GoTo ErrExit
         SetTVCurrentComBaud = rs("ComBaud")
         SetTVCurrentComID = rs("ComID")
         IsStepTime = rs("Delayms")
+        isSendExitFacCmd = rs("ExitFacCmd")
 
         If rs("CommunicationMode") = "UART" Then
             isUartMode = True
@@ -182,8 +183,7 @@ On Error GoTo ErrExit
     Exit Sub
     
 ErrExit:
-       MsgBox Err.Description, vbCritical, Err.Source
-       
+    MsgBox Err.Description, vbCritical, Err.Source
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
@@ -221,5 +221,5 @@ On Error GoTo ErrExit
     Exit Sub
     
 ErrExit:
-    MsgBox err.Description, vbCritical, err.Source
+    MsgBox Err.Description, vbCritical, Err.Source
 End Sub

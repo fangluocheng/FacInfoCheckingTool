@@ -2,7 +2,7 @@ VERSION 5.00
 Begin VB.Form frmSetData 
    BackColor       =   &H00E0E0E0&
    Caption         =   "参数设置"
-   ClientHeight    =   7470
+   ClientHeight    =   7290
    ClientLeft      =   6435
    ClientTop       =   3210
    ClientWidth     =   11070
@@ -18,22 +18,26 @@ Begin VB.Form frmSetData
    Icon            =   "frmSetData.frx":0000
    LinkTopic       =   "Form4"
    MaxButton       =   0   'False
-   ScaleHeight     =   7470
+   ScaleHeight     =   7290
    ScaleWidth      =   11070
    StartUpPosition =   1  'CenterOwner
-   Begin VB.PictureBox PictureBrand 
-      Appearance      =   0  'Flat
-      AutoSize        =   -1  'True
-      BackColor       =   &H80000005&
-      ForeColor       =   &H80000008&
-      Height          =   780
-      Left            =   120
-      Picture         =   "frmSetData.frx":1DF72
-      ScaleHeight     =   750
-      ScaleWidth      =   2520
+   Begin VB.CheckBox CheckExitFacCmd 
+      BackColor       =   &H00E0E0E0&
+      Caption         =   "发送退工厂命令"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   495
+      Left            =   9240
       TabIndex        =   46
-      Top             =   120
-      Width           =   2550
+      Top             =   6000
+      Width           =   1695
    End
    Begin VB.Frame Frame3 
       BackColor       =   &H00E0E0E0&
@@ -50,9 +54,10 @@ Begin VB.Form frmSetData
       Height          =   795
       Left            =   7080
       TabIndex        =   15
-      Top             =   6600
+      Top             =   5760
       Width           =   2055
       Begin VB.OptionButton optNetwork 
+         BackColor       =   &H00E0E0E0&
          Caption         =   "网络"
          BeginProperty Font 
             Name            =   "Arial"
@@ -70,6 +75,7 @@ Begin VB.Form frmSetData
          Width           =   735
       End
       Begin VB.OptionButton optUart 
+         BackColor       =   &H00E0E0E0&
          Caption         =   "串口"
          BeginProperty Font 
             Name            =   "Arial"
@@ -102,7 +108,7 @@ Begin VB.Form frmSetData
       Height          =   5535
       Left            =   120
       TabIndex        =   8
-      Top             =   960
+      Top             =   120
       Width           =   10820
       Begin VB.TextBox txtTVInfo 
          Alignment       =   2  'Center
@@ -788,7 +794,7 @@ Begin VB.Form frmSetData
       Height          =   795
       Left            =   120
       TabIndex        =   4
-      Top             =   6600
+      Top             =   5760
       Width           =   6855
       Begin VB.TextBox Text1 
          Alignment       =   2  'Center
@@ -848,6 +854,7 @@ Begin VB.Form frmSetData
          Width           =   950
       End
       Begin VB.Label Label2 
+         BackColor       =   &H00E0E0E0&
          Caption         =   "波特率"
          BeginProperty Font 
             Name            =   "Arial"
@@ -865,6 +872,7 @@ Begin VB.Form frmSetData
          Width           =   750
       End
       Begin VB.Label Label3 
+         BackColor       =   &H00E0E0E0&
          Caption         =   "延迟时间 (ms)"
          BeginProperty Font 
             Name            =   "Arial"
@@ -882,6 +890,7 @@ Begin VB.Form frmSetData
          Width           =   1400
       End
       Begin VB.Label Label4 
+         BackColor       =   &H00E0E0E0&
          Caption         =   "条码长度"
          BeginProperty Font 
             Name            =   "Arial"
@@ -913,31 +922,8 @@ Begin VB.Form frmSetData
       Height          =   435
       Left            =   9840
       TabIndex        =   3
-      Top             =   6840
+      Top             =   6720
       Width           =   975
-   End
-   Begin VB.Label Label1 
-      Alignment       =   2  'Center
-      Appearance      =   0  'Flat
-      BackColor       =   &H80000005&
-      BackStyle       =   0  'Transparent
-      BorderStyle     =   1  'Fixed Single
-      Caption         =   "Label1"
-      BeginProperty Font 
-         Name            =   "Arial"
-         Size            =   36
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      ForeColor       =   &H80000008&
-      Height          =   780
-      Left            =   2655
-      TabIndex        =   47
-      Top             =   120
-      Width           =   8280
    End
 End
 Attribute VB_Name = "frmSetData"
@@ -964,8 +950,8 @@ Private Sub Form_Load()
     sqlstring = "select * from CheckItem where Mark='" & strCurrentModelName & "'"
     Executesql (sqlstring)
 
-    Label1 = strCurrentModelName
     Text3.Text = rs("SN_Len")
+    frmSetData.Caption = frmSetData.Caption & " - " & strCurrentModelName
     
     'Read the Spec data from database and show them into the TextBox
     For i = 0 To itemNumOfTvInfoTxt
@@ -990,6 +976,12 @@ Private Sub Form_Load()
 
     Text1.Text = rs("ComBaud")
     Text2.Text = rs("Delayms")
+    
+    If rs.Fields(6) Then
+        CheckExitFacCmd.Value = 1
+    Else
+        CheckExitFacCmd.Value = 0
+    End If
 
     Set rs = Nothing
     Set cn = Nothing
@@ -1031,6 +1023,12 @@ Private Sub cmdSave_Click()
 
     rs.Fields(2) = Val(Text1.Text)                         'ComBaud
     rs.Fields(5) = Val(Text2.Text)                         'Delayms
+    
+    If CheckExitFacCmd.Value = 1 Then
+        rs.Fields(6) = True
+    Else
+        rs.Fields(6) = False
+    End If
 
     If rs.EOF = False Then
         If optUart.Value = True Then

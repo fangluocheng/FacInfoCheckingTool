@@ -1569,8 +1569,10 @@ RESEND_CMD_17:
 RESEND_CMD_18:
     ClearComBuf
     'Either PASS or FAIL, send "Exit factory mode" cmd.
-    'EXIT_FAC_MODE
-    'DelayMS StepTime
+    If isSendExitFacCmd Then
+        EXIT_FAC_MODE
+        DelayMS StepTime
+    End If
 
     For i = 0 To itemNumOfTvInfo
         If lbTVInfo(i).Caption = strNoRecvData Then
@@ -1622,8 +1624,8 @@ Private Sub saveAllData()
             rs.Fields(i + 2) = lbTVInfo(i).Caption
         Next i
         
-        rs.Fields(17) = Date
-        rs.Fields(18) = Time
+        rs.Fields(19) = Date
+        rs.Fields(20) = Time
         
         rs.Update
         
