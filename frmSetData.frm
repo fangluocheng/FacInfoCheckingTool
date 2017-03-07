@@ -965,18 +965,16 @@ Private Sub Form_Load()
     Executesql (sqlstring)
 
     Label1 = strCurrentModelName
-    Text1.Text = rs("ComBaud")
-    Text2.Text = rs("Delayms")
     Text3.Text = rs("SN_Len")
     
     'Read the Spec data from database and show them into the TextBox
     For i = 0 To itemNumOfTvInfoTxt
-        txtTVInfo(i).Text = rs.Fields(i + 4)
+        txtTVInfo(i).Text = rs.Fields(i + 2)
     Next i
 
     'Whether the CheckBox selected or not.
     For i = 0 To itemNumOfTvInfo
-        If rs.Fields(i + 16) Then
+        If rs.Fields(i + 14) Then
             chkTitle(i).Value = 1
         Else
             chkTitle(i).Value = 0
@@ -986,7 +984,16 @@ Private Sub Form_Load()
     Set rs = Nothing
     Set cn = Nothing
     sqlstring = ""
+    
+    sqlstring = "select * from CommonTable where Mark='ATS'"
+    Executesql (sqlstring)
 
+    Text1.Text = rs("ComBaud")
+    Text2.Text = rs("Delayms")
+
+    Set rs = Nothing
+    Set cn = Nothing
+    sqlstring = ""
 End Sub
 
 Private Sub cmdSave_Click()
@@ -999,20 +1006,18 @@ Private Sub cmdSave_Click()
     Executesql (sqlstring)
 
     'Set the text into the CheckItem table of database file.
-    rs.Fields(1) = Val(Text1.Text)                         'ComBaud
-    rs.Fields(2) = Val(Text2.Text)                         'Delayms
-    rs.Fields(3) = Val(Text3.Text)                         'SN_Len
+    rs.Fields(1) = Val(Text3.Text)                         'SN_Len
 
     For i = 0 To itemNumOfTvInfo
         If chkTitle(i).Value = 1 Then
-            rs.Fields(i + 16) = True
+            rs.Fields(i + 14) = True
         ElseIf chkTitle(i).Value = 0 Then
-            rs.Fields(i + 16) = False
+            rs.Fields(i + 14) = False
         End If
     Next i
     
     For i = 0 To itemNumOfTvInfoTxt
-        rs.Fields(i + 4) = txtTVInfo(i).Text
+        rs.Fields(i + 2) = txtTVInfo(i).Text
     Next i
 
     rs.Update
@@ -1024,13 +1029,16 @@ Private Sub cmdSave_Click()
     sqlstring = "select * from CommonTable where Mark='ATS'"
     Executesql (sqlstring)
 
+    rs.Fields(2) = Val(Text1.Text)                         'ComBaud
+    rs.Fields(5) = Val(Text2.Text)                         'Delayms
+
     If rs.EOF = False Then
         If optUart.Value = True Then
-            rs.Fields(3) = "UART"
+            rs.Fields(4) = "UART"
         ElseIf optNetwork.Value = True Then
-            rs.Fields(3) = "Network"
+            rs.Fields(4) = "Network"
         Else
-            rs.Fields(3) = "UART"
+            rs.Fields(4) = "UART"
         End If
     Else
         MsgBox "Read Data Error,Please Check Your Database!", vbOKOnly + vbInformation, "Warning!"
@@ -1046,4 +1054,3 @@ Private Sub cmdSave_Click()
     Unload Form1
 
 End Sub
-

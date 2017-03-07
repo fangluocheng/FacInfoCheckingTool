@@ -112,7 +112,7 @@ On Error GoTo ErrExit
     sqlstring = "select * from CommonTable where Mark='ATS'"
     Executesql (sqlstring)
     
-    rs.Fields(2) = SetTVCurrentComID                       'ComID
+    rs.Fields(3) = SetTVCurrentComID                       'ComID
     rs.Update
     
     Set cn = Nothing

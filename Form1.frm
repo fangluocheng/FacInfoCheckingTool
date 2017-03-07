@@ -986,22 +986,15 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Dim RES As Long
 Dim Result As Boolean
 Dim StepTime As Long
 Dim IsAllDataMatch As Boolean
 
 Private Sub Form_Load()
-    Dim i As Integer
-
-    i = 0
-
     StepTime = IsStepTime
     If StepTime < 500 Then
         StepTime = 500
     End If
-
-    IsStop = False
     
     If isUartMode Then
         tbSetComPort.Enabled = True
@@ -1027,7 +1020,7 @@ On Error GoTo ErrExit
 Exit Sub
 
 ErrExit:
-        MsgBox Err.Description, vbCritical, Err.Source
+    MsgBox Err.Description, vbCritical, Err.Source
 End Sub
 
 
@@ -1147,14 +1140,8 @@ Private Sub subMainProcesser()
 
 On Error GoTo ErrExit
     subInitBeforeRunning
-    If IsStop = True Then
-        Exit Sub
-    End If
 
     If IsSNWriteSuccess = funSNWrite Then
-        If IsStop = True Then
-            Exit Sub
-        End If
         txtInput.Text = scanbarcode
     Else
         'ShowError_Sys (6)
@@ -1658,7 +1645,6 @@ Private Sub txtInput_KeyPress(KeyAscii As Integer)
     i = 0
     'ASCII = 13 means "Enter" of keyboard.
     If KeyAscii = 13 Then
-        IsStop = False
         
         If txtInput.Locked = False Then
             If isUartMode = True Then
@@ -1689,10 +1675,6 @@ Private Sub txtInput_KeyPress(KeyAscii As Integer)
                 'MsgBox "Please connect TV and PC by network." & vbCrLf & _
                 '    "Set PC IP to 192.168.1.2"
             End If
-        End If
-         
-        If IsStop = True Then
-            Exit Sub
         End If
     End If
     Exit Sub
