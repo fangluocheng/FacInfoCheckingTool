@@ -979,6 +979,7 @@ Option Explicit
 
 Dim Result As Boolean
 Dim IsAllDataMatch As Boolean
+Private mstrSNInput As String
 
 Private Sub Form_Unload(Cancel As Integer)
 On Error GoTo ErrExit
@@ -994,27 +995,13 @@ ErrExit:
     MsgBox Err.Description, vbCritical, Err.Source
 End Sub
 
-Private Function funSNWrite() As Boolean
-    strSerialNo = ""
-    scanbarcode = ""
-    strSerialNo = UCase$(txtInput.Text)
-    
-    If subJudgeTheSNIsAvailable = True Then
-        funSNWrite = True
-        scanbarcode = strSerialNo
-    Else
-        funSNWrite = False
-    End If
-End Function
-
-Private Sub subInitBeforeRunning()
+Private Sub InitBeforeRunning()
     Dim i As Integer
 
-    IsSNWriteSuccess = True
     IsAllDataMatch = True
     txtInput.Locked = True
     gblCmdDataRecv = False
-    strSerialNo = ""
+    mstrSNInput = ""
     
     For i = 0 To ITEMS_NUM
         If gutdPropertySetting.ItemChk(i) Then
@@ -1031,23 +1018,7 @@ Private Sub subInitBeforeRunning()
     
 End Sub
 
-Private Function subJudgeTheSNIsAvailable() As Boolean
-    If strSerialNo = "" Or Len(strSerialNo) <> gintSNLen Then
-        Log_Clear
-        Log_Info "Please confirm the SN again?"
-        txtInput.Text = ""
-        txtInput.SetFocus
-        subJudgeTheSNIsAvailable = False
-    Else
-        subJudgeTheSNIsAvailable = True
-        Set cn = Nothing
-        Set rs = Nothing
-        sqlstring = ""
-    End If
-End Function
-
 Private Sub subInitAfterRunning()
-    IsSNWriteSuccess = False
     txtInput.Locked = False
     txtInput.Text = ""
     txtInput.SetFocus
@@ -1062,16 +1033,18 @@ Private Sub subMainProcesser()
     Dim i, j As Integer
 
 On Error GoTo ErrExit
-    subInitBeforeRunning
+    InitBeforeRunning
 
-    If IsSNWriteSuccess = funSNWrite Then
-        txtInput.Text = scanbarcode
-    Else
-        'ShowError_Sys (6)
+    mstrSNInput = UCase$(txtInput.Text)
+    If mstrSNInput = "" Or Len(mstrSNInput) <> gintSNLen Then
+        Log_Clear
+        Log_Info "Please confirm the SN again?"
+        txtInput.Text = ""
+        txtInput.SetFocus
+        MsgBox "SN 码长度不对，请确认 XML 文件中设置的是否正确。", vbExclamation
         GoTo FAIL
     End If
 
-On Error GoTo ErrExit
     j = 0
 
 RESEND_CMD_0:
@@ -1533,7 +1506,7 @@ End Sub
 Private Sub saveAllData()
     Dim i As Integer
 
-    If strSerialNo = "" Then
+    If mstrSNInput = "" Then
         Exit Sub
     Else
         sqlstring = "select * from DataRecord"
@@ -1541,7 +1514,7 @@ Private Sub saveAllData()
         rs.AddNew
 
         rs.Fields(0) = gutdPropertySetting.Items(0)
-        rs.Fields(1) = strSerialNo
+        rs.Fields(1) = mstrSNInput
 
         For i = 0 To ITEMS_NUM
             rs.Fields(i + 2) = lbTVInfo(i).Caption
@@ -1685,9 +1658,9 @@ Private Sub hexReceive()
             
             'Data starts from ReceiveArr(firstByteOfDataIdx + 3). DataLength is ReceiveArr(firstByteOfDataIdx + 2).
             For i = (firstByteOfDataIdx + 3) To ((firstByteOfDataIdx + 3) + ReceiveArr(firstByteOfDataIdx + 2) - 1) Step 1
-                If cmdIdentifyNum = 6 Or cmdIdentifyNum = 12 Or _
-                    cmdIdentifyNum = 14 Or cmdIdentifyNum = 15 Or _
-                    cmdIdentifyNum = 17 Or cmdIdentifyNum = 18 Then
+                If gintCmdId = 6 Or gintCmdId = 12 Or _
+                    gintCmdId = 14 Or gintCmdId = 15 Or _
+                    gintCmdId = 17 Or gintCmdId = 18 Then
                     If (ReceiveArr(i) < 16) Then
                         receiveData = receiveData & "0" & Hex(ReceiveArr(i))
                     Else
@@ -1702,7 +1675,7 @@ Private Sub hexReceive()
                 End If
             Next i
             
-            InfoCompare cmdIdentifyNum, receiveData
+            InfoCompare gintCmdId, receiveData
         Else
             TxtReceive.Text = TxtReceive.Text & vbCrLf
             TxtReceive.SelStart = Len(TxtReceive.Text)
@@ -1743,9 +1716,9 @@ On Error GoTo Err
             receiveData = ""
             
             For i = 3 To (bytesTotal - 1) Step 1
-                If cmdIdentifyNum = 6 Or cmdIdentifyNum = 12 Or _
-                    cmdIdentifyNum = 14 Or cmdIdentifyNum = 15 Or _
-                    cmdIdentifyNum = 17 Or cmdIdentifyNum = 18 Then
+                If gintCmdId = 6 Or gintCmdId = 12 Or _
+                    gintCmdId = 14 Or gintCmdId = 15 Or _
+                    gintCmdId = 17 Or gintCmdId = 18 Then
                     If (ReceiveArr(i) < 16) Then
                         receiveData = receiveData & "0" & Hex(ReceiveArr(i))
                     Else
@@ -1760,7 +1733,7 @@ On Error GoTo Err
                 End If
             Next i
             
-            InfoCompare cmdIdentifyNum, receiveData
+            InfoCompare gintCmdId, receiveData
         Else
             TxtReceive.Text = TxtReceive.Text & vbCrLf
             TxtReceive.SelStart = Len(TxtReceive.Text)

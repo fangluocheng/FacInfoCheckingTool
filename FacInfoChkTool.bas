@@ -26,6 +26,7 @@ Public gintSNLen As Integer
 Public gutdPropertySetting As TypeProperty
 Public gblExitFacCmd As Boolean
 Public gblCmdDataRecv As Boolean
+Public gintCmdId As Integer
 
 Private mstrComBaud As String
 Private mintComID As Integer

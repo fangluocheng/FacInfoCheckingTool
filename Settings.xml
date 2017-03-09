@@ -4,7 +4,7 @@
 		<Uart baud="115200" id="6"/>
 	</Communication>
 	<Delayms>500</Delayms>
-	<SNLen>1</SNLen>
+	<SNLen>19</SNLen>
 	<ExitFacCmd enable="False"></ExitFacCmd>
 	<Model enable="True">X450N</Model>
 	<SysVer enable="True">MSD938_5.9.055S_0301</SysVer>

@@ -1,13 +1,6 @@
 Attribute VB_Name = "Module3"
 Option Explicit
 
-Public IsSNWriteSuccess As Boolean
-Public scanbarcode As String
-Public strSerialNo As String
-Public countTime As Long
-
-Public cmdIdentifyNum As Integer
-
 Public Const cmdResendTimes As Integer = 2
 Public Const cmdReceiveWaitS As Integer = 5
 

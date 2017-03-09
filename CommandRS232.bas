@@ -25,7 +25,7 @@ Public Sub ENTER_FAC_MODE()
     mSendDataBuf(9) = &H4
     
     Log_Info "Enter Factory Mode"
-    cmdIdentifyNum = 0
+    gintCmdId = 0
     
     SendCmd
 End Sub
@@ -44,7 +44,7 @@ Public Sub EXIT_FAC_MODE()
     mSendDataBuf(9) = &H5
     
     Log_Info "Exit Factory Mode"
-    cmdIdentifyNum = 1
+    gintCmdId = 1
 
     SendCmd
 End Sub
@@ -63,7 +63,7 @@ Public Sub READ_MODEL_NAME()
     mSendDataBuf(9) = &H26
     
     Log_Info "Read model name"
-    cmdIdentifyNum = 2
+    gintCmdId = 2
     gblCmdDataRecv = False
     
     SendCmd
@@ -83,7 +83,7 @@ Public Sub READ_SYS_VERSION()
     mSendDataBuf(9) = &HB1
     
     Log_Info "Read system version"
-    cmdIdentifyNum = 3
+    gintCmdId = 3
     gblCmdDataRecv = False
     
     SendCmd
@@ -103,7 +103,7 @@ Public Sub READ_FLASH_INFO()
     mSendDataBuf(9) = &H3C
     
     Log_Info "Read Flash information"
-    cmdIdentifyNum = 4
+    gintCmdId = 4
     gblCmdDataRecv = False
     
     SendCmd
@@ -123,7 +123,7 @@ Public Sub READ_HARDWARE_VERSION()
     mSendDataBuf(9) = &H25
     
     Log_Info "Read hardware version"
-    cmdIdentifyNum = 5
+    gintCmdId = 5
     gblCmdDataRecv = False
 
     SendCmd
@@ -143,7 +143,7 @@ Public Sub READ_DIMENSION_INFO()
     mSendDataBuf(9) = &H2A
     
     Log_Info "Support 3D or not"
-    cmdIdentifyNum = 6
+    gintCmdId = 6
     gblCmdDataRecv = False
     
     SendCmd
@@ -163,7 +163,7 @@ Public Sub READ_CHANNEL_INFO()
     mSendDataBuf(9) = &H3
     
     Log_Info "Read channel information"
-    cmdIdentifyNum = 7
+    gintCmdId = 7
     gblCmdDataRecv = False
     
     SendCmd
@@ -183,7 +183,7 @@ Public Sub READ_24G_VERSION()
     mSendDataBuf(9) = &H27
     
     Log_Info "Read 2.4G Version"
-    cmdIdentifyNum = 8
+    gintCmdId = 8
     gblCmdDataRecv = False
     
     SendCmd
@@ -203,7 +203,7 @@ Public Sub READ_PANEL_NAME()
     mSendDataBuf(9) = &H24
     
     Log_Info "Read panel name"
-    cmdIdentifyNum = 9
+    gintCmdId = 9
     gblCmdDataRecv = False
     
     SendCmd
@@ -223,7 +223,7 @@ Public Sub READ_CARRIER_INFO()
     mSendDataBuf(9) = &H2B
     
     Log_Info "Read carrier information"
-    cmdIdentifyNum = 10
+    gintCmdId = 10
     gblCmdDataRecv = False
     
     SendCmd
@@ -243,7 +243,7 @@ Public Sub READ_PARTITION_VER()
     mSendDataBuf(9) = &H20
     
     Log_Info "Read partition version(DDR)"
-    cmdIdentifyNum = 11
+    gintCmdId = 11
     gblCmdDataRecv = False
     
     SendCmd
@@ -263,7 +263,7 @@ Public Sub READ_RESOLUTION_INFO()
     mSendDataBuf(9) = &H13
     
     Log_Info "Support 4K or 2K"
-    cmdIdentifyNum = 12
+    gintCmdId = 12
     gblCmdDataRecv = False
     
     SendCmd
@@ -283,7 +283,7 @@ Public Sub READ_AREA_INFO()
     mSendDataBuf(9) = &H2
     
     Log_Info "Read area information"
-    cmdIdentifyNum = 13
+    gintCmdId = 13
     gblCmdDataRecv = False
     
     SendCmd
@@ -303,7 +303,7 @@ Public Sub READ_HDCP_KEY()
     mSendDataBuf(9) = &H34
     
     Log_Info "Read HDCP key"
-    cmdIdentifyNum = 14
+    gintCmdId = 14
     gblCmdDataRecv = False
     
     SendCmd
@@ -323,7 +323,7 @@ Public Sub READ_MAC_ADDRESS()
     mSendDataBuf(9) = &HB6
     
     Log_Info "Read MAC address"
-    cmdIdentifyNum = 15
+    gintCmdId = 15
     gblCmdDataRecv = False
     
     SendCmd
@@ -343,7 +343,7 @@ Public Sub READ_DEVICE_KEY()
     mSendDataBuf(9) = &H5
     
     Log_Info "Read device key"
-    cmdIdentifyNum = 16
+    gintCmdId = 16
     gblCmdDataRecv = False
     
     SendCmd
@@ -363,7 +363,7 @@ Public Sub READ_WIDEVINE_KEY()
     mSendDataBuf(9) = &H9
     
     Log_Info "Read widevine key"
-    cmdIdentifyNum = 17
+    gintCmdId = 17
     gblCmdDataRecv = False
     
     SendCmd
@@ -383,7 +383,7 @@ Public Sub READ_PLAYREADY_KEY()
     mSendDataBuf(9) = &H8
     
     Log_Info "Read playready key"
-    cmdIdentifyNum = 18
+    gintCmdId = 18
     gblCmdDataRecv = False
     
     SendCmd
