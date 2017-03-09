@@ -20,6 +20,7 @@ Public Const ITEMS_NUM As Integer = 16
 
 Public gstrXmlPath As String
 Public gblUartMode As Boolean
+Public gblNetConnected As Boolean
 Public glngDelayTime As Long
 Public gintSNLen As Integer
 Public gutdPropertySetting As TypeProperty
@@ -54,7 +55,7 @@ Public Sub LoadFormMain()
 
         For i = 0 To ITEMS_NUM
             If Not gutdPropertySetting.ItemChk(i) Then
-                .lbTVInfo(i).Caption = strChkBoxUnselected
+                .lbTVInfo(i).Caption = TVINFO_ITEMUNCHECK
                 .lbTVInfo(i).BackColor = &HE0E0E0
             End If
         Next i
@@ -232,7 +233,7 @@ ErrExit:
 End Sub
 
 Private Sub InitNetwork()
-    isNetworkConnected = False
+    gblNetConnected = False
     With FormMain.tcpClient
         .Protocol = sckTCPProtocol
         ' IMPORTANT: be sure to change the RemoteHost

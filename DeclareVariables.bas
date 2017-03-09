@@ -1,28 +1,6 @@
 Attribute VB_Name = "Module3"
 Option Explicit
 
-Public strBuff As String
-
-'------------------------------------------------------------------------------
-'    Variable mapping the check items in "CheckItem".
-'------------------------------------------------------------------------------
-Public isNetworkConnected As Boolean
-
-'------------------------------------------------------------------------------
-'    Variable mapping the items in "CheckItem".
-'------------------------------------------------------------------------------
-Public SetTVCurrentComBaud As Long                          'SN_Len
-Public strTvInfoSpec(11) As String
-
-Public IsACK As Boolean
-
-Public strCurrentModelName As String
-Public strDataBindingExcelFileName As String
-Public isOpenDataBindingExcelFile As Boolean
-Public isSendExitFacCmd As Boolean
-
-Public SetTVCurrentComID As Integer
-
 Public IsSNWriteSuccess As Boolean
 Public scanbarcode As String
 Public strSerialNo As String
@@ -30,8 +8,6 @@ Public countTime As Long
 
 Public cmdIdentifyNum As Integer
 
-Public Const strChkBoxUnselected As String = "----"
-Public Const strNoRecvData As String = "None"
 Public Const cmdResendTimes As Integer = 2
 Public Const cmdReceiveWaitS As Integer = 5
 

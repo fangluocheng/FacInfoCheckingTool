@@ -978,7 +978,6 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Dim Result As Boolean
-Dim glngDelayTime As Long
 Dim IsAllDataMatch As Boolean
 
 Private Sub Form_Unload(Cancel As Integer)
@@ -1019,7 +1018,7 @@ Private Sub subInitBeforeRunning()
     
     For i = 0 To ITEMS_NUM
         If gutdPropertySetting.ItemChk(i) Then
-            lbTVInfo(i).Caption = strNoRecvData
+            lbTVInfo(i).Caption = TVINFO_INIT
             lbTVInfo(i).BackColor = &HFFFFFF
         End If
     Next i
@@ -1054,7 +1053,7 @@ Private Sub subInitAfterRunning()
     txtInput.SetFocus
     
     If gblUartMode = False Then
-        isNetworkConnected = False
+        gblNetConnected = False
         tcpClient.Close
     End If
 End Sub
@@ -1493,13 +1492,13 @@ RESEND_CMD_17:
 RESEND_CMD_18:
     ClearComBuf
     'Either PASS or FAIL, send "Exit factory mode" cmd.
-    If isSendExitFacCmd Then
+    If gblExitFacCmd Then
         EXIT_FAC_MODE
         DelayMS glngDelayTime
     End If
 
     For i = 0 To ITEMS_NUM
-        If lbTVInfo(i).Caption = strNoRecvData Then
+        If lbTVInfo(i).Caption = TVINFO_INIT Then
             IsAllDataMatch = False
             lbTVInfo(i).BackColor = &HFF&
         End If
@@ -1541,7 +1540,7 @@ Private Sub saveAllData()
         Executesql (sqlstring)
         rs.AddNew
 
-        rs.Fields(0) = strCurrentModelName
+        rs.Fields(0) = gutdPropertySetting.Items(0)
         rs.Fields(1) = strSerialNo
 
         For i = 0 To ITEMS_NUM
@@ -1575,14 +1574,14 @@ Private Sub txtInput_KeyPress(KeyAscii As Integer)
                 End If
                 subMainProcesser
             Else
-                isNetworkConnected = False
+                gblNetConnected = False
                 Do
                     If tcpClient.State = sckClosed Then
                         Log_Info "TCP Connect"
                         tcpClient.Connect
                         txtInput.Locked = True
                     End If
-                    Call DelaySWithCmdFlag(cmdReceiveWaitS * 2, isNetworkConnected)
+                    Call DelaySWithCmdFlag(cmdReceiveWaitS * 2, gblNetConnected)
 
                     If tcpClient.State = sckConnected Then
                         subMainProcesser
@@ -1775,7 +1774,7 @@ End Sub
 
 Private Sub tcpClient_Connect()
     'Success to connect the TV.
-    isNetworkConnected = True
+    gblNetConnected = True
 End Sub
 
 Private Sub InfoCompare(cmdIdx As Integer, recvData As String)
