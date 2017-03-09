@@ -4,10 +4,10 @@ Option Explicit
 Private mSendDataBuf(0 To 9) As Byte
 
 Private Sub SendCmd()
-    If isUartMode Then
-        Form1.MSComm1.Output = mSendDataBuf
+    If gblUartMode Then
+        FormMain.MSComm1.Output = mSendDataBuf
     Else
-        Form1.tcpClient.SendData mSendDataBuf
+        FormMain.tcpClient.SendData mSendDataBuf
     End If
 End Sub
 
@@ -64,7 +64,7 @@ Public Sub READ_MODEL_NAME()
     
     Log_Info "Read model name"
     cmdIdentifyNum = 2
-    isCmdDataRecv = False
+    gblCmdDataRecv = False
     
     SendCmd
 End Sub
@@ -84,7 +84,7 @@ Public Sub READ_SYS_VERSION()
     
     Log_Info "Read system version"
     cmdIdentifyNum = 3
-    isCmdDataRecv = False
+    gblCmdDataRecv = False
     
     SendCmd
 End Sub
@@ -104,7 +104,7 @@ Public Sub READ_FLASH_INFO()
     
     Log_Info "Read Flash information"
     cmdIdentifyNum = 4
-    isCmdDataRecv = False
+    gblCmdDataRecv = False
     
     SendCmd
 End Sub
@@ -124,7 +124,7 @@ Public Sub READ_HARDWARE_VERSION()
     
     Log_Info "Read hardware version"
     cmdIdentifyNum = 5
-    isCmdDataRecv = False
+    gblCmdDataRecv = False
 
     SendCmd
 End Sub
@@ -144,7 +144,7 @@ Public Sub READ_DIMENSION_INFO()
     
     Log_Info "Support 3D or not"
     cmdIdentifyNum = 6
-    isCmdDataRecv = False
+    gblCmdDataRecv = False
     
     SendCmd
 End Sub
@@ -164,7 +164,7 @@ Public Sub READ_CHANNEL_INFO()
     
     Log_Info "Read channel information"
     cmdIdentifyNum = 7
-    isCmdDataRecv = False
+    gblCmdDataRecv = False
     
     SendCmd
 End Sub
@@ -184,7 +184,7 @@ Public Sub READ_24G_VERSION()
     
     Log_Info "Read 2.4G Version"
     cmdIdentifyNum = 8
-    isCmdDataRecv = False
+    gblCmdDataRecv = False
     
     SendCmd
 End Sub
@@ -204,7 +204,7 @@ Public Sub READ_PANEL_NAME()
     
     Log_Info "Read panel name"
     cmdIdentifyNum = 9
-    isCmdDataRecv = False
+    gblCmdDataRecv = False
     
     SendCmd
 End Sub
@@ -224,7 +224,7 @@ Public Sub READ_CARRIER_INFO()
     
     Log_Info "Read carrier information"
     cmdIdentifyNum = 10
-    isCmdDataRecv = False
+    gblCmdDataRecv = False
     
     SendCmd
 End Sub
@@ -244,7 +244,7 @@ Public Sub READ_PARTITION_VER()
     
     Log_Info "Read partition version(DDR)"
     cmdIdentifyNum = 11
-    isCmdDataRecv = False
+    gblCmdDataRecv = False
     
     SendCmd
 End Sub
@@ -264,7 +264,7 @@ Public Sub READ_RESOLUTION_INFO()
     
     Log_Info "Support 4K or 2K"
     cmdIdentifyNum = 12
-    isCmdDataRecv = False
+    gblCmdDataRecv = False
     
     SendCmd
 End Sub
@@ -284,7 +284,7 @@ Public Sub READ_AREA_INFO()
     
     Log_Info "Read area information"
     cmdIdentifyNum = 13
-    isCmdDataRecv = False
+    gblCmdDataRecv = False
     
     SendCmd
 End Sub
@@ -304,7 +304,7 @@ Public Sub READ_HDCP_KEY()
     
     Log_Info "Read HDCP key"
     cmdIdentifyNum = 14
-    isCmdDataRecv = False
+    gblCmdDataRecv = False
     
     SendCmd
 End Sub
@@ -324,7 +324,7 @@ Public Sub READ_MAC_ADDRESS()
     
     Log_Info "Read MAC address"
     cmdIdentifyNum = 15
-    isCmdDataRecv = False
+    gblCmdDataRecv = False
     
     SendCmd
 End Sub
@@ -344,7 +344,7 @@ Public Sub READ_DEVICE_KEY()
     
     Log_Info "Read device key"
     cmdIdentifyNum = 16
-    isCmdDataRecv = False
+    gblCmdDataRecv = False
     
     SendCmd
 End Sub
@@ -364,7 +364,7 @@ Public Sub READ_WIDEVINE_KEY()
     
     Log_Info "Read widevine key"
     cmdIdentifyNum = 17
-    isCmdDataRecv = False
+    gblCmdDataRecv = False
     
     SendCmd
 End Sub
@@ -384,7 +384,7 @@ Public Sub READ_PLAYREADY_KEY()
     
     Log_Info "Read playready key"
     cmdIdentifyNum = 18
-    isCmdDataRecv = False
+    gblCmdDataRecv = False
     
     SendCmd
 End Sub

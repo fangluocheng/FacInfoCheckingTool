@@ -6,16 +6,12 @@ Public strBuff As String
 '------------------------------------------------------------------------------
 '    Variable mapping the check items in "CheckItem".
 '------------------------------------------------------------------------------
-Public chkTitleFlag(16) As Boolean
-Public isUartMode As Boolean
 Public isNetworkConnected As Boolean
 
 '------------------------------------------------------------------------------
 '    Variable mapping the items in "CheckItem".
 '------------------------------------------------------------------------------
-Public SetTVCurrentComBaud As Long                         'ComBaud
-Public IsStepTime As Long                                  'Delayms
-Public barcodeLen As Integer                               'SN_Len
+Public SetTVCurrentComBaud As Long                          'SN_Len
 Public strTvInfoSpec(11) As String
 
 Public IsACK As Boolean
@@ -28,7 +24,6 @@ Public isSendExitFacCmd As Boolean
 Public SetTVCurrentComID As Integer
 
 Public IsSNWriteSuccess As Boolean
-Public isCmdDataRecv As Boolean
 Public scanbarcode As String
 Public strSerialNo As String
 Public countTime As Long
@@ -39,19 +34,16 @@ Public Const strChkBoxUnselected As String = "----"
 Public Const strNoRecvData As String = "None"
 Public Const cmdResendTimes As Integer = 2
 Public Const cmdReceiveWaitS As Integer = 5
-Public Const itemNumOfTvInfo As Integer = 16
-Public Const strRemoteHost As String = "192.168.1.11"
-Public Const lngRemotePort As Long = 8888
 
 Public Sub Log_Info(strLog As String)
-    Form1.TxtReceive.Text = Form1.TxtReceive.Text + strLog + vbCrLf
-    Form1.TxtReceive.SelStart = Len(Form1.TxtReceive)
+    FormMain.TxtReceive.Text = FormMain.TxtReceive.Text + strLog + vbCrLf
+    FormMain.TxtReceive.SelStart = Len(FormMain.TxtReceive)
     
     SaveLogInFile strLog
 End Sub
 
 Public Sub Log_Clear()
-    Form1.TxtReceive.Text = ""
+    FormMain.TxtReceive.Text = ""
 End Sub
 
 Public Sub DelaySWithCmdFlag(Sec As Long, flag As Boolean)

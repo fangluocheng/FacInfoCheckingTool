@@ -937,9 +937,9 @@ Private Sub Form_Load()
     Dim i As Integer
     Dim itemNumOfTvInfoTxt As Integer
 
-    itemNumOfTvInfoTxt = itemNumOfTvInfo - 5
+    itemNumOfTvInfoTxt = ITEMS_NUM - 5
 
-    If isUartMode Then
+    If gblUartMode Then
         optUart.Value = True
         optNetwork.Value = False
     Else
@@ -959,7 +959,7 @@ Private Sub Form_Load()
     Next i
 
     'Whether the CheckBox selected or not.
-    For i = 0 To itemNumOfTvInfo
+    For i = 0 To ITEMS_NUM
         If rs.Fields(i + 14) Then
             chkTitle(i).Value = 1
         Else
@@ -992,7 +992,7 @@ Private Sub cmdSave_Click()
     Dim i As Integer
     Dim itemNumOfTvInfoTxt As Integer
 
-    itemNumOfTvInfoTxt = itemNumOfTvInfo - 5
+    itemNumOfTvInfoTxt = ITEMS_NUM - 5
 
     sqlstring = "select * from CheckItem where Mark='" & strCurrentModelName & "'"
     Executesql (sqlstring)
@@ -1000,7 +1000,7 @@ Private Sub cmdSave_Click()
     'Set the text into the CheckItem table of database file.
     rs.Fields(1) = Val(Text3.Text)                         'SN_Len
 
-    For i = 0 To itemNumOfTvInfo
+    For i = 0 To ITEMS_NUM
         If chkTitle(i).Value = 1 Then
             rs.Fields(i + 14) = True
         ElseIf chkTitle(i).Value = 0 Then
@@ -1049,6 +1049,6 @@ Private Sub cmdSave_Click()
 
     MsgBox "Save success!", vbOKOnly, "warning"
     Unload Me
-    Unload Form1
+    Unload FormMain
 
 End Sub

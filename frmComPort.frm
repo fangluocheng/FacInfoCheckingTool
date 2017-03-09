@@ -93,7 +93,7 @@ Attribute VB_Exposed = False
 
 Private Sub cmdExit_Click()
     Unload Me
-    Form1.ZOrder (0)
+    FormMain.ZOrder (0)
 End Sub
 
 Private Sub cmdSet_Click()
@@ -119,18 +119,18 @@ On Error GoTo ErrExit
     Set rs = Nothing
     sqlstring = ""
 
-    If Form1.MSComm1.PortOpen = True Then
-        Form1.MSComm1.PortOpen = False
+    If FormMain.MSComm1.PortOpen = True Then
+        FormMain.MSComm1.PortOpen = False
     End If
 
-With Form1
+With FormMain
     .MSComm1.CommPort = SetTVCurrentComID
     .MSComm1.Settings = SetTVCurrentComBaud & ",N,8,1"
     .MSComm1.PortOpen = True
 End With
 
     Unload Me
-    Form1.ZOrder (0)
+    FormMain.ZOrder (0)
     
     Exit Sub
 
@@ -161,7 +161,7 @@ ErrExit:
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
-    Form1.Show
+    FormMain.Show
 End Sub
 
 
