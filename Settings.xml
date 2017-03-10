@@ -5,6 +5,7 @@
 	</Communication>
 	<Delayms>500</Delayms>
 	<SNLen>19</SNLen>
+	<MACLen>12</MACLen>
 	<ExitFacCmd enable="False"></ExitFacCmd>
 	<Model enable="True">X450N</Model>
 	<SysVer enable="True">MSD938_5.9.055S_0301</SysVer>

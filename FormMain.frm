@@ -5,7 +5,7 @@ Begin VB.Form FormMain
    BackColor       =   &H00E0E0E0&
    BorderStyle     =   1  'Fixed Single
    Caption         =   "乐视属性比对工具"
-   ClientHeight    =   7335
+   ClientHeight    =   7245
    ClientLeft      =   45
    ClientTop       =   435
    ClientWidth     =   14580
@@ -13,9 +13,47 @@ Begin VB.Form FormMain
    LinkTopic       =   "FormMain"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7335
+   ScaleHeight     =   7245
    ScaleWidth      =   14580
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Frame Frame4 
+      BackColor       =   &H00E0E0E0&
+      Caption         =   "MAC地址条码"
+      BeginProperty Font 
+         Name            =   "Arial"
+         Size            =   9
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   735
+      Left            =   7200
+      TabIndex        =   42
+      Top             =   6360
+      Width           =   3735
+      Begin VB.TextBox TextMacSN 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00FFFFFF&
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   120
+         TabIndex        =   43
+         Text            =   "123456789"
+         Top             =   240
+         Width           =   3495
+      End
+   End
    Begin VB.TextBox TxtReceive 
       Appearance      =   0  'Flat
       BeginProperty Font 
@@ -28,7 +66,7 @@ Begin VB.Form FormMain
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00008000&
-      Height          =   7095
+      Height          =   6135
       Left            =   11040
       MultiLine       =   -1  'True
       TabIndex        =   21
@@ -62,7 +100,7 @@ Begin VB.Form FormMain
    End
    Begin VB.Frame Frame3 
       BackColor       =   &H00E0E0E0&
-      Caption         =   "条码"
+      Caption         =   "整机条码"
       BeginProperty Font 
          Name            =   "Arial"
          Size            =   9
@@ -72,30 +110,30 @@ Begin VB.Form FormMain
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   850
-      Left            =   3840
+      Height          =   735
+      Left            =   120
       TabIndex        =   18
       Top             =   6360
-      Width           =   7095
-      Begin VB.TextBox txtInput 
+      Width           =   6975
+      Begin VB.TextBox TextTvSN 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
          BackColor       =   &H00FFFFFF&
          BeginProperty Font 
             Name            =   "Arial"
-            Size            =   15.75
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   480
+         Height          =   375
          Left            =   120
          TabIndex        =   0
          Text            =   "123456789"
          Top             =   240
-         Width           =   6850
+         Width           =   6735
       End
    End
    Begin VB.Frame Frame2 
@@ -110,11 +148,11 @@ Begin VB.Form FormMain
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   850
-      Left            =   120
+      Height          =   735
+      Left            =   11040
       TabIndex        =   17
       Top             =   6360
-      Width           =   3615
+      Width           =   3495
       Begin VB.Label lbResult 
          Alignment       =   2  'Center
          Appearance      =   0  'Flat
@@ -123,7 +161,7 @@ Begin VB.Form FormMain
          Caption         =   "Checking"
          BeginProperty Font 
             Name            =   "Arial"
-            Size            =   15.75
+            Size            =   12
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -131,11 +169,11 @@ Begin VB.Form FormMain
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H80000008&
-         Height          =   450
+         Height          =   375
          Left            =   120
          TabIndex        =   20
          Top             =   240
-         Width           =   3350
+         Width           =   3225
       End
    End
    Begin VB.Frame Frame1 
@@ -979,6 +1017,7 @@ Option Explicit
 
 Private IsAllDataMatch As Boolean
 Private mstrSNInput As String
+Private mstrMacSn As String
 
 Private Sub Form_Unload(Cancel As Integer)
     On Error GoTo ErrExit
@@ -998,7 +1037,6 @@ Private Sub InitBeforeRunning()
     Dim i As Integer
 
     IsAllDataMatch = True
-    txtInput.Locked = True
     gblCmdDataRecv = False
     mstrSNInput = ""
     
@@ -1016,9 +1054,11 @@ Private Sub InitBeforeRunning()
 End Sub
 
 Private Sub subInitAfterRunning()
-    txtInput.Locked = False
-    txtInput.Text = ""
-    txtInput.SetFocus
+    TextMacSN.Text = ""
+    'TextMacSN.Enabled = False
+    TextTvSN.Enabled = True
+    TextTvSN.Text = ""
+    TextTvSN.SetFocus
     
     If gblUartMode = False Then
         gblNetConnected = False
@@ -1031,16 +1071,6 @@ Private Sub Run()
     Dim i, j As Integer
 
     InitBeforeRunning
-
-    mstrSNInput = UCase$(txtInput.Text)
-    If mstrSNInput = "" Or Len(mstrSNInput) <> gintSNLen Then
-        Log_Clear
-        Log_Info "Please confirm the SN again?"
-        txtInput.Text = ""
-        txtInput.SetFocus
-        MsgBox "SN 码长度不对，请确认 XML 文件中设置的是否正确。", vbExclamation
-        GoTo FAIL
-    End If
 
     j = 0
 
@@ -1478,7 +1508,7 @@ RESEND_CMD_18:
         GoTo FAIL
     End If
 
-    Call saveAllData
+    'Call SaveData
     
 PASS:
     lbResult.Caption = "PASS"
@@ -1498,8 +1528,7 @@ ErrExit:
     MsgBox Err.Description, vbCritical, Err.Source
 End Sub
 
-
-Private Sub saveAllData()
+Private Sub SaveData()
     Dim i As Integer
 
     If mstrSNInput = "" Then
@@ -1528,14 +1557,50 @@ Private Sub saveAllData()
 
 End Sub
 
-Private Sub txtInput_KeyPress(KeyAscii As Integer)
+Private Sub TextTvSN_KeyPress(KeyAscii As Integer)
+    Dim strTvSn As String
+    
+    If KeyAscii = 13 Then
+        strTvSn = Trim$(TextTvSN.Text)
+        If strTvSn = "" Or Len(strTvSn) <> gintSNLen Then
+            Log_Clear
+            Log_Info "Please confirm the SN again?"
+            TextTvSN.Enabled = True
+            TextTvSN.Text = ""
+            TextTvSN.SetFocus
+            MsgBox "输入的整机条码长度不对，请确认 XML 文件中设置的是否正确。", vbExclamation
+            GoTo FAIL
+        Else
+            TextTvSN.Enabled = False
+            TextMacSN.Enabled = True
+            TextMacSN.SetFocus
+        End If
+    End If
+    Exit Sub
+
+FAIL:
+    lbResult.Caption = "NG"
+    lbResult.BackColor = &HFF&
+End Sub
+
+Private Sub TextMacSN_KeyPress(KeyAscii As Integer)
     On Error GoTo ErrExit
     Dim i As Integer
     
     i = 0
     'ASCII = 13 means "Enter" of keyboard.
     If KeyAscii = 13 Then
-        If txtInput.Locked = False Then
+        mstrMacSn = Trim$(TextMacSN.Text)
+        If mstrMacSn = "" Or Len(mstrMacSn) <> gintMACLen Then
+            Log_Clear
+            Log_Info "Please confirm the MAC again?"
+            TextMacSN.Enabled = True
+            TextMacSN.Text = ""
+            MsgBox "输入的 MAC 地址长度不对，请确认 XML 文件中设置的是否正确。", vbExclamation
+            GoTo FAIL
+        Else
+            TextMacSN.Enabled = False
+
             If gblUartMode = True Then
                 If MSComm1.PortOpen = False Then
                     MSComm1.PortOpen = True
@@ -1547,7 +1612,6 @@ Private Sub txtInput_KeyPress(KeyAscii As Integer)
                     If tcpClient.State = sckClosed Then
                         Log_Info "TCP Connect"
                         tcpClient.Connect
-                        txtInput.Locked = True
                     End If
                     Call DelaySWithCmdFlag(cmdReceiveWaitS * 2, gblNetConnected)
 
@@ -1562,25 +1626,26 @@ Private Sub txtInput_KeyPress(KeyAscii As Integer)
                     End If
                     Log_Info "Re-connect to TV."
                 Loop While i <= 5
-                txtInput.Locked = False
-                txtInput.Text = ""
+                TextMacSN.Enabled = True
+                TextMacSN.Text = ""
             End If
         End If
     End If
     Exit Sub
 
+FAIL:
+    lbResult.Caption = "NG"
+    lbResult.BackColor = &HFF&
+    Exit Sub
+
 ErrExit:
     'Invalid Port Number
     If Err.Number = 8002 Then
-        txtInput.Text = ""
+        TextMacSN.Text = ""
     End If
     MsgBox Err.Description, vbCritical, Err.Source
 End Sub
 
-
-'------------------------------------------------------------------------------
-' MSComm related function
-'------------------------------------------------------------------------------
 Private Sub MSComm1_OnComm()
     On Error GoTo Err
 
@@ -1608,6 +1673,7 @@ Private Sub hexReceive()
     firstByteOfDataIdx = 0
     Counter = MSComm1.InBufferCount
 
+    'Ignore empty data
     If (Counter > 0) Then
         receiveData = ""
         ReceiveArr = MSComm1.Input
@@ -1671,8 +1737,6 @@ Private Sub hexReceive()
             TxtReceive.Text = TxtReceive.Text & vbCrLf
             TxtReceive.SelStart = Len(TxtReceive.Text)
         End If
-    Else
-        'Ignore empty data
     End If
     
     Exit Sub
@@ -1690,6 +1754,7 @@ Private Sub tcpClient_DataArrival(ByVal bytesTotal As Long)
     
     firstByteOfDataIdx = 0
 
+    'Ignore empty data
     If (bytesTotal > 0) Then
         receiveData = ""
         tcpClient.GetData ReceiveArr, vbByte, bytesTotal
@@ -1730,8 +1795,6 @@ Private Sub tcpClient_DataArrival(ByVal bytesTotal As Long)
             TxtReceive.Text = TxtReceive.Text & vbCrLf
             TxtReceive.SelStart = Len(TxtReceive.Text)
         End If
-    Else
-        'Ignore empty data
     End If
     
     Exit Sub
@@ -1810,31 +1873,16 @@ Private Sub InfoCompare(cmdIdx As Integer, recvData As String)
                 End If
             ElseIf cmdIdx = 15 Then                        'MAC Address
                 If gutdPropertySetting.ItemChk(13) Then
-                    If Len(recvData) = 12 Then
-                        sqlstring = "select * from DataRecord where MACAddr='" & recvData & "'"
-                        Executesql (sqlstring)
-                                
-                        If rs.RecordCount > 0 Then
-                            If rs.RecordCount = 1 Then
-                                Log_Clear
-                                Log_Info "请检查此电视机的条码是否为 [" & rs("SerialNO") & "]."
-                            Else
-                                Log_Info "在数据库中发现有多个相同的 MAC 地址，请检查"
-                            End If
-                                    
+                    If Len(recvData) = gintMACLen Then
+                        If UCase(recvData) = UCase(mstrMacSn) Then
+                            IsAllDataMatch = True And IsAllDataMatch
+                            lbTVInfo(13).BackColor = &HFF00&
+                        Else
                             TxtReceive.ForeColor = &HFF&
                             IsAllDataMatch = False
                             lbTVInfo(13).BackColor = &HFF&
-                            lbTVInfo(13).Caption = "MAC 地址重复"
-                        Else
-                            IsAllDataMatch = True And IsAllDataMatch
-                            lbTVInfo(13).BackColor = &HFF00&
-                            lbTVInfo(13).Caption = recvData
                         End If
-                                
-                        Set cn = Nothing
-                        Set rs = Nothing
-                        sqlstring = ""
+                        lbTVInfo(13).Caption = recvData
                     Else
                         Log_Info "The lenght of MAC address is wrong."
                         lbTVInfo(13).BackColor = &HFF&
@@ -1846,8 +1894,8 @@ Private Sub InfoCompare(cmdIdx As Integer, recvData As String)
                 If gutdPropertySetting.ItemChk(14) Then
                     lbTVInfo(14).Caption = Strings.Right(recvData, 5)
 
-                    If lbTVInfo(14).Caption = Strings.Right(Trim(txtInput.Text), 5) _
-                    And Len(Trim(txtInput.Text)) >= 5 Then
+                    If lbTVInfo(14).Caption = Strings.Right(Trim(TextTvSN.Text), 5) _
+                    And Len(Trim(TextTvSN.Text)) >= 5 Then
                         IsAllDataMatch = True And IsAllDataMatch
                         lbTVInfo(14).BackColor = &HFF00&
                     Else

@@ -25,6 +25,7 @@ Public gblUartMode As Boolean
 Public gblNetConnected As Boolean
 Public glngDelayTime As Long
 Public gintSNLen As Integer
+Public gintMACLen As Integer
 Public gutdPropertySetting As TypeProperty
 Public gblExitFacCmd As Boolean
 Public gblCmdDataRecv As Boolean
@@ -47,8 +48,10 @@ Public Sub LoadFormMain()
         .Show
         .Enabled = False
         .Label1.Caption = gutdPropertySetting.Items(0)
-        .txtInput.Text = ""
-        .txtInput.Locked = False
+        .TextTvSN.Text = ""
+        .TextMacSN.Text = ""
+        .TextTvSN.Enabled = True
+        .TextMacSN.Enabled = False
 
         If gblUartMode Then
             InitComPort
@@ -84,6 +87,7 @@ Private Sub ParseXml()
         End If
         glngDelayTime = Val(xmlDoc.selectSingleNode("/Settings/Delayms").Text)
         gintSNLen = Val(xmlDoc.selectSingleNode("/Settings/SNLen").Text)
+        gintMACLen = Val(xmlDoc.selectSingleNode("/Settings/MACLen").Text)
         'Send Exit Factory Mode Command or not.
         If UCase(xmlDoc.selectSingleNode("/Settings/ExitFacCmd").selectSingleNode("@enable").Text) = XML_TRUE Then
             gblExitFacCmd = True
