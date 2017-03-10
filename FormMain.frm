@@ -1053,11 +1053,11 @@ Private Sub InitBeforeRunning()
     TxtReceive.ForeColor = &H80000008
 End Sub
 
-Private Sub subInitAfterRunning()
+Private Sub SettingAfterRun()
     TextMacSN.Text = ""
-    'TextMacSN.Enabled = False
-    TextTvSN.Enabled = True
     TextTvSN.Text = ""
+    TextMacSN.Enabled = False
+    TextTvSN.Enabled = True
     TextTvSN.SetFocus
     
     If gblUartMode = False Then
@@ -1508,20 +1508,20 @@ RESEND_CMD_18:
         GoTo FAIL
     End If
 
-    'Call SaveData
-    
+    If gblSaveData Then
+        Call SaveData
+    End If
+
 PASS:
     lbResult.Caption = "PASS"
     lbResult.BackColor = &HFF00&
-    Call subInitAfterRunning
-    
+    Call SettingAfterRun
     Exit Sub
 
 FAIL:
     lbResult.Caption = "NG"
     lbResult.BackColor = &HFF&
-    Call subInitAfterRunning
-
+    Call SettingAfterRun
     Exit Sub
 
 ErrExit:
@@ -1565,8 +1565,8 @@ Private Sub TextTvSN_KeyPress(KeyAscii As Integer)
         If strTvSn = "" Or Len(strTvSn) <> gintSNLen Then
             Log_Clear
             Log_Info "Please confirm the SN again?"
-            TextTvSN.Enabled = True
             TextTvSN.Text = ""
+            TextTvSN.Enabled = True
             TextTvSN.SetFocus
             MsgBox "输入的整机条码长度不对，请确认 XML 文件中设置的是否正确。", vbExclamation
             GoTo FAIL
@@ -1594,8 +1594,8 @@ Private Sub TextMacSN_KeyPress(KeyAscii As Integer)
         If mstrMacSn = "" Or Len(mstrMacSn) <> gintMACLen Then
             Log_Clear
             Log_Info "Please confirm the MAC again?"
-            TextMacSN.Enabled = True
             TextMacSN.Text = ""
+            TextMacSN.Enabled = True
             MsgBox "输入的 MAC 地址长度不对，请确认 XML 文件中设置的是否正确。", vbExclamation
             GoTo FAIL
         Else
@@ -1626,8 +1626,8 @@ Private Sub TextMacSN_KeyPress(KeyAscii As Integer)
                     End If
                     Log_Info "Re-connect to TV."
                 Loop While i <= 5
-                TextMacSN.Enabled = True
                 TextMacSN.Text = ""
+                TextMacSN.Enabled = True
             End If
         End If
     End If

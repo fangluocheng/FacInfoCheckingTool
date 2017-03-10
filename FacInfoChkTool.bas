@@ -28,6 +28,7 @@ Public gintSNLen As Integer
 Public gintMACLen As Integer
 Public gutdPropertySetting As TypeProperty
 Public gblExitFacCmd As Boolean
+Public gblSaveData As Boolean
 Public gblCmdDataRecv As Boolean
 Public gintCmdId As Integer
 
@@ -40,8 +41,9 @@ End Sub
 
 Public Sub LoadFormMain()
     Dim i As Integer
+
     ParseXml
-    
+
     gblCmdDataRecv = False
     
     With FormMain
@@ -93,6 +95,12 @@ Private Sub ParseXml()
             gblExitFacCmd = True
         Else
             gblExitFacCmd = False
+        End If
+        'Save data or not.
+        If UCase(xmlDoc.selectSingleNode("/Settings/SaveData").selectSingleNode("@enable").Text) = XML_TRUE Then
+            gblSaveData = True
+        Else
+            gblSaveData = False
         End If
         'Model
         gutdPropertySetting.Items(0) = xmlDoc.selectSingleNode("/Settings/Model").Text

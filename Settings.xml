@@ -7,6 +7,7 @@
 	<SNLen>19</SNLen>
 	<MACLen>12</MACLen>
 	<ExitFacCmd enable="False"></ExitFacCmd>
+	<SaveData enable="False"></SaveData>
 	<Model enable="True">X450N</Model>
 	<SysVer enable="True">MSD938_5.9.055S_0301</SysVer>
 	<FlashInfo enable="True">16G</FlashInfo>
