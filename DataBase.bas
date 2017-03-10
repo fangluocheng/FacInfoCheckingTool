@@ -1,4 +1,4 @@
-Attribute VB_Name = "Module4"
+Attribute VB_Name = "DataBase"
 Option Explicit
 
 Public cn As New ADODB.Connection

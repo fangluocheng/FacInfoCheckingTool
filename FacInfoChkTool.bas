@@ -17,6 +17,8 @@ Public Const TVINFO_INIT As String = "None"
 Public Const REMOTE_HOST As String = "192.168.1.11"
 Public Const REMOTE_PORT As Long = 8888
 Public Const ITEMS_NUM As Integer = 16
+Public Const cmdResendTimes As Integer = 2
+Public Const cmdReceiveWaitS As Integer = 5
 
 Public gstrXmlPath As String
 Public gblUartMode As Boolean
@@ -243,3 +245,61 @@ Private Sub InitNetwork()
         .RemotePort = REMOTE_PORT
     End With
 End Sub
+
+Public Sub SaveLogInFile(strLog As String)
+    Dim logPath As String
+
+    logPath = App.Path & "\" & "Logs\"
+    If Right(logPath, 1) <> "\" Then logPath = logPath & "\"
+    
+    If Dir(logPath, vbDirectory) = "" Then
+        MkDir logPath
+    End If
+    
+    Open (logPath & Format(Date, "YYYY-MM-DD") & ".log") For Append As #1
+    Write #1, CStr(Time) & "> " & strLog
+    Close #1
+End Sub
+
+Public Sub DelaySWithCmdFlag(Sec As Long, flag As Boolean)
+    On Error GoTo ShowError
+    Dim start As Single
+    start = Timer
+    While (Timer - start) < Sec
+        DoEvents
+   
+        If flag = True Then
+            Exit Sub
+        End If
+
+    Wend
+    Exit Sub
+
+ShowError:
+    MsgBox Err.Source & "------" & Err.Description
+End Sub
+
+Public Sub DelayMS(mmSec As Long)
+    On Error GoTo ShowError
+    Dim start As Single
+    start = Timer
+    While (Timer - start) < (mmSec / 1000#)
+        DoEvents
+    Wend
+    Exit Sub
+
+ShowError:
+    MsgBox Err.Source & "------" & Err.Description
+End Sub
+
+Public Sub Log_Info(strLog As String)
+    FormMain.TxtReceive.Text = FormMain.TxtReceive.Text & strLog & vbCrLf
+    FormMain.TxtReceive.SelStart = Len(FormMain.TxtReceive)
+    
+    SaveLogInFile strLog
+End Sub
+
+Public Sub Log_Clear()
+    FormMain.TxtReceive.Text = ""
+End Sub
+

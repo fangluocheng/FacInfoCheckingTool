@@ -977,19 +977,18 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Dim Result As Boolean
-Dim IsAllDataMatch As Boolean
+Private IsAllDataMatch As Boolean
 Private mstrSNInput As String
 
 Private Sub Form_Unload(Cancel As Integer)
-On Error GoTo ErrExit
+    On Error GoTo ErrExit
   
     If MSComm1.PortOpen = True Then
         MSComm1.PortOpen = False
     End If
   
     End
-Exit Sub
+    Exit Sub
 
 ErrExit:
     MsgBox Err.Description, vbCritical, Err.Source
@@ -1014,8 +1013,6 @@ Private Sub InitBeforeRunning()
     lbResult.BackColor = &HFFFFFF
     Log_Clear
     TxtReceive.ForeColor = &H80000008
-    'lbResult.FontSize = 22
-    
 End Sub
 
 Private Sub subInitAfterRunning()
@@ -1029,10 +1026,10 @@ Private Sub subInitAfterRunning()
     End If
 End Sub
 
-Private Sub subMainProcesser()
+Private Sub Run()
+    On Error GoTo ErrExit
     Dim i, j As Integer
 
-On Error GoTo ErrExit
     InitBeforeRunning
 
     mstrSNInput = UCase$(txtInput.Text)
@@ -1052,9 +1049,9 @@ RESEND_CMD_0:
     'Send cmd, read data and save data
     'Enter factory mode fisrt, or other cmd may not respond.
     ENTER_FAC_MODE
-    DelayMS glngDelayTime
+    'DelayMS glngDelayTime
     Call DelaySWithCmdFlag(cmdReceiveWaitS, gblCmdDataRecv)
-        
+
     If gblCmdDataRecv = False Then
         If j > cmdResendTimes Then
             j = 0
@@ -1075,9 +1072,9 @@ RESEND_CMD_1:
     If gutdPropertySetting.ItemChk(0) Then
         ClearComBuf
         READ_MODEL_NAME
-        DelayMS glngDelayTime
+        'DelayMS glngDelayTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, gblCmdDataRecv)
-        
+
         If gblCmdDataRecv = False Then
             If j > cmdResendTimes Then
                 j = 0
@@ -1098,7 +1095,7 @@ RESEND_CMD_2:
     If gutdPropertySetting.ItemChk(1) Then
         ClearComBuf
         READ_SYS_VERSION
-        DelayMS glngDelayTime
+        'DelayMS glngDelayTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, gblCmdDataRecv)
         
         If gblCmdDataRecv = False Then
@@ -1121,7 +1118,7 @@ RESEND_CMD_3:
     If gutdPropertySetting.ItemChk(2) Then
         ClearComBuf
         READ_FLASH_INFO
-        DelayMS glngDelayTime
+        'DelayMS glngDelayTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, gblCmdDataRecv)
         
         If gblCmdDataRecv = False Then
@@ -1144,7 +1141,7 @@ RESEND_CMD_4:
     If gutdPropertySetting.ItemChk(3) Then
         ClearComBuf
         READ_HARDWARE_VERSION
-        DelayMS glngDelayTime
+        'DelayMS glngDelayTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, gblCmdDataRecv)
         
         If gblCmdDataRecv = False Then
@@ -1167,7 +1164,7 @@ RESEND_CMD_5:
     If gutdPropertySetting.ItemChk(4) Then
         ClearComBuf
         READ_DIMENSION_INFO
-        DelayMS glngDelayTime
+        'DelayMS glngDelayTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, gblCmdDataRecv)
         
         If gblCmdDataRecv = False Then
@@ -1190,7 +1187,7 @@ RESEND_CMD_6:
     If gutdPropertySetting.ItemChk(5) Then
         ClearComBuf
         READ_CHANNEL_INFO
-        DelayMS glngDelayTime
+        'DelayMS glngDelayTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, gblCmdDataRecv)
         
         If gblCmdDataRecv = False Then
@@ -1213,7 +1210,7 @@ RESEND_CMD_7:
     If gutdPropertySetting.ItemChk(6) Then
         ClearComBuf
         READ_24G_VERSION
-        DelayMS glngDelayTime
+        'DelayMS glngDelayTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, gblCmdDataRecv)
         
         If gblCmdDataRecv = False Then
@@ -1236,7 +1233,7 @@ RESEND_CMD_8:
     If gutdPropertySetting.ItemChk(7) Then
         ClearComBuf
         READ_PANEL_NAME
-        DelayMS glngDelayTime
+        'DelayMS glngDelayTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, gblCmdDataRecv)
         
         If gblCmdDataRecv = False Then
@@ -1259,7 +1256,7 @@ RESEND_CMD_9:
     If gutdPropertySetting.ItemChk(8) Then
         ClearComBuf
         READ_CARRIER_INFO
-        DelayMS glngDelayTime
+        'DelayMS glngDelayTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, gblCmdDataRecv)
         
         If gblCmdDataRecv = False Then
@@ -1282,7 +1279,7 @@ RESEND_CMD_10:
     If gutdPropertySetting.ItemChk(9) Then
         ClearComBuf
         READ_PARTITION_VER
-        DelayMS glngDelayTime
+        'DelayMS glngDelayTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, gblCmdDataRecv)
         
         If gblCmdDataRecv = False Then
@@ -1305,7 +1302,7 @@ RESEND_CMD_11:
     If gutdPropertySetting.ItemChk(10) Then
         ClearComBuf
         READ_RESOLUTION_INFO
-        DelayMS glngDelayTime
+        'DelayMS glngDelayTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, gblCmdDataRecv)
         
         If gblCmdDataRecv = False Then
@@ -1328,7 +1325,7 @@ RESEND_CMD_12:
     If gutdPropertySetting.ItemChk(11) Then
         ClearComBuf
         READ_AREA_INFO
-        DelayMS glngDelayTime
+        'DelayMS glngDelayTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, gblCmdDataRecv)
         
         If gblCmdDataRecv = False Then
@@ -1351,7 +1348,7 @@ RESEND_CMD_13:
     If gutdPropertySetting.ItemChk(12) Then
         ClearComBuf
         READ_HDCP_KEY
-        DelayMS glngDelayTime
+        'DelayMS glngDelayTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, gblCmdDataRecv)
         
         If gblCmdDataRecv = False Then
@@ -1374,7 +1371,7 @@ RESEND_CMD_14:
     If gutdPropertySetting.ItemChk(13) Then
         ClearComBuf
         READ_MAC_ADDRESS
-        DelayMS glngDelayTime
+        'DelayMS glngDelayTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, gblCmdDataRecv)
         
         If gblCmdDataRecv = False Then
@@ -1397,7 +1394,7 @@ RESEND_CMD_15:
     If gutdPropertySetting.ItemChk(14) Then
         ClearComBuf
         READ_DEVICE_KEY
-        DelayMS glngDelayTime
+        'DelayMS glngDelayTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, gblCmdDataRecv)
         
         If gblCmdDataRecv = False Then
@@ -1420,7 +1417,7 @@ RESEND_CMD_16:
     If gutdPropertySetting.ItemChk(15) Then
         ClearComBuf
         READ_WIDEVINE_KEY
-        DelayMS glngDelayTime
+        'DelayMS glngDelayTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, gblCmdDataRecv)
         
         If gblCmdDataRecv = False Then
@@ -1443,7 +1440,7 @@ RESEND_CMD_17:
     If gutdPropertySetting.ItemChk(16) Then
         ClearComBuf
         READ_PLAYREADY_KEY
-        DelayMS glngDelayTime
+        'DelayMS glngDelayTime
         Call DelaySWithCmdFlag(cmdReceiveWaitS, gblCmdDataRecv)
         
         If gblCmdDataRecv = False Then
@@ -1467,7 +1464,7 @@ RESEND_CMD_18:
     'Either PASS or FAIL, send "Exit factory mode" cmd.
     If gblExitFacCmd Then
         EXIT_FAC_MODE
-        DelayMS glngDelayTime
+        'DelayMS glngDelayTime
     End If
 
     For i = 0 To ITEMS_NUM
@@ -1499,7 +1496,6 @@ FAIL:
 
 ErrExit:
     MsgBox Err.Description, vbCritical, Err.Source
-
 End Sub
 
 
@@ -1539,13 +1535,12 @@ Private Sub txtInput_KeyPress(KeyAscii As Integer)
     i = 0
     'ASCII = 13 means "Enter" of keyboard.
     If KeyAscii = 13 Then
-        
         If txtInput.Locked = False Then
             If gblUartMode = True Then
                 If MSComm1.PortOpen = False Then
                     MSComm1.PortOpen = True
                 End If
-                subMainProcesser
+                Run
             Else
                 gblNetConnected = False
                 Do
@@ -1557,7 +1552,7 @@ Private Sub txtInput_KeyPress(KeyAscii As Integer)
                     Call DelaySWithCmdFlag(cmdReceiveWaitS * 2, gblNetConnected)
 
                     If tcpClient.State = sckConnected Then
-                        subMainProcesser
+                        Run
                         Exit Do
                     Else
                         If tcpClient.State <> sckClosed Then
@@ -1580,10 +1575,6 @@ ErrExit:
         txtInput.Text = ""
     End If
     MsgBox Err.Description, vbCritical, Err.Source
-End Sub
-
-Private Sub vbSetSPEC_Click()
-    frmSetData.Show
 End Sub
 
 
@@ -1691,7 +1682,8 @@ End Sub
 
 
 Private Sub tcpClient_DataArrival(ByVal bytesTotal As Long)
-On Error GoTo Err
+    On Error GoTo Err
+
     Dim ReceiveArr() As Byte
     Dim receiveData As String
     Dim i, tmp, firstByteOfDataIdx As Integer
@@ -1742,7 +1734,9 @@ On Error GoTo Err
         'Ignore empty data
     End If
     
+    Exit Sub
 Err:
+    MsgBox Err.Description, vbCritical, Err.Source
 End Sub
 
 Private Sub tcpClient_Connect()
@@ -1904,4 +1898,11 @@ Private Sub InfoCompare(cmdIdx As Integer, recvData As String)
             End If
         End If
     Next i
+End Sub
+
+Private Sub ClearComBuf()
+    If gblUartMode Then
+        MSComm1.InBufferCount = 0
+        MSComm1.OutBufferCount = 0
+    End If
 End Sub
