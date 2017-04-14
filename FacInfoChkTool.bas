@@ -4,7 +4,7 @@ Option Explicit
 
 Public Type TypeProperty
     Items(11) As String
-    ItemChk(16) As Boolean
+    ItemChk(17) As Boolean
 End Type
 
 Public Const XML_COMMODE_UART As String = "UART"
@@ -16,7 +16,7 @@ Public Const TVINFO_ITEMUNCHECK As String = "----"
 Public Const TVINFO_INIT As String = "None"
 Public Const REMOTE_HOST As String = "192.168.1.11"
 Public Const REMOTE_PORT As Long = 8888
-Public Const ITEMS_NUM As Integer = 16
+Public Const ITEMS_NUM As Integer = 17
 Public Const cmdResendTimes As Integer = 2
 Public Const cmdReceiveWaitS As Integer = 5
 
@@ -215,6 +215,12 @@ Private Sub ParseXml()
             gutdPropertySetting.ItemChk(16) = True
         Else
             gutdPropertySetting.ItemChk(16) = False
+        End If
+        'SN_NUM
+        If UCase(xmlDoc.selectSingleNode("/Settings/SNNum").selectSingleNode("@enable").Text) = XML_TRUE Then
+            gutdPropertySetting.ItemChk(17) = True
+        Else
+            gutdPropertySetting.ItemChk(17) = False
         End If
     End If
 End Sub

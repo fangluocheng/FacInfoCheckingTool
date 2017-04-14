@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Settings>
-	<Communication mode="Net">
+	<Communication mode="Uart">
 		<Uart baud="115200" id="6"/>
 	</Communication>
 	<Delayms>500</Delayms>
-	<SNLen>19</SNLen>
-	<MACLen>12</MACLen>
+	<SNLen>1</SNLen>
+	<MACLen>1</MACLen>
 	<ExitFacCmd enable="False"></ExitFacCmd>
 	<SaveData enable="False"></SaveData>
 	<Model enable="True">X450N</Model>
@@ -14,7 +14,7 @@
 	<HWVer enable="True">H5000</HWVer>
 	<Dimension enable="True">2D</Dimension>
 	<Channel enable="True">LETV</Channel>
-	<RemoteVer enable="False">LETV-D-D151009_V01</RemoteVer>
+	<RemoteVer enable="True">LETV-D-D151009_V01</RemoteVer>
 	<Panel enable="True">0x002A</Panel>
 	<Carrier enable="True">CIBN</Carrier>
 	<PartitionVer enable="True">3G</PartitionVer>
@@ -23,6 +23,7 @@
 	<HDCP enable="True"></HDCP>
 	<MAC enable="True"></MAC>
 	<DeviceKey enable="True"></DeviceKey>
-	<WidevienKey enable="True"></WidevienKey>
+	<SNNum enable="True"></SNNum>
+	<WidevienKey enable="False"></WidevienKey>
 	<PlayreadyKey enable="False"></PlayreadyKey>
 </Settings>

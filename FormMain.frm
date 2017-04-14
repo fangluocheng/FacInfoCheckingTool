@@ -210,6 +210,52 @@ Begin VB.Form FormMain
          EndProperty
          ForeColor       =   &H80000008&
          Height          =   345
+         Index           =   17
+         Left            =   7200
+         TabIndex        =   45
+         Top             =   4800
+         Width           =   3495
+      End
+      Begin VB.Label lbTitle 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H00808080&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "Õû»úºÅ"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   14.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000008&
+         Height          =   405
+         Index           =   17
+         Left            =   7200
+         TabIndex        =   44
+         Top             =   4320
+         Width           =   3495
+      End
+      Begin VB.Label lbTVInfo 
+         Alignment       =   2  'Center
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000005&
+         BorderStyle     =   1  'Fixed Single
+         Caption         =   "None"
+         BeginProperty Font 
+            Name            =   "Arial"
+            Size            =   12
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H80000008&
+         Height          =   345
          Index           =   16
          Left            =   3650
          TabIndex        =   40
@@ -1490,6 +1536,29 @@ RESEND_CMD_17:
     End If
 
 RESEND_CMD_18:
+    If gutdPropertySetting.ItemChk(17) Then
+        ClearComBuf
+        GET_SN_NUM
+        'DelayMS glngDelayTime
+        Call DelaySWithCmdFlag(cmdReceiveWaitS, gblCmdDataRecv)
+        
+        If gblCmdDataRecv = False Then
+            If j > cmdResendTimes Then
+                j = 0
+                Log_Info "Cannot get SN num!!!"
+                GoTo RESEND_CMD_19
+            Else
+                j = j + 1
+                Log_Info "Resend cmd GET_SN_NUM!!!"
+                GoTo RESEND_CMD_18
+            End If
+        Else
+            j = 0
+            GoTo RESEND_CMD_19
+        End If
+    End If
+    
+RESEND_CMD_19:
     ClearComBuf
     'Either PASS or FAIL, send "Exit factory mode" cmd.
     If gblExitFacCmd Then
@@ -1717,7 +1786,7 @@ Private Sub hexReceive()
             For i = (firstByteOfDataIdx + 3) To ((firstByteOfDataIdx + 3) + ReceiveArr(firstByteOfDataIdx + 2) - 1) Step 1
                 If gintCmdId = 6 Or gintCmdId = 12 Or _
                     gintCmdId = 14 Or gintCmdId = 15 Or _
-                    gintCmdId = 17 Or gintCmdId = 18 Then
+                    gintCmdId = 17 Or gintCmdId = 18 Or gintCmdId = 19 Then
                     If (ReceiveArr(i) < 16) Then
                         receiveData = receiveData & "0" & Hex(ReceiveArr(i))
                     Else
@@ -1810,11 +1879,12 @@ End Sub
 Private Sub InfoCompare(cmdIdx As Integer, recvData As String)
     Dim i As Integer
 
-    For i = 0 To 16
+    'For i = 0 To 16
+    For i = 0 To 17
         gblCmdDataRecv = True
 
         If cmdIdx = (i + 2) Then
-            If cmdIdx = 4 Then                             '2.4G Version
+            If cmdIdx = 4 Then                             'Flash
                 If gutdPropertySetting.ItemChk(2) Then
                     lbTVInfo(2).Caption = recvData & "G"
                             
@@ -1931,6 +2001,36 @@ Private Sub InfoCompare(cmdIdx As Integer, recvData As String)
                         lbTVInfo(16).Caption = "Playready Key Î´ÉÕÂ¼"
                     End If
                 End If
+            ElseIf cmdIdx = 19 Then                             'SN
+                If gutdPropertySetting.ItemChk(17) Then
+                    If Len(recvData) = gintSNLen Then
+                        'If UCase(recvData) = UCase(mstrSNInput) Then
+                            IsAllDataMatch = True And IsAllDataMatch
+                            lbTVInfo(17).BackColor = &HFF00&
+                       'Else
+                            'TxtReceive.ForeColor = &HFF&
+                            'IsAllDataMatch = False
+                            'lbTVInfo(17).BackColor = &HFF&
+                        'End If
+                        lbTVInfo(17).Caption = recvData
+                    Else
+                        Log_Info "The lenght of SN num is wrong."
+                        lbTVInfo(17).BackColor = &HFF&
+                        lbTVInfo(17).Caption = recvData
+                    End If
+                End If
+                'gblCmdDataRecv = True
+                'If gutdPropertySetting.ItemChk(17) Then
+                    'If Len(TextTvSN.Text) = gintSNLen Then
+                        'lbTVInfo(17).Caption = Trim(TextTvSN.Text)
+                            'IsAllDataMatch = True And IsAllDataMatch
+                            'lbTVInfo(17).BackColor = &HFF00&
+                        'Else
+                            'TxtReceive.ForeColor = &HFF&
+                            'IsAllDataMatch = False
+                            'lbTVInfo(17).BackColor = &HFF&
+                        'End If
+                'End If
             Else
                 If gutdPropertySetting.ItemChk(i) Then
                     If gutdPropertySetting.Items(i) = recvData Then

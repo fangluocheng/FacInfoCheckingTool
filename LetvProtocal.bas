@@ -388,3 +388,24 @@ Public Sub READ_PLAYREADY_KEY()
     
     SendCmd
 End Sub
+
+Public Sub GET_SN_NUM()
+    '6E 51 86 03 FE 77 26 00 00 15
+    mSendDataBuf(0) = &H6E
+    mSendDataBuf(1) = &H51
+    mSendDataBuf(2) = &H86
+    mSendDataBuf(3) = &H1
+    mSendDataBuf(4) = &HFE
+    mSendDataBuf(5) = &H77
+    mSendDataBuf(6) = &H26
+    mSendDataBuf(7) = &H0
+    mSendDataBuf(8) = &H0
+    mSendDataBuf(9) = &H15
+    
+    Log_Info "Get SN num"
+    gintCmdId = 19
+    gblCmdDataRecv = False
+    
+    SendCmd
+End Sub
+

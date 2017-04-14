@@ -11,6 +11,7 @@ Form=FormSplash.frm
 Module=LetvProtocal; LetvProtocal.bas
 Module=DataBase; DataBase.bas
 Module=FacInfoChkTool; FacInfoChkTool.bas
+Reference=*\G{00025E01-0000-0000-C000-000000000046}#5.0#0#..\..\..\..\Program Files\Common Files\Microsoft Shared\DAO\dao360.dll#Microsoft DAO 3.6 Object Library
 IconForm="FormSplash"
 Startup="Sub Main"
 HelpFile=""
